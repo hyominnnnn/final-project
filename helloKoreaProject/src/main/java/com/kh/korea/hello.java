@@ -2,6 +2,6 @@ package com.kh.korea;
 
 public class hello {
 	public void hihihi(){
-		System.out.println("ев╫╨ф╝╓дев╫╪");
+		System.out.println("О©╫в╫О©╫ф╝О©╫О©╫О©╫в╫О©╫");
 	}
 }
