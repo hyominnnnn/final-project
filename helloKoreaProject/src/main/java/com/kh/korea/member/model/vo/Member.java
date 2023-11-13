@@ -4,6 +4,7 @@ public class Member {
 	
 	public void main() {
 	System.out.println("dddddd");
+	System.out.println("ㅇㅇㅇ");
 	}
 
 }
