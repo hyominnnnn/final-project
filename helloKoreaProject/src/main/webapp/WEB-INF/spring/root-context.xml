@@ -5,4 +5,53 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
+	
+	 <!-- DB 연결을 위한 Bean등록 3단계 -->
+	 <!-- 1단계, DB연결을 위한 도구를 설정  
+	 commons-dbcp-1.4.jar에 있는 BasicDataSource.class를 등록-->	
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+	 	<!-- 어떤 DB에 접속할건지 정보 작성 -->
+	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+	 	<property name="username" value="KOREA" />
+	 	<property name="password" value="KOREA" />
+	 </bean>
+		
+	  <!-- 2단계. MyBatisSpring에서 제공하는 SQL 명령을 실행하기위한 도구 등록 
+	  mybatis-spring-1.3.2.jar에 있는 SqlSessionFactioryBean.class를 등록-->
+	  <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+	  	<!-- Mybatis 설정파일 위치를 지정하여 설정값들을 가져와야함 -->
+	  	<property name="configLocation" value="classpath:mybatis-config.xml" />
+	  	<!-- d어떤 DB에 연결할 건지 연결을 위한 도구 참조 설정 -->
+	  	<property name="dataSource" ref="dataSource" />
+	  </bean>
+	  
+	   <!-- 3단계. SQL 구문 실행을 위한 탬플릿을 제공하는 도구 등록 -->
+	  <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+	  	<!-- 매개변수 생성자 참조 설정 -->
+	  	<constructor-arg ref="sqlSessionFactory" />
+	  </bean>
+	  
+	 <!-- 파일 업로드 관련 빈 등록 -->
+	    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	    	<property name="maxUploadSize" value="100000000" />
+	    	<property name="maxInMemorySize" value="100000000" />
+	    </bean>
+	    
+	    <!-- 메일전송 도구 등록 -->
+	   	<bean id="sender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	   		<property name="host" value="smtp.gmail.com" />
+	   		<property name="port" value="587" />
+	   		<property name="username" value="zinsta52@gmail.com" />
+	   		<property name="password" value="tymsxcrnnhxoiiih" />
+	   		<property name="javaMailProperties">
+	   			<props>
+	   				<prop key="mail.smtp.auth">true</prop>
+	   				<prop key="mail.smtp.starttls.enable">true</prop>
+	   			</props>
+	   		</property>
+	   	</bean> 
+	  	
+		
+		
 </beans>
