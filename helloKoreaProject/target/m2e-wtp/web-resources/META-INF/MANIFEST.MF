@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: dlals
 Build-Jdk: 1.8.0_372
+=======
+Built-By: xqpt3
+Build-Jdk: 1.8.0_202
+>>>>>>> cd773cff52641e6b89b13309bc533716df20e831
 Created-By: Maven Integration for Eclipse
 
