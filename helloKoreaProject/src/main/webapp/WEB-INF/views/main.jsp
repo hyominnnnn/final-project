@@ -91,33 +91,48 @@
 </style>
 </head>
 <body>
-
-        <div id="content">
-            <div id="content_1">
-                <p id="imgp">이미지</p>
-            </div>
-            <div id="content_2">
-                <div class="display-test inline-block circle"></div>
-                <div class="display-test inline-block circle"></div>
-                <div class="display-test inline-block circle"></div>
-                <div class="display-test inline-block circle"></div>
-                <div class="display-test inline-block circle"></div>
-            </div>
-            <div id="content_3">
-                <div id="content3_1">
-                    <h2 class="h2">알림사항</h2>
-                </div>
-                <div id="content3_2">
-                    <h2 class="h2">이벤트</h2>
-                </div>
-            </div>
-            <div id="content_4">
-                <h2 class="h2">프로모션</h2>
-                <div class="display-test2 inline-block square1">예약문의</div>
-                <div class="display-test2 inline-block square2">QUIZ TOP 10</div>
-                <div class="display-test2 inline-block square3">어서와 한국은 처음이지? 소개</div>
-            </div>
-        </div>
-    </div>
+		<div id="wrap">
+	        <div id="header1">
+	            <div id="header1_1">
+	                <jsp:include page="common/header.jsp"></jsp:include>
+	            </div>
+	            <div id="header1_2"></div>
+	            <div id="header1_3">
+	                
+	            </div>
+	        </div>
+	
+	        <div id="navi">
+	
+	            <ul id="navi_1"></ul>
+	
+	        <div id="content">
+	            <div id="content_1">
+	                <p id="imgp">이미지</p>
+	            </div>
+	            <div id="content_2">
+	                <div class="display-test inline-block circle"></div>
+	                <div class="display-test inline-block circle"></div>
+	                <div class="display-test inline-block circle"></div>
+	                <div class="display-test inline-block circle"></div>
+	                <div class="display-test inline-block circle"></div>
+	            </div>
+	            <div id="content_3">
+	                <div id="content3_1">
+	                    <h2 class="h2">알림사항</h2>
+	                </div>
+	                <div id="content3_2">
+	                    <h2 class="h2">이벤트</h2>
+	                </div>
+	            </div>
+	            <div id="content_4">
+	                <h2 class="h2">프로모션</h2>
+	                <div class="display-test2 inline-block square1">예약문의</div>
+	                <div class="display-test2 inline-block square2">QUIZ TOP 10</div>
+	                <div class="display-test2 inline-block square3">어서와 한국은 처음이지? 소개</div>
+	            </div>
+	        </div>
+	    </div>
+ 	 </div>
 </body>
 </html>
