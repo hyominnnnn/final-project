@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>한국식 로그인</title>
+    <title>로그인</title>
     <link rel="stylesheet" href="resources/css/login.css">
     <style>
         
@@ -14,7 +14,7 @@
     <h2>L O G I N</h2>
     <form action="#" method="post">
         <label for="memberName">ID:</label>
-        <input type="text" id="memberName" name=""memberName"" required><br>
+        <input type="text" id="memberName" name="memberName" required><br>
         
         <label for="userPwd">Password:</label>
         <input type="password" id="userPwd" name="userPwd" required><br>
