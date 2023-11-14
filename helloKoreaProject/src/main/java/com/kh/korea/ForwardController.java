@@ -10,5 +10,7 @@ public class ForwardController {
 	public String main() {
 		return "main";
 	}
+	
+	
 
 }
