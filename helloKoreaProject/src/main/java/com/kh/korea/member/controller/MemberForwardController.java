@@ -21,6 +21,12 @@ public class MemberForwardController {
 	public String foreignerLogon() {
 		return "member/foreignerLogon";
 	}
+	
+	@GetMapping("login")
+	public String login() {
+		return "member/login";
+	}
+
 
 	
 }
