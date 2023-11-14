@@ -179,7 +179,7 @@
             <div id="header1_2"></div>
             <div id="header1_3">
                 <a href="#" id="a1">마이페이지</a>
-                <a href="#" id="a2">로그인</a>
+                <a href="login" id="a2">로그인</a>
             </div>
         </div>
 
