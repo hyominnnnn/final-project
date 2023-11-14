@@ -10,7 +10,7 @@ public class ForwardController {
 	public String main() {
 		return "main";
 	}
-	
+
 	@GetMapping("header")
 	public String header() {
 		return "common/header";
@@ -20,5 +20,6 @@ public class ForwardController {
 	public String memberInfo() {
 		return "admin/memberInfo";
 	}
+
 
 }
