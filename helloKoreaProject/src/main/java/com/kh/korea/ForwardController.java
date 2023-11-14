@@ -11,6 +11,9 @@ public class ForwardController {
 		return "main";
 	}
 	
-	
+	@GetMapping("header")
+	public String header() {
+		return "common/header";
+	}
 
 }
