@@ -91,17 +91,7 @@
 </style>
 </head>
 <body>
-		<div id="wrap">
-		        <div id="header1">
-		            <div id="header1_1">
-		                <jsp:include page="common/header.jsp"></jsp:include>
-		            </div>
-		            <div id="header1_2"></div>
-		            <div id="header1_3"></div>
-		        </div>
-		        <div id="navi">
-		            <ul id="navi_1"></ul>
-				</div>
+
         <div id="content">
             <div id="content_1">
                 <p id="imgp">이미지</p>
