@@ -120,8 +120,12 @@
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
+            	<!-- 로그인 전 -->
+                <a href="logon" id="a1">회원가입</a>
+                <a href="login" id="a2">로그인</a>
+                <!-- 로그인 후 -->
                 <a href="#" id="a1">마이페이지</a>
-                <a href="#" id="a2">로그인</a>
+                <a href="#" id="a2">로그아웃</a>
             </div>
         </div>
         <div class="navi">
