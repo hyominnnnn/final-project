@@ -88,6 +88,12 @@
         .square1 {background-color: rgb(245, 107, 107);}
         .square2 {background-color: rgb(79, 81, 132);}
         .square3 {background-color: rgb(129, 129, 129);}
+        
+         /*--------------알림사항-------------*/
+	       hr{
+	        margin-top: 65px;
+	        width: 75%;
+	       }
 </style>
 </head>
 <body>
@@ -120,6 +126,10 @@
 	            <div id="content_3">
 	                <div id="content3_1">
 	                    <h2 class="h2">알림사항</h2>
+	                    <hr>
+	                    <hr>
+	                    <hr>
+	                    <hr>
 	                </div>
 	                <div id="content3_2">
 	                    <h2 class="h2">이벤트</h2>
