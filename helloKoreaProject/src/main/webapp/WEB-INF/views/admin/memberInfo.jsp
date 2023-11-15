@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -332,17 +333,6 @@
         
     </div>
     
-    
-    <script>
-    	$(function(){
-    		$('.rwd-table > tbody > tr').click(function(){
-    			location.herf='detail.me?mno=' + $(this).children('.mno').text();
-    		})
-    	})
-    </script>
-    
-   
-    
     <!-- 회원정보 상세 모달 -->
      <div class="modal fade" id="memberDetailForm">
         <div class="modal-dialog modal-sm">
@@ -350,16 +340,13 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">회원 정보 상세 조회</h4>
+                    <h4 class="modal-title">000님의 정보 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="memberPosting" method="post">
+                <form action="#" method="post" id="memberDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <div align="center">
-                        
-                        </div>
                             <label for="memberName" class="memberbtn">이름</label>
                             <input type="text" class="form-control memberbtn" id="memberName" name="memberName" readonly> 
                             <br>
@@ -387,19 +374,33 @@
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
                             <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" readonly> 
                             <br>
-                            
-                            
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                        <button type="submit" id="posting-btn" class="model-footer-btn">게시물 조회</button>
-                        <button id="reply-btn" class="model-footer-btn" onclick="reply();">댓글 조회</button>
+                        <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물 조회</button>
+                        <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글 조회</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
+    <script>
+	    $(function(){
+	             		$('#memberDetailModel > tbody > tr').click(function(){
+	             			location.href='posting.me?pno=' + $(this).children('.pno').text();
+	             		})	
+	             	})
+    
+           function posting(num){
+	    	if(num == 0){ // 게시물 조회
+	    		$('#posting-btn').attr('action', 'memberPosting').submit();
+	    	}
+	    	else{
+	    		$('#reply-btn').attr('action', 'memberReply').submit();
+	    	}
+	    }
+    </script>
     
 </body>
 </html>
