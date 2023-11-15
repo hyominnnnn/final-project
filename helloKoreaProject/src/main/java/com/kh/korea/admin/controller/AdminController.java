@@ -14,9 +14,14 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 	
-	@RequestMapping("posting.me")
+	@RequestMapping("memberPosting")
 	public String memberPosting(HttpServletRequest request) {
 		return "admin/memberPosting";
+	}
+	
+	@RequestMapping("memberReply")
+	public String memberReply() {
+		return "admin/memberReply";
 	}
 	
 	
