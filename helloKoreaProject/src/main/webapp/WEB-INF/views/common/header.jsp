@@ -151,12 +151,6 @@
                 </li>
                 <li>
                     <a href="#">게임학습</a>
-                    <ul>
-                        <li><a href="#">한식체험</a></li>
-                        <li><a href="#">전통혼례</a></li>
-                        <li><a href="#">전통예술공연</a></li>
-                        <li><a href="#">전통문화체험</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="#">커뮤니티</a>
