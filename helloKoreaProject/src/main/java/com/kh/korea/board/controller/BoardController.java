@@ -30,6 +30,11 @@ public class BoardController {
 		return "board/freeBoardUpdateForm";
 	}
 	
+	@GetMapping("list.ibo")
+	public String infoList() {
+		return "board/infoBoardListView";
+	}
+	
 	@GetMapping("detail.ibo")
 	public String infoDetailView() {
 		return "board/infoBoardDetailView";
