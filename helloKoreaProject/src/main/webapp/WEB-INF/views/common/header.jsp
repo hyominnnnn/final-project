@@ -12,7 +12,7 @@
 
         .header1{
             width: 1850px;
-            height: 100px;
+            height: 115px;
             margin: auto;
         }
 
@@ -33,15 +33,22 @@
         }
          
         /*-----------------------------------------------*/
-
-        #p1{
+		
+		#header1_1 > img{
+        	margin-top: 15px;
+        	width: 150px;
+        	height: 80px;
+        }
+		
+        #logo{
+        	display: inline-block;
             font-size: 25px;
             text-align: center;
-            margin-top: 15px;
+            text-decoration: none;
+            color: black;
         }
 
         #a1{
-            
             padding-left : 110px;
         }
 
@@ -51,18 +58,14 @@
             text-decoration: none;
             color: gray;
             margin-left: 10px;
-            
-        }
-
-        .navi{
-            width: 1850px;
-            height: 100px;
         }
 
         /*-----------------------------------------------------------------*/
         .navi{
+       		width: 1850px;
+            height: 100px;
             background-color: #bbe9d7;
-            
+            margin: 0 auto;
         }
         #navi_1{
             list-style: none;
@@ -88,16 +91,21 @@
             color: black;
             font-size: 20px;
         }
+        
+        .navi_2 a{
+			background-color: #bbe9d7;
+        	margin-top: -30px;
+        	margin-bottom: -50px;
+        }
 
         #navi_1 a:hover{
             font-size: 23px;
-            
         }
 
         #navi_1 > li > ul{
             list-style: none;
             padding: 0;
-            display: none; 
+          	display: none;
         }
 
         #navi_1 > li > a:hover + ul{
@@ -113,10 +121,11 @@
 </style>
 </head>
 <body>
-	
+		
         <div class="header1">
             <div id="header1_1">
-                <p id="p1">어서와 한국은<br>처음이지?</p>
+            	<img src="https://t1.daumcdn.net/cfile/blog/2254404256D3ED562F">
+                <a id="logo" href="main">어서와 한국은<br>처음이지?</a>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
@@ -128,11 +137,12 @@
                 <a href="#" id="a2">로그아웃</a>
             </div>
         </div>
+
         <div class="navi">
 
             <ul id="navi_1">
                 <li><a href="#">체험</a>
-                    <ul>
+                    <ul class="navi_2">
                         <li><a href="#">한식체험</a></li>
                         <li><a href="#">전통혼례</a></li>
                         <li><a href="#">전통예술공연</a></li>
@@ -140,7 +150,7 @@
                     </ul>
                 </li>
                 <li><a href="#">채팅학습</a>
-                    <ul>
+                    <ul class="navi_2">
                         <li><a href="#">1:1채팅방</a></li>
                         <li><a href="#">단체채팅방</a></li>
                      
@@ -151,7 +161,7 @@
                 </li>
                 <li>
                     <a href="#">커뮤니티</a>
-                    <ul>
+                    <ul class="navi_2">
                         <li><a href="list.fbo">자유게시판</a></li>
                         <li><a href="list.ibo">정보게시판</a></li>
                     </ul>
