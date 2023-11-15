@@ -1,6 +1,7 @@
 package com.kh.korea.board.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,6 +17,10 @@ public class BoardController {
 		return "board/freeBoardEnrollForm";
 	}
 	
+	@GetMapping("detail.ibo")
+	public String infoDetailView() {
+		return "board/infoBoardDetailView";
+	}
 	
 
 }

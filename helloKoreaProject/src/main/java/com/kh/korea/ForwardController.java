@@ -20,6 +20,15 @@ public class ForwardController {
 		return "common/header";
 	}
 	
+	@GetMapping("memberInfo")
+	public String memberInfo() {
+		return "admin/memberInfo";
+	}
+
+	@GetMapping("info")
+	public String infoList() {
+		return "board/infoBoardListView";
+	}
 	
 
 }
