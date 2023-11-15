@@ -26,9 +26,10 @@ public class AdminServiceImpl implements  AdminService{
 
 	@Override
 	public ArrayList<Member> selectList(PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return adminDao.selectList(sqlSession, rowBounds);
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	
 
 }
