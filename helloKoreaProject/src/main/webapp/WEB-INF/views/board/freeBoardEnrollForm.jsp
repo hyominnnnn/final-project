@@ -47,6 +47,7 @@
 		            <br>
 		
 		            <form id="enrollForm" method="post" action="insert.fbo" enctype="multipart/form-data">
+		            <input type="hidden" name="categoryNo" value="2"> <!-- 카테고리 구분(자유 : 1 / 정보 : 2) -->
 		                <table align="center">
 		                    <tr>
 		                        <th><label for="title">제목</label></th>
