@@ -19,11 +19,6 @@ public class ForwardController {
 	public String header() {
 		return "common/header";
 	}
-	
-	@GetMapping("memberInfo")
-	public String memberInfo() {
-		return "admin/memberInfo";
-	}
 
 	@GetMapping("info")
 	public String infoList() {

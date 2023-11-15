@@ -152,23 +152,17 @@
                 <li>
                     <a href="#">게임학습</a>
                     <ul>
-                        <il><a href="#">한식체험</a></il>
-                        <il><a href="#">전통혼례</a></il>
-                        <il><a href="#">전통예술공연</a></il>
-                        <il><a href="#">전통문화체험</a></il>
+                        <li><a href="#">한식체험</a></li>
+                        <li><a href="#">전통혼례</a></li>
+                        <li><a href="#">전통예술공연</a></li>
+                        <li><a href="#">전통문화체험</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">커뮤니티</a>
                     <ul>
-<<<<<<< HEAD
                         <li><a href="list.fbo">자유게시판</a></li>
                         <li><a href="#">정보게시판</a></li>
-=======
-                        <li><a href="#">자유게시판</a></li>
-                        <li><a href="info">정보게시판</a></li>
->>>>>>> ba520623cda5eb48ee708c067fae779d0f770958
-                        
                     </ul>
                 </li>
                 <li>
