@@ -21,5 +21,11 @@ public class ForwardController {
 		return "admin/memberInfo";
 	}
 
+	@GetMapping("info")
+	public String infoList() {
+		return "board/infoBoardListView";
+	}
+	
+	
 
 }
