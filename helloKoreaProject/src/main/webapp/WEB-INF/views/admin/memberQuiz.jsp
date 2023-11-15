@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자회원관리페이지</title>
+    <title>관리자회원퀴즈랭킹페이지</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -233,6 +232,7 @@
 	       width:fit-content; 
 	       margin-left:780px;
 	       margin-top: 200px;
+	       
        }
        
       
@@ -259,54 +259,71 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>회원 정보 관리</h1>
+                <h1>회원 퀴즈 랭킹</h1>
                 <br>
-                  <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
+                  <table class="rwd-table">
                     <tbody>
                       <tr>
-                        <th>이름</th>
-                        <th>아이디</th>
-                        <th>닉네임</th>
-                        <th>생년월일</th>
-                        <th>국가</th>
-                        <th>가입일자</th>
+                        <th>글번호</th>
+                        <th>글제목</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                        <th></th>
+                        <th></th>
                       </tr>
                       <tr>
                         <td data-th="Supplier Code">
-                          	신짱구
+                          	1
                         </td>
                         <td data-th="Supplier Name">
-                            zzangu01
+                                                      고호재를 갔다왔는데여
                         </td>
                         <td data-th="Invoice Number">
-                          	부리부리
+                          	12
                         </td>
                         <td data-th="Invoice Date">
-                          1990/01/01
                         </td>
                         <td data-th="Due Date">
-                          	일본
+                          	
                         </td>
                         <td data-th="Net Amount">
                           2023/11/14
                         </td>
                       </tr>
                      
-                     <tr>
+                      <tr>
                         <td data-th="Supplier Code">
-                          	철수
+                          	1
                         </td>
                         <td data-th="Supplier Name">
-                            user111
+                                                      고호재를 갔다왔는데여
                         </td>
                         <td data-th="Invoice Number">
-                          	철수얼쑤
+                          	12
                         </td>
                         <td data-th="Invoice Date">
-                          1990/01/01
                         </td>
                         <td data-th="Due Date">
-                          	한국
+                          	
+                        </td>
+                        <td data-th="Net Amount">
+                          2023/11/14
+                        </td>
+                      </tr>
+                       <tr>
+                        <td data-th="Supplier Code">
+                          	1
+                        </td>
+                        <td data-th="Supplier Name">
+                                                      고호재를 갔다왔는데여
+                        </td>
+                        <td data-th="Invoice Number">
+                          	12
+                        </td>
+                        <td data-th="Invoice Date">
+                        </td>
+                        <td data-th="Due Date">
+                          	
                         </td>
                         <td data-th="Net Amount">
                           2023/11/14
@@ -317,91 +334,8 @@
                   </table>
                   
                 </div>
-        </div>
-        
-    		<div id="pagingArea">
-                <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </div>
-        
-    </div>
-    
-    <!-- 회원정보 상세 모달 -->
-     <div class="modal fade" id="memberDetailForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">000님의 정보 상세 조회</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="#" method="post" id="memberDetailModel">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                            <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" readonly> 
-                            <br>
-                            
-                            <label for="memberId" class="memberbtn">아이디</label>
-                            <input type="text" class="form-control memberbtn" id="memberId" name="memberId" readonly> 
-                            <br>
-                            
-                            <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" readonly> 
-                            <br>
-                            
-                            <label for="email" class="memberbtn">이메일</label>
-                            <input type="text" class="form-control memberbtn" id="email" name="email" readonly> 
-                            <br>
-                            
-                            <label for="birthday" class="memberbtn">생년월일</label>
-                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" readonly> 
-                            <br>
-                            
-                            <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" readonly> 
-                            <br>
-                            
-                            <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" readonly> 
-                            <br>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                        <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물조회</button>
-                        <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글조회</button>
-                        <button id="delete-btn" class="model-footer-btn" onclick="delete(2);">회원삭제</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-	    $(function(){
-	             		$('#memberDetailModel > tbody > tr').click(function(){
-	             			location.href='posting.me?pno=' + $(this).children('.pno').text();
-	             		})	
-	             	})
-    
-           function posting(num){
-	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'memberPosting').submit();
-	    	}
-	    	else{
-	    		$('#reply-btn').attr('action', 'memberReply').submit();
-	    	}
-	    }
-    </script>
+	        </div>
+    	</div>
     
 </body>
 </html>
