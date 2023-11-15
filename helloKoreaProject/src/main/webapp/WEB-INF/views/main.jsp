@@ -102,10 +102,6 @@
 	            <div id="header1_1">
 	                <jsp:include page="common/header.jsp"></jsp:include>
 	            </div>
-	            <div id="header1_2"></div>
-	            <div id="header1_3">
-	                
-	            </div>
 	        </div>
 	
 	        <div id="navi">
