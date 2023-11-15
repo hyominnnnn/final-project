@@ -1,8 +1,13 @@
 package com.kh.korea.board.model.vo;
 
-
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter @Setter @NoArgsConstructor @ToString
 public class Board {
 	
 	private int boardNo;
@@ -16,6 +21,5 @@ public class Board {
 	private int fileNo;
 	private String status;
 	private String boardWriter; // 나중에 글쓴이 보여주려면 필요할 거 같아서 일단 세팅
-
-
+	
 }
