@@ -22,7 +22,7 @@
         </div>
         
         <div id="content">
-		<h1>dd</h1>
+		<h1>여기다 쓰시면 돼용~~</h1>
         </div>
         
         </div>

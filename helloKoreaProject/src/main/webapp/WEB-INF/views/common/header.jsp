@@ -161,8 +161,13 @@
                 <li>
                     <a href="#">커뮤니티</a>
                     <ul>
-                        <li><a href="#">자유게시판</a></li>
+<<<<<<< HEAD
+                        <li><a href="list.fbo">자유게시판</a></li>
                         <li><a href="#">정보게시판</a></li>
+=======
+                        <li><a href="#">자유게시판</a></li>
+                        <li><a href="info">정보게시판</a></li>
+>>>>>>> ba520623cda5eb48ee708c067fae779d0f770958
                         
                     </ul>
                 </li>
