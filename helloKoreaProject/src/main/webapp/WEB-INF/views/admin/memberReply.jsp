@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자회원게시물페이지</title>
+    <title>관리자회원댓글페이지</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -259,80 +259,81 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>회원 게시물 관리</h1>
+                <h1>회원 댓글 관리</h1>
                 <br>
-                  <table class="rwd-table" data-toggle="modal" data-target="memberPostingDetailForm">
-                    <tbody>
-                      <tr>
-                        <th>글번호</th>
-                        <th>글제목</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
-                        <th></th>
-                        <th></th>
-                      </tr>
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                     
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                       <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                      
-                    </tbody>
-                  </table>
-                  
+                  <form method="" action="memberReply">
+	                  <table class="rwd-table">
+	                    <tbody>
+	                      <tr>
+	                        <th>글번호</th>
+	                        <th>작성댓글</th>
+	                        <th></th>
+	                        <th></th>
+	                        <th></th>
+	                        <th>작성일</th>
+	                      </tr>
+	                      <tr>
+	                        <td data-th="Supplier Code">
+	                          	1
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                        	ㅋㅋㅋ웃기다
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	
+	                        </td>
+	                        <td data-th="Invoice Date">
+	                        </td>
+	                        <td data-th="Due Date">
+	                          	
+	                        </td>
+	                        <td data-th="Net Amount">
+	                          2023/11/14
+	                        </td>
+	                      </tr>
+	                     
+	                      <tr>
+	                        <td data-th="Supplier Code">
+	                          	1
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                                                      고호재를 갔다왔는데여
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	
+	                        </td>
+	                        <td data-th="Invoice Date">
+	                        </td>
+	                        <td data-th="Due Date">
+	                          	
+	                        </td>
+	                        <td data-th="Net Amount">
+	                          2023/11/14
+	                        </td>
+	                      </tr>
+	                       <tr>
+	                        <td data-th="Supplier Code">
+	                          	1
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                                                      고호재를 갔다왔는데여
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	
+	                        </td>
+	                        <td data-th="Invoice Date">
+	                        </td>
+	                        <td data-th="Due Date">
+	                          	
+	                        </td>
+	                        <td data-th="Net Amount">
+	                          2023/11/14
+	                        </td>
+	                      </tr>
+	                      
+	                    </tbody>
+	                  </table>
+                  </form>
                 </div>
         </div>
         	
@@ -351,46 +352,6 @@
     </div>
     
     
-    <script>
-    	$(function(){
-    		$('.rwd-table > tbody > tr').click(function(){
-    			location.herf='detail.me?mno=' + $(this).children('.mno').text();
-    		})
-    	})
-    </script>
-    
-   
-    
-    <!-- 회원 게시글 상세 모달 -->
-     <div class="modal fade" id="memberPostingDetailForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">000님의 게시물 상세보기</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="delete.posting" method="post">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div align="center">
-                        
-                        </div>
-                            <label for="boardTitle" class="boardTitle">제목 : 머시기머기시</label>
-                            <br>
-                            <label for="boardContent" class="boardContent">내용 : 머시기머기시</label>
-                            
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                        <button type="submit" class="model-footer-btn">게시물 삭제</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     
     
 </body>

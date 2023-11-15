@@ -19,6 +19,11 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
+	@RequestMapping("memberReply")
+	public String memberReply() {
+		return "admin/memberReply";
+	}
+	
 	
 
 }
