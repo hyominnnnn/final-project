@@ -12,8 +12,48 @@
 <body>
 	
 	<jsp:include page="../common/header.jsp"></jsp:include>
+	<div id="box"></div>
 	
-	<h2>dd</h2>
+	<div class="page" id="content">
+		<div class="page">
+			<div id="main-pic">
+			<h2>한식</h2>
+			<!-- 로그인 한 상태일 때만 보여지는 예약하기/예약조회 버튼  -->
+			<!-- <c:if test="${ not empty sessionScope.loginUser }"> -->
+				<button class="btn btn-outline-light btn-block" id="reserv-hk">
+					<h1>예약 하기</h1>
+				</button>
+				<br>
+				<button class="btn btn-outline-light btn-block" id="reserv-list">
+					<h1>예약 조회</h1>
+				</button>
+				<!-- scpipt문 써야함 -->
+			<!-- 로그인 안했으면 else 
+					<h1>예약 하고 싶으면 로그인해주세요! </h1>
+			-->
+			
+			
+			</div>
+			
+			<!-- 한식코스 소개 -->
+			<div id="intro-kh">
+			<h1>dd</h1>
+			
+			</div>
+			
+			<!-- 이용 안내 -->
+			
+			<div id="info-kh">
+			<h1>dd</h1>
+			
+			</div>
+			
+			
+			
+		</div>
+			
+		
+	</div>
 	
 	
 	
