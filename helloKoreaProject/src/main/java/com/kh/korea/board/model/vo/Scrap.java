@@ -8,12 +8,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
-public class Reply {
+public class Scrap {
 	
-	private int replyNo;
-	private String replyContent;
-	private Date createDate;
 	private int boardNo;
 	private int memberNo;
+	private Date scrapDate;
 
 }

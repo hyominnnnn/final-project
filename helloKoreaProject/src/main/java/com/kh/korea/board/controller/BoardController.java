@@ -30,21 +30,24 @@ public class BoardController {
 		return "board/freeBoardUpdateForm";
 	}
 	
+	// 정보게시판 리스트
 	@GetMapping("list.ibo")
 	public String infoList() {
 		return "board/infoBoardListView";
 	}
 	
+	// 정보게시판 글 상세
 	@GetMapping("detail.ibo")
 	public String infoDetailView() {
 		return "board/infoBoardDetailView";
 	}
 	
+	// 정보게시판 글 작성
 	@GetMapping("enrollForm.ibo")
 	public String infoEnrollForm() {
 		return "board/infoBoardEnrollForm";
 	}
 	
 	
-
+	
 }
