@@ -22,5 +22,11 @@ public class BoardController {
 		return "board/infoBoardDetailView";
 	}
 	
+	@GetMapping("enrollForm.ibo")
+	public String infoEnrollForm() {
+		return "board/infoBoardEnrollForm";
+	}
+	
+	
 
 }

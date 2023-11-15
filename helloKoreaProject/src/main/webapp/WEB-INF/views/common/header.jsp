@@ -6,23 +6,18 @@
 <meta charset="UTF-8">
 <title>헤더+네비</title>
 <style>
-	          div{
+	    div{
             box-sizing: border-box;
         }
 
-        #wrap{
+        .header1{
             width: 1850px;
-            height: 2300px;
+            height: 100px;
             margin: auto;
         }
 
-        #wrap > div {
+        .header1 > div {
             width: 100%;
-        }
-
-        #header1, #navi{
-            height: 5%;
-           
         }
 
         #header1_1, #header1_3{
@@ -59,13 +54,13 @@
             
         }
 
-        #navigator{
-            width: 1000px;
-            height: 5%;
+        .navi{
+            width: 1850px;
+            height: 100px;
         }
 
         /*-----------------------------------------------------------------*/
-        #navi{
+        .navi{
             background-color: #bbe9d7;
             
         }
@@ -106,22 +101,20 @@
         }
 
         #navi_1 > li > a:hover + ul{
-            display: block; 
+            display: block;
         }
 
         #navi_1 > li >ul:hover{
-            display: block; 
+            display: block;
         }
         
-
         #navi_1 > li > ul a{font-size: 17px;}
         #navi_1 > li > ul a:hover{font-size: 20px;}
 </style>
 </head>
 <body>
 	
-	  <div id="wrap">
-        <div id="header1">
+        <div class="header1">
             <div id="header1_1">
                 <p id="p1">어서와 한국은<br>처음이지?</p>
             </div>
@@ -131,7 +124,7 @@
                 <a href="#" id="a2">로그인</a>
             </div>
         </div>
-        <div id="navi">
+        <div class="navi">
 
             <ul id="navi_1">
                 <li><a href="#">체험</a>
@@ -151,12 +144,6 @@
                 </li>
                 <li>
                     <a href="#">게임학습</a>
-                    <ul>
-                        <il><a href="#">한식체험</a></il>
-                        <il><a href="#">전통혼례</a></il>
-                        <il><a href="#">전통예술공연</a></il>
-                        <il><a href="#">전통문화체험</a></il>
-                    </ul>
                 </li>
                 <li>
                     <a href="#">커뮤니티</a>
@@ -171,7 +158,6 @@
                 </li>
             </ul>
         </div>
-    </div>
 
 </body>
 </html>

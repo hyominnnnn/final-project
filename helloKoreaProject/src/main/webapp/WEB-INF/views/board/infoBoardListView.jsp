@@ -13,6 +13,7 @@
         .content {
             background-color:rgb(247, 245, 245);
             width:80%;
+            height: auto;
             margin:auto;
             margin-top: 22px;
         }
@@ -47,115 +48,100 @@
 </head>
 <body>
 
-	<div id="wrap">
-		<div id="header1">
-			<div id="header1_1">
-				<jsp:include page="../common/header.jsp"></jsp:include>
-	        </div>
-	    	<div id="header1_2"></div>
-			<div id="header1_3"></div>
-	    </div>
-
-	   <div id="navi">
-	        <ul id="navi_1"></ul>
-	   </div>
+	<jsp:include page="../common/header.jsp"></jsp:include>
         
-        <div id="content">
-			<div class="content">
-	        	<br><br>
-	        	<div class="innerOuter">
-	            	<h2>정보게시판</h2>
-	            	<br>
-	            	<!-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 -->
-	            	<!--<c:if test="${ not empty sessionScope.loginUser }">
-	            		<a class="btn btn-secondary" style="float:right;" href="enrollForm.fbo">글쓰기</a>
-	            	</c:if>-->
-	            	<br><br>
-	            	<table id="boardList" class="table table-hover" align="center">
-	                	<thead>
-		                    <tr>
-		                        <th>게시글번호</th>
-		                        <th>제목</th>
-		                        <th>작성자</th>
-		                        <th>작성일자</th>
-		                        <th>조회수</th>
-		                        <th>첨부파일</th>
-		                    </tr>
-	                	</thead>
-	                	<tbody>
-	                		<!--<c:forEach items="${ list }" var="b">-->
-		                		<tr>
-		                			<td class="bno">d</td>
-		                			<td>d</td>
-		                			<td>d</td>
-		                			<td>d</td>
-		                			<td>d</td>
-		                			<td>
-		                				<!--<c:if test="${ not empty b.originName }">-->
-		                					ddd★  <!-- 파일 오리진네임 보여줄 예정(추후 수정) -->
-		                				<!--</c:if>-->
-		                			</td>
-		                		</tr>
-		                	<!--</c:forEach>-->
-	                   
-	                	</tbody>
-	            	</table>
-	            	<br>
-	            
-	            <script>
-	             	$(function(){
-	             		$('#boardList > tbody > tr').click(function(){
-	             			location.href='detail.ibo?bno=' + $(this).children('.bno').text();
-	             		});
+	<div class="content">
+		<br><br>
+	    <div class="innerOuter">
+			<h2>정보게시판</h2>
+	        <br>
+	        <!-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 -->
+	        <!--<c:if test="${ not empty sessionScope.loginUser }">-->
+	            <a class="btn btn-secondary" style="float:right;" href="enrollForm.ibo">글쓰기</a>
+	        <!--</c:if>-->
+	        <br><br>
+	        <table id="boardList" class="table table-hover" align="center">
+	            <thead>
+	            	<tr>
+	                	<th>게시글번호</th>
+		                <th>제목</th>
+		                <th>작성자</th>
+		                <th>작성일자</th>
+		                <th>조회수</th>
+		                <th>첨부파일</th>
+		            </tr>
+		        </thead>
+	            <tbody>
+	                <!--<c:forEach items="${ list }" var="b">-->
+		                <tr>
+		                	<td class="bno">d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>
+		                		<!--<c:if test="${ not empty b.originName }">-->
+		                			ddd★  <!-- 파일 오리진네임 보여줄 예정(추후 수정) -->
+		                		<!--</c:if>-->
+		                	</td>
+		                </tr>
+		            <!--</c:forEach>-->
+	                
+	            </tbody>
+	        </table>
+	        <br>
+	        
+	        <script>
+	        	$(function(){
+	             	$('#boardList > tbody > tr').click(function(){
+	             		location.href='detail.ibo?bno=' + $(this).children('.bno').text();
 	             	});
-	            </script>
-	​
-	<!-- 
-	            <div id="pagingArea" align="center">
-	                <ul class="pagination">
-	                		<c:choose>
-	                			<c:when test="${pi.currentPage eq 1 }">
-	                    			<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-	                    		</c:when>
-	                    		<c:otherwise>
-	                   				 <li class="page-item"><a class="page-link" href="list.bo?cPage=${pi.currentPage-1}">Previous</a></li>
-	                    		</c:otherwise>
-	                		</c:choose>
-	                    
-		                    <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-		                    	<li class="page-item"><a class="page-link" href="list.bo?cPage=${p}">${p}</a></li>
-		                    </c:forEach>
-	                    
-	                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-	                </ul>
-	            </div>
-	-->
+	             });
+	        </script>
+	        
+<!-- 
+	        <div id="pagingArea" align="center">
+	        	<ul class="pagination">
+					<c:choose>
+						<c:when test="${pi.currentPage eq 1 }">
+							<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="list.bo?cPage=${pi.currentPage-1}">Previous</a></li>
+						</c:otherwise>
+					</c:choose>
+					
+		            <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+						<li class="page-item"><a class="page-link" href="list.bo?cPage=${p}">${p}</a></li>
+					</c:forEach>
+					
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+			</div>
+-->
 	​			
-	            <br clear="both"><br>
-	​			
-				<form id="searchForm" action="" method="get" align="center">
-		            <div class="select">
-		                <select class="custom-select" name="condition">
-		                	<option value="writer">작성자</option>
-		                    <option value="title">제목</option>
-		                    <option value="content">내용</option>
-	                    </select>
-	                </div>
-	                <div class="text">
-	                    <input type="text" class="form-control" name="keyword">
-	                </div>
-	                <button type="submit" class="searchBtn btn btn-secondary">검색</button>
-	            </form>
-	            <br><br>
-	            
+	        <br clear="both"><br>
+	        
+			<form id="searchForm" action="" method="get" align="center">
+		    	<div class="select">
+		        	<select class="custom-select" name="condition">
+		            	<option value="writer">작성자</option>
+		                <option value="title">제목</option>
+		                <option value="content">내용</option>
+	                </select>
 	            </div>
-	        	<br><br>
-	        </div>
-        </div>
+	            <div class="text">
+	                <input type="text" class="form-control" name="keyword">
+	            </div>
+	            <button type="submit" class="searchBtn btn btn-secondary">검색</button>
+	        </form>
+	        <br><br>
+	        
+	    </div>
+	    <br><br>
+	</div>
 
-    	<jsp:include page="../common/footer.jsp" />
-   
-   </div>
+    <jsp:include page="../common/footer.jsp" />
 
 </body>
 </html>
