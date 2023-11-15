@@ -1,9 +1,8 @@
 package com.kh.korea.admin.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -14,12 +13,12 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 	
-	@RequestMapping("memberPosting")
-	public String memberPosting(HttpServletRequest request) {
+	@PostMapping("memberPosting")
+	public String memberPosting() {
 		return "admin/memberPosting";
 	}
 	
-	@RequestMapping("memberReply")
+	@PostMapping("memberReply")
 	public String memberReply() {
 		return "admin/memberReply";
 	}
