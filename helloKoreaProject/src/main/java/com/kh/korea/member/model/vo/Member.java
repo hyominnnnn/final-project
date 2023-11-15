@@ -9,7 +9,6 @@ import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
 public class Member {
-	
 	private int memberNo;
 	private String email;
 	private String memberNickname;

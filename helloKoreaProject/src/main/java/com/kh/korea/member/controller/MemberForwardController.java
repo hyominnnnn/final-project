@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MemberForwardController {
 
 	//맴버 관련
-	@GetMapping("logon")
+	@GetMapping("logonForm")
 	public String logon(){
 		return "member/logon";
 	}
 	
-	@GetMapping("koreanLogon")
+	@GetMapping("koreanLogonForm")
 	public String koreanLogon() {
 		return "member/koreanLogon";
 	}
 	
-	@GetMapping("foreignerLogon")
+	@GetMapping("foreignerLogonForm")
 	public String foreignerLogon() {
 		return "member/foreignerLogon";
 	}
 	
-	@GetMapping("login")
+	@GetMapping("loginForm")
 	public String login() {
 		return "member/login";
 	}
