@@ -14,7 +14,7 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 	
-	@RequestMapping("posting.me")
+	@RequestMapping("memberPosting")
 	public String memberPosting(HttpServletRequest request) {
 		return "admin/memberPosting";
 	}

@@ -230,7 +230,8 @@
        
        #pagingArea {
 	       width:fit-content; 
-	       margin:auto;
+	       margin-left:780px;
+	       margin-top: 200px;
        }
        
       
@@ -353,7 +354,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="posting.me" method="post">
+                <form action="memberPosting" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div align="center">
