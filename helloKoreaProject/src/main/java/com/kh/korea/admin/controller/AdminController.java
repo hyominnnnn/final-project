@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.korea.admin.model.service.AdminService;
@@ -43,10 +42,14 @@ public class AdminController {
 		}
 	
 	
-	@RequestMapping(value="memberPosting", method = {RequestMethod.GET})
+	@RequestMapping("detail.me")
 	public String memberPosting() {
 		return "admin/memberPosting";
-
+	}
+	
+	@RequestMapping("reply.me")
+	public String memberReply() {
+		return "admin/memberReply";
 	}
 	
 }
