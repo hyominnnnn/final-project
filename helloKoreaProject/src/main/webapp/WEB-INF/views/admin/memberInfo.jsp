@@ -263,7 +263,7 @@
             	<br>
                 <h1>회원 정보 관리</h1>
                 <br>
-                      <form action="list.me" method="get">
+				<form action="list.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
                     <tbody>
                       <tr>
@@ -275,57 +275,9 @@
                         <th>가입일자</th>
                       </tr>
 
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	신짱구
-                        </td>
-                        <td data-th="Supplier Name">
-                            zzangu01
-                        </td>
-                        <td data-th="Invoice Number">
-                          	부리부리
-                        </td>
-                        <td data-th="Invoice Date">
-                          1990/01/01
-                        </td>
-                        <td data-th="Due Date">
-                          	일본
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                     
-                     <tr>
-                        <td data-th="Supplier Code">
-                          	철수
-                        </td>
-                        <td data-th="Supplier Name">
-                            user111
-                        </td>
-                        <td data-th="Invoice Number">
-                          	철수얼쑤
-                        </td>
-                        <td data-th="Invoice Date">
-                          1990/01/01
-                        </td>
-                        <td data-th="Due Date">
-                          	한국
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                      
-
-                      <c:forEach items="${list}" var="m">
-	                      <tr>
-	                        <td class="pno" data-th="Supplier Code">
-
                       <c:forEach items="${ list }" var="m">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-
 	                          	${m.memberName}
 	                        </td>
 	                        <td data-th="Supplier Name">
@@ -335,11 +287,7 @@
 	                          	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Invoice Date">
-
 	                          ${m.birthday}
-
-	                          ${m.birthdat}
-
 	                        </td>
 	                        <td data-th="Due Date">
 	                          	${m.nationNo}

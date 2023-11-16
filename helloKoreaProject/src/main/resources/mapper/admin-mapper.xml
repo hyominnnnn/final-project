@@ -19,17 +19,11 @@
 		<result column="NATION_NO" property="nationNo" />
 		<result column="SOCIAL_ID" property="socialId" />
 		<result column="SOCIAL_PROFILE" property="socialProfile" />
-	</resultMap>
+</resultMap>
+
 
 	<select id="selectListCount" resultType="_int">
 
-<resultMap id="" type="">
-	<result
-</resultMap>
-
-	<select id="selectList" resultType="_int">
-
-	
 		SELECT
 				COUNT(*)
 		  FROM	
