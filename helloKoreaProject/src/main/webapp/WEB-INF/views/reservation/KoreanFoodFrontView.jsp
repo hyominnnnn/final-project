@@ -19,7 +19,7 @@
 			<div id="main-pic">
 			<h2>한식</h2>
 			<!-- 로그인 한 상태일 때만 보여지는 예약하기/예약조회 버튼  -->
-			<!-- <c:if test="${ not empty sessionScope.loginUser }"> -->
+			<!-- <c:if test="${ not empty sessionScope.loginUser }"></c:if> -->
 				<button class="btn btn-outline-light btn-block" id="reserv-hk">
 					<h1>예약 하기</h1>
 				</button>
