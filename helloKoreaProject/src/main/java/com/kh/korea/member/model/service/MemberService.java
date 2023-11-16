@@ -10,6 +10,7 @@ public interface MemberService {
 //	boolean validate(CertVO certVo);
 	// 아이디 중복 체크
 	int idCheck(String checkId);
+	int nickCheck(String checkNick);
 	//로그인 서비스(SELECT)
 	Member loginMember(Member m);
 	//회원정보 수정(UPDATE)

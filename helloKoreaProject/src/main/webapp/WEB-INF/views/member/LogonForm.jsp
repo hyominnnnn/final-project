@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,7 @@
 
         #signupForm {
             background-color: #fff;
+            margin : auto;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -48,7 +51,7 @@
         small {
             display: block;
             margin-top: 4px;
-            color: #888;
+            color: #888 ;
         }
 
         input[type="submit"] {
@@ -78,53 +81,124 @@
  -->
 
 <div id="signupForm">
-	<form id="logonForm" onsubmit="return validateForm()" action="Logon">
-	    <label for="email">이메일 (필수값) :</label>
-	    <input type="email" id="email" name="email" required>
+	<form id="logonForm" action="Logon">
+	    <label for="email">이메일  :</label>
+	    <input type="email" id="email" name="email" placeholder="Please Enter E-mail" required>
+	    <button type="button" onclick="idCheck();">중복확인</button>
 	    <br>
 	
-	    <label for="nickname">닉네임 (필수값 최대 10글자) :</label>
-	    <input type="text" id="nickname" name="memberNickname" maxlength="10" required>
+	    <label for="nickname">닉네임  :</label>
+	    <input type="text" id="nickname" name="memberNickname" maxlength="20" disabled required>
+        <button type="button" onclick="nickCheck();">중복확인</button>
 	    <br>
 	
-	    <label for="password">패스워드 (최대 20글자(영어,숫자,특수문자 섞어서 만들기)) :</label>
-	    <input type="password" id="password" name="memberPwd" maxlength="20" required>
-	    <small>영어, 숫자, 특수문자를 섞어서 만들어주세요.</small>
+	    <label for="password">패스워드 :</label>
+	    <input type="password" id="password" name="memberPwd" maxlength="20" placeholder="Please Enter Password" required>
+	    <small>영어, 숫자, 특수문자를 섞어서 최대 20자로 만들어주세요.</small>
 	    <br>
 	    
 	    <label for="password">패스워드 확인 :</label>
 		<input type="password" class="form-control" id="checkPwd" placeholder="Please Enter Password" required> 
-		<small>패스워드를 똑같이 입력해주세요.</small>
+        <div id="checkResult" style="font-size:0.8em; display:none;"></div>
 		<br>
 		
 	    <label for="fullName">회원 이름 (최대 6글자) :</label>
 	    <input type="text" id="fullName" name="memberName" maxlength="6">
 	    <br>
-		<!-- 한국인일 경우 -->
-	    <label for="dob">생년월일 (숫자만, 무조건 6글자) :</label>
-	    <input type="text" id="dob" name="birthday" pattern="\d{6}" title="숫자 6글자를 입력하세요">
-	    <br>
-	
-	    <label for="ssn">주민번호 (숫자만, 무조건 7글자) :</label>
-	    <input type="text" id="ssn" name="idCardNumber" pattern="\d{7}" title="숫자 7글자를 입력하세요">
-	    <br>
-	    <input type="hidden" name="nationNo" value="82"/>
+	    <c:choose>
+	    	<c:when test="${param.status eq 'K' }">
+				<!-- 한국인일 경우 -->
+			    <label for="dob">생년월일 (숫자만, 무조건 6글자) :</label>
+			    <input type="text" id="dob" name="birthday" minlength="6" maxlength="6" pattern="\d{6}" title="숫자 6글자를 입력하세요">
+			    <br>
+			
+			    <label for="ssn">주민번호 (숫자만, 무조건 7글자) :</label>
+			    <input type="text" id="ssn" name="idCardNumber" minlength="7" maxlength="7" pattern="\d{7}" title="숫자 7글자를 입력하세요">
+			    <br>
+			    <input type="hidden" name="nationNo" value="410"/>
+		    </c:when>
+		    <c:otherwise>
+			    <!-- 외국인일 경우 -->
+			    <label for="nation">국가 선택 : </label>
+			    <select name="nationNo">
+			    	<option value="81">Japan</option>
+			    	<option value="840">USA</option>
+			    </select>
+		    </c:otherwise>
+	   </c:choose> 
 	    
-	    <!-- 외국인일 경우 -->
-	    <label for="nation">국가 선택 : </label>
+	    <input type="hidden" name="status" value="${param.status }" />
+        <button type="submit"  disabled>회원가입</button>
 	    
-	    
-	    
-	    <input type="hidden" name="status" value=${param.status }/>
-	
-	    <input type="submit" value="가입하기">
 	</form>
 </div>
 <script>
-    function validateForm() {
-        // 여기에 추가적인 유효성 검사를 추가할 수 있습니다.
-        return true; // 폼 제출 허용
+    function idCheck(){
+        //먼저 사용자가 입력한 memberId 확인
+        const $userEmail = $('#logonForm #email');
+        //AJAX로 요청하기
+        $.ajax({
+        	url : 'idCheck',
+        	data : {checkId : $userEmail.val()},
+        	success : function(ok){
+        		// 중복이면 NNN 중복아니면 NNY
+        		if(ok == 'NNN'){
+        			alert('이미 존재하는 이메일입니다. 다른 이메일을 입력해주세요.');
+        			$userEmail.val('').focus();
+                    $('#logonForm #nickname').attr('disabled', true);
+        		}
+        		else{
+        			alert('사용가능한 이메일입니다. 회원가입을 계속 진행해주세요.');
+                    $('#logonForm #nickname').removeAttr('disabled');
+        		}
+        	},
+        	error : function(){
+        		alert('중복확인에 실패했습니다. 회원가입을 다시 진행해주세요.');
+        	}
+        })
     }
+
+    function nickCheck(){
+        const $userNick = $('#logonForm #nickname');
+        $.ajax({
+            url : 'nickCheck',
+            data : {checkNick : $userNick.val()},
+            success : function(ok){
+        		// 중복이면 NNN 중복아니면 NNY
+        		if(ok == 'NNN'){
+        			alert('이미 존재하는 닉네임입니다. 다른 닉네임을 입력해주세요.');
+        			$userNick.val('').focus();
+                    $('#logonForm :submit').attr('disabled', true);
+        		}
+        		else{
+        			alert('사용가능한 닉네임입니다. 회원가입을 계속 진행해주세요.');
+                    $('#logonForm :submit').removeAttr('disabled');
+        		}
+        	},
+        	error : function(){
+        		alert('중복확인에 실패했습니다. 회원가입을 다시 진행해주세요.');
+        	}
+        })
+    }
+
+    $(function(){
+        const $originPwd = $('#logonForm #password');
+        const $checkPwd = $('#logonForm #checkPwd');
+        $checkPwd.keyup(function(){
+            if ($originPwd.val() != $checkPwd.val()){
+                $('#checkResult').show().css('color', 'red').text('비밀번호가 일치하지 않습니다. 다시 확인해주세요.')
+                $('#logonForm :submit').attr('disabled', true);
+            }
+            else{
+                $('#checkResult').show().css('color', 'chartreuse').text('비밀번호가 일치합니다.')
+                $('#logonForm :submit').removeAttr('disabled');
+            }
+        })
+        
+    })
+        
+
+    
 </script>
 
 
