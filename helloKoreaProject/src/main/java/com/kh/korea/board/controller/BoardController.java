@@ -13,6 +13,8 @@ import com.kh.korea.common.template.Pagination;
 @Controller
 public class BoardController {
 	
+	@Autowired
+	private BoardService boardService;
 	
 	// 자유게시판 리스트
 	@GetMapping("list.fbo") 
@@ -41,7 +43,13 @@ public class BoardController {
 	
 	// 정보게시판 리스트
 	@GetMapping("list.ibo")
-	public String infoList() {
+	public String infoList(@RequestParam(value="iPage", defaultValue="1") int currentPage, Model model) {
+		
+		PageInfo infoPi = Pagination.getPageInfo(boardService.countInfoList(), currentPage, 5, 5);
+		
+		model.addAttribute("infoList", boardService.selectInfoList(infoPi));
+		model.addAttribute("infoPi", infoPi);
+		
 		return "board/infoBoardListView";
 	}
 	

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!-- 나중에 taglib 추가할 것 -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +44,12 @@
         .select {width:20%;}
         .text {width:53%;}
         .searchBtn {width:20%;}
+        
+        .pagination{
+  			width: fit-content;
+  			margin-left: auto;
+  			margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -72,21 +78,20 @@
 		            </tr>
 		        </thead>
 	            <tbody>
-	                <!--<c:forEach items="${ list }" var="b">-->
+					<c:forEach items="${ infoList }" var="i">
 		                <tr>
-		                	<td class="bno">d</td>
-		                	<td>d</td>
-		                	<td>d</td>
-		                	<td>d</td>
-		                	<td>d</td>
+		                	<td class="ino">${ i.boardNo }</td>
+		                	<td>${ i.boardTitle }</td>
+		                	<td>${ i.boardWriter }</td>
+		                	<td>${ i.modifyDate }</td>
+		                	<td>${ i.count }</td>
 		                	<td>
-		                		<!--<c:if test="${ not empty b.originName }">-->
-		                			ddd★  <!-- 파일 오리진네임 보여줄 예정(추후 수정) -->
-		                		<!--</c:if>-->
+		                		<c:if test="${ not empty i.fileNo }">
+		                			${ i.originalName }
+		                		</c:if>
 		                	</td>
 		                </tr>
-		            <!--</c:forEach>-->
-	                
+		            </c:forEach>
 	            </tbody>
 	        </table>
 	        <br>
@@ -94,31 +99,36 @@
 	        <script>
 	        	$(function(){
 	             	$('#boardList > tbody > tr').click(function(){
-	             		location.href='detail.ibo?bno=' + $(this).children('.bno').text();
+	             		location.href='detail.ibo?ino=' + $(this).children('.ino').text();
 	             	});
 	             });
 	        </script>
-	        
-<!-- 
+	         
 	        <div id="pagingArea" align="center">
 	        	<ul class="pagination">
 					<c:choose>
-						<c:when test="${pi.currentPage eq 1 }">
+						<c:when test="${infoPi.currentPage eq 1 }">
 							<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="list.bo?cPage=${pi.currentPage-1}">Previous</a></li>
+							<li class="page-item"><a class="page-link" href="list.ibo?iPage=${infoPi.currentPage - 1}">Previous</a></li>
 						</c:otherwise>
 					</c:choose>
 					
-		            <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-						<li class="page-item"><a class="page-link" href="list.bo?cPage=${p}">${p}</a></li>
+		            <c:forEach begin="${ infoPi.startPage }" end="${ infoPi.endPage }" var="p">
+						<li class="page-item"><a class="page-link" href="list.ibo?iPage=${p}">${p}</a></li>
 					</c:forEach>
 					
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<c:choose>
+						<c:when test="${infoPi.currentPage eq infoPi.maxPage }">
+							<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link" href="list.ibo?iPage=${infoPi.currentPage + 1}">Next</a></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
--->
 	​			
 	        <br clear="both"><br>
 	        

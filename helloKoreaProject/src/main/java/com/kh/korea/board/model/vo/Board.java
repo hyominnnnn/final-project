@@ -20,6 +20,7 @@ public class Board {
 	private int categoryNo;
 	private int fileNo;
 	private String status;
-	private String boardWriter; // 나중에 글쓴이 보여주려면 필요할 거 같아서 일단 세팅
+	private String boardWriter; // 작성자 닉네임 보여줄 컬럼
+	private String originalName; // 파일 원본명 보여줄 컬럼
 	
 }
