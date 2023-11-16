@@ -20,8 +20,13 @@ public class AdminServiceImpl implements  AdminService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
+<<<<<<< Updated upstream
 	public int selectMemberList() {
 		return adminDao.selectMemberList(sqlSession);
+=======
+	public int selectListCount() {
+		return adminDao.selectListCount(sqlSession);
+>>>>>>> Stashed changes
 	}
 
 	@Override
