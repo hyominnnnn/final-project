@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,35 +49,37 @@
 		    <table id="contentArea" align="center" class="table">
 				<tr>
 					<th width="100">제목</th>
-		            <td colspan="3">제목이당</td>
+		            <td colspan="3">${ info.boardTitle }</td>
 		        </tr>
 		        <tr>
 		            <th>작성자</th>
-		            <td>작성자당</td>
+		            <td>${ info.boardWriter }</td>
 		            <th>작성일</th>
-		            <td>작성일이당</td>
+		            <td>${ info.modifyDate }</td>
 		        </tr>
 		        <tr>
 		            <th>첨부파일</th>
-		            <td colspan="3">파일이당</td>
+		            <c:choose>
+		            	<c:when test="${ not empty info.originalName }">
+		            		<td colspan="3">${ info.originalName }</td>
+		            	</c:when>
+		            	<c:otherwise>
+		            		<td colspan="3">첨부파일 없음</td>
+		            	</c:otherwise>
+		            </c:choose>
 		        </tr>
 		        <tr>
 		            <th>내용</th>
 		            <td colspan="3"></td>
 		        </tr>
 		        <tr>
-		            <td colspan="4"><p style="height:150px;">내용입니다</p></td>
+		            <td colspan="4"><p style="height:150px;">${ info.boardContent }</p></td>
 		        </tr>
 		    </table>
 		    <br>
 		    
 		    <button id="scrap" class="btn btn-danger">스크랩</button>
 			<br><br>
-			
-		    <form action="" method="post" id="postForm">
-				<input type="hidden" name="bno" value="${ b.boardNo }">
-			    <input type="hidden" name="filePath" value="${ b.changeName }"/>
-		    </form>
 		    
 		    <table id="replyArea" class="table" align="center">
 				<thead>

@@ -9,21 +9,23 @@ public interface BoardService {
 	
 	// 자유게시판 글 총 개수
 	
+	
 	// 정보게시판 글 총 개수
 	int countInfoList();
 		
 	// 자유게시판 리스트 조회
+	
 	
 	// 정보게시판 리스트 조회
 	ArrayList<Board> selectInfoList(PageInfo infoPi);
 	
 	// 게시글 작성하기(INSERT)
 	
-	// 게시글 상세보기(SELECT)
+	// 게시글 조회수 증가(UPDATE)
+	int increaseCount(int boardNo);
 	
 	// 게시글 상세조회(SELECT)
-	
-	// 게시글 조회수 증가(UPDATE)
+	Board selectBoard(int boardNo);
 	
 	// 게시글 수정하기(UPDATE)
 	
