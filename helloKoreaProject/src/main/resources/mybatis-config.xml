@@ -3,23 +3,23 @@
 	PUBLIC "//mybatis.org//DTD Config 3.0//EN" 
 	"https://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-	<settings>
+		<settings>
 			<setting name="jdbcTypeForNull" value="NULL" />
 		</settings>
 		
 		<!-- mapper에서 사용할 VO의 별칭을 지정한다. -->
 		<typeAliases>
 			<typeAlias type="com.kh.korea.board.model.vo.Board" alias="board" />
-			
+			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
 		</typeAliases>
 	
 		<!-- sql mapper를 새로 만들때마다 등록해야함. -->
 		<mappers>
 			<mapper resource="/mapper/member-mapper.xml" />
 			<mapper resource="/mapper/board-mapper.xml" />
+			<mapper resource="/mapper/admin-mapper.xml"/>
+			
 		</mappers>
 		
 		
-		
-	
 </configuration>

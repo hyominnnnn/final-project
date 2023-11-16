@@ -264,72 +264,114 @@
                   <table class="rwd-table">
                     <tbody>
                       <tr>
-                        <th>글번호</th>
-                        <th>글제목</th>
-                        <th>조회수</th>
-                        <th>작성일</th>
-                        <th></th>
-                        <th></th>
+                        <th>순위</th>
+                        <th>회원번호</th>
+                        <th>아이디</th>
+                        <th>닉네임</th>
+                        <th>국가</th>
+                        <th>점수</th>
                       </tr>
                       <tr>
                         <td data-th="Supplier Code">
                           	1
                         </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
                         <td data-th="Invoice Number">
                           	12
                         </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
                         <td data-th="Invoice Date">
+                                                       짱구
                         </td>
                         <td data-th="Due Date">
-                          	
+                          	한국
                         </td>
                         <td data-th="Net Amount">
-                          2023/11/14
+                          850
                         </td>
                       </tr>
                      
                       <tr>
                         <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
+                          	2
                         </td>
                         <td data-th="Invoice Number">
                           	12
                         </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
                         <td data-th="Invoice Date">
+                                                       짱구
                         </td>
                         <td data-th="Due Date">
-                          	
+                          	한국
                         </td>
                         <td data-th="Net Amount">
-                          2023/11/14
+                          850
                         </td>
                       </tr>
                        <tr>
                         <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
+                          	3
                         </td>
                         <td data-th="Invoice Number">
                           	12
                         </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
                         <td data-th="Invoice Date">
+                                                       짱구
                         </td>
                         <td data-th="Due Date">
-                          	
+                          	한국
                         </td>
                         <td data-th="Net Amount">
-                          2023/11/14
+                          850
                         </td>
                       </tr>
-                      
+                       <tr>
+                        <td data-th="Supplier Code">
+                          	4
+                        </td>
+                        <td data-th="Invoice Number">
+                          	12
+                        </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
+                        <td data-th="Invoice Date">
+                                                       짱구
+                        </td>
+                        <td data-th="Due Date">
+                          	한국
+                        </td>
+                        <td data-th="Net Amount">
+                          850
+                        </td>
+                      </tr>
+                       <tr>
+                        <td data-th="Supplier Code">
+                          	5
+                        </td>
+                        <td data-th="Invoice Number">
+                          	12
+                        </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
+                        <td data-th="Invoice Date">
+                                                       짱구
+                        </td>
+                        <td data-th="Due Date">
+                          	한국
+                        </td>
+                        <td data-th="Net Amount">
+                          850
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                   

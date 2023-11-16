@@ -265,54 +265,34 @@
                     <tbody>
                       <tr>
                         <th>이름</th>
-                        <th>아이디</th>
+                        <th>이메일</th>
                         <th>닉네임</th>
                         <th>생년월일</th>
                         <th>국가</th>
                         <th>가입일자</th>
                       </tr>
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	신짱구
-                        </td>
-                        <td data-th="Supplier Name">
-                            zzangu01
-                        </td>
-                        <td data-th="Invoice Number">
-                          	부리부리
-                        </td>
-                        <td data-th="Invoice Date">
-                          1990/01/01
-                        </td>
-                        <td data-th="Due Date">
-                          	일본
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                     
-                     <tr>
-                        <td data-th="Supplier Code">
-                          	철수
-                        </td>
-                        <td data-th="Supplier Name">
-                            user111
-                        </td>
-                        <td data-th="Invoice Number">
-                          	철수얼쑤
-                        </td>
-                        <td data-th="Invoice Date">
-                          1990/01/01
-                        </td>
-                        <td data-th="Due Date">
-                          	한국
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                      
+                      <c:forEach items="${ list }" var="m">
+	                      <tr>
+	                        <td data-th="Supplier Code">
+	                          	${m.memberName}
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                            ${m.email}
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	${m.memberNickname}
+	                        </td>
+	                        <td data-th="Invoice Date">
+	                          ${m.birthdat}
+	                        </td>
+	                        <td data-th="Due Date">
+	                          	${m.nationNo}
+	                        </td>
+	                        <td data-th="Net Amount">
+	                          ${memberEnrollDate}
+	                        </td>
+	                      </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
                   
@@ -321,12 +301,18 @@
         
     		<div id="pagingArea">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                	<c:choose>
+                		<c:when test="${ pi.currentPage eq 1}">
+                    		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    
+                    <c:forEach begin="${ pi.endPage }" end="${ pi.endPage }" var="p">
+                    	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
+                    </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </div>

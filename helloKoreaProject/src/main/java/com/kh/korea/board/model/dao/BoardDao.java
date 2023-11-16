@@ -19,4 +19,5 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectInfoList", null, rowBounds);
 	}
 
+	
 }

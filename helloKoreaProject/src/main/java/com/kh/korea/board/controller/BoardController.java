@@ -19,10 +19,11 @@ public class BoardController {
 	// 자유게시판 리스트
 	@GetMapping("list.fbo") 
 	public String freeSelectList() {
+		
 		return "board/freeBoardListView";
 	}
 	
-	// 자유게시판 글작성
+	// 자유게시판 작성폼
 	@GetMapping("enrollForm.fbo")
 	public String freeEnrollForm() {
 		return "board/freeBoardEnrollForm";
@@ -63,6 +64,16 @@ public class BoardController {
 	public String infoEnrollForm() {
 		return "board/infoBoardEnrollForm";
 	}
+	
+	// 자유 게시판 댓글 리스트 
+	
+	// 자유 게시판 댓글 작성
+	
+	// 자유 게시판 댓글 리스트 
+	
+	// 자유 게시판 댓글 작성
+	
+	
 	
 	
 	

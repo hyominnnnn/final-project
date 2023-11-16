@@ -31,9 +31,5 @@ public class BoardServiceImpl implements BoardService {
 		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
 		return boardDao.selectInfoList(sqlSession, rowBounds);
 	}
-	
-	
-	
-	
 
 }
