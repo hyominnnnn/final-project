@@ -21,15 +21,8 @@ public class AdminServiceImpl implements  AdminService{
 	
 
 	@Override
-
-	public int selectMemberList() {
-		return adminDao.selectMemberList(sqlSession);
-
 	public int selectListCount() {
 		return adminDao.selectListCount(sqlSession);
-
-	public int selectListCount() {
-		return adminDao.selectList(sqlSession);
 
 	}
 	
