@@ -19,16 +19,19 @@ public class AdminServiceImpl implements  AdminService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-	public int selectMemberList() {
-		return adminDao.selectMemberList(sqlSession);
-	}
 
 	@Override
-	public ArrayList<Member> selectList(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+	public int selectListCount() {
+		return adminDao.selectList(sqlSession);
 	}
+	
+	@Override
+	public ArrayList<Member> selectList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return adminDao.selectList(sqlSession, rowBounds);
+	}
+
 
 	
 
