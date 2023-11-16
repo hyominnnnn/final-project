@@ -4,7 +4,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <title>한식 예약</title>
+<title>한식 예약</title>
+<style>
+	div{
+            border : 1px solid red;
+            box-sizing : border-box;
+        }
+
+        #wrap{
+            width : 70%;
+            height : 1800px;
+            margin : auto;
+        }
+
+        /* 크게 세가지 영역 */
+        /* header, content, footer */
+        #wrap > div{
+            width : 100%;
+        }
+
+        #kfmain-pic {
+        	height : 40%;
+     
+        }
+        
+        #intro-kf {
+            height : 40%;
+        
+        }
+        
+        #info-kf {
+        	height : 20%;
+        
+        }
+
+
+    
+    
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -12,48 +49,13 @@
 <body>
 	
 	<jsp:include page="../common/header.jsp"></jsp:include>
-	<div id="box"></div>
 	
-	<div class="page" id="content">
-		<div class="page">
-			<div id="main-pic">
-			<h2>한식</h2>
-			<!-- 로그인 한 상태일 때만 보여지는 예약하기/예약조회 버튼  -->
-			<!-- <c:if test="${ not empty sessionScope.loginUser }"></c:if> -->
-				<button class="btn btn-outline-light btn-block" id="reserv-hk">
-					<h1>예약 하기</h1>
-				</button>
-				<br>
-				<button class="btn btn-outline-light btn-block" id="reserv-list">
-					<h1>예약 조회</h1>
-				</button>
-				<!-- scpipt문 써야함 -->
-			<!-- 로그인 안했으면 else 
-					<h1>예약 하고 싶으면 로그인해주세요! </h1>
-			-->
-			
-			
-			</div>
-			
-			<!-- 한식코스 소개 -->
-			<div id="intro-kh">
-			<h1>dd</h1>
-			
-			</div>
-			
-			<!-- 이용 안내 -->
-			
-			<div id="info-kh">
-			<h1>dd</h1>
-			
-			</div>
-			
-			
-			
-		</div>
-			
+	<div id="wrap">
 		
-	</div>
+        <div id="kfmain-pic"></div>
+        <div id="intro-kf"></div>
+        <div id="info-kf"></div>
+    </div>
 	
 	
 	
