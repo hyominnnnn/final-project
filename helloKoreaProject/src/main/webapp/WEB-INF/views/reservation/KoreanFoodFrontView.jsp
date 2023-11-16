@@ -45,6 +45,18 @@
         	height : 20%;
         
         }
+        
+        #content3_1 {
+        	width : 20%;
+        	height : 100%;
+        	float : left;
+        }
+        
+        #content3_2 {
+        	width : 80%;
+        	height : 100%;
+        	float : left;
+        }
 
 
     
@@ -117,8 +129,17 @@
         
         
         
-        <div id="content3"></div>
-        
+        <div id="content3">
+        	<div id="content3_1">
+        		<h5>이용 안내</h5>
+	        	<br>
+	        	<h5>이용 시간</h5>
+        	</div>
+        	<div id="content3_2">
+        	
+        	</div>
+        	
+        </div>
 
     </div>
 	
