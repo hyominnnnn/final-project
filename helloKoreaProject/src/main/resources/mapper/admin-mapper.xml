@@ -5,19 +5,59 @@
 
 <mapper namespace="adminMapper">
 
+
+<resultMap type="member" id="memberList">
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="EMAIL" property="email" />
+		<result column="MEMBER_NICKNAME" property="memberNickname" />
+		<result column="MEMBER_PWD" property="memberPwd" />
+		<result column="MEMBER_NAME" property="memberName" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="ID_CARD_NUMBER" property="idCardNumber" />
+		<result column="MEMBER_ENROLL_DATE" property="memberEnrollDate" />
+		<result column="STATUS" property="status" />
+		<result column="NATION_NO" property="nationNo" />
+		<result column="SOCIAL_ID" property="socialId" />
+		<result column="SOCIAL_PROFILE" property="socialProfile" />
+	</resultMap>
+
+	<select id="selectListCount" resultType="_int">
+
 <resultMap id="" type="">
 	<result
 </resultMap>
 
 	<select id="selectList" resultType="_int">
+
 	
 		SELECT
 				COUNT(*)
 		  FROM	
 		  		TB_MEMBER
 		  WHERE
-		  		STATUS = 'Y'
+
+		  		STATUS IN ('K','F')
 		
 	</select>
+	
+	<select id="selectList" resultMap="memberList">
+		SELECT
+				MEMBER_NO,
+				MEMBER_NAME,
+				EMAIL,
+				MEMBER_NICKNAME,
+				BIRTHDAY,
+				NATION_NO,
+				MEMBER_ENROLL_DATE
+		FROM
+				TB_MEMBER
+		WHERE
+				STATUS IN ('K','F')
+		ORDER
+		   BY
+		   		 MEMBER_NAME DESC
+	</select>
+
+
 
 </mapper> 

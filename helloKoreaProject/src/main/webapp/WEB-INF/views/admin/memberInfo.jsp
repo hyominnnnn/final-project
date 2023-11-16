@@ -235,7 +235,9 @@
 	       margin-top: 200px;
        }
        
-      
+      #selectBtn{
+      	
+      }
     </style>
 </head>
 <body>
@@ -261,6 +263,7 @@
             	<br>
                 <h1>회원 정보 관리</h1>
                 <br>
+                      <form action="list.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
                     <tbody>
                       <tr>
@@ -271,9 +274,58 @@
                         <th>국가</th>
                         <th>가입일자</th>
                       </tr>
+
+                      <tr>
+                        <td data-th="Supplier Code">
+                          	신짱구
+                        </td>
+                        <td data-th="Supplier Name">
+                            zzangu01
+                        </td>
+                        <td data-th="Invoice Number">
+                          	부리부리
+                        </td>
+                        <td data-th="Invoice Date">
+                          1990/01/01
+                        </td>
+                        <td data-th="Due Date">
+                          	일본
+                        </td>
+                        <td data-th="Net Amount">
+                          2023/11/14
+                        </td>
+                      </tr>
+                     
+                     <tr>
+                        <td data-th="Supplier Code">
+                          	철수
+                        </td>
+                        <td data-th="Supplier Name">
+                            user111
+                        </td>
+                        <td data-th="Invoice Number">
+                          	철수얼쑤
+                        </td>
+                        <td data-th="Invoice Date">
+                          1990/01/01
+                        </td>
+                        <td data-th="Due Date">
+                          	한국
+                        </td>
+                        <td data-th="Net Amount">
+                          2023/11/14
+                        </td>
+                      </tr>
+                      
+
+                      <c:forEach items="${list}" var="m">
+	                      <tr>
+	                        <td class="pno" data-th="Supplier Code">
+
                       <c:forEach items="${ list }" var="m">
 	                      <tr>
 	                        <td data-th="Supplier Code">
+
 	                          	${m.memberName}
 	                        </td>
 	                        <td data-th="Supplier Name">
@@ -283,7 +335,11 @@
 	                          	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Invoice Date">
+
+	                          ${m.birthday}
+
 	                          ${m.birthdat}
+
 	                        </td>
 	                        <td data-th="Due Date">
 	                          	${m.nationNo}
@@ -295,9 +351,13 @@
                       </c:forEach>
                     </tbody>
                   </table>
+                      <button type="submit" id="selectBtn">조회</button>
+                      </form>
                   
                 </div>
         </div>
+        
+        
         
     		<div id="pagingArea">
                 <ul class="pagination">
@@ -326,39 +386,35 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">000님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberDetailModel">
+                <form action="detail.me" method="post" id="memberDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
                             <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" readonly> 
-                            <br>
-                            
-                            <label for="memberId" class="memberbtn">아이디</label>
-                            <input type="text" class="form-control memberbtn" id="memberId" name="memberId" readonly> 
-                            <br>
-                            
-                            <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="${ m.memberName }" readonly> 
                             <br>
                             
                             <label for="email" class="memberbtn">이메일</label>
-                            <input type="text" class="form-control memberbtn" id="email" name="email" readonly> 
+                            <input type="text" class="form-control memberbtn" id="email" name="email" value="${m.email}" readonly> 
+                            <br>
+                            
+                            <label for="memberNickname" class="memberbtn">닉네임</label>
+                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="${m.memberNickName}" readonly> 
                             <br>
                             
                             <label for="birthday" class="memberbtn">생년월일</label>
-                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" readonly> 
+                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" value="${ m.birthday }"readonly> 
                             <br>
                             
                             <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" readonly> 
+                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" value="${m.nationNo}"readonly> 
                             <br>
                             
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value="${m.memberEnrollDate }"readonly> 
                             <br>
                     </div>
                     <!-- Modal footer -->
