@@ -28,20 +28,20 @@
             <div class="choice" id="korean">
                 
                     <div class="image">
-                        <a href="koreanLogon"><img src="https://svgsilh.com/svg/1633249.svg" width="150" height="150"></a>
+                        <a href="LogonForm?status=K"><img src="https://svgsilh.com/svg/1633249.svg" width="150" height="150"></a>
                     </div>
                     <div>
-                        <a href="koreanLogon"><span class="kofo">한국인</span></a>
+                        <a href="LogonForm?status=K"><span class="kofo">한국인</span></a>
                     </div>
                 
             </div>
             
             <div class="choice" id="foreigner">
                 <div class="image">
-                    <a href="foreignerLogon"><img src="https://svgsilh.com/svg/1633249.svg" width="150" height="150"></a>
+                    <a href="LogonForm?status=F"><img src="https://svgsilh.com/svg/1633249.svg" width="150" height="150"></a>
                 </div>
                 <div>
-                    <a href="foreignerLogon"><span class="kofo">Foreigner</span></a>
+                    <a href="LogonForm?status=F"><span class="kofo">Foreigner</span></a>
                 </div>
             </div>
         </div>
