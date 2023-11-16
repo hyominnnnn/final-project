@@ -17,23 +17,31 @@
             margin : auto;
         }
 
-        /* 크게 세가지 영역 */
-        /* header, content, footer */
         #wrap > div{
             width : 100%;
         }
 
-        #kfmain-pic {
+        #content1 {
         	height : 40%;
      
         }
         
-        #intro-kf {
+        #content2 {
             height : 40%;
         
         }
+        #content2_1, #content2_2 {
+        	width : 50%;
+        	height : 100%;
+        	float : left;
+        }
         
-        #info-kf {
+        #content2_1_1, #content2_1_2, #content2_2_1, #content2_2_2 {
+        	height : 50%;
+        	width : 100%;
+        }
+        
+        #content3 {
         	height : 20%;
         
         }
@@ -52,9 +60,66 @@
 	
 	<div id="wrap">
 		
-        <div id="kfmain-pic"></div>
-        <div id="intro-kf"></div>
-        <div id="info-kf"></div>
+        <div id="content1">
+        		<!-- 
+        			<c:if test="${ empty sessionScope.loginUser}">
+        			
+	        		</c:if>
+	        		<else>
+	        			<button class="btn btn-outline-light btn-block" id="reserv-hk">
+						<h1>예약 하기</h1>
+						</button>
+						<br>
+						<button class="btn btn-outline-light btn-block" id="reserv-list">
+						<h1>예약 조회</h1>
+						</button>
+	        		</else>
+        		-->
+        	<h1>로그인 하려면 예약해주세요!</h1>
+        	<button class="btn btn-outline-light btn-block" id="reserv-hk">
+				<h1>예약 하기</h1>
+			</button>
+			<br>
+			<button class="btn btn-outline-light btn-block" id="reserv-list">
+				<h1>예약 조회</h1>
+			</button>		
+        		
+        	
+        
+        
+        
+        </div>
+        	
+        		
+        
+        	
+        
+        
+        
+        
+        <div id="content2">
+        	<div id="content2_1">
+        		<div id="content2_1_1"></div>
+        		<div id="content2_1_2"></div>
+        	</div>	
+        	<div id="content2_2">
+        		<div id="content2_2_1"></div>
+        		<div id="content2_2_2"></div>
+        	</div>
+        
+        
+        </div>
+        
+        
+
+        
+        
+        
+        
+        
+        <div id="content3"></div>
+        
+
     </div>
 	
 	
