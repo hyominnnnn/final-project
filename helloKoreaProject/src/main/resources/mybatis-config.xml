@@ -15,6 +15,7 @@
 		<!-- sql mapper를 새로 만들때마다 등록해야함. -->
 		<mappers>
 			<mapper resource="/mapper/member-mapper.xml" />
+			<mapper resource="/mapper/admin-mapper.xml"/>
 			
 		</mappers>
 		
