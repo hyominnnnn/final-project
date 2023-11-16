@@ -268,13 +268,13 @@
                     <tbody>
                       <tr>
                         <th>이름</th>
-                        <th>아이디</th>
+                        <th>이메일</th>
                         <th>닉네임</th>
                         <th>생년월일</th>
                         <th>국가</th>
                         <th>가입일자</th>
                       </tr>
-<<<<<<< Updated upstream
+
                       <tr>
                         <td data-th="Supplier Code">
                           	신짱구
@@ -317,10 +317,15 @@
                         </td>
                       </tr>
                       
-=======
+
                       <c:forEach items="${list}" var="m">
 	                      <tr>
 	                        <td class="pno" data-th="Supplier Code">
+
+                      <c:forEach items="${ list }" var="m">
+	                      <tr>
+	                        <td data-th="Supplier Code">
+
 	                          	${m.memberName}
 	                        </td>
 	                        <td data-th="Supplier Name">
@@ -330,7 +335,11 @@
 	                          	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Invoice Date">
+
 	                          ${m.birthday}
+
+	                          ${m.birthdat}
+
 	                        </td>
 	                        <td data-th="Due Date">
 	                          	${m.nationNo}
@@ -340,7 +349,6 @@
 	                        </td>
 	                      </tr>
                       </c:forEach>
->>>>>>> Stashed changes
                     </tbody>
                   </table>
                       <button type="submit" id="selectBtn">조회</button>
@@ -353,12 +361,18 @@
         
     		<div id="pagingArea">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                	<c:choose>
+                		<c:when test="${ pi.currentPage eq 1}">
+                    		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    
+                    <c:forEach begin="${ pi.endPage }" end="${ pi.endPage }" var="p">
+                    	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
+                    </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </div>

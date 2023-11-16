@@ -5,6 +5,7 @@
 
 <mapper namespace="adminMapper">
 
+
 <resultMap type="member" id="memberList">
 		<result column="MEMBER_NO" property="memberNo" />
 		<result column="EMAIL" property="email" />
@@ -21,12 +22,20 @@
 	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
+
+<resultMap id="" type="">
+	<result
+</resultMap>
+
+	<select id="selectList" resultType="_int">
+
 	
 		SELECT
 				COUNT(*)
 		  FROM	
 		  		TB_MEMBER
 		  WHERE
+
 		  		STATUS IN ('K','F')
 		
 	</select>
@@ -48,7 +57,7 @@
 		   BY
 		   		 MEMBER_NAME DESC
 	</select>
-	
-	
+
+
 
 </mapper> 

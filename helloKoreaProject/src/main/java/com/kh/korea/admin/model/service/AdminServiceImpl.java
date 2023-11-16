@@ -19,21 +19,27 @@ public class AdminServiceImpl implements  AdminService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-<<<<<<< Updated upstream
-	public int selectMemberList() {
-		return adminDao.selectMemberList(sqlSession);
-=======
-	public int selectListCount() {
-		return adminDao.selectListCount(sqlSession);
->>>>>>> Stashed changes
-	}
 
 	@Override
-	public ArrayList<Member> selectList(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public int selectMemberList() {
+		return adminDao.selectMemberList(sqlSession);
+
+	public int selectListCount() {
+		return adminDao.selectListCount(sqlSession);
+
+	public int selectListCount() {
+		return adminDao.selectList(sqlSession);
+
 	}
+	
+	@Override
+	public ArrayList<Member> selectList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return adminDao.selectList(sqlSession, rowBounds);
+	}
+
 
 	
 

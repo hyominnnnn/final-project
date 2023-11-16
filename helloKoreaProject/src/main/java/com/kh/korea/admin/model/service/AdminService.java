@@ -7,8 +7,11 @@ import com.kh.korea.member.model.vo.Member;
 
 public interface AdminService {
 	
-	int selectMemberList();
+	//int selectMemberList();
+	
+	int selectListCount();
 	
 	ArrayList<Member> selectList(PageInfo pi);
+
 
 }
