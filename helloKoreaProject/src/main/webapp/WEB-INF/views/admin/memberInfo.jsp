@@ -338,7 +338,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="detail.me" method="post" id="memberDetailModel">
+                <form action="#" method="post" id="memberDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
                             <label for="memberName" class="memberbtn">이름</label>
@@ -385,10 +385,10 @@
     
            function posting(num){
 	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'memberPosting').submit();
+	    		$('#posting-btn').attr('action', 'detail.me').submit();
 	    	}
 	    	else{
-	    		$('#reply-btn').attr('action', 'memberReply').submit();
+	    		$('#reply-btn').attr('action', 'reply.me').submit();
 	    	}
 	    }
     </script>
