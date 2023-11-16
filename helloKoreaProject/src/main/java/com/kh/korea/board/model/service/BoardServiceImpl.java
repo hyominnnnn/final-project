@@ -20,16 +20,34 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
+	// 정보 게시판 글 개수
 	@Override
 	public int countInfoList() {
 		return boardDao.countInfoList(sqlSession);
 	}
 
+	// 정보 게시판 글 리스트 조회
 	@Override
 	public ArrayList<Board> selectInfoList(PageInfo infoPi) {
 		int offset = (infoPi.getCurrentPage() - 1) * infoPi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
 		return boardDao.selectInfoList(sqlSession, rowBounds);
 	}
+
+	// 게시글 조회수 증가
+	@Override
+	public int increaseCount(int boardNo) {
+		return boardDao.increaseCount(sqlSession, boardNo);
+	}
+
+	// 게시글 상세조회
+	@Override
+	public Board selectBoard(int boardNo) {
+		return boardDao.selectBoard(sqlSession, boardNo);
+	}
+	
+	
+	
+	
 
 }

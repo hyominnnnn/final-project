@@ -86,7 +86,7 @@
 		                	<td>${ i.modifyDate }</td>
 		                	<td>${ i.count }</td>
 		                	<td>
-		                		<c:if test="${ not empty i.fileNo }">
+		                		<c:if test="${ not empty i.originalName }">
 		                			${ i.originalName }
 		                		</c:if>
 		                	</td>
