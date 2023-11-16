@@ -231,8 +231,8 @@
        
        #pagingArea {
 	       width:fit-content; 
-	       margin-left:780px;
-	       margin-top: 200px;
+	       margin-left:810px;
+	       margin-top: 160px;
        }
        
       #selectBtn{
@@ -293,7 +293,7 @@
 	                          	${m.nationNo}
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${memberEnrollDate}
+	                          ${m.memberEnrollDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -318,7 +318,7 @@
                     	</c:otherwise>
                     </c:choose>
                     
-                    <c:forEach begin="${ pi.endPage }" end="${ pi.endPage }" var="p">
+                    <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
                     	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
@@ -387,8 +387,11 @@
 	    	if(num == 0){ // 게시물 조회
 	    		$('#posting-btn').attr('action', 'detail.me').submit();
 	    	}
-	    	else{
+	    	else if{ // 댓글 조회
 	    		$('#reply-btn').attr('action', 'reply.me').submit();
+	    	}
+	    	else{ // 회원 삭제
+	    		$('#delete-btn').attr('action', 'delete.me').submit();
 	    	}
 	    }
     </script>

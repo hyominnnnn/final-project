@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -261,89 +262,59 @@
             	<br>
                 <h1>회원 게시물 관리</h1>
                 <br>
+                <form action="detail.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="memberPostingDetailForm">
                     <tbody>
                       <tr>
                         <th>글번호</th>
                         <th>글제목</th>
-                        <th>조회수</th>
+                        <th></th>
                         <th>작성일</th>
                         <th></th>
                         <th></th>
                       </tr>
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                     
-                      <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                       <tr>
-                        <td data-th="Supplier Code">
-                          	1
-                        </td>
-                        <td data-th="Supplier Name">
-                                                      고호재를 갔다왔는데여
-                        </td>
-                        <td data-th="Invoice Number">
-                          	12
-                        </td>
-                        <td data-th="Invoice Date">
-                        </td>
-                        <td data-th="Due Date">
-                          	
-                        </td>
-                        <td data-th="Net Amount">
-                          2023/11/14
-                        </td>
-                      </tr>
-                      
+                      <c:forEach items="${ list }" var="b">
+	                      <tr>
+	                        <td data-th="Supplier Code">
+	                          	${b.boardNo}
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                            ${b.boardTitle}
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	
+	                        </td>
+	                        <td data-th="Invoice Date">
+	                        	${b.createDate}
+	                        </td>
+	                        <td data-th="Due Date">
+	                          	
+	                        </td>
+	                        <td data-th="Net Amount">
+	                          2023/11/14
+	                        </td>
+	                      </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
-                  
+                  </form>
                 </div>
         </div>
         	
     		<div id="pagingArea">
                 <ul class="pagination">
-                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                	<c:choose>
+                		<c:when test="${ pi.currentPage eq 1}">
+                    		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    	</c:otherwise>
+                    </c:choose>
+                    
+                    <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
+                    	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
+                    </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
             </div>

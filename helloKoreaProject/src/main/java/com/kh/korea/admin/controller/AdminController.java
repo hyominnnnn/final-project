@@ -31,9 +31,9 @@ public class AdminController {
 		
 		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectListCount(),
-		currentPage,
-		5,
-		5);
+											 currentPage,
+											 5,
+											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
 		
@@ -42,12 +42,28 @@ public class AdminController {
 		}
 	
 	
-	@RequestMapping("detail.me")
+	@GetMapping("memberPosting")
 	public String memberPosting() {
 		return "admin/memberPosting";
 	}
 	
-	@RequestMapping("reply.me")
+	@GetMapping("detail.me")
+	public String selectMemberPostList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
+			Model model) {
+		
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBoardListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectBoardList(pi));
+		model.addAttribute("pi", pi);
+		
+
+		return "admin/memberPosting";
+	}
+	
+	@GetMapping("reply.me")
 	public String memberReply() {
 		return "admin/memberReply";
 	}
