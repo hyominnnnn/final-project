@@ -12,17 +12,8 @@ import com.kh.korea.member.model.vo.Member;
 public class AdminDao {
 	
 
-
-	public int selectMemberList(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
-		return 0;
-
 	public int selectListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectListCount");
-
-	public int selectList(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.seletList");
-
 	}
 	
 	public ArrayList<Member> selectList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
