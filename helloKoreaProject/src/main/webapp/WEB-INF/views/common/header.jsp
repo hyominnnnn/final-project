@@ -143,7 +143,7 @@
             <ul id="navi_1">
                 <li><a href="#">체험</a>
                     <ul class="navi_2">
-                        <li><a href="#">한식체험</a></li>
+                        <li><a href="list.kf">한식체험</a></li>
                         <li><a href="#">전통혼례</a></li>
                         <li><a href="#">전통예술공연</a></li>
                         <li><a href="#">전통문화체험</a></li>

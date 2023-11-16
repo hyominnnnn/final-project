@@ -1,10 +1,13 @@
 package com.kh.korea.board.model.service;
 
+
 public interface BoardService {
 	
+	// 게시글 총 개수 조회
+	//int selectListCount();
 
 	// 게시글 리스트 조회
-	//ArrayList
+	//ArrayList<Board> selectList(PageInfo pi);
 	
 	// 게시글 작성하기(INSERT)
 	
