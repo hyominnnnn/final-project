@@ -1,10 +1,20 @@
 package com.kh.korea.board.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.kh.korea.board.model.service.BoardService;
+import com.kh.korea.common.model.vo.PageInfo;
+import com.kh.korea.common.template.Pagination;
 
 @Controller
 public class BoardController {
+	
+	@Autowired
+	private BoardService boardService;
 	
 	// 자유게시판 리스트
 	@GetMapping("list.fbo") 
@@ -32,7 +42,13 @@ public class BoardController {
 	
 	// 정보게시판 리스트
 	@GetMapping("list.ibo")
-	public String infoList() {
+	public String infoList(@RequestParam(value="iPage", defaultValue="1") int currentPage, Model model) {
+		
+		PageInfo infoPi = Pagination.getPageInfo(boardService.countInfoList(), currentPage, 5, 5);
+		
+		model.addAttribute("infoList", boardService.selectInfoList(infoPi));
+		model.addAttribute("infoPi", infoPi);
+		
 		return "board/infoBoardListView";
 	}
 	
