@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.korea.member.model.service.MemberService;
@@ -26,13 +27,33 @@ public class MemberController {
 	private JavaMailSender sender;
 	
 	@RequestMapping("Logon")
-	public void koreanLogon(Member m, Model model) {
+	public String koreanLogon(Member m, Model model) {
 		//암호화 작업(암호문을 만들어내는 과정)
 		String encPwd = bcPwd.encode(m.getMemberPwd());	
 		//암호화 한 패스워드 다시 담기
 		 m.setMemberPwd(encPwd);
 		 System.out.println(m);
-		// ms.insertMember(m);
+		if(ms.insertMember(m) > 0) {
+			return "redirect:/";
+		}else {
+			model.addAttribute("errorMsg","회원가입 실패");
+			return "common/errorPage";
+		}
+	}
+	@ResponseBody
+	@RequestMapping("idCheck")
+	public String idCheck(String checkId) {
+		System.out.println(checkId);
+		int count = ms.idCheck(checkId);
+		
+		return count > 0 ? "NNN" : "NNY";
+	}
+	
+	@ResponseBody
+	@RequestMapping("nickCheck")
+	public String nickCheck(String checkNick) {
+		int count = ms.nickCheck(checkNick);
+		return count > 0 ? "NNN" : "NNY";
 	}
 	
 	

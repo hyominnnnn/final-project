@@ -34,8 +34,12 @@ public class MemberServiceImpl implements MemberService {
 */
 	@Override
 	public int idCheck(String checkId) {
-		// TODO Auto-generated method stub
-		return 0;
+		return md.idCheck(sqlSession, checkId);
+	}
+	
+	@Override
+	public int nickCheck(String checkNick) {
+		return md.nickCheck(sqlSession, checkNick);
 	}
 
 	@Override

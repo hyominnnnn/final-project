@@ -18,7 +18,7 @@ public class Member {
 	private int idCardNumber;
 	private Date memberEnrollDate;
 	private String status;
-	private int nationNo;
+	private String nationNo;
 	private String socialId;
 	private String socialProfile;
 	

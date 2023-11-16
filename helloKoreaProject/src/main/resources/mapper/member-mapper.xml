@@ -23,15 +23,15 @@
 
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="member">
-		MEMBER_NO,
+		
 		INSERT INTO TB_MEMBER(
+			MEMBER_NO,
 			EMAIL,
 			MEMBER_NICKNAME,
 			MEMBER_PWD,
 			MEMBER_NAME,
 			BIRTHDAY,
 			ID_CARD_NUMBER,
-			MEMBER_ENROLL_DATE,
 			STATUS,
 			NATION_NO
 		)
@@ -46,6 +46,33 @@
 			#{status},  <!-- 외국인만 -->
 			#{nationNo} <!-- 외국인만 -->
 		)
-	
 	</insert>
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" parameterType="string" resultType="_int">
+		SELECT 
+			  COUNT(EMAIL)
+		  FROM
+			  TB_MEMBER
+		 WHERE
+			  EMAIL = #{checkId}
+	</select>
+	<!-- 닉네임 중복 체크 -->
+	<select id="nickCheck" parameterType="string" resultType="_int">
+		SELECT
+			  COUNT(MEMBER_NICKNAME)
+		  FROM
+			  TB_MEMBER
+		 WHERE
+		 	  MEMBER_NICKNAME = #{checkNick}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper> 
