@@ -3,6 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="memberMapper">
 
+<mapper namespace="memberMapper">
+	<resultMap type="member" id="memberList">
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="EMAIL" property="email" />
+		<result column="MEMBER_NICKNAME" property="memberNickname" />
+		<result column="MEMBER_PWD" property="memberPwd" />
+		<result column="MEMBER_NAME" property="memberName" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="ID_CARD_NUMBER" property="idCardNumber" />
+		<result column="MEMBER_ENROLL_DATE" property="memberEnrollDate" />
+		<result column="STATUS" property="status" />
+		<result column="NATION_NO" property="nationNo" />
+		<result column="SOCIAL_ID" property="socialId" />
+		<result column="SOCIAL_PROFILE" property="socialProfile" />
+	</resultMap>
+
+
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="member">
+		MEMBER_NO,
+		INSERT INTO TB_MEMBER(
+			EMAIL,
+			MEMBER_NICKNAME,
+			MEMBER_PWD,
+			MEMBER_NAME,
+			BIRTHDAY,
+			ID_CARD_NUMBER,
+			MEMBER_ENROLL_DATE,
+			STATUS,
+			NATION_NO
+		)
+		VALUES(
+			SEQ_MEMBER.NEXTVAL,
+			#{email},
+			#{memberNickname},
+			#{memberPwd},
+			#{memberName},
+			#{birthday}, <!-- 한국인만 -->
+			#{idCardNumber}, <!-- 한국인만 -->
+			#{status},  <!-- 외국인만 -->
+			#{nationNo} <!-- 외국인만 -->
+		)
+	
+	</insert>
 </mapper> 
