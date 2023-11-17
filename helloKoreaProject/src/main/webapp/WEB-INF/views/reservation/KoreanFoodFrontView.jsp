@@ -76,11 +76,11 @@
 	        		</else>
         		-->
         	<h1>로그인 하려면 예약해주세요!</h1>
-        	<button class="btn btn-outline-light btn-block" id="reserv-hk">
+        	<button class="btn btn-outline-light btn-block" id="reserv-hk" onClick="location.href='rsvEnrollForm.kf'">
 				<h1>예약 하기</h1>
 			</button>
 			<br>
-			<button class="btn btn-outline-light btn-block" id="reserv-list">
+			<button class="btn btn-outline-light btn-block" id="reserv-list" onClick="location.href='rsvlist.kf'">
 				<h1>예약 조회</h1>
 			</button>		
         		
