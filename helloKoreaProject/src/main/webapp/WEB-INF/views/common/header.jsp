@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,12 +131,20 @@
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
-            	<!-- 로그인 전 -->
-                <a href="logon" id="a1">회원가입</a>
-                <a href="login" id="a2">로그인</a>
-                <!-- 로그인 후 -->
-                <a href="#" id="a1">마이페이지</a>
-                <a href="#" id="a2">로그아웃</a>
+            	<c:choose>
+	            	<c:when test="${empty loginUser }">
+	            	<!-- 로그인 전 -->
+	                <a href="logonForm" id="a1">회원가입</a>
+	                <a href="loginForm" id="a2">로그인</a>
+	                </c:when>
+	                <c:otherwise>
+	                <!-- 로그인 후 -->
+	                <label>${sessionScope.loginUser.memberNickname }님 환영합니다</label>
+	                <br>
+	                <a href="#" id="a1">마이페이지</a>
+	                <a href="logout" id="a2">로그아웃</a>
+	                </c:otherwise>
+                </c:choose>
             </div>
         </div>
 

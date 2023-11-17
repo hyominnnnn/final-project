@@ -9,17 +9,16 @@ import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
 public class Member {
-	
 	private int memberNo;
 	private String email;
 	private String memberNickname;
 	private String memberPwd;
 	private String memberName;
-	private int birthdat;
+	private int birthday;
 	private int idCardNumber;
 	private Date memberEnrollDate;
 	private String status;
-	private int nationNo;
+	private String nationNo;
 	private String socialId;
 	private String socialProfile;
 	

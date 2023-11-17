@@ -46,6 +46,20 @@
         
         }
 
+        
+        #content3_1 {
+        	width : 20%;
+        	height : 100%;
+        	float : left;
+        }
+        
+        #content3_2 {
+        	width : 80%;
+        	height : 100%;
+        	float : left;
+        }
+
+
 
     
     
@@ -83,9 +97,9 @@
 			<button class="btn btn-outline-light btn-block" id="reserv-list">
 				<h1>예약 조회</h1>
 			</button>		
-<<<<<<< Updated upstream
+
         </div>
-=======
+
         		
         	
         
@@ -98,14 +112,12 @@
         	
         
         
-        
->>>>>>> Stashed changes
+
         
         <div id="content2">
         	<div id="content2_1">
         		<div id="content2_1_1"></div>
-<<<<<<< Updated upstream
-        			
+
         			
         			
         		<div id="content2_1_2">
@@ -120,13 +132,13 @@
         		<div id="content2_2_2">
         			<h5>고호정</h5>
         		</div>
-=======
+
         		<div id="content2_1_2"></div>
         	</div>	
         	<div id="content2_2">
         		<div id="content2_2_1"></div>
         		<div id="content2_2_2"></div>
->>>>>>> Stashed changes
+
         	</div>
         
         
@@ -139,16 +151,27 @@
         
         
         
-<<<<<<< Updated upstream
+
         <div id="content3">
         	<h5>이용 안내</h5>
         
         
         </div>
-=======
+
         <div id="content3"></div>
->>>>>>> Stashed changes
-        
+
+        <div id="content3">
+        	<div id="content3_1">
+        		<h5>이용 안내</h5>
+	        	<br>
+	        	<h5>이용 시간</h5>
+        	</div>
+        	<div id="content3_2">
+        	
+        	</div>
+        	
+        </div>
+
 
     </div>
 	
@@ -158,3 +181,4 @@
 	
 </body>
 </html>
+	
