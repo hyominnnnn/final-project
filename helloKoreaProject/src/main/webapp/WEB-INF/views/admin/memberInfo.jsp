@@ -299,8 +299,8 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                      <button type="submit" id="selectBtn">조회</button>
-                      </form>
+                     <button type="submit" id="selectBtn">조회</button>
+                   </form>
                   
                 </div>
         </div>
@@ -334,11 +334,11 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">${ m.memberName }님의 정보 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberDetailModel">
+                <form action="memberDetail.me" method="post" id="memberDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
                             <label for="memberName" class="memberbtn">이름</label>
@@ -379,21 +379,22 @@
     <script>
 	    $(function(){
 	             		$('#memberDetailModel > tbody > tr').click(function(){
-	             			location.href='posting.me?pno=' + $(this).children('.pno').text();
+	             			location.href='memberDetail.me?pno=' + $(this).children('.pno').text();
 	             		})	
 	             	})
-    
-           function posting(num){
-	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'detail.me').submit();
+	       	
+	     $.ajax({
+	    	url : 'memberDetail.me',
+	    	data : {memberName : '${m.memberName}'},
+	    	success : list => {
+	    		console.log(list);
+	    	},
+	    	error : () => {
+	    		console.log('실패!');
 	    	}
-	    	else if{ // 댓글 조회
-	    		$('#reply-btn').attr('action', 'reply.me').submit();
-	    	}
-	    	else{ // 회원 삭제
-	    		$('#delete-btn').attr('action', 'delete.me').submit();
-	    	}
-	    }
+	     })
+	    
+	     
     </script>
     
 </body>

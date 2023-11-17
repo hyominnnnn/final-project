@@ -236,6 +236,15 @@
 	       
        }
        
+       #boardTitle{
+       	width: 200px;
+       	height: 30px;
+       }
+       
+       #boardContent{
+        height: 500px;
+       }
+       
       
     </style>
 </head>
@@ -263,7 +272,7 @@
                 <h1>회원 게시물 관리</h1>
                 <br>
                 <form action="detail.me" method="get">
-                  <table class="rwd-table" data-toggle="modal" data-target="memberPostingDetailForm">
+                  <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
                         <th>글번호</th>
@@ -297,6 +306,7 @@
                       </c:forEach>
                     </tbody>
                   </table>
+                  <button type="submit">조회</button>
                   </form>
                 </div>
         </div>
@@ -321,15 +331,41 @@
         
     </div>
     
+    <!-- 회원정보 상세 모달 -->
+     <div class="modal fade" id="memberPostingForm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+​
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+​
+                <form action="#" method="post" id="memberPostingDetailModel">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                            <label for="boardTitle" class="boardTitleBtn">제목</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
+                            <br>
+                            
+                            <label for="boardContent" class="boardContentBtn">내용</label>
+                            <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
+                            <br>
+                            
+                          
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer" align="center">
+                        <button id="postng-delete-btn" class="model-footer-btn" onclick="deletePosting();">게시글삭제</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
-    <script>
-    	$(function(){
-    		$('.rwd-table > tbody > tr').click(function(){
-    			location.herf='detail.me?mno=' + $(this).children('.mno').text();
-    		})
-    	})
-    </script>
     
+   
    
     
     <!-- 회원 게시글 상세 모달 -->
@@ -343,7 +379,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="delete.posting" method="post">
+                <form action="#" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div align="center">
@@ -362,6 +398,14 @@
             </div>
         </div>
     </div>
+    
+     <script>
+    	$(function(){
+    		$('.rwd-table > tbody > tr').click(function(){
+    			location.herf='detail.me?pno=' + $(this).children('.pno').text();
+    		})
+    	})
+    </script>
     
     
 </body>
