@@ -60,8 +60,20 @@ public class MemberController {
 	@RequestMapping("login")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
 		
-		//Member loginUser = ms.loginMember(m);
+		Member loginUser = ms.loginMember(m);
 		
+		if(loginUser !=null && bcPwd.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
+			  session.setAttribute("loginUser",loginUser);
+		      mv.setViewName("redirect:/");
+		}else {
+	         mv.addObject("errorMsg", "로그인실패").setViewName("common/errorPage");
+		}
 		return mv;
+		//시간나면 아이디저장 만들기
 	}
+	 @RequestMapping("logout")
+	   public String logoutMember(HttpSession session) {
+	      session.invalidate();
+	      return "redirect:/";
+	   }
 }
