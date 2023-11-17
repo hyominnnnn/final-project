@@ -1,6 +1,7 @@
 package com.kh.korea.board.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -44,6 +45,20 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Board selectBoard(int boardNo) {
 		return boardDao.selectBoard(sqlSession, boardNo);
+	}
+
+	// 정보게시판 검색한 게시글 수
+	@Override
+	public int countSearchInfo(HashMap<String, String> map) {
+		return boardDao.countSearchInfo(sqlSession, map);
+	}
+
+	// 정보게시판 검색 리스트
+	@Override
+	public ArrayList<Board> selectSearchInfo(HashMap<String, String> map, PageInfo infoPi) {
+		int offset = (infoPi.getCurrentPage() - 1) * infoPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
+		return boardDao.selectSearchInfo(sqlSession, map, rowBounds);
 	}
 	
 	

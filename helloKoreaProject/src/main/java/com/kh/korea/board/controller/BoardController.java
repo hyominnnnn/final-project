@@ -1,5 +1,7 @@
 package com.kh.korea.board.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +81,27 @@ public class BoardController {
 	@GetMapping("enrollForm.ibo")
 	public String infoEnrollForm() {
 		return "board/infoBoardEnrollForm";
+	}
+	
+	// 정보게시판 검색
+	@GetMapping("search.ibo")
+	public String searchInfo(@RequestParam(value="iPage", defaultValue="1") int currentPage,
+																			Model model,
+																			String condition,
+																			String keyword) {
+		
+		HashMap<String, String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+		
+		PageInfo infoPi = Pagination.getPageInfo(boardService.countSearchInfo(map), currentPage, 10, 5);
+		
+		model.addAttribute("infoList", boardService.selectSearchInfo(map, infoPi));
+		model.addAttribute("infoPi", infoPi);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("condition", condition);
+		
+		return "board/infoBoardListView";
 	}
 	
 	
