@@ -17,7 +17,7 @@
 	
 	<div id="content" class="page">
 		<div class="page">
-			<form action="rsvEnrollForm.kf" name="kfEnrollForm">
+			<form action="rsvEnrollForm.kf" name="kfEnrollForm" id="kfEnrollForm">
 				<input type="hidden" name="userNo">
 				<!-- 
 				<c:if test="${ empty sessionScope.loginUser}">
@@ -32,6 +32,7 @@
 						<th>체험 인원</th>
 						<th>가격</th>
 					</tr>
+					
 					<tr id="reserv-info">
 						
 						<td>
@@ -55,38 +56,57 @@
 						
 						<td>
 						<input type="hidden" name="table_price" value="70000">
-						<input type="text" name="personnel" value="1" size="1" max="">
-						<input type="button" value=" + " id="plus">
+						<input type="text" name="personnel_count" value="1" size="1" max="6" id="personnel_count">
+						
+						<input type="button" value=" + " id="plus" >
 						<input type="button" value=" - " id="minus">
 						</td>
 						
 						<td>
-						<input type="text" name="sum" size="11" readonly>원
+						<input type="text" name="sum" id="sum" size="11" onclick=cal() readonly>원
 						</td>
 						
-						
-						
-					
-					
 					</tr>
 					
 				</table>
 				
 				<script>
 				
-				var table_count = 1;
-				var countEl =
-				document.kfEnrollForm.getElementById("table_count");
-				function plus(){
-					alert('되냥')
-					table_price_count++;
-				}
-				function minus() {
-					if(count > 1) {
-						table_count--;	
-						countEl.value = table_count;
-					}
-				}
+						var personnel_count = 1;
+						
+						document.getElementById('plus').onclick = () => {
+							var countEl =
+							document.getElementById("personnel_count");
+							
+							//alert('되냥');
+							personnel_count++;
+							//countEl.value = personnel_count;
+							countEl.value = personnel_count;
+						}
+						
+						
+						document.getElementById('minus').onclick = () => {
+							if(document.getElementById('personnel_count').value > 1) {
+								console.log('엥')
+								personnel_count--;	
+								//countEl.value = personnel_count;
+								$('#personnel_count').val(personnel_count);
+							}
+						}
+						
+						function cal(personnel_count, sum){
+							
+							if(personnel_count.value == "" ) {
+								var count = 0;
+							}
+							else {
+								var count = personnel_count.value;
+							}
+							
+							
+						}
+						
+						
 				
 				</script>
 					
