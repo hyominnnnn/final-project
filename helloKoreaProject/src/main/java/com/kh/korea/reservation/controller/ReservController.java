@@ -10,5 +10,12 @@ public class ReservController {
 	public String kfReservList() {
 		return "reservation/KoreanFoodFrontView";
 	}
+	
+	@GetMapping("rsvEnrollForm.kf")
+	public String kfReservForm() {
+		return "reservation/KoreanFoodReservForm";
+	}
+	
+	
 
 }
