@@ -61,14 +61,14 @@
 	    <div class="innerOuter">
 			<h2>정보게시판</h2>
 	        <br>
-	        <!-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 -->
-	        <!--<c:if test="${ not empty sessionScope.loginUser }">-->
+	        <%-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 --%>
+	        <%-- <c:if test="${ not empty sessionScope.loginUser }"> --%>
 	            <a class="btn btn-secondary" style="float:right;" href="enrollForm.ibo">글쓰기</a>
-	        <!--</c:if>-->
+	        <%-- </c:if> --%>
 	        <br><br>
 	        <table id="boardList" class="table table-hover" align="center">
 	            <thead>
-	            	<tr>
+	            	<tr align="center">
 	                	<th>게시글번호</th>
 		                <th>제목</th>
 		                <th>작성자</th>
@@ -86,7 +86,7 @@
 	            		</c:when>
 	            		<c:otherwise>
 	            			<c:forEach items="${ infoList }" var="i">
-				                <tr id="detail">
+				                <tr id="detail" align="center">
 				                	<td class="ino">${ i.boardNo }</td>
 				                	<td>${ i.boardTitle }</td>
 				                	<td>${ i.boardWriter }</td>

@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.korea.board.model.service.BoardService;
+import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
 
@@ -77,18 +79,25 @@ public class BoardController {
 		return mv;
 	}
 	
-	// 정보게시판 글 작성
+	// 정보게시판 글 작성 폼
 	@GetMapping("enrollForm.ibo")
 	public String infoEnrollForm() {
 		return "board/infoBoardEnrollForm";
 	}
 	
+	// 정보게시판 글 작성
+	@PostMapping("insert.ibo")
+	public String insertInfo(Board board) {
+		
+		
+		
+		return null;
+	}
+	
 	// 정보게시판 검색
 	@GetMapping("search.ibo")
 	public String searchInfo(@RequestParam(value="iPage", defaultValue="1") int currentPage,
-																			Model model,
-																			String condition,
-																			String keyword) {
+							 Model model, String condition, String keyword) {
 		
 		HashMap<String, String> map = new HashMap();
 		map.put("condition", condition);
