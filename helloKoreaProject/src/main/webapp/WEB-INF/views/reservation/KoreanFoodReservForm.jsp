@@ -17,7 +17,7 @@
 	
 	<div id="content" class="page">
 		<div class="page">
-			<form action="rsvEnrollForm.kf">
+			<form action="rsvEnrollForm.kf" name="kfEnrollForm">
 				<input type="hidden" name="userNo">
 				<!-- 
 				<c:if test="${ empty sessionScope.loginUser}">
@@ -55,9 +55,9 @@
 						
 						<td>
 						<input type="hidden" name="table_price" value="70000">
-						<input type="text" name="personnel" value="1" size="1" max="6">
-						<input type="button" value=" + " name="add">
-						<input type="button" value=" - " name="minus">
+						<input type="text" name="personnel" value="1" size="1" max="">
+						<input type="button" value=" + " id="plus">
+						<input type="button" value=" - " id="minus">
 						</td>
 						
 						<td>
@@ -71,6 +71,24 @@
 					</tr>
 					
 				</table>
+				
+				<script>
+				
+				var table_count = 1;
+				var countEl =
+				document.kfEnrollForm.getElementById("table_count");
+				function plus(){
+					alert('되냥')
+					table_price_count++;
+				}
+				function minus() {
+					if(count > 1) {
+						table_count--;	
+						countEl.value = table_count;
+					}
+				}
+				
+				</script>
 					
 				
 					
