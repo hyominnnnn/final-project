@@ -10,6 +10,7 @@
 		<!-- mapper에서 사용할 VO의 별칭을 지정한다. -->
 		<typeAliases>
 			<typeAlias type="com.kh.korea.board.model.vo.Board" alias="board" />
+			<typeAlias type="com.kh.korea.board.model.vo.File" alias="file" />
 			<typeAlias type="com.kh.korea.board.model.vo.Reply" alias="reply" />
 			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
 			

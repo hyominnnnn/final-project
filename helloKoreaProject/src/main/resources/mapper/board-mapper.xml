@@ -41,7 +41,7 @@
 		 JOIN 
 		 	  TB_MEMBER USING (MEMBER_NO)
 	LEFT JOIN
-		 	  TB_FILE USING (FILE_NO)
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
 		WHERE 
 			  TB_BOARD.CATEGORY_NO = 2
 		  AND
@@ -77,7 +77,7 @@
 		 JOIN 
 		 	  TB_MEMBER USING (MEMBER_NO)
 	LEFT JOIN
-		 	  TB_FILE USING (FILE_NO)
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
 		WHERE 
 			  TB_BOARD.BOARD_NO = #{ boardNo }
 	</select>
@@ -120,7 +120,7 @@
 		  JOIN
 		       TB_MEMBER USING (MEMBER_NO)
 	 LEFT JOIN
-		 	   TB_FILE USING (FILE_NO)
+		 	   TB_FILE ON (BOARD_NO = REF_BNO)
 		 WHERE
 			   TB_BOARD.CATEGORY_NO = 2
 		   AND
@@ -142,9 +142,45 @@
 		       MODIFY_DATE DESC
 	</select>
 	
+	<insert id="insertBoard" parameterType="board">
+		INSERT
+		  INTO
+		  	   TB_BOARD
+		  	   (
+		  	   BOARD_NO,
+		  	   BOARD_TITLE,
+		  	   BOARD_CONTENT,
+		  	   MEMBER_NO,
+		  	   CATEGORY_NO
+		  	   )
+		VALUES 
+			   (
+			   SEQ_BOARD.NEXTVAL,
+			   #{boardTitle},
+			   #{boardContent},
+			   #{memberNo},
+			   #{categoryNo}
+			   )
+	</insert>
 	
-	
-	
+	<insert id="insertFile" parameterType="file">
+		INSERT
+		  INTO
+		  	   TB_FILE
+		  	   (
+		  	   FILE_NO,
+		  	   ORIGINAL_NAME,
+		  	   UPLOAD_NAME,
+		  	   REF_BNO
+		  	   )
+		VALUES 
+			   (
+			   SEQ_FILE.NEXTVAL,
+			   #{originalName},
+			   #{uploadName},
+			   SEQ_BOARD.CURRVAL
+			   )
+	</insert>
 	
 	
 	

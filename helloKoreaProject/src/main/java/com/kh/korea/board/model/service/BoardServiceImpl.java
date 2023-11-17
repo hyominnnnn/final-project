@@ -7,12 +7,16 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.korea.board.model.dao.BoardDao;
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.File;
 import com.kh.korea.common.model.vo.PageInfo;
 
 @Service
+@EnableTransactionManagement
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
@@ -60,6 +64,17 @@ public class BoardServiceImpl implements BoardService {
 		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
 		return boardDao.selectSearchInfo(sqlSession, map, rowBounds);
 	}
+
+	// 정보게시판 글 작성
+	@Override
+	@Transactional
+	public int insertInfo(Board board, File file) {
+		int result1 = boardDao.insertBoard(sqlSession, board);
+		int result2 = boardDao.insertFile(sqlSession, file);
+		return (result1 * result2);
+	}
+	
+	
 	
 	
 	

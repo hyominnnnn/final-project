@@ -2,18 +2,23 @@ package com.kh.korea.board.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.korea.board.model.service.BoardService;
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.File;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
+import com.kh.korea.common.template.SaveFile;
 
 @Controller
 public class BoardController {
@@ -87,12 +92,33 @@ public class BoardController {
 	
 	// 정보게시판 글 작성
 	@PostMapping("insert.ibo")
-	public String insertInfo(Board board) {
+	public String insertInfo(Board board, MultipartFile upfile, HttpSession session, Model model) {
 		
+		File file = new File();
 		
+		System.out.println(board);
+		System.out.println(upfile);
 		
-		return null;
+		if(!upfile.getOriginalFilename().equals("")) {
+			 file.setOriginalName(upfile.getOriginalFilename());
+			 file.setUploadName(SaveFile.saveFile(upfile, session));
+		}
+		
+		if(boardService.insertInfo(board, file) > 0) { // 성공 => 게시글 목록을 보여주기!
+			session.setAttribute("alertMsg", "게시글 작성 성공~");
+			return "redirect:list.ibo";
+		} else {
+			model.addAttribute("errorMsg", "게시글 작성 실패");
+			return "common/errorPage";
+		}
+		
 	}
+	
+	// 글 삭제
+	
+	
+	// 글 수정
+	
 	
 	// 정보게시판 검색
 	@GetMapping("search.ibo")
