@@ -66,6 +66,13 @@
 						<input type="text" name="sum" id="sum" size="11" onclick=cal() readonly>원
 						</td>
 						
+						<tr>
+						<td></td>
+						<td></td>
+						<td><h6>※예약 가능시간 : </h6></td>
+						<td><h6>6명 이상 단체는 문의주세요</h6></td>
+						<tr>
+						
 					</tr>
 					
 				</table>
@@ -109,28 +116,51 @@
 						
 				
 				</script>
+				
+				<div id="clientInfo">
+					<h2>예약자 정보 입력</h2>
+					<table>
 					
+					<tr>
+						<th>예약자 성함</th>
+						<td><input type="text" name="userName" placeholder="" readonly></td>
+						<input type="hidden" name="userNo" value="">
+					</tr>
+					
+					<tr>
+						<th>연락처</th>
+						<td><input type="text" name="phone" placeholder="" readonly></td>
+					</tr>
+					<tr>
+						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
+					</tr>
 				
 					
+				</table>
 					
 					
+				</div>
 				
-			
+				<div>
+				<h4>체험 안내 및 주의사항</h4>
+				<pre>
+	어쩌구저쩌구 어쩌구저쩌구 아아아아 금요일인데 집가고싶다 두시간남았네
+	퓨ㅜ핳
+	푸핳
+	푸핳
+	여기는 c강의장 푸키
+				</pre>
+				</div>
+				<div align="center">
+				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br><br>
+				<button type="submit">예약하기</button>
+				</div>
 			
 			</form>
-		
-		
-		
 		</div>
-	
-	
-	
 	</div>
 	
-	
-	
 	<jsp:include page="../common/footer.jsp" />
-
 
 </body>
 </html>
