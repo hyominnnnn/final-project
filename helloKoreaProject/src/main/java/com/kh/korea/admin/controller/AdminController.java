@@ -39,10 +39,11 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
+		System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
-		}
+	}
 	
 	
 	@GetMapping("memberPosting")
@@ -51,14 +52,10 @@ public class AdminController {
 	}
 	
 	@GetMapping("memberDetail.me")
-	public String memberPostingDetail(Member m, HttpSession session, Model model) {
+	public String memberPostingDetail(String email) {
 		
-		//model.addAttribute("Member", m);
+		System.out.println(email);
 		
-		if(adminService.memberDetail(m) > 0) {
-			
-			session.setAttribute("Member",adminService.memberDetail(m));
-		}
 		
 		return "redirect:/";
 	}

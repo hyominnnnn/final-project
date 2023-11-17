@@ -46,7 +46,7 @@
 		
 	</select>
 	
-	<select id="selectList" resultType="_int">
+	<select id="selectList" resultType="member">
 		SELECT
 				MEMBER_NO,
 				MEMBER_NAME,

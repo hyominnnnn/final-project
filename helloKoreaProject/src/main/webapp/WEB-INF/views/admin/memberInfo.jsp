@@ -264,6 +264,7 @@
                 <h1>회원 정보 관리</h1>
                 <br>
 				<form action="list.me" method="get">
+					<input type="hidden" name="cpage" value="1" />
                   <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
                     <tbody>
                       <tr>
@@ -338,11 +339,12 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="memberDetail.me" method="post" id="memberDetailModel">
+                <form action="#" method="post" id="memberDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
+                    		
                             <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="${ m.memberName }" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="${m.memberName}" readonly> 
                             <br>
                             
                             <label for="email" class="memberbtn">이메일</label>
@@ -350,7 +352,7 @@
                             <br>
                             
                             <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="${m.memberNickName}" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="${m.memberNickname}" readonly> 
                             <br>
                             
                             <label for="birthday" class="memberbtn">생년월일</label>
@@ -358,11 +360,11 @@
                             <br>
                             
                             <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" value="${m.nationNo}"readonly> 
+                            <input type="text" class="form-control memberbtn" id="nationNo" name="nationNo" value="${m.nationNo}"readonly> 
                             <br>
                             
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value="${m.memberEnrollDate }"readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value="${m.memberEnrollDate}"readonly> 
                             <br>
                     </div>
                     <!-- Modal footer -->
@@ -378,22 +380,23 @@
     
     <script>
 	    $(function(){
-	             		$('#memberDetailModel > tbody > tr').click(function(){
-	             			location.href='memberDetail.me?pno=' + $(this).children('.pno').text();
+	             		$('.rwd-table > tbody > tr').click(function(){
+	             				console.log($(this).children().eq(1).text());
+	             				
+	             				
+	             				$.ajax({
+							    	url : 'memberDetail.me',
+							    	data : {memberName : ''},
+							    	success : list => {
+							    		console.log(list);
+							    	},
+							    	error : () => {
+							    		console.log('실패!');
+							    	}
+						     })
 	             		})	
 	             	})
 	       	
-	     $.ajax({
-	    	url : 'memberDetail.me',
-	    	data : {memberName : '${m.memberName}'},
-	    	success : list => {
-	    		console.log(list);
-	    	},
-	    	error : () => {
-	    		console.log('실패!');
-	    	}
-	     })
-	    
 	     
     </script>
     
