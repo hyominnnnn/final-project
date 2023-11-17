@@ -155,27 +155,12 @@
 				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br><br>
 				<button type="submit">예약하기</button>
 				</div>
-				
-					
-					
-					
-				
-			
 			
 			</form>
-		
-		
-		
 		</div>
-	
-	
-	
 	</div>
 	
-	
-	
 	<jsp:include page="../common/footer.jsp" />
-
 
 </body>
 </html>

@@ -16,6 +16,11 @@ public class ReservController {
 		return "reservation/KoreanFoodReservForm";
 	}
 	
+	@GetMapping("rsvlist.kf")
+	public String allReservForm() {
+		return "reservation/ReservationListView";
+	}
+	
 	
 
 }
