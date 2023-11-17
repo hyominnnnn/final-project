@@ -1,15 +1,16 @@
 package com.kh.korea.admin.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.korea.admin.model.service.AdminService;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
@@ -39,7 +40,7 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		System.out.println(model.getAttribute("list"));
+		//System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
@@ -51,13 +52,19 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
-	@GetMapping("memberDetail.me")
-	public String memberPostingDetail(String email) {
+	@ResponseBody
+	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
+	public String memberPostingDetail(Member m) {
 		
-		System.out.println(email);
+		//System.out.println(m);
+		//Member memberDetail = adminService.memberDetail(m);
 		
+		//System.out.println(memberDetail);
+		//mv.addObject("memberDetail",adminService.memberDetail(m))
+		//  .setViewName("redirect:list.me");
 		
-		return "redirect:/";
+		return new Gson().toJson(adminService.memberDetail(m));
+		
 	}
 	
 	@GetMapping("detail.me")
@@ -72,9 +79,11 @@ public class AdminController {
 		model.addAttribute("list", adminService.selectBoardList(pi));
 		model.addAttribute("pi", pi);
 		
-
 		return "admin/memberPosting";
 	}
+	
+	
+	
 	
 	@GetMapping("reply.me")
 	public String memberReply() {

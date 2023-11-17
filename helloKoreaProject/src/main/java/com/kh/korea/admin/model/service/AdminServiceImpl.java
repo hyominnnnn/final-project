@@ -35,7 +35,7 @@ public class AdminServiceImpl implements  AdminService{
 	}
 
 	@Override
-	public int memberDetail(Member m) {
+	public Member memberDetail(Member m) {
 		return adminDao.memberDetail(sqlSession, m);
 	}
 	

@@ -344,27 +344,27 @@
                     <div class="modal-body">
                     		
                             <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="${m.memberName}" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="" readonly> 
                             <br>
                             
                             <label for="email" class="memberbtn">이메일</label>
-                            <input type="text" class="form-control memberbtn" id="email" name="email" value="${m.email}" readonly> 
+                            <input type="text" class="form-control memberbtn" id="email" name="email" value="" readonly> 
                             <br>
                             
                             <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="${m.memberNickname}" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="" readonly> 
                             <br>
                             
                             <label for="birthday" class="memberbtn">생년월일</label>
-                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" value="${ m.birthday }"readonly> 
+                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" value=""readonly> 
                             <br>
                             
                             <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationNo" name="nationNo" value="${m.nationNo}"readonly> 
+                            <input type="text" class="form-control memberbtn" id="nationNo" name="nationNo" value=""readonly> 
                             <br>
                             
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value="${m.memberEnrollDate}"readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value=""readonly> 
                             <br>
                     </div>
                     <!-- Modal footer -->
@@ -381,20 +381,26 @@
     <script>
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
-	             				console.log($(this).children().eq(1).text());
+	             				//console.log($(this).children().eq(1).text());
 	             				
 	             				
 	             				$.ajax({
 							    	url : 'memberDetail.me',
-							    	data : {memberName : ''},
-							    	success : list => {
-							    		console.log(list);
+							    	data : {email : $(this).children().eq(1).text().trim()},
+							    	success : data => {
+							    		console.log(data.memberName);
+							    		
+							    		const memberName= data.memberName;
+							    		const email= data.email;
+							    		
 							    	},
 							    	error : () => {
 							    		console.log('실패!');
 							    	}
 						     })
 	             		})	
+						     $('#memberName').attr('value', memberName);
+	             			$('#memberName').attr('value', email);
 	             	})
 	       	
 	     

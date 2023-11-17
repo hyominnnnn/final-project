@@ -46,7 +46,7 @@
 		
 	</select>
 	
-	<select id="selectList" resultType="member">
+	<select id="selectList" resultMap="memberList">
 		SELECT
 				MEMBER_NO,
 				MEMBER_NAME,
@@ -64,7 +64,7 @@
 		   		 MEMBER_NAME DESC
 	</select>
 	
-	<select id="memberDetail" resultMap="memberList">
+	<select id="memberDetail" parameterType="member" resultMap="memberList">
 		SELECT
 				MEMBER_NAME,
 				EMAIL,
@@ -75,7 +75,7 @@
 		 FROM
 				TB_MEMBER
 		 WHERE
-				STATUS IN ('K','F')	
+				EMAIL = #{email}
 				
 	</select>
 	

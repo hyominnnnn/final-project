@@ -14,7 +14,7 @@ public interface AdminService {
 	
 	ArrayList<Member> selectList(PageInfo pi);
 	
-	int memberDetail(Member m);
+	Member memberDetail(Member m);
 	
 	//------------------------------------------
 	
