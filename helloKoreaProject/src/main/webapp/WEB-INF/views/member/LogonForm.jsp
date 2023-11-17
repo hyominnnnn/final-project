@@ -95,6 +95,7 @@
 	    <label for="password">패스워드 :</label>
 	    <input type="password" id="password" name="memberPwd" maxlength="20" placeholder="Please Enter Password" required>
 	    <small>영어, 숫자, 특수문자를 섞어서 최대 20자로 만들어주세요.</small>
+	    <div id="checkResultPwd" style="font-size:0.8em; display:none;"></div>
 	    <br>
 	    
 	    <label for="password">패스워드 확인 :</label>
@@ -110,10 +111,12 @@
 				<!-- 한국인일 경우 -->
 			    <label for="dob">생년월일 (숫자만, 무조건 6글자) :</label>
 			    <input type="text" id="dob" name="birthday" minlength="6" maxlength="6" pattern="\d{6}" title="숫자 6글자를 입력하세요">
+			    <div id="checkResultDob" style="font-size:0.8em; display:none;"></div>
 			    <br>
 			
 			    <label for="ssn">주민번호 (숫자만, 무조건 7글자) :</label>
 			    <input type="text" id="ssn" name="idCardNumber" minlength="7" maxlength="7" pattern="\d{7}" title="숫자 7글자를 입력하세요">
+			    <div id="checkResultSsn" style="font-size:0.8em; display:none;"></div>
 			    <br>
 			    <input type="hidden" name="nationNo" value="410"/>
 		    </c:when>
@@ -121,8 +124,9 @@
 			    <!-- 외국인일 경우 -->
 			    <label for="nation">국가 선택 : </label>
 			    <select name="nationNo">
-			    	<option value="81">Japan</option>
+			    	<option value="562">Niger</option>
 			    	<option value="840">USA</option>
+			    	
 			    </select>
 		    </c:otherwise>
 	   </c:choose> 
@@ -182,6 +186,25 @@
     }
 
     $(function(){
+    	$('#logonForm #password').keyup(function(){
+    		var $pwd = $('#logonForm #password');
+        	var $regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+        	
+        	if($pwd.val().length >= 8){
+	        	if(!$regExp.test($pwd.val())){
+	        		//console.log('다시해');
+	        		$('#checkResultPwd').show().css('color', 'red').text('문자, 숫자, 특수기호[@$!%*?&] 모두 다 사용해서 만들어주세요.')
+	        	}
+	        	else{
+	        		$('#checkResultPwd').show().css('color', 'chartreuse').text('사용가능한 패스워드입니다.')
+	        	}
+        	}	
+    	})
+    	
+    })
+    
+    $(function(){
+    	
         const $originPwd = $('#logonForm #password');
         const $checkPwd = $('#logonForm #checkPwd');
         $checkPwd.keyup(function(){
@@ -197,6 +220,42 @@
         
     })
         
+    $(function(){
+    	$('#dob').keyup(function(){
+    		//숫자만 여섯자리
+    		var $regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    		var $checkDob = $('#dob');
+    			
+    		if($checkDob.val().length === 6){
+    			if($regExp.test($checkDob.val()) ){
+    				$('#checkResultDob').show().css('color', 'chartreuse').text('정상')
+    				
+    			}
+    			else{
+    				$checkDob.val('').focus();
+    				$('#checkResultDob').show().css('color', 'red').text('정상적인 생년월일을 입력해주세요.')
+    			}
+    		}
+    		
+    	})
+    	
+    	$('#ssn').keyup(function(){
+    		//숫자만 7자리
+    		var $regExp = /^[1-4]\d{6}$/;
+    		var $checkSsn = $('#ssn');
+    		
+    		if($checkSsn.val().length === 7){
+    			if($regExp.test($checkSsn.val())){
+    				$('#checkResultSsn').show().css('color', 'chartreuse').text('정상')
+    			}
+    			else{
+    				$checkSsn.val('').focus();
+    				$('#checkResultSsn').show().css('color', 'red').text('정상적인 주민번호를 입력해주세요.')
+    			}
+    		}
+    	})
+    })
+    
 
     
 </script>
