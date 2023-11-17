@@ -21,6 +21,16 @@
 		<result column="SOCIAL_PROFILE" property="socialProfile" />
 </resultMap>
 
+<resultMap id="boardResultSet" type="board">
+		<result column="BOARD_NO"         property="boardNo" />
+		<result column="BOARD_TITLE"      property="boardTitle" />
+		<result column="MEMBER_NICKNAME"  property="boardWriter" />
+		<result column="MODIFY_DATE"      property="modifyDate" />
+		<result column="COUNT"            property="count" />
+		<result column="ORIGINAL_NAME"    property="originalName" />
+		<result column="BOARD_CONTENT"    property="boardContent" />
+	</resultMap>
+
 
 	<select id="selectListCount" resultType="_int">
 
@@ -52,6 +62,25 @@
 		   		 MEMBER_NAME DESC
 	</select>
 
+	<select id="selectBoardListCount" resultType="_int">
+		SELECT
+				COUNT(*)
+		  FROM	
+		  		TB_BOARD
+		  WHERE
+		  		STATUS='Y'
+	</select>
+	
+	<select id="selectBoardList" resultMap="boardResultSet">
+		SELECT
+				BOARD_NO,
+				BOARD_TITLE,
+				CREATE_DATE
+		 FROM
+				TB_BOARD
+		WHERE
+				STATUS = 'Y'
+	</select>
 
 
 </mapper> 

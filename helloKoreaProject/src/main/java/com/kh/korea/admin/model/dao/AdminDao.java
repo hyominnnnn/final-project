@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.member.model.vo.Member;
 
 @Repository
@@ -18,6 +19,14 @@ public class AdminDao {
 	
 	public ArrayList<Member> selectList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectList", null, rowBounds);
+	}
+
+	public int selectBoardListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectBoardListCount");
+	}
+
+	public ArrayList<Board> selectBoardList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectBoardList", null, rowBounds);
 	}
 
 
