@@ -29,7 +29,7 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectBoardList", null, rowBounds);
 	}
 
-	public int memberDetail(SqlSessionTemplate sqlSession, Member m) {
+	public Member memberDetail(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("adminMapper.memberDetail", m);
 	}
 

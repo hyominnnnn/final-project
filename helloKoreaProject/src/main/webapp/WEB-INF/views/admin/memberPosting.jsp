@@ -242,7 +242,7 @@
        }
        
        #boardContent{
-        height: 500px;
+       width: 100px;
        }
        
       
