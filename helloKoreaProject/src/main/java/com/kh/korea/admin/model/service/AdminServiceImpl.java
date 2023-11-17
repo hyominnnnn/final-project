@@ -35,6 +35,14 @@ public class AdminServiceImpl implements  AdminService{
 	}
 
 	@Override
+	public int memberDetail(Member m) {
+		return adminDao.memberDetail(sqlSession, m);
+	}
+	
+	//----------------------------------------------
+	
+	
+	@Override
 	public int selectBoardListCount() {
 		return adminDao.selectBoardListCount(sqlSession);
 	}
@@ -45,6 +53,7 @@ public class AdminServiceImpl implements  AdminService{
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return adminDao.selectBoardList(sqlSession, rowBounds);
 	}
+
 
 
 	

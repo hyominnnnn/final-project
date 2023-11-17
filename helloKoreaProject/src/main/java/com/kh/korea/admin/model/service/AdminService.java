@@ -14,6 +14,8 @@ public interface AdminService {
 	
 	ArrayList<Member> selectList(PageInfo pi);
 	
+	int memberDetail(Member m);
+	
 	//------------------------------------------
 	
 	int selectBoardListCount();

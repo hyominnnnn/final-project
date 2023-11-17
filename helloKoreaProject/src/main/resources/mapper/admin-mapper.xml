@@ -32,6 +32,8 @@
 	</resultMap>
 
 
+	<!-- Member 쿼리문 -->
+
 	<select id="selectListCount" resultType="_int">
 
 		SELECT
@@ -44,7 +46,7 @@
 		
 	</select>
 	
-	<select id="selectList" resultMap="memberList">
+	<select id="selectList" resultType="_int">
 		SELECT
 				MEMBER_NO,
 				MEMBER_NAME,
@@ -61,6 +63,28 @@
 		   BY
 		   		 MEMBER_NAME DESC
 	</select>
+	
+	<select id="memberDetail" resultMap="memberList">
+		SELECT
+				MEMBER_NAME,
+				EMAIL,
+				MEMBER_NICKNAME,
+				BIRTHDAY,
+				NATION_NO,
+				MEMBER_ENROLL_DATE
+		 FROM
+				TB_MEMBER
+		 WHERE
+				STATUS IN ('K','F')	
+				
+	</select>
+	
+	
+	
+	
+	
+	
+	<!-- Board 쿼리문 -->
 
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT

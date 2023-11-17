@@ -1,6 +1,8 @@
 package com.kh.korea.admin.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.korea.admin.model.service.AdminService;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
+import com.kh.korea.member.model.vo.Member;
 
 
 @Controller
@@ -45,6 +48,19 @@ public class AdminController {
 	@GetMapping("memberPosting")
 	public String memberPosting() {
 		return "admin/memberPosting";
+	}
+	
+	@GetMapping("memberDetail.me")
+	public String memberPostingDetail(Member m, HttpSession session, Model model) {
+		
+		//model.addAttribute("Member", m);
+		
+		if(adminService.memberDetail(m) > 0) {
+			
+			session.setAttribute("Member",adminService.memberDetail(m));
+		}
+		
+		return "redirect:/";
 	}
 	
 	@GetMapping("detail.me")
