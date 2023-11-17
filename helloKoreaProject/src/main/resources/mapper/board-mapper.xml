@@ -82,6 +82,70 @@
 			  TB_BOARD.BOARD_NO = #{ boardNo }
 	</select>
 	
+	<!-- 정보게시판 검색한 글 수 -->
+	<select id="countSearchInfo" parameterType="hashmap" resultType="_int">
+		SELECT
+			   COUNT(BOARD_NO)
+		  FROM 
+		  	   TB_BOARD
+		  JOIN 
+		       TB_MEMBER USING (MEMBER_NO)
+		 WHERE 
+		 	   TB_BOARD.STATUS = 'Y'
+		   AND 
+		       CATEGORY_NO = 2
+		 <if test="condition == 'content'">
+		 	AND BOARD_CONTENT 
+		 </if>
+		 <if test="condition == 'title'">
+		 	AND BOARD_TITLE  
+		 </if>
+		 <if test="condition == 'writer'">
+		 	AND MEMBER_NICKNAME 
+		 </if>
+		  LIKE '%' || #{ keyword } || '%'
+	</select>
+	
+	<!-- 정보게시판 검색 리스트 -->
+	<select id="selectSearchInfo" parameterType="hashmap" resultMap="boardResultSet">
+		SELECT
+		       BOARD_NO,
+		       BOARD_TITLE,
+		       MEMBER_NICKNAME,
+		       MODIFY_DATE,
+		       COUNT,
+		       ORIGINAL_NAME
+		  FROM
+		       TB_BOARD
+		  JOIN
+		       TB_MEMBER USING (MEMBER_NO)
+	 LEFT JOIN
+		 	   TB_FILE USING (FILE_NO)
+		 WHERE
+			   TB_BOARD.CATEGORY_NO = 2
+		   AND
+		       TB_BOARD.STATUS = 'Y'
+		<choose>
+			<when test="condition == 'writer'">
+		   		AND MEMBER_NICKNAME
+			</when>
+			<when test="condition == 'title'">
+		   		AND BOARD_TITLE	
+			</when>
+			<otherwise>
+		   		AND BOARD_CONTENT
+			</otherwise>
+		</choose>
+		  LIKE '%' || #{keyword} || '%'
+		 ORDER
+		    BY
+		       MODIFY_DATE DESC
+	</select>
+	
+	
+	
+	
+	
 	
 	
 	
