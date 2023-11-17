@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.File;
 import com.kh.korea.common.model.vo.PageInfo;
 
 public interface BoardService {
@@ -23,7 +24,7 @@ public interface BoardService {
 	// 자유게시글 작성하기(INSERT)
 	
 	// 정보게시글 작성하기(INSERT)
-	
+	int insertInfo(Board board, File file);
 	
 	// 게시글 조회수 증가(UPDATE)
 	int increaseCount(int boardNo);

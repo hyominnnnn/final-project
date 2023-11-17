@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.File;
 
 @Repository
 public class BoardDao {
@@ -40,6 +41,14 @@ public class BoardDao {
 	// 정보게시판 검색 리스트
 	public ArrayList<Board> selectSearchInfo(SqlSessionTemplate sqlSession, HashMap<String, String> map, RowBounds rowBounds) {
 		return (ArrayList)sqlSession.selectList("boardMapper.selectSearchInfo", map, rowBounds);
+	}
+
+	public int insertBoard(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.insert("boardMapper.insertBoard", board);
+	}
+
+	public int insertFile(SqlSessionTemplate sqlSession, File file) {
+		return sqlSession.insert("boardMapper.insertFile", file);
 	}
 	
 	
