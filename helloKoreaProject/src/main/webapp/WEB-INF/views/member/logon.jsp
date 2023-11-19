@@ -48,15 +48,22 @@
 
         <br><br>
         <!--간편가입 버튼-->
-        <div>
-            네이버
-        </div>
-        <div>
-            카카오
-        </div>
-        <div>
-            구글
-        </div>
+        <table>
+        	<tr>
+        		<td>
+        			네이버
+        		</td>
+        		<td>
+        		 <a id="kakao-login">
+					<img src="resources/images/kakao_btn.png" width="100" heigth="100"/>
+				</a>
+        		</td>
+        		<td>
+        			구글
+        		</td>
+        	</tr>
+        </table>
+   
 
 
 
@@ -65,7 +72,14 @@
 
     </div>
 
-
+	<script>
+		$(function(){
+			$('#kakao-login').click(function(){
+				location.href = 'https://kauth.kakao.com/oauth/authorize?client_id=cffe893c81dfeaa4bdcec332321e0001&redirect_uri=http://localhost:9999/korea/code&response_type=code&scope=profile_image';
+			});
+		});
+	
+	</script>
 
 
 

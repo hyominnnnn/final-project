@@ -1,5 +1,7 @@
 package com.kh.korea.member.model.dao;
 
+import java.util.HashMap;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +24,15 @@ public class MemberDao {
 
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
+	}
+
+	public int kakaoCheck(SqlSessionTemplate sqlSession, String id) {
+		System.out.println("dao id는" + id);
+		return sqlSession.selectOne("memberMapper.kakaoCheck", id);
+	}
+
+	public Member kakaoLogin(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.kakaoLogin", id);
 	}
 
 }

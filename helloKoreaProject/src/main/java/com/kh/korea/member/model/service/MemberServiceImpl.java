@@ -17,6 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public int insertMember(Member m) {
+		//System.out.println("서비스 m " + m);
 		return md.insertMember(sqlSession, m);
 	}
 /*
