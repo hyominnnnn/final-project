@@ -42,7 +42,7 @@
 			<h2>자유 게시글</h2>
 		    <br>
 		    ​
-		    <a class="btn btn-secondary" style="float:right;" href="info">목록으로</a>
+		    <a class="btn btn-secondary" style="float:right;" href="list.fbo">목록으로</a>
 		    <br><br>
 		    ​
 		    <table id="contentArea" align="center" class="table">

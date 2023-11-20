@@ -83,6 +83,19 @@ public class BoardController {
 		
 		return "board/infoBoardListView";
 	}
+	// 정보 게시판 글 상세
+	@GetMapping("detail.ibo")
+	public ModelAndView infoDetailView(int ino, ModelAndView mv) {
+				
+		if(boardService.increaseCount(ino) > 0) {
+			mv.addObject("info", boardService.selectBoard(ino))
+			.setViewName("board/infoBoardDetailView");
+		}  else {
+			mv.addObject("errorMsg", "상세정보 조회 실패").setViewName("common/errorPage");
+		}
+		return mv;
+
+	}
 	
 	
 	// 자유게시판 리스트 조회
@@ -144,23 +157,24 @@ public class BoardController {
 					
 		return "board/freeBoardListView";
 	}
-	
-		
-	// (공통)게시글 조회수 증가(UPDATE)
-	
-	// (공통)정보게시판 글 상세
-	@GetMapping("detail.bo")
-	public ModelAndView infoDetailView(int ino, ModelAndView mv) {
-			
-		if(boardService.increaseCount(ino) > 0) {
-			mv.addObject("info", boardService.selectBoard(ino))
-				 .setViewName("board/infoBoardDetailView");
-		} else {
+	// 자유 게시판 글 상세
+	@GetMapping("detail.fbo")
+	public ModelAndView freeDetailView(int fno, ModelAndView mv) {
+					
+		if(boardService.increaseCount(fno) > 0) {
+			mv.addObject("info", boardService.selectBoard(fno))
+			.setViewName("board/freeBoardDetailView");
+		}  else {
 			mv.addObject("errorMsg", "상세정보 조회 실패").setViewName("common/errorPage");
 		}
 		return mv;
 
 	}
+	
+		
+	// (공통)게시글 조회수 증가(UPDATE)
+	
+	
 		// (공통)게시글 수정하기(UPDATE)
 		// (공통)게시글 삭제하기(UPDATE)
 		// (공통)댓글 목록 조회

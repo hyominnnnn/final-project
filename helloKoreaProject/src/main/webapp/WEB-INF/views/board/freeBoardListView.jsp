@@ -107,7 +107,7 @@
 	        
 	        <script>
 	        	$(function(){
-	             	$('#boardList > tbody > #datail').click(function(){
+	             	$('#boardList > tbody > #detail').click(function(){
 	             		location.href='detail.fbo?fno=' + $(this).children('.fno').text();
 	             	});
 	             });
