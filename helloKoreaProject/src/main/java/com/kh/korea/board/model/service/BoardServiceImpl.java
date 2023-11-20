@@ -67,12 +67,56 @@ public class BoardServiceImpl implements BoardService {
 
 	// 정보게시판 글 작성
 	@Override
-	@Transactional
+	@Transactional("transactionManager")
 	public int insertInfo(Board board, File file) {
-		int result1 = boardDao.insertBoard(sqlSession, board);
+		int result1 = boardDao.insertInfo(sqlSession, board);
 		int result2 = boardDao.insertFile(sqlSession, file);
 		return (result1 * result2);
 	}
+	
+	
+	
+
+	
+
+
+	// 자유 게시판 글 개수
+	@Override
+	public int countFreeList() {
+		return boardDao.countFreeList(sqlSession);
+	}
+
+	// 자유 게시판 글 리스트 조회
+	@Override
+	public ArrayList<Board> selectFreeList(PageInfo infoPi) {
+		int offset = (infoPi.getCurrentPage() - 1) * infoPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
+		return boardDao.selectFreeList(sqlSession, rowBounds);
+	}
+	
+	// 자유게시판 검색한 게시글 수
+	@Override
+	public int countSearchFree(HashMap<String, String> map) {
+		return boardDao.countSearchFree(sqlSession, map);
+	}
+	
+	// 자유게시판 검색 리스트 
+	@Override
+	public ArrayList<Board> selectSearchFree(HashMap<String, String> map, PageInfo infoPi) {
+		int offset = (infoPi.getCurrentPage() - 1) * infoPi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
+		return boardDao.selectSearchFree(sqlSession, map, rowBounds);
+	}
+	
+	// 자유게시판 글 작성
+	@Override
+	@Transactional
+	public int insertFree(Board board, File file) {
+		int result1 = boardDao.insertFree(sqlSession, board);
+		int result2 = boardDao.insertFile(sqlSession, file);
+		return (result1 * result2);
+	}
+
 	
 	
 	
