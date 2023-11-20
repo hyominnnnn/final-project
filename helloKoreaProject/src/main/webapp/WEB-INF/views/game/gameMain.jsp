@@ -35,6 +35,7 @@
         	color : black;
         	text-decoration: none;
         	float : left;
+        	line-height: 50px;
         }
         .low:hover, .middle:hover, .upper:hover {
         	color : black;
@@ -43,9 +44,11 @@
         }
         .score, .img {
         	float : left;
-        	width : 10%;
+        	width : 5%;
         	height : 80%;
-        	border-radius : 500px;
+        	border-radius : 50%;
+        	line-height: 40px;
+        	text-align: center;
         }
         
 	</style>
@@ -66,27 +69,43 @@
 			</p>
 			
 			<div class="game-lower">
-				<h3><a href="#" class="low">초급 ⭐</a></h3>
-					<div class="score">20</div>
-					<div class="img">사진</div>
+				<h3><a href="lower.ga" class="low">초급 ⭐</a></h3>
+				<div class="score">20</div>
+				<div class="img">사진</div>
 			</div>
 			<br><hr><br>
 			<div class="game-middle">
 				<h3><a href="#" class="middle">중급 ⭐⭐⭐</a></h3>
+				<div class="score">20</div>
+				<div class="img">사진</div>
 			</div>
 			<br><hr><br>
 			<div class="game-upper">
 				<h3><a href="#" class="upper">고급 ⭐⭐⭐⭐⭐</a></h3>
+				<div class="score">20</div>
+				<div class="img">사진</div>
 			</div>
-			
-			<%-- a태그 href 제거
-			<script>
-				document.querySelector('.low').removeAttribute('href');			
-			</script>
-			--%>
 			
 		</div>		
 	</div>
+	
+	<c:if test="${ empty loginUser }">		
+		<script>
+			document.querySelector('.low').removeAttribute('href');
+			document.querySelector('.middle').removeAttribute('href');
+			document.querySelector('.upper').removeAttribute('href');
+			alert('로그인 후 이용해주세요!');
+		</script>
+	</c:if>
+	
+	<c:if test="${ loginUser.nationNo == 410 }">
+		<script>
+			document.querySelector('.low').removeAttribute('href');
+			document.querySelector('.middle').removeAttribute('href');
+			document.querySelector('.upper').removeAttribute('href');
+			alert('외국인만 이용 가능한 서비스입니다.');
+		</script>
+	</c:if>
 	
 	<jsp:include page="../common/footer.jsp" />
 	

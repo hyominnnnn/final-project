@@ -18,6 +18,12 @@ public class GameController {
 		return "game/gameMain";
 	}
 	
+	// 초급 게임페이지
+	@GetMapping("lower.ga")
+	public String lowerGame() {
+		return "game/lowerGame";
+	}
 	
-
+	
+	
 }
