@@ -85,8 +85,7 @@ public class BoardDao {
 	// (공통)게시글 삭제하기(UPDATE)
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
-		
-	
+
 	
 
 	

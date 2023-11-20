@@ -111,9 +111,9 @@ public class BoardController {
 			 file.setUploadName(SaveFile.saveFile(upfile, session));
 		}
 		
-		if(boardService.insertInfo(board, file) > 0) { // 성공 => 게시글 목록을 보여주기!
+		if(boardService.insertFree(board, file) > 0) { // 성공 => 게시글 목록을 보여주기
 			session.setAttribute("alertMsg", "게시글 작성 성공~");
-			return "redirect:list.ibo";
+			return "redirect:list.fbo";
 		} else {
 			model.addAttribute("errorMsg", "게시글 작성 실패");
 			return "common/errorPage";
