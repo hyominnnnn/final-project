@@ -107,8 +107,8 @@
 	        
 	        <script>
 	        	$(function(){
-	             	$('#boardList > tbody > #datail').click(function(){
-	             		location.href='detail.fbo?fno=' + $(this).children('.fno').text();
+	             	$('#boardList > tbody > #detail').click(function(){
+	             		location.href='detail.bo?fno=' + $(this).children('.fno').text();
 	             	});
 	             });
 	        </script>

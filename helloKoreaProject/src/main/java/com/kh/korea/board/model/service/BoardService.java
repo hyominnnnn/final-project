@@ -36,7 +36,6 @@ public interface BoardService {
 	int increaseCount(int boardNo);
 	// (공통)게시글 상세조회(SELECT)
 	Board selectBoard(int boardNo);
-	// (공통)파일 업로드
 	// (공통)게시글 수정하기(UPDATE)
 	// (공통)게시글 삭제하기(UPDATE)
 	// (공통)댓글 목록 조회

@@ -148,13 +148,16 @@ public class BoardController {
 		
 	// (공통)게시글 조회수 증가(UPDATE)
 	
-	// (공통)정보게시판 글 상세
+	// (공통)게시판 글 상세
 	@GetMapping("detail.bo")
-	public ModelAndView infoDetailView(int ino, ModelAndView mv) {
+	public ModelAndView boardDetailView(int ino, int fno, ModelAndView mv) {
 			
 		if(boardService.increaseCount(ino) > 0) {
 			mv.addObject("info", boardService.selectBoard(ino))
-				 .setViewName("board/infoBoardDetailView");
+			.setViewName("board/infoBoardDetailView");
+		} else if(boardService.increaseCount(fno) > 0) {
+			mv.addObject("free", boardService.selectBoard(fno))
+			 .setViewName("board/freeBoardDetailView");
 		} else {
 			mv.addObject("errorMsg", "상세정보 조회 실패").setViewName("common/errorPage");
 		}
