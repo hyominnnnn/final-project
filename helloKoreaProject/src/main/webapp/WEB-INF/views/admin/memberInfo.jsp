@@ -401,9 +401,11 @@
 							    	url : 'memberDetail.me',
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
+
 							    		
 							    	
 							    	   //console.log(data.email);
+
 							    		
 							    	   const inputName = data.memberName;
 							    	   const inputemail= data.email;
