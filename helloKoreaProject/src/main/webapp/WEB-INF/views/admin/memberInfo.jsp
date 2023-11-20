@@ -216,9 +216,9 @@
         }
         
         /*-------모달창-------*/
-        .model-footer-btn{
-        	height: 35px;
-        	width: 120px;
+        .member-info-btn{
+        	height: 50px;
+        	width: 150px;
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
@@ -235,9 +235,7 @@
 	       margin-top: 160px;
        }
        
-      #selectBtn{
-      	
-      }
+   
     </style>
 </head>
 <body>
@@ -300,7 +298,9 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                     <button type="submit" id="selectBtn">조회</button>
+                     <button type="submit" id="member-info-btn">리스트조회</button>
+                     <a href="posting.me" class="member-info-btn">게시물조회</a>
+                     <a href="reply.me" class="member-info-btn">댓글조회</a>
                    </form>
                   
                 </div>
@@ -369,9 +369,15 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
+<<<<<<< Updated upstream
                         <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물조회</button>
                         <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글조회</button>
                         <button id="delete-btn" class="model-footer-btn" onclick="delete(2);">회원삭제</button>
+=======
+                    	<a href="#" class="model-footer-btn">게시물조회</a>
+                    	<a href="#" class="model-footer-btn">댓글조회</a>
+                    	<a href="#" class="model-footer-btn">회원삭제</a>
+>>>>>>> Stashed changes
                     </div>
                 </form>
             </div>
