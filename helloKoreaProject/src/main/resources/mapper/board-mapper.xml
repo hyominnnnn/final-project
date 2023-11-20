@@ -51,36 +51,27 @@
 		      MODIFY_DATE DESC
 	</select>
 	
-	<!-- 게시글 조회수 증가 -->
-	<update id="increaseCount" parameterType="_int">
-		UPDATE
-			   TB_BOARD
-		   SET 
-		   	   COUNT = COUNT + 1
-		 WHERE 
-		 	   BOARD_NO = #{ boardNo }
-		   AND 
-		   	   STATUS = 'Y'
-	</update>
-	
-	<!-- 게시글 상세조회 -->
-	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
-		SELECT
-			   BOARD_NO
-			  ,BOARD_TITLE
-			  ,BOARD_CONTENT
-			  ,MEMBER_NICKNAME
-			  ,MODIFY_DATE
-			  ,ORIGINAL_NAME
-		 FROM 
-		 	  TB_BOARD
-		 JOIN 
-		 	  TB_MEMBER USING (MEMBER_NO)
-	LEFT JOIN
-		 	  TB_FILE ON (BOARD_NO = REF_BNO)
-		WHERE 
-			  TB_BOARD.BOARD_NO = #{ boardNo }
-	</select>
+	<!-- 정보게시글 작성하기 -->
+	<insert id="insertInfo" parameterType="board">
+		INSERT
+		  INTO
+		  	   TB_BOARD
+		  	   (
+		  	   BOARD_NO,
+		  	   BOARD_TITLE,
+		  	   BOARD_CONTENT,
+		  	   MEMBER_NO,
+		  	   CATEGORY_NO
+		  	   )
+		VALUES 
+			   (
+			   SEQ_BOARD.NEXTVAL,
+			   #{boardTitle},
+			   #{boardContent},
+			   #{memberNo},
+			   #{categoryNo}
+			   )
+	</insert>
 	
 	<!-- 정보게시판 검색한 글 수 -->
 	<select id="countSearchInfo" parameterType="hashmap" resultType="_int">
@@ -142,7 +133,44 @@
 		       MODIFY_DATE DESC
 	</select>
 	
-	<insert id="insertBoard" parameterType="board">
+	<!-- 자유게시판 글 개수 -->
+	<select id="countFreeList" resultType="_int">
+		SELECT
+			   COUNT(BOARD_NO)
+		  FROM 
+		  	   TB_BOARD
+		 WHERE 
+		 	   CATEGORY_NO = 1
+		   AND
+		 	   STATUS = 'Y'
+	</select>
+	
+	<!-- 자유게시판 글 리스트 조회 -->
+	<select id="selectFreeList" resultMap="boardResultSet">
+		SELECT
+			   BOARD_NO
+			  ,BOARD_TITLE
+			  ,MEMBER_NICKNAME
+			  ,MODIFY_DATE
+			  ,COUNT
+			  ,ORIGINAL_NAME
+		 FROM 
+		 	  TB_BOARD
+		 JOIN 
+		 	  TB_MEMBER USING (MEMBER_NO)
+	LEFT JOIN
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
+		WHERE 
+			  TB_BOARD.CATEGORY_NO = 1
+		  AND
+			  TB_BOARD.STATUS = 'Y'
+		ORDER 
+		   BY
+		      MODIFY_DATE DESC
+	</select>
+	
+	<!-- 자유게시글 작성하기 -->
+	<insert id="insertFree" parameterType="board">
 		INSERT
 		  INTO
 		  	   TB_BOARD
@@ -163,6 +191,105 @@
 			   )
 	</insert>
 	
+	<!-- 자유게시판 검색한 글 수 -->
+	<select id="countSearchFree" parameterType="hashmap" resultType="_int">
+		SELECT
+			   COUNT(BOARD_NO)
+		  FROM 
+		  	   TB_BOARD
+		  JOIN 
+		       TB_MEMBER USING (MEMBER_NO)
+		 WHERE 
+		 	   TB_BOARD.STATUS = 'Y'
+		   AND 
+		       CATEGORY_NO = 1
+		 <if test="condition == 'content'">
+		 	AND BOARD_CONTENT 
+		 </if>
+		 <if test="condition == 'title'">
+		 	AND BOARD_TITLE  
+		 </if>
+		 <if test="condition == 'writer'">
+		 	AND MEMBER_NICKNAME 
+		 </if>
+		  LIKE '%' || #{ keyword } || '%'
+	</select>
+	
+	<!-- 자유게시판 검색 리스트 -->
+	<select id="selectSearchFree" parameterType="hashmap" resultMap="boardResultSet">
+		SELECT
+		       BOARD_NO,
+		       BOARD_TITLE,
+		       MEMBER_NICKNAME,
+		       MODIFY_DATE,
+		       COUNT,
+		       ORIGINAL_NAME
+		  FROM
+		       TB_BOARD
+		  JOIN
+		       TB_MEMBER USING (MEMBER_NO)
+	 LEFT JOIN
+		 	   TB_FILE ON (BOARD_NO = REF_BNO)
+		 WHERE
+			   TB_BOARD.CATEGORY_NO = 1
+		   AND
+		       TB_BOARD.STATUS = 'Y'
+		<choose>
+			<when test="condition == 'writer'">
+		   		AND MEMBER_NICKNAME
+			</when>
+			<when test="condition == 'title'">
+		   		AND BOARD_TITLE	
+			</when>
+			<otherwise>
+		   		AND BOARD_CONTENT
+			</otherwise>
+		</choose>
+		  LIKE '%' || #{keyword} || '%'
+		 ORDER
+		    BY
+		       MODIFY_DATE DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- (공통)게시글 조회수 증가 -->
+	<update id="increaseCount" parameterType="_int">
+		UPDATE
+			   TB_BOARD
+		   SET 
+		   	   COUNT = COUNT + 1
+		 WHERE 
+		 	   BOARD_NO = #{ boardNo }
+		   AND 
+		   	   STATUS = 'Y'
+	</update>
+	
+	<!-- (공통)게시글 상세조회 -->
+	<select id="selectBoard" parameterType="_int" resultMap="boardResultSet">
+		SELECT
+			   BOARD_NO
+			  ,BOARD_TITLE
+			  ,BOARD_CONTENT
+			  ,MEMBER_NICKNAME
+			  ,MODIFY_DATE
+			  ,ORIGINAL_NAME
+		 FROM 
+		 	  TB_BOARD
+		 JOIN 
+		 	  TB_MEMBER USING (MEMBER_NO)
+	LEFT JOIN
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
+		WHERE 
+			  TB_BOARD.BOARD_NO = #{ boardNo }
+	</select>
+	
+	<!-- (공통)파일 업로드 -->
 	<insert id="insertFile" parameterType="file">
 		INSERT
 		  INTO
