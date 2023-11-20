@@ -167,7 +167,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">게임학습</a>
+                    <a href="main.ga">게임학습</a>
                 </li>
                 <li>
                     <a href="#">커뮤니티</a>
