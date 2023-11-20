@@ -61,7 +61,7 @@
 		  	   BOARD_TITLE,
 		  	   BOARD_CONTENT,
 		  	   MEMBER_NO,
-		  	   CATEGORY_NO
+		  	   CATEGORY_NO 
 		  	   )
 		VALUES 
 			   (
@@ -69,7 +69,7 @@
 			   #{boardTitle},
 			   #{boardContent},
 			   #{memberNo},
-			   #{categoryNo}
+			   2
 			   )
 	</insert>
 	
@@ -187,7 +187,7 @@
 			   #{boardTitle},
 			   #{boardContent},
 			   #{memberNo},
-			   #{categoryNo}
+			   1
 			   )
 	</insert>
 	
