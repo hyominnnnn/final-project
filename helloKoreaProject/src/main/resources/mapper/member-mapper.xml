@@ -96,8 +96,8 @@
 			
 	</select>
 	
-	<!-- 카카오 회원유무 -->
-	<select id="kakaoCheck" parameterType="string" resultType="_int">
+	<!-- 소셜 회원유무 -->
+	<select id="socialCheck" parameterType="string" resultType="_int">
 		SELECT
 			COUNT(SOCIAL_ID)
 		FROM
@@ -106,8 +106,8 @@
 			SOCIAL_ID = #{id}
 	</select>
 	
-	<!-- 카카오 로그인 -->
-	<select id="kakaoLogin" parameterType="string" resultMap="memberList">
+	<!-- 소셜 로그인 -->
+	<select id="socialLogin" parameterType="string" resultMap="memberList">
 		SELECT
 			MEMBER_NO,
 			EMAIL,

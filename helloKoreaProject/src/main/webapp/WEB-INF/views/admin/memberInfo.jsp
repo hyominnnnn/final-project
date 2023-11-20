@@ -389,7 +389,6 @@
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
 							    		console.log(data.memberName);
-							    		
 							    		const memberName= data.memberName;
 							    		const email= data.email;
 							    		

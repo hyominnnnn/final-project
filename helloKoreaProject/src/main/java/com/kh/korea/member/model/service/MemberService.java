@@ -15,4 +15,7 @@ public interface MemberService {
 	Member loginMember(Member m);
 	//회원정보 수정(UPDATE)
 	int updateMember(Member m);
+	//소셜 서비스
+	int socialCheck(String id);
+	Member socialLogin(String id);
 }
