@@ -20,6 +20,12 @@ public class AdminDao {
 	public ArrayList<Member> selectList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectList", null, rowBounds);
 	}
+	
+	public Member memberDetail(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.selectOne("adminMapper.memberDetail", m);
+	}
+	
+	// --------------------------------------------------------------------
 
 	public int selectBoardListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectBoardListCount");
@@ -29,9 +35,6 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectBoardList", null, rowBounds);
 	}
 
-	public Member memberDetail(SqlSessionTemplate sqlSession, Member m) {
-		return sqlSession.selectOne("adminMapper.memberDetail", m);
-	}
 
 
 

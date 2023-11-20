@@ -335,7 +335,7 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ m.memberName }님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
@@ -379,6 +379,19 @@
     </div>
     
     <script>
+    /*
+	    function posting(num){
+	    	if(num == 0){ // 게시물 조회
+	    		$('#posting-btn').attr('action', 'detail.me').submit();
+	    	}
+	    	else if{ // 댓글 조회
+	    		$('#reply-btn').attr('action', 'reply.me').submit();
+	    	}
+	    	else{ // 회원 삭제
+	    		$('#delete-btn').attr('action', 'delete.me').submit();
+	    	}
+	    }
+    */
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
 	             				//console.log($(this).children().eq(1).text());
@@ -388,19 +401,33 @@
 							    	url : 'memberDetail.me',
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
-							    		console.log(data.memberName);
 							    		
-							    		const memberName= data.memberName;
-							    		const email= data.email;
+							    	
+							    	   //console.log(data.email);
 							    		
+							    	   const inputName = data.memberName;
+							    	   const inputemail= data.email;
+							    	   const inputnickname = data.memberNickname;
+							    	   const inputbirthday = data.birthday;
+							    	   const inputnationNo = data.nationNo;
+							    	   const inputenrolldate = data.memberEnrollDate;
+							    	   
+							    	   
+							    	   $('#memberName').val(inputName);
+							    	   $('#email').val(inputemail);
+							    	   $('#memberNickname').val(inputnickname);
+							    	   $('#nationNo').val(inputnationNo);
+							    	   $('#birthday').val(inputbirthday);
+							    	   $('#memberEnrollDate').val(inputenrolldate);
+							    	   
+							    	
+							    	    
 							    	},
 							    	error : () => {
 							    		console.log('실패!');
 							    	}
 						     })
 	             		})	
-						     $('#memberName').attr('value', memberName);
-	             			$('#memberName').attr('value', email);
 	             	})
 	       	
 	     
