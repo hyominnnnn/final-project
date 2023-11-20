@@ -33,7 +33,10 @@
 			BIRTHDAY,
 			ID_CARD_NUMBER,
 			STATUS,
-			NATION_NO
+			NATION_NO,
+			SOCIAL_ID,
+			SOCIAL_PROFILE
+			
 		)
 		VALUES(
 			SEQ_MEMBER.NEXTVAL,
@@ -44,7 +47,10 @@
 			#{birthday}, <!-- 한국인만 -->
 			#{idCardNumber}, <!-- 한국인만 -->
 			#{status},  <!-- 외국인만 -->
-			#{nationNo} <!-- 외국인만 -->
+			#{nationNo}, <!-- 외국인만 -->
+			#{socialId},
+			#{socialProfile}
+			
 		)
 	</insert>
 	<!-- 아이디 중복 체크 -->
@@ -85,11 +91,43 @@
 			TB_MEMBER
 		WHERE
 			EMAIL = #{email}
-		AND
-			STATUS IN ('K','F')
+		AND NOT
+			STATUS = 'S'
 			
 	</select>
 	
+	<!-- 카카오 회원유무 -->
+	<select id="kakaoCheck" parameterType="string" resultType="_int">
+		SELECT
+			COUNT(SOCIAL_ID)
+		FROM
+			TB_MEMBER
+		WHERE
+			SOCIAL_ID = #{id}
+	</select>
+	
+	<!-- 카카오 로그인 -->
+	<select id="kakaoLogin" parameterType="string" resultMap="memberList">
+		SELECT
+			MEMBER_NO,
+			EMAIL,
+			MEMBER_NICKNAME,
+			MEMBER_PWD,
+			MEMBER_NAME,
+			BIRTHDAY,
+			ID_CARD_NUMBER,
+			MEMBER_ENROLL_DATE,
+			STATUS,
+			NATION_NO,
+			SOCIAL_ID,
+			SOCIAL_PROFILE
+		FROM
+			TB_MEMBER
+		WHERE
+			SOCIAL_ID = #{id}
+		AND NOT
+			STATUS = 'S'
+	</select>
 	
 	
 	

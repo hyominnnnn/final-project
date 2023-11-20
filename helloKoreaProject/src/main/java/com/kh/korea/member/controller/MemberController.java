@@ -27,12 +27,12 @@ public class MemberController {
 	private JavaMailSender sender;
 	
 	@RequestMapping("Logon")
-	public String koreanLogon(Member m, Model model) {
+	public String logon(Member m, Model model) {
 		//암호화 작업(암호문을 만들어내는 과정)
 		String encPwd = bcPwd.encode(m.getMemberPwd());	
 		//암호화 한 패스워드 다시 담기
 		 m.setMemberPwd(encPwd);
-		 System.out.println(m);
+		 //System.out.println(m);
 		if(ms.insertMember(m) > 0) {
 			return "redirect:/";
 		}else {
