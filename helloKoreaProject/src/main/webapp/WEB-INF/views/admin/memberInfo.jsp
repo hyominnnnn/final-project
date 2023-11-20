@@ -222,6 +222,9 @@
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
+        	text-decoration: none;
+        	color: black;
+        	padding-top: 5px;
         }
         
         .modal-content{
@@ -369,16 +372,19 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                        <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물조회</button>
-                        <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글조회</button>
-                        <button id="delete-btn" class="model-footer-btn" onclick="delete(2);">회원삭제</button>
+                    	<a href="posting.me" class="model-footer-btn">게시물조회</a>
+                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
+                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
+                        
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
+    
     <script>
+    
     /*
 	    function posting(num){
 	    	if(num == 0){ // 게시물 조회
@@ -403,7 +409,7 @@
 							    	success : data => {
 							    		
 							    	
-							    	   //console.log(data.email);
+							    	   console.log(data);
 							    		
 							    	   const inputName = data.memberName;
 							    	   const inputemail= data.email;

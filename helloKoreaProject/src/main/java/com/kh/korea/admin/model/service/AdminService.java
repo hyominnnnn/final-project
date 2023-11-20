@@ -8,19 +8,25 @@ import com.kh.korea.member.model.vo.Member;
 
 public interface AdminService {
 	
-	//int selectMemberList();
-	
+	// 회원 정보 조회
 	int selectListCount();
 	
 	ArrayList<Member> selectList(PageInfo pi);
 	
+	// 회원 정보 상세 조회
 	Member memberDetail(Member m);
+	
+	// 회원 탈퇴시키기
+	int memberDelete();
 	
 	//------------------------------------------
 	
 	int selectBoardListCount();
 	
 	ArrayList<Board> selectBoardList(PageInfo pi);
+	
+	// 게시글
+	Board boardPosting (Board b);
 
 
 }

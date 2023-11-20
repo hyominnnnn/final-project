@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kh.korea.admin.model.service.AdminService;
+import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
 import com.kh.korea.member.model.vo.Member;
@@ -40,21 +40,16 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		//System.out.println(model.getAttribute("list"));
+		System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
 	}
 	
 	
-	@GetMapping("memberPosting")
-	public String memberPosting() {
-		return "admin/memberPosting";
-	}
-	
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
-	public String memberPostingDetail(Member m) {
+	public String memberInfoDetail(Member m) {
 		
 		//System.out.println(m);
 		//Member memberDetail = adminService.memberDetail(m);
@@ -82,7 +77,42 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
+	@ResponseBody
+	@GetMapping(value="memberPosting.me", produces="application/json; charset=UTF-8")
+	public String memberPostingDetail(Board b) {
+		
+		return new Gson().toJson(adminService.boardPosting(b));
+		
+	}
 	
+	
+	
+	/*
+	@RequestMapping("delete.me")
+	public String memberDelete(String memberPwd, HttpSession session) {
+		
+		Member loginUser = ((Member)session.getAttribute("loginUser"));
+		String adminPwd = loginUser.getMemberPwd();
+		
+		if(adminService.memberDelete(email) > 0) {
+			session.removeAttribute("loginUser");
+			return "redirect:/";
+		} else {
+			return "common/errorPage";
+		}
+		
+	}
+	*/
+	@GetMapping("memberPosting")
+	public String memberPosting() {
+		return "admin/memberPosting";
+	}
+	
+	
+	@RequestMapping("posting.me")
+	public String memberPostingDatail() {
+		return "admin/memberPosting";
+	}
 	
 	
 	@GetMapping("reply.me")

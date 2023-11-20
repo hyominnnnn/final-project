@@ -242,7 +242,8 @@
        }
        
        #boardContent{
-       width: 100px;
+       width: 600px;
+       height: 300px;
        }
        
       
@@ -318,12 +319,12 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    		<li class="page-item"><a class="page-link" href="detail.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
+                    	<li class="page-item"><a class="page-link" href="detail.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
@@ -338,7 +339,7 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">${ memberName }님의 게시글 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
@@ -365,44 +366,31 @@
     </div>
     
     
-   
-   
-    
-    <!-- 회원 게시글 상세 모달 -->
-     <div class="modal fade" id="memberPostingDetailForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">000님의 게시물 상세보기</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="#" method="post">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div align="center">
-                        
-                        </div>
-                            <label for="boardTitle" class="boardTitle">제목 : 머시기머기시</label>
-                            <br>
-                            <label for="boardContent" class="boardContent">내용 : 머시기머기시</label>
-                            
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                        <button type="submit" class="model-footer-btn">게시물 삭제</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+  
     
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			location.herf='detail.me?pno=' + $(this).children('.pno').text();
+    			console.log($(this).children().eq(0).text());
+    			
+    			
+    			$.ajax({
+    				url: 'memberPosting.me',
+    				data : {boardNo : $(this).children().eq(0).text().trim()},
+    				success : data => {
+    					//console.log(data);
+    					
+    					const inputboardtitle = data.boardTitle;
+    					const inputboardconent = data.boardContent;
+    					
+    					$('#boardTitle').val(inputboardtitle);
+    					$('#boardContent').val(inputboardconent);
+    				},
+    				error : () => {
+    					console.log('실패!');
+    				}
+    				
+    			})
     		})
     	})
     </script>

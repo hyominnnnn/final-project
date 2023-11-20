@@ -25,6 +25,9 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.memberDetail", m);
 	}
 	
+	public int memberDelete(SqlSessionTemplate sqlSession) {
+		return sqlSession.update("adminMapper.memberDelete");
+	}
 	// --------------------------------------------------------------------
 
 	public int selectBoardListCount(SqlSessionTemplate sqlSession) {
@@ -34,6 +37,11 @@ public class AdminDao {
 	public ArrayList<Board> selectBoardList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectBoardList", null, rowBounds);
 	}
+
+	public Board boardPosting(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.selectOne("adminMapper.boardPosting", b);
+	}
+
 
 
 

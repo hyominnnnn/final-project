@@ -61,7 +61,7 @@
 				STATUS IN ('K','F')
 		ORDER
 		   BY
-		   		 MEMBER_NAME DESC
+		   		 MEMBER_ENROLL_DATE DESC
 	</select>
 	
 	<select id="memberDetail" parameterType="member" resultMap="memberList">
@@ -79,7 +79,18 @@
 				
 	</select>
 	
+	<!--
+	<update id="memberDelete" parameterType="String">
 	
+		UPDATE
+				TB_MEMBER
+		   SET
+		  		STATUS = 'N'
+		 WHERE
+		  		STATUS IN ('K','F')
+	
+	</update>
+	-->
 	
 	
 	
@@ -104,6 +115,18 @@
 				TB_BOARD
 		WHERE
 				STATUS = 'Y'
+
+	</select>
+	
+	<select id="boardPosting" parameterType="board" resultMap="boardResultSet">
+		SELECT
+				BOARD_TITLE,
+				BOARD_CONTENT
+		 FROM
+				TB_BOARD
+		 WHERE
+				BOARD_NO = #{boardNo}
+				
 	</select>
 
 
