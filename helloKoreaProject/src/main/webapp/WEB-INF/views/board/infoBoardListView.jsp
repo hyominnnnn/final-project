@@ -108,7 +108,7 @@
 	        <script>
 	        	$(function(){
 	             	$('#boardList > tbody > #detail').click(function(){
-	             		location.href='detail.bo?ino=' + $(this).children('.ino').text();
+	             		location.href='detail.ibo?ino=' + $(this).children('.ino').text();
 	             	});
 	             });
 	        </script>
