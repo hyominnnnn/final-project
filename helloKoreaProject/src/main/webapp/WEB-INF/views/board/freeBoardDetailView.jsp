@@ -72,19 +72,19 @@
 		            <td colspan="3"></td>
 		        </tr>
 		        <tr>
-		            <td colspan="4"><p style="height:150px;">내용입니다</p></td>
+		            <td colspan="4"><p style="height:150px;">$ { free.boardContent }</p></td>
 		        </tr>
 		    </table>
 		    <br>
 		    
 		    <button id="scrap" class="btn btn-danger">스크랩</button>
 			<br><br>
-			
-		    <form action="" method="post" id="postForm">
+			<!-- 
+			<form action="" method="post" id="postForm">
 				<input type="hidden" name="bno" value="${ b.boardNo }">
 			    <input type="hidden" name="filePath" value="${ b.changeName }"/>
 		    </form>
-		    
+		     -->
 		    <table id="replyArea" class="table" align="center">
 				<thead>
 					<tr>
