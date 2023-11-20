@@ -22,7 +22,7 @@
 	    <div class="innerOuter">
 			<h2>예약 전체 조회</h2>
 	        <br><br>
-	        <table id="boardList" class="table table-hover" align="center">
+	        <table id="reservList" class="table table-hover" align="center">
 	            <thead>
 	            	<tr>
 	                	<th>한식 코스</th>
@@ -53,6 +53,103 @@
 	                
 	            </tbody>
 	        </table>
+	        
+	         <table id="reservList2" class="table table-hover" align="center">
+	            <thead>
+	            	<tr>
+	                	<th>혼례 종류</th>
+		                <th>예약 날짜</th>
+		                <th>예약 시간</th>
+		                <th>예약 인원</th>
+		                <th>가격</th>
+		                <th>예약 번호</th>
+		                <th>예약변경/취소</th>
+		            </tr>
+		        </thead>
+	            <tbody>
+	                <!--<c:forEach items="${ list }" var="b">-->
+		                <tr>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>
+		                	<button class="btn btn-warning">예약 변경</button>
+							<button class="btn btn-danger">예약 취소</button>
+		                	</td>
+		                	
+		                </tr>
+		            <!--</c:forEach>-->
+	                
+	            </tbody>
+	        </table>
+	        
+	         <table id="reservList3" class="table table-hover" align="center">
+	            <thead>
+	            	<tr>
+	                	<th>공연 종류</th>
+		                <th>예약 날짜</th>
+		                <th>예약 시간</th>
+		                <th>예약 인원</th>
+		                <th>가격</th>
+		                <th>예약 번호</th>
+		                <th>예약변경/취소</th>
+		            </tr>
+		        </thead>
+	            <tbody>
+	                <!--<c:forEach items="${ list }" var="b">-->
+		                <tr>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>
+		                	<button class="btn btn-warning">예약 변경</button>
+							<button class="btn btn-danger">예약 취소</button>
+		                	</td>
+		                	
+		                </tr>
+		            <!--</c:forEach>-->
+	                
+	            </tbody>
+	        </table>
+	        
+	         <table id="reservList4" class="table table-hover" align="center">
+	            <thead>
+	            	<tr>
+	                	<th>체험 종류</th>
+		                <th>예약 날짜</th>
+		                <th>예약 시간</th>
+		                <th>예약 인원</th>
+		                <th>가격</th>
+		                <th>예약 번호</th>
+		                <th>예약변경/취소</th>
+		            </tr>
+		        </thead>
+	            <tbody>
+	                <!--<c:forEach items="${ list }" var="b">-->
+		                <tr>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>d</td>
+		                	<td>
+		                	<button class="btn btn-warning">예약 변경</button>
+							<button class="btn btn-danger">예약 취소</button>
+		                	</td>
+		                	
+		                </tr>
+		            <!--</c:forEach>-->
+	                
+	            </tbody>
+	        </table>
+	        
 	        <br>
 	        
 	        <script>

@@ -42,23 +42,30 @@
 			<h2>자유 게시글</h2>
 		    <br>
 		    ​
-		    <a class="btn btn-secondary" style="float:right;" href="info">목록으로</a>
+		    <a class="btn btn-secondary" style="float:right;" href="list.fbo">목록으로</a>
 		    <br><br>
 		    ​
 		    <table id="contentArea" align="center" class="table">
 				<tr>
 					<th width="100">제목</th>
-		            <td colspan="3">제목이당</td>
+		            <td colspan="3">$ { free.boardTitle }</td>
 		        </tr>
 		        <tr>
 		            <th>작성자</th>
-		            <td>작성자당</td>
+		            <td>$ { free.boardWriter }</td>
 		            <th>작성일</th>
-		            <td>작성일이당</td>
+		            <td>$ { free.modifyDate }</td>
 		        </tr>
 		        <tr>
 		            <th>첨부파일</th>
-		            <td colspan="3">파일이당</td>
+		            <c:choose>
+		            	<c:when test="${ not empty free.originalName }">
+		            		<td colspan="3">${ free.originalName }</td>
+		            	</c:when>
+		            	<c:otherwise>
+		            		<td colspan="3">첨부파일 없음</td>
+		            	</c:otherwise>
+		            </c:choose>
 		        </tr>
 		        <tr>
 		            <th>내용</th>
