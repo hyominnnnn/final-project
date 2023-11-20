@@ -26,13 +26,13 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 
-	public int kakaoCheck(SqlSessionTemplate sqlSession, String id) {
+	public int socialCheck(SqlSessionTemplate sqlSession, String id) {
 		System.out.println("dao id는" + id);
-		return sqlSession.selectOne("memberMapper.kakaoCheck", id);
+		return sqlSession.selectOne("memberMapper.socialCheck", id);
 	}
 
-	public Member kakaoLogin(SqlSessionTemplate sqlSession, String id) {
-		return sqlSession.selectOne("memberMapper.kakaoLogin", id);
+	public Member socialLogin(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("memberMapper.socialLogin", id);
 	}
 
 }

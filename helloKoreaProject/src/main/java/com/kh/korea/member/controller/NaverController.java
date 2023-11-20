@@ -11,50 +11,53 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.kh.korea.member.model.service.KakaoService;
 import com.kh.korea.member.model.service.MemberService;
+import com.kh.korea.member.model.service.NaverService;
 import com.kh.korea.member.model.vo.Member;
 
-@Controller
-public class KakaoController {
+import lombok.RequiredArgsConstructor;
 
+@Controller
+@RequiredArgsConstructor
+public class NaverController {
+	
 	@Autowired
-	private KakaoService kakaoService;
+	private final NaverService naverService;
 	@Autowired
 	private MemberService memberService;
 	
-	@RequestMapping("code")
+	@RequestMapping("ncode")
 	public String getCode(String code, Model model, HttpSession session) throws IOException, ParseException {
-		//인가코드 받아오기
 		//System.out.println(code);
-		// 코드받아온거에서 accessToken 뺴오기
-		String accessToken = kakaoService.getToken(code);
-		//accessToken으로 유저정보 가져오기
-		HashMap<String, String>  map = kakaoService.getUserInfo(accessToken);
+		String accessToken = naverService.getToken(code);
+		
+		HashMap<String, String>  map = naverService.getUserInfo(accessToken);
+		
 		String id = map.get("id");
 		String profile = map.get("profile");
 		
-		//System.out.println("map id 는" + map.get("id") );
-		//System.out.println("map profile은 " + map.get("profile"));
-		//가져온 정보로 회원가입 여부 및 로그인 진행
 		if(memberService.socialCheck(id) > 0) {
-			//로그인 진행
+			//로그인진행
 			Member loginUser = memberService.socialLogin(id);
 			if(loginUser != null) {
-				 session.setAttribute("loginUser",loginUser);
+				session.setAttribute("loginUser",loginUser);
 				 return "redirect:/";
 			}else {
 				model.addAttribute("eorrorMsg","로그인 실패");
 				return "common/errorPage";
 			}
+			
+			
 		}else {
-			//회원가입 진행
+			//회원가입진행
 			model.addAttribute("socialId",id);
 			model.addAttribute("socialProfile",profile);
-			model.addAttribute("social","kakao");
+			model.addAttribute("social","naver");
 			return "member/socialLogon";
 		}
-			
+		
+		
+				
 	}
 	
 }

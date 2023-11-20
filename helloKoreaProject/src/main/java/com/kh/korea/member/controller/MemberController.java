@@ -18,7 +18,7 @@ import com.kh.korea.member.model.vo.Member;
 public class MemberController {
 
 	@Autowired
-	private MemberService ms;
+	private MemberService memberService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcPwd;
@@ -33,7 +33,7 @@ public class MemberController {
 		//암호화 한 패스워드 다시 담기
 		 m.setMemberPwd(encPwd);
 		 //System.out.println(m);
-		if(ms.insertMember(m) > 0) {
+		if(memberService.insertMember(m) > 0) {
 			return "redirect:/";
 		}else {
 			model.addAttribute("errorMsg","회원가입 실패");
@@ -44,7 +44,7 @@ public class MemberController {
 	@RequestMapping("idCheck")
 	public String idCheck(String checkId) {
 		System.out.println(checkId);
-		int count = ms.idCheck(checkId);
+		int count = memberService.idCheck(checkId);
 		
 		return count > 0 ? "NNN" : "NNY";
 	}
@@ -52,7 +52,7 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("nickCheck")
 	public String nickCheck(String checkNick) {
-		int count = ms.nickCheck(checkNick);
+		int count = memberService.nickCheck(checkNick);
 		return count > 0 ? "NNN" : "NNY";
 	}
 	
@@ -60,7 +60,7 @@ public class MemberController {
 	@RequestMapping("login")
 	public ModelAndView loginMember(Member m, HttpSession session, ModelAndView mv) {
 		
-		Member loginUser = ms.loginMember(m);
+		Member loginUser = memberService.loginMember(m);
 		
 		if(loginUser !=null && bcPwd.matches(m.getMemberPwd(), loginUser.getMemberPwd())) {
 			  session.setAttribute("loginUser",loginUser);
@@ -68,6 +68,8 @@ public class MemberController {
 		}else {
 	         mv.addObject("errorMsg", "로그인실패").setViewName("common/errorPage");
 		}
+		
+		System.out.println(loginUser);
 		return mv;
 		//시간나면 아이디저장 만들기
 	}
@@ -76,4 +78,17 @@ public class MemberController {
 	      session.invalidate();
 	      return "redirect:/";
 	   }
+	 
+
+		@RequestMapping("socialLogon")
+		public String kakaoLogon(Member m, Model model) {
+			System.out.println(m);
+			int result = memberService.insertMember(m); 
+			if(result > 0) {
+				return "redirect:/";
+			}else {
+				model.addAttribute("errorMsg","회원가입 실패");
+				return "common/errorPage";
+			}
+		}
 }
