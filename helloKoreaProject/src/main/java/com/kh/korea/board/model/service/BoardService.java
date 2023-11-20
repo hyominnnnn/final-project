@@ -15,7 +15,6 @@ public interface BoardService {
 	ArrayList<Board> selectInfoList(PageInfo infoPi);
 	// 정보게시글 작성하기(INSERT)
 	int insertInfo(Board board, File file);
-	
 	// 정보게시판 검색한 게시글 수
 	int countSearchInfo(HashMap<String, String> map);
 	// 정보게시판 검색 리스트

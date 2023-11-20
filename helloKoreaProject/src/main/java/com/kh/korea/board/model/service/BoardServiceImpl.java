@@ -67,7 +67,7 @@ public class BoardServiceImpl implements BoardService {
 
 	// 정보게시판 글 작성
 	@Override
-	@Transactional
+	@Transactional("transactionManager")
 	public int insertInfo(Board board, File file) {
 		int result1 = boardDao.insertInfo(sqlSession, board);
 		int result2 = boardDao.insertFile(sqlSession, file);
