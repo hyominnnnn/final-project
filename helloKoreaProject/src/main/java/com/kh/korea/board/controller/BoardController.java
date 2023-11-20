@@ -27,21 +27,21 @@ public class BoardController {
 	private BoardService boardService;
 	
 	// 자유게시판 리스트
-	@GetMapping("list.fbo") 
-	public String freeSelectList() {
+	@GetMapping("list.fbo")
+	public String freeList(@RequestParam(value="fPage", defaultValue="1") int currentPage, Model model) {
+		
+		PageInfo infoPi = Pagination.getPageInfo(boardService.countInfoList(), currentPage, 10, 5);
+		
+		model.addAttribute("freeList", boardService.selectInfoList(infoPi));
+		model.addAttribute("infoPi", infoPi);
+		
 		return "board/freeBoardListView";
-	}
-	
-	// 자유게시판 작성폼
-	@GetMapping("enrollForm.fbo")
-	public String freeEnrollForm() {
-		return "board/freeBoardEnrollForm";
 	}
 	
 	// 자유게시판 글상세
 	@GetMapping("detail.fbo")
 	public String freeDetailView() {
-		return "board/freeBoardDetailView";
+	return "board/freeBoardDetailView";
 	}
 	
 	// 자유게시판 글수정
@@ -50,13 +50,33 @@ public class BoardController {
 		return "board/freeBoardUpdateForm";
 	}
 	
-	// 자유 게시판 댓글 리스트 
+	// 자유게시판 글 작성폼
+	@GetMapping("enrollForm.fbo")
+	public String freeEnrollForm() {
+		return "board/freeBoardEnrollForm";
+	}
 	
-	// 자유 게시판 댓글 작성
+	// 자유게시판 글 작성
 	
-	// 자유 게시판 댓글 리스트 
+	// 자유게시판 검색
+	@GetMapping("search.fbo")
+	public String searchFree(@RequestParam(value="fPage", defaultValue="1") int currentPage,
+							Model model, String condition, String keyword) {
+			
+		HashMap<String, String> map = new HashMap();
+		map.put("condition", condition);
+		map.put("keyword", keyword);
+				
+		PageInfo infoPi = Pagination.getPageInfo(boardService.countSearchInfo(map), currentPage, 10, 5);
+				
+		model.addAttribute("freeList", boardService.selectSearchInfo(map, infoPi));
+		model.addAttribute("infoPi", infoPi);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("condition", condition);
+				
+		return "board/freeBoardListView";
+	}
 	
-	// 자유 게시판 댓글 작성
 	
 	
 	// 정보게시판 리스트

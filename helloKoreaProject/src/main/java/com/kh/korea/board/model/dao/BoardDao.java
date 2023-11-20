@@ -51,6 +51,27 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertFile", file);
 	}
 	
+	// 자유게시판 글 개수
+	public int countFreeList(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.countFreeList");
+	}
+	
+	// 자유게시판 검색한 글 개수
+	public int countSearchFree(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("boardMapper.countSearchFree", map);
+	}
+
+	public ArrayList<Board> selectFreeList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<Board> selectSearchFree(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			RowBounds rowBounds) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	
 	
 
