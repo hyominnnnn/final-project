@@ -93,12 +93,10 @@ public class BoardServiceImpl implements BoardService {
 		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
 		return boardDao.selectFreeList(sqlSession, rowBounds);
 	}
-
-	
 	
 	// 자유게시판 검색한 게시글 수
 	@Override
-	public int countSearchList(HashMap<String, String> map) {
+	public int countSearchFree(HashMap<String, String> map) {
 		return boardDao.countSearchFree(sqlSession, map);
 	}
 	
@@ -118,6 +116,7 @@ public class BoardServiceImpl implements BoardService {
 		int result2 = boardDao.insertFile(sqlSession, file);
 		return (result1 * result2);
 	}
+
 	
 	
 	
