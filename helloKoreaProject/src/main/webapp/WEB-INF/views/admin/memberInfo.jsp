@@ -304,6 +304,9 @@
                     </tbody>
                   </table>
                      <button type="submit" id="selectBtn">조회</button>
+                     <a href="posting.me" class="model-footer-btn">게시물조회</a>
+                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
+                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
                    </form>
                   
                 </div>
@@ -372,22 +375,12 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-<<<<<<< Updated upstream
-                    	<a href="posting.me" class="model-footer-btn">게시물조회</a>
-                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
-                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
                         
-=======
-
-                        <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물조회</button>
-                        <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글조회</button>
-                        <button id="delete-btn" class="model-footer-btn" onclick="delete(2);">회원삭제</button>
-
                     	<a href="#" class="model-footer-btn">게시물조회</a>
                     	<a href="#" class="model-footer-btn">댓글조회</a>
                     	<a href="#" class="model-footer-btn">회원삭제</a>
 
->>>>>>> Stashed changes
+
                     </div>
                 </form>
             </div>
