@@ -91,7 +91,7 @@ public class BoardController {
 			
 		PageInfo infoPi = Pagination.getPageInfo(boardService.countFreeList(), currentPage, 10, 5);
 			
-		model.addAttribute("freeList", boardService.selectInfoList(infoPi));
+		model.addAttribute("freeList", boardService.selectFreeList(infoPi));
 		model.addAttribute("infoPi", infoPi);
 			
 		return "board/freeBoardListView";

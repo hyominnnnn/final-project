@@ -64,7 +64,7 @@
 	        <!-- 로그인 후 상태일 경우만 보여지는 글쓰기 버튼 -->
 	        <c:if test="${ not empty sessionScope.loginUser }">
 	            <a class="btn btn-secondary" style="float:right;" href="enrollForm.fbo">글쓰기</a>
-	        <!--</c:if>-->
+	        </c:if>
 	        <br><br>
 	        <table id="boardList" class="table table-hover" align="center">
 	            <thead>
@@ -168,7 +168,7 @@
 			        			</c:when>
 								<c:otherwise>
 									<c:choose>
-										<c:when test="${infoPi.currentPage eq infoPii.maxPage}">
+										<c:when test="${infoPi.currentPage eq infoPi.maxPage}">
 											<li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
 										</c:when>
 										<c:otherwise>
@@ -186,6 +186,7 @@
 	        <br clear="both"><br>
 	        
 			<form id="searchForm" action="search.fbo" method="get" align="center">
+				
 		    	<div class="select">
 		        	<select class="custom-select" name="condition">
 		            	<option value="writer">작성자</option>
@@ -200,7 +201,7 @@
 	        </form>
 	        <br><br>
 	        
-	         <c:if test="${ not empty condition }">
+	        <c:if test="${ not empty condition }">
 				<script>
 					$(function(){
 						$('#searchForm option[value=${condition}]').attr('selected', true);
