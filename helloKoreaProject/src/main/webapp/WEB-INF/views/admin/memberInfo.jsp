@@ -304,6 +304,9 @@
                     </tbody>
                   </table>
                      <button type="submit" id="selectBtn">조회</button>
+                     <a href="posting.me" class="model-footer-btn">게시물조회</a>
+                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
+                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
                    </form>
                   
                 </div>
@@ -372,10 +375,12 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<a href="posting.me" class="model-footer-btn">게시물조회</a>
-                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
-                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
                         
+                    	<a href="#" class="model-footer-btn">게시물조회</a>
+                    	<a href="#" class="model-footer-btn">댓글조회</a>
+                    	<a href="#" class="model-footer-btn">회원삭제</a>
+
+
                     </div>
                 </form>
             </div>
