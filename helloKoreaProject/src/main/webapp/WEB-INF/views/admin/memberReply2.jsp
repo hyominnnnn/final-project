@@ -246,48 +246,6 @@
        height: 300px;
        }
        
-        #list-select-btn{
-       		margin-top: 50px;
-       		width: 110px;
-       		height: 35px;
-       		border: none;
-       		border-radius: 3px;
-       }
-       
-       .board-detail-btn{
-       		width: 110px;
-       		height: 35px;
-       		border: none;
-       		border-radius: 3px;
-       		
-       }
-       
-       .BoardDetailBtn{
-       		color: black;
-       		text-decoration: none;
-       		
-       }
-       
-       .BoardDetailBtn:hover{
-       	text-decoration: none;
-       }
-       
-       a:hover{
-       	text-decoration: none;
-       	color: black;
-       }
-       
-       #deleteBtn{
-       	background-color: red;
-       	width: 110px;
-       	height: 35px;
-       	border: none;
-       	border-radius: 3px;
-       }
-       
-       #modal-footer-btn{
-       	color: white;
-       }
       
     </style>
 </head>
@@ -314,12 +272,12 @@
             	<br>
                 <h1>회원 게시물 관리</h1>
                 <br>
-                <form action="detail.me" method="get">
+                <form action="memberreply.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
                         <th>글번호</th>
-                        <th>글제목</th>
+                        <th>작성댓글</th>
                         <th></th>
                         <th>작성일</th>
                         <th></th>
@@ -349,8 +307,7 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                  <button type="submit" id="list-select-btn">리스트조회</button>
-                  <button class="board-detail-btn"><a href="reply.me" class="BoardDetailBtn">댓글조회</a></button>
+                  <button type="submit">조회</button>
                   </form>
                 </div>
         </div>
@@ -362,12 +319,12 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="detail.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    		<li class="page-item"><a class="page-link" href="memberreply.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="detail.me?cPage=${p}">${p}</a></li>
+                    	<li class="page-item"><a class="page-link" href="memberreply.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
@@ -400,7 +357,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-						<button id="deleteBtn"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
+                        <button id="postng-delete-btn" class="model-footer-btn" onclick="deletePosting();">게시글삭제</button>
                     </div>
                 </form>
             </div>
