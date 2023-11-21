@@ -20,5 +20,10 @@ public class ForwardController {
 		return "common/header";
 	}
 	
+	@GetMapping("adminHeader")
+	public String adminHeader() {
+		return "common/adminHeader";
+	}
+	
 
 }

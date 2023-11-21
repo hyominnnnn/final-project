@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>정보게시글 작성</title>
+    <title>게시글 수정</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -36,10 +36,10 @@
 	<div class="content">
 		<br><br>
 		<div class="innerOuter">
-		    <h2>게시글 작성하기</h2>
+		    <h2>게시글 수정하기</h2>
 		    <br>
 		    
-		    <form id="enrollForm" method="post" action="insert.ibo" enctype="multipart/form-data">
+		    <form id="enrollForm" method="post" action="insert.fbo" enctype="multipart/form-data">
 		    	<!-- <input type="hidden" name="categoryNo" value="2"> <!-- 카테고리 구분(자유 : 1 / 정보 : 2) --> -->
 		    	
 		        <table align="center">

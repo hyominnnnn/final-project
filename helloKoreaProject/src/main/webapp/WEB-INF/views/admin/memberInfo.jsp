@@ -216,9 +216,9 @@
         }
         
         /*-------모달창-------*/
-        .model-footer-btn{
-        	height: 35px;
-        	width: 120px;
+        .member-info-btn{
+        	height: 50px;
+        	width: 150px;
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
@@ -238,16 +238,50 @@
 	       margin-top: 160px;
        }
        
-      #selectBtn{
-      	
-      }
+       #list-select-btn{
+       		margin-top: 50px;
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       }
+       
+       .member-detail-btn{
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       		
+       		
+       }
+       
+       .memberDetailBtn{
+       		color: black;
+       		text-decoration: none;
+       		
+       }
+       
+       .memberDetailBtn:hover{
+       	text-decoration: none;
+       }
+       
+       #model-footer-btn{
+       		color: white;
+       }
+       
+       a:hover{
+       	text-decoration: none;
+       	color: black;
+       }
+       
+       
     </style>
 </head>
 <body>
     <div id="wrap">
         <div id="header1">
             <div id="header1_1">
-                <jsp:include page="../common/header.jsp"></jsp:include>
+                <jsp:include page="../common/adminHeader.jsp"></jsp:include>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
@@ -303,9 +337,10 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                     <button type="submit" id="selectBtn">조회</button>
+                     <button type="submit" id="list-select-btn">리스트조회</button>
+                     <button class="member-detail-btn"><a href="posting.me" class="memberDetailBtn">게시글조회</a></button>
+                     <button class="member-detail-btn"><a href="reply.me" class="memberDetailBtn">댓글조회</a></button>
                    </form>
-                  
                 </div>
         </div>
         
@@ -372,10 +407,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<a href="posting.me" class="model-footer-btn">게시물조회</a>
-                    	<a href="reply.me" class="model-footer-btn">댓글조회</a>
-                    	<a href="delete.me" class="model-footer-btn">회원삭제</a>
-                        
+                    	<button id="deleteBtn" class="btn btn-danger"><a href="delete.me" id="model-footer-btn">회원삭제</a></button>
                     </div>
                 </form>
             </div>
@@ -384,20 +416,7 @@
     
     
     <script>
-    
-    /*
-	    function posting(num){
-	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'detail.me').submit();
-	    	}
-	    	else if{ // 댓글 조회
-	    		$('#reply-btn').attr('action', 'reply.me').submit();
-	    	}
-	    	else{ // 회원 삭제
-	    		$('#delete-btn').attr('action', 'delete.me').submit();
-	    	}
-	    }
-    */
+
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
 	             				//console.log($(this).children().eq(1).text());

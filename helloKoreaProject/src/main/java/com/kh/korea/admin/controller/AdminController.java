@@ -28,7 +28,13 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 
-	
+	// 관리자 페이지 시작
+	@RequestMapping("admin")
+	public String admin() {
+		return "admin/memberInfo";
+	}
+
+	// 회원 정보 리스트
 	@RequestMapping("list.me")
 	public String selectMemberList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
@@ -40,13 +46,13 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		System.out.println(model.getAttribute("list"));
+		//System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
 	}
 	
-	
+	// 회원 상세 조회
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
 	public String memberInfoDetail(Member m) {
@@ -62,6 +68,7 @@ public class AdminController {
 		
 	}
 	
+	// 게시판 리스트 조회
 	@GetMapping("detail.me")
 	public String selectMemberPostList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
@@ -77,6 +84,7 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
+	// 게시판 리스트 상세 조회
 	@ResponseBody
 	@GetMapping(value="memberPosting.me", produces="application/json; charset=UTF-8")
 	public String memberPostingDetail(Board b) {
@@ -86,7 +94,7 @@ public class AdminController {
 	}
 	
 	
-	
+	// 회원 삭제
 	/*
 	@RequestMapping("delete.me")
 	public String memberDelete(String memberPwd, HttpSession session) {
@@ -103,21 +111,58 @@ public class AdminController {
 		
 	}
 	*/
+	
+	// 회원 게시물 리스트 화면
 	@GetMapping("memberPosting")
 	public String memberPosting() {
 		return "admin/memberPosting";
 	}
 	
-	
+	// 게시물 조회 버튼
 	@RequestMapping("posting.me")
 	public String memberPostingDatail() {
 		return "admin/memberPosting";
 	}
 	
-	
+	// 댓글 버튼
 	@GetMapping("reply.me")
+	public String memberReplyDetail() {
+		return "admin/memberReply";
+	}
+	
+	// 회원 댓글 리스트 화면
+	@GetMapping("memberReply")
 	public String memberReply() {
 		return "admin/memberReply";
 	}
+	
+	
+	@GetMapping("memberreply.me")
+	public String MemberReply(@RequestParam(value="cPage", defaultValue="1") int currentPage,
+			Model model) {
+		
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBoardListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectReplyList(pi));
+		model.addAttribute("pi", pi);
+		
+		return "admin/memberPosting";
+	}
+	
+	
+	@GetMapping("memberReply2")
+	public String memberReply2() {
+		return "admin/memberReply2";
+	}
+	
+	// 회원 퀴즈 리스트 화면
+	@GetMapping("memberQuiz")
+	public String memberQuiz(){
+		return "admin/memberQuiz";
+	}
+	
 	
 }

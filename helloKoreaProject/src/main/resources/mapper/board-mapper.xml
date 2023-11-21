@@ -61,7 +61,7 @@
 		  	   BOARD_TITLE,
 		  	   BOARD_CONTENT,
 		  	   MEMBER_NO,
-		  	   CATEGORY_NO
+		  	   CATEGORY_NO 
 		  	   )
 		VALUES 
 			   (
@@ -69,7 +69,7 @@
 			   #{boardTitle},
 			   #{boardContent},
 			   #{memberNo},
-			   #{categoryNo}
+			   2
 			   )
 	</insert>
 	
@@ -187,7 +187,7 @@
 			   #{boardTitle},
 			   #{boardContent},
 			   #{memberNo},
-			   #{categoryNo}
+			   1
 			   )
 	</insert>
 	
@@ -251,6 +251,15 @@
 		       MODIFY_DATE DESC
 	</select>
 	
+	<!-- 자유 게시글 삭제 -->
+	<update id="deleteBoardFree" parameterType="_int"> 
+		UPDATE 
+			   TB_BOARD 
+		   SET 
+		       STATUS='N' 
+		 WHERE 
+		       BOARD_NO = #{boardNo} 
+	</update>
 	
 	
 	
@@ -308,6 +317,21 @@
 			   SEQ_BOARD.CURRVAL
 			   )
 	</insert>
+	
+	
+	
+	<!-- (공통)게시글 수정 -->
+	<update id="updateBoard" parameterType="board"> 
+		UPDATE 
+		       BOARD 
+		   SET 
+		       BOARD_TITLE = #{boardTitle}, 
+		       BOARD_CONTENT = #{boardContent}, 
+		       ORIGINAL_NAME = #{originalName}, 
+		       UPLOAD_NAME = #{uploadName} 
+		 WHERE 
+		       BOARD_NO = #{boardNo} 
+	</update>
 	
 	
 	

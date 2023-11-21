@@ -81,10 +81,18 @@ public class BoardDao {
 	public int insertFile(SqlSessionTemplate sqlSession, File file) {
 		return sqlSession.insert("boardMapper.insertFile", file);
 	}
-	// (공통)게시글 수정하기(UPDATE)
 	// (공통)게시글 삭제하기(UPDATE)
+	public int deleteFree(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.deleteBoardFree", boardNo);
+	}
+	// (공통)게시글 수정하기(UPDATE)
+	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("boardMapper.updateBoard", b);
+	}
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
+	
+	
 
 	
 

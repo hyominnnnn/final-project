@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -116,14 +117,13 @@ public class BoardController {
 			
 		File file = new File();
 			
-		System.out.println(board);
-		System.out.println(upfile);
+		//System.out.println(board);
+		//System.out.println(upfile);
 			
-		if(!upfile.getOriginalFilename().equals("")) {
+		if(!upfile.getOriginalFilename().equals("")) { // 첨부파일 있을때
 			 file.setOriginalName(upfile.getOriginalFilename());
 			 file.setUploadName(SaveFile.saveFile(upfile, session));
-		}
-		
+		} 
 		if(boardService.insertFree(board, file) > 0) { // 성공 => 게시글 목록을 보여주기
 			session.setAttribute("alertMsg", "게시글 작성 성공~");
 			return "redirect:list.fbo";
@@ -162,7 +162,7 @@ public class BoardController {
 	public ModelAndView freeDetailView(int fno, ModelAndView mv) {
 					
 		if(boardService.increaseCount(fno) > 0) {
-			mv.addObject("info", boardService.selectBoard(fno))
+			mv.addObject("free", boardService.selectBoard(fno))
 			.setViewName("board/freeBoardDetailView");
 		}  else {
 			mv.addObject("errorMsg", "상세정보 조회 실패").setViewName("common/errorPage");
@@ -171,14 +171,59 @@ public class BoardController {
 
 	}
 	
+	// 자유 게시글 삭제하기
+	@PostMapping("delete.fbo")
+	public String deleteBoardFree(int fno, HttpSession session, String filePath) {
+		
+		if(boardService.deleteBoardFree(fno) > 0) {
+			if(!filePath.equals("")) {
+				new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
+			}
+			session.setAttribute("alertMsg","삭제성공");
+			return "redirect:list.fbo";
+		} else {
+			session.setAttribute("errorMsg","지우기실패" );
+			return "common/errorPage";
+		}
+	}
+	
 		
 	// (공통)게시글 조회수 증가(UPDATE)
 	
+	// (공통)게시글 글 수정 폼 
+	@PostMapping("updateForm.bo")
+	public ModelAndView updateForm(int bno, ModelAndView mv) {
+
+		mv.addObject("b", boardService.selectBoard(bno)).setViewName("board/boardUpdateForm");
+		return mv;
+		
+	}
 	
-		// (공통)게시글 수정하기(UPDATE)
-		// (공통)게시글 삭제하기(UPDATE)
-		// (공통)댓글 목록 조회
-		// (공통)댓글 작성(INSERT)
+
+	
+	// (공통)게시글 수정하기(UPDATE)
+	@PostMapping("update.bo")
+	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
+
+		if(!reUpfile.getOriginalName().equals("")) { // 새로운 파일 없을때
+			
+			if(b.getOriginalName() != null) {
+				new File(session.getServletContext().getRealPath(b.getUploadName())).delete();
+			}
+			b.setOriginalName(reUpfile.getOriginalName());
+			b.setgetUploadName(saveFile(reUpfile,session));
+		}
+		if(boardService.updateBoard(b)>0) {
+			session.setAttribute("alertMsg", "바꾸기성공");
+			return "redirect:detail.bo?bno="+ b.getBoardNo();
+		}else {
+			session.setAttribute("errorMsg", "망마ㅣㅇ미라ㅓㅣㅁㄴ");
+			return "common/errorPage";
+		}
+	}
+	
+	// (공통)댓글 목록 조회
+	// (공통)댓글 작성(INSERT)
 	
 	
 	
