@@ -261,7 +261,7 @@
             	<br>
                 <h1>회원 댓글 관리</h1>
                 <br>
-                  <form method="" action="memberReply">
+                  <form method="#" action="memberReply">
 	                  <table class="rwd-table">
 	                    <tbody>
 	                      <tr>

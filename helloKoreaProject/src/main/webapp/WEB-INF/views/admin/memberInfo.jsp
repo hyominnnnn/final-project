@@ -274,6 +274,18 @@
        	color: black;
        }
        
+       .memberModelBtn{
+       	width: 110px;
+       	height: 35px;
+       	border: none;
+       	border-radius: 3px;
+       	color: black;
+       }
+       
+       #memberPostingBtn, #memberReplyBtn{
+       color: black;
+       }
+       
        
     </style>
 </head>
@@ -407,6 +419,8 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
+                    	<button class="memberModelBtn"><a href="#" id="memberPostingBtn">게시글조회</a></button>
+                    	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
                     	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
                 </form>

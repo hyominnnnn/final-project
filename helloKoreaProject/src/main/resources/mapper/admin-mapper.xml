@@ -89,6 +89,7 @@
 		 WHERE
 		  		EMAIL = #{email}
 		  		
+		  		
 	
 	</update>
 	
