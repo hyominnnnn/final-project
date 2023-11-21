@@ -128,7 +128,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int updateBoardFree(Board b) {
 		
-		return boardDao.updateBoard(sqlSession, b);
+		return boardDao.updateFree(sqlSession, b);
 	}
 	
 	// (공통)댓글 목록 조회

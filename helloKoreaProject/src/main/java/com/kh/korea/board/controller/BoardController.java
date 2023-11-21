@@ -186,23 +186,33 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
+	// 자유게시글 글 수정 폼 
+	@PostMapping("updateForm.bo")
+	public ModelAndView updateForm(int fno, ModelAndView mv) {
+
+		mv.addObject("b", boardService.selectBoard(fno)).setViewName("board/boardUpdateForm");
+		return mv;
+				
+	}
+		
 	// 자유게시글 수정하기(UPDATE)
 	@PostMapping("update.fbo")
 	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
 
-		if(!reUpfile.getOriginalFileName().equals("")) { // 새로운 파일 없을때
+		
+		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일 없을때
 				
 			if(b.getOriginalName() != null) {
 				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete();
 			}
-			b.setOriginalName(reUpfile.getOriginalFileName());
+			b.setOriginalName(reUpfile.getOriginalFilename());
 			b.setUploadName(saveFile(reUpfile,session));
 		}
 		if(boardService.updateBoardFree(b) > 0) {
-			session.setAttribute("alertMsg", "바꾸기성공");
+			session.setAttribute("alertMsg", "게시물 수정 성공");
 			return "redirect:detail.fbo?bno="+ b.getBoardNo();
 		}else {
-			session.setAttribute("errorMsg", "망마ㅣㅇ미라ㅓㅣㅁㄴ");
+			session.setAttribute("errorMsg", "게시물 수정 실패");
 			return "common/errorPage";
 		}
 	}
@@ -210,14 +220,12 @@ public class BoardController {
 		
 	// (공통)게시글 조회수 증가(UPDATE)
 	
-	// (공통)게시글 글 수정 폼 
-	@PostMapping("updateForm.bo")
-	public ModelAndView updateForm(int bno, ModelAndView mv) {
-
-		mv.addObject("b", boardService.selectBoard(bno)).setViewName("board/boardUpdateForm");
-		return mv;
-		
+	// 
+	private String saveFile(MultipartFile reUpfile, HttpSession session) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	
 	
 
 	

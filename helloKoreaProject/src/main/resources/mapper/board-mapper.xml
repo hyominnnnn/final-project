@@ -261,6 +261,19 @@
 		       BOARD_NO = #{boardNo} 
 	</update>
 	
+	<!-- 자유게시글 수정 -->
+	<update id="updateBoardFree" parameterType="board"> 
+		UPDATE 
+		       TB_BOARD 
+		   SET 
+		       BOARD_TITLE = #{boardTitle}, 
+		       BOARD_CONTENT = #{boardContent}, 
+		       ORIGINAL_NAME = #{originalName}, 
+		       UPLOAD_NAME = #{uploadName} 
+		 WHERE 
+		       BOARD_NO = #{boardNo} 
+	</update>
+	
 	
 	
 	
@@ -320,18 +333,7 @@
 	
 	
 	
-	<!-- (공통)게시글 수정 -->
-	<update id="updateBoard" parameterType="board"> 
-		UPDATE 
-		       BOARD 
-		   SET 
-		       BOARD_TITLE = #{boardTitle}, 
-		       BOARD_CONTENT = #{boardContent}, 
-		       ORIGINAL_NAME = #{originalName}, 
-		       UPLOAD_NAME = #{uploadName} 
-		 WHERE 
-		       BOARD_NO = #{boardNo} 
-	</update>
+	
 	
 	
 	
