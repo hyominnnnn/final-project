@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -173,11 +174,56 @@ public class BoardController {
 		
 	// (공통)게시글 조회수 증가(UPDATE)
 	
+	// (공통)게시글 글 수정 폼 
+	@PostMapping("updateForm.bo")
+	public ModelAndView updateForm(int bno, ModelAndView mv) {
+
+		mv.addObject("b", boardService.selectBoard(bno)).setViewName("board/boardUpdateForm");
+		return mv;
+		
+	}
+	// (공통)게시글 삭제하기(UPDATE)
+	@PostMapping("delete.bo")
+		public String deleteBoard(int bno, HttpSession session, String filePath) {
+			
+			
+		if(boardService.deleteBoard(bno) > 0) {
+				
+			if(!filePath.equals("")) {
+					
+				new File(session.getServletContext().getRealPath(filePath)).delete();
+			}
+			session.setAttribute("alertMsg","삭제성공");
+			return "redirect:list.bo";
+		}else {
+			session.setAttribute("errorMsg","지우기실패" );
+			return "common/errorPage";
+		}
+	}
+	// (공통)게시글 수정하기(UPDATE)
+	@PostMapping("update.bo")
+	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
+
+		if(!reUpfile.getOriginalFilename().equals("")) { // 새로운 파일 없을때
+			// 기존파일 있으면 삭체
+			if(b.getOriginalName() != null) {
+				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
+			}
+			b.setOriginalName(reUpfile.getOriginalFilename());
+			b.setChangeName(saveFile(reUpfile,session));
+			// b라는 Board 타입 객체에 새로운 정보(원본파일명, 저장경로+바뀐이름) 담기
+		}
+		if(boardService.updateBoard(b)>0) {
+			session.setAttribute("alertMsg", "바꾸기성공");
+			return "redirect:detail.bo?bno="+ b.getBoardNo();
+		}else {
+			session.setAttribute("errorMsg", "망마ㅣㅇ미라ㅓㅣㅁㄴ");
+			return "common/errorPage";
+		}
+	}
 	
-		// (공통)게시글 수정하기(UPDATE)
-		// (공통)게시글 삭제하기(UPDATE)
-		// (공통)댓글 목록 조회
-		// (공통)댓글 작성(INSERT)
+	// (공통)댓글 목록 조회
+	// (공통)댓글 작성(INSERT)
 	
 	
 	

@@ -58,17 +58,34 @@
 		        </tr>
 		        <tr>
 		            <th>첨부파일</th>
-		            <td colspan="3">파일이당</td>
+		            <c:choose>
+                    <c:when test="${empty b.originalName }">
+                    	<td colspan="3">첨부파일이 존재하지 않습니다 </td>
+                    </c:when>
+                    <c:otherwise>
+                    <td colspan="3">
+                        <a href="${b.changeName}" download="${b.originalName}">${b.originalName}</a>
+                    </td>
+                    </c:otherwise>
+                    </c:choose>
 		        </tr>
 		        <tr>
 		            <th>내용</th>
 		            <td colspan="3"></td>
 		        </tr>
 		        <tr>
-		            <td colspan="4"><p style="height:150px;">내용입니다</p></td>
+		            <td colspan="4"><p style="height:150px;">${ b.boardContent }</p></td>
 		        </tr>
 		    </table>
 		    <br>
+		    
+		    <c:if test="${loginUser.memberNickname eq b.boardWriter }">
+            <div align="center">
+                <!-- 수정하기, 삭제하기 버튼은 이 글이 본인이 작성한 글일 경우에만 보여져야 함 -->
+                <a class="btn btn-primary" onclick="postFormSubmit(0);" >수정하기</a>
+                <a class="btn btn-danger" onclick="postFormSubmit(1);" >삭제하기</a>
+            </div>
+            </c:if>
 		    
 		    <button id="scrap" class="btn btn-danger">스크랩</button>
 			<br><br>
@@ -77,6 +94,19 @@
 				<input type="hidden" name="bno" value="${ b.boardNo }">
 			    <input type="hidden" name="filePath" value="${ b.changeName }"/>
 		    </form>
+		    
+		     <script>
+            	function postFormSubmit(num){
+            		if( num == 0){
+            			$('#postForm').attr('action','updateForm.bo').submit();//수정하기 클릭시
+            		}else{
+            			$('#postForm').attr('action','delete.bo').submit();
+            		}
+            		
+            	}
+            </script>
+            
+            <br><br>
 		    
 		    <table id="replyArea" class="table" align="center">
 				<thead>

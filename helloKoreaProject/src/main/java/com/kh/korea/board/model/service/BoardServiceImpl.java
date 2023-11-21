@@ -114,11 +114,27 @@ public class BoardServiceImpl implements BoardService {
 	public int insertFree(Board board, File file) {
 		int result1 = boardDao.insertFree(sqlSession, board);
 		int result2 = 1;
-		if(file.getFileNo() != 0) {
+		if(file.getOriginalName() != null) {
 		result2 = boardDao.insertFile(sqlSession, file);
 		}
 		return (result1 * result2);
 	}
+	
+	
+	// (공통)게시글 수정하기(UPDATE)
+	@Override
+	public int updateBoard(Board b) {
+		
+		return boardDao.updateBoard(sqlSession, b);
+	}
+	// (공통)게시글 삭제하기(UPDATE)
+	@Override
+	public int deleteBoard(int boardNo) {
+		
+		return boardDao.deleteBoard(sqlSession, boardNo);
+	}
+	// (공통)댓글 목록 조회
+	// (공통)댓글 작성(INSERT)
 
 	
 	
