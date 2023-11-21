@@ -216,9 +216,9 @@
         }
         
         /*-------모달창-------*/
-        .model-footer-btn{
-        	height: 35px;
-        	width: 120px;
+        .member-info-btn{
+        	height: 50px;
+        	width: 150px;
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
@@ -238,9 +238,7 @@
 	       margin-top: 160px;
        }
        
-      #selectBtn{
-      	
-      }
+   
     </style>
 </head>
 <body>
@@ -307,7 +305,6 @@
                      <a href="posting.me" class="model-footer-btn">게시글조회</a>
                      <a href="reply.me" class="model-footer-btn">댓글조회</a>
                    </form>
-                  
                 </div>
         </div>
         
@@ -383,20 +380,7 @@
     
     
     <script>
-    
-    /*
-	    function posting(num){
-	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'detail.me').submit();
-	    	}
-	    	else if{ // 댓글 조회
-	    		$('#reply-btn').attr('action', 'reply.me').submit();
-	    	}
-	    	else{ // 회원 삭제
-	    		$('#delete-btn').attr('action', 'delete.me').submit();
-	    	}
-	    }
-    */
+
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
 	             				//console.log($(this).children().eq(1).text());

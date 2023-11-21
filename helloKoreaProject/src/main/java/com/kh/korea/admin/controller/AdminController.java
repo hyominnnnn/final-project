@@ -116,6 +116,11 @@ public class AdminController {
 	
 	
 	@GetMapping("reply.me")
+	public String memberReplyDetail() {
+		return "admin/memberReply";
+	}
+	
+	@GetMapping("memberReply")
 	public String memberReply() {
 		return "admin/memberReply";
 	}

@@ -354,7 +354,6 @@
                             <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
                             
-                          
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
