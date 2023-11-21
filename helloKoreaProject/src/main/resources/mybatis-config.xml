@@ -14,7 +14,7 @@
 			<typeAlias type="com.kh.korea.board.model.vo.Reply" alias="reply" />
 			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
 			<typeAlias type="com.kh.korea.game.model.vo.LowerGame" alias="lowerGame" />
-			
+			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>
 		</typeAliases>
 	
 		<!-- sql mapper를 새로 만들때마다 등록해야함. -->

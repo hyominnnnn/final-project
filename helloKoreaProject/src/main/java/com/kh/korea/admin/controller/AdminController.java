@@ -1,7 +1,10 @@
 package com.kh.korea.admin.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	@GetMapping("memberInfo")
 	public String memberInfo() {
@@ -33,11 +39,8 @@ public class AdminController {
 	public String admin() {
 		return "admin/memberInfo";
 	}
-	
-	
-	
-	
-	
+
+	// 회원 정보 리스트
 	@RequestMapping("list.me")
 	public String selectMemberList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
@@ -55,7 +58,7 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 	
-	
+	// 회원 상세 조회
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
 	public String memberInfoDetail(Member m) {
@@ -71,6 +74,7 @@ public class AdminController {
 		
 	}
 	
+	// 게시판 리스트 조회
 	@GetMapping("detail.me")
 	public String selectMemberPostList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
@@ -86,6 +90,7 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
+	// 게시판 리스트 상세 조회
 	@ResponseBody
 	@GetMapping(value="memberPosting.me", produces="application/json; charset=UTF-8")
 	public String memberPostingDetail(Board b) {
@@ -95,23 +100,31 @@ public class AdminController {
 	}
 	
 	
-	
-	/*
+	// 회원 삭제
 	@RequestMapping("delete.me")
 	public String memberDelete(String memberPwd, HttpSession session) {
 		
 		Member loginUser = ((Member)session.getAttribute("loginUser"));
-		String adminPwd = loginUser.getMemberPwd();
+		String encPwd = loginUser.getMemberPwd();
 		
-		if(adminService.memberDelete(email) > 0) {
-			session.removeAttribute("loginUser");
-			return "redirect:/";
-		} else {
-			return "common/errorPage";
+		if(bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
+			
+			String email = loginUser.getEmail();
+			
+			if(adminService.memberDelete(email) > 0) {
+				session.removeAttribute("loginUser");
+				return "redirect:/";
+			} else {
+				return "common/errorPage";
+			}
+				
+			} else {
+				return "admin/memberInfo";
 		}
-		
 	}
-	*/
+	
+	
+	// 회원 게시물 리스트 화면
 	@GetMapping("memberPosting")
 	public String memberPosting() {
 		return "admin/memberPosting";
@@ -129,12 +142,13 @@ public class AdminController {
 		return "admin/memberReply";
 	}
 	
+	// 회원 댓글 리스트 화면
 	@GetMapping("memberReply")
 	public String memberReply() {
 		return "admin/memberReply";
 	}
 	
-	/*
+	
 	@GetMapping("memberreply.me")
 	public String MemberReply(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
@@ -149,11 +163,17 @@ public class AdminController {
 		
 		return "admin/memberPosting";
 	}
-	*/
+	
 	
 	@GetMapping("memberReply2")
 	public String memberReply2() {
 		return "admin/memberReply2";
+	}
+	
+	// 회원 퀴즈 리스트 화면
+	@GetMapping("memberQuiz")
+	public String memberQuiz(){
+		return "admin/memberQuiz";
 	}
 	
 	

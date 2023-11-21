@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.korea.admin.model.dao.AdminDao;
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.member.model.vo.Member;
 
@@ -39,13 +40,14 @@ public class AdminServiceImpl implements  AdminService{
 		return adminDao.memberDetail(sqlSession, m);
 	}
 	
+	
 	@Override
-	public int memberDelete() {
-		return adminDao.memberDelete(sqlSession);
+	public int memberDelete(String email) {
+		return adminDao.memberDelete(sqlSession, email);
 	}
 	
 	//----------------------------------------------
-	
+	// 게시글-------------------------------------
 	
 	@Override
 	public int selectBoardListCount() {
@@ -62,6 +64,21 @@ public class AdminServiceImpl implements  AdminService{
 	@Override
 	public Board boardPosting(Board b) {
 		return adminDao.boardPosting(sqlSession, b);
+	}
+
+	
+	// 댓글----------------------------------------
+	
+	@Override
+	public int selectReplyCount() {
+		return adminDao.selectReplyCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return adminDao.selectReplyList(sqlSession, rowBounds);
 	}
 
 

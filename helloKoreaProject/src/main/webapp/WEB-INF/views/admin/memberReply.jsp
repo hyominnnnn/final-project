@@ -242,7 +242,7 @@
     <div id="wrap">
         <div id="header1">
             <div id="header1_1">
-                <jsp:include page="../common/header.jsp"></jsp:include>
+                <jsp:include page="../common/adminHeader.jsp"></jsp:include>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
@@ -261,7 +261,7 @@
             	<br>
                 <h1>회원 댓글 관리</h1>
                 <br>
-                  <form method="" action="memberReply">
+                  <form method="#" action="memberReply">
 	                  <table class="rwd-table">
 	                    <tbody>
 	                      <tr>

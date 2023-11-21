@@ -62,6 +62,42 @@
 		 WHERE
 			  EMAIL = #{checkId}
 	</select>
+	
+	<insert id="sendMail" parameterType="cert">
+		INSERT INTO TB_CERT
+		VALUES(
+			#{email},
+			#{certNo},
+			sysdate
+		)
+	</insert>
+	
+	<select id="validate" parameterType="cert" resultType="cert">
+	SELECT
+		EMAIL,
+		CERT_NO
+		REQUEST_DATE
+	FROM
+		TB_CERT
+	WHERE
+		EMAIL = #{email}
+	AND
+		CERT_NO = #{certNo}
+	AND 
+		REQUEST_DATE BETWEEN SYSDATE -3/24/60 AND SYSDATE
+		
+	</select>
+	
+	<delete id="deleteCert" parameterType="cert">
+	DELETE
+		TB_CERT
+	WHERE
+		EMAIL = #{email}
+	AND
+		CERT_NO = #{certNo}
+	</delete>
+	
+	
 	<!-- 닉네임 중복 체크 -->
 	<select id="nickCheck" parameterType="string" resultType="_int">
 		SELECT

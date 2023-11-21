@@ -294,7 +294,7 @@
     <div id="wrap">
         <div id="header1">
             <div id="header1_1">
-                <jsp:include page="../common/header.jsp"></jsp:include>
+                <jsp:include page="../common/adminHeader.jsp"></jsp:include>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">

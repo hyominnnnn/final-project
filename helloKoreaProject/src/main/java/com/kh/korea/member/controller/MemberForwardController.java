@@ -27,6 +27,12 @@ public class MemberForwardController {
 	public String login() {
 		return "member/loginForm";
 	}
+	
+	//마이페이지로 이동
+	@GetMapping("myPageForm")
+	public String myPageForm() {
+		return "member/myPageForm";
+	}
 
 	
 

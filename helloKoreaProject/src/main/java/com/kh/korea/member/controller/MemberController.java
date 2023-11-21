@@ -1,9 +1,17 @@
 package com.kh.korea.member.controller;
 
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.util.Random;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.korea.member.model.service.MemberService;
+import com.kh.korea.member.model.vo.Cert;
 import com.kh.korea.member.model.vo.Member;
 
 @Controller
@@ -48,6 +57,46 @@ public class MemberController {
 		
 		return count > 0 ? "NNN" : "NNY";
 	}
+	
+	@ResponseBody
+	@RequestMapping("cert")
+	public String inertCert(String email) throws MessagingException {
+		
+		MimeMessage message = sender.createMimeMessage();
+		MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+		
+		//랜덤 숫자 6자리 만들기
+		Random r = new Random();
+		int i = r.nextInt(100000);
+		Format f = new DecimalFormat("000000");
+		String certNo = f.format(i);
+		
+		//객체를 생성하면서 SETTER 역할을 하면서 값을 담아준다.
+		Cert cert = Cert.builder().email(email).certNo(certNo).build();
+		int result = memberService.sendMail(cert);
+		
+		//메시지를 메일로 보내주자
+		helper.setTo(email);
+		helper.setSubject("어서와 한국은 처음이지의 회원가입 인증번호");
+		helper.setText("인증번호 : " + certNo );
+		
+		sender.send(message);
+		
+		if(result > 0) {
+			return "Y"; 
+		}else {
+			return "N";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("certCheck")
+	public Boolean certCheck(String certNo, String email, HttpServletRequest request) {
+		Cert cert = Cert.builder().email(email).certNo(certNo).build();
+		boolean result = memberService.validate(cert);
+		return result;
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping("nickCheck")

@@ -107,7 +107,6 @@ public class BoardServiceImpl implements BoardService {
 		RowBounds rowBounds = new RowBounds(offset, infoPi.getBoardLimit());
 		return boardDao.selectSearchFree(sqlSession, map, rowBounds);
 	}
-	
 	// 자유게시판 글 작성
 	@Override
 	@Transactional("transactionManager")
@@ -119,20 +118,19 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return (result1 * result2);
 	}
-	
-	
-	// (공통)게시글 수정하기(UPDATE)
+	// 자유게시글 삭제하기(UPDATE)
 	@Override
-	public int updateBoard(Board b) {
-		
-		return boardDao.updateBoard(sqlSession, b);
+	public int deleteBoardFree(int boardNo) {
+			
+		return boardDao.deleteFree(sqlSession, boardNo);
 	}
-	// (공통)게시글 삭제하기(UPDATE)
+	// 자유게시글 수정하기(UPDATE)
 	@Override
-	public int deleteBoard(int boardNo) {
+	public int updateBoardFree(Board b) {
 		
-		return boardDao.deleteBoard(sqlSession, boardNo);
+		return boardDao.updateFree(sqlSession, b);
 	}
+	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
 

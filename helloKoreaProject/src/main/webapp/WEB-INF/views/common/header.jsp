@@ -61,6 +61,10 @@
             color: gray;
             margin-left: 10px;
         }
+        
+        .headerlogon{
+        	text-align: center;
+        }
 
         /*-----------------------------------------------------------------*/
         .navi{
@@ -171,14 +175,18 @@
             <div id="header1_1">
             	<img src="https://t1.daumcdn.net/cfile/blog/2254404256D3ED562F">
                 <a id="logo" href="main">어서와 한국은<br>처음이지?</a>
+                <!-- 이부분은 최종적으론 지우기 -->
+                <a href="logonForm" id="a1">회원가입</a>
+                <a href="loginForm" id="a2">로그인</a>
+                <a href="myPageForm" id="a1">마이페이지</a>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
             	<c:choose>
 	            	<c:when test="${empty loginUser }">
 	            	<!-- 로그인 전 -->
-	                <a href="logonForm" id="a1">회원가입</a>
-	                <a href="loginForm" id="a2">로그인</a>
+	                <a href="logonForm" id="a1" class="headerlogon">회원가입</a>
+	                <a href="loginForm" id="a2" class="headerlogon">로그인</a>
 	                </c:when>
 	                <c:otherwise>
 	                <!-- 로그인 후 -->
@@ -196,9 +204,19 @@
                         
                     </div>
                     <div id="inform">
-                        <a href="#" id="a1">마이페이지</a>
+
+                        <a href="myPageForm" id="a1">마이페이지</a>
                         <a href="logout" id="a2">로그아웃</a>
-                        <a href="admin" id="a3">관리자페이지</a>
+
+                        <a href="#" id="a1" class="headerlogon">마이페이지</a>
+                        <a href="logout" id="a2" class="headerlogon">로그아웃</a>
+
+						<!-- 관리자 로그인 상태일 경우(status='A')에만 보여짐 -->
+                     	<c:if test="${ sessionScope.loginUser.status eq 'A'}">
+                        <a href="admin" id="a3" class="headerlogon">관리자페이지</a>
+                        </c:if>                        
+                        
+
                     </div>
 	                </c:otherwise>
                 </c:choose>
