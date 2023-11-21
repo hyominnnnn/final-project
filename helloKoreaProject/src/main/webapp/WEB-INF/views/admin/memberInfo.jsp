@@ -274,9 +274,6 @@
        	color: black;
        }
        
-       #deleteBtn{
-       	background-color: red;
-       }
        
     </style>
 </head>
@@ -410,7 +407,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="member-detail-btn" id="deleteBtn"><a href="delete.me" id="model-footer-btn">회원삭제</a></button>
+                    	<button id="deleteBtn" class="btn btn-danger"><a href="delete.me" id="model-footer-btn">회원삭제</a></button>
                     </div>
                 </form>
             </div>

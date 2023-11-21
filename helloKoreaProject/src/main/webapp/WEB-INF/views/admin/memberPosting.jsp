@@ -278,7 +278,6 @@
        }
        
        #deleteBtn{
-       	background-color: red;
        	width: 110px;
        	height: 35px;
        	border: none;
@@ -400,7 +399,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-						<button id="deleteBtn"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
+						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
                     </div>
                 </form>
             </div>
