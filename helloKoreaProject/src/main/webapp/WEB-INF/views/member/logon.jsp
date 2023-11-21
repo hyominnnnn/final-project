@@ -91,7 +91,7 @@
 		
 		$(function(){
 			$('#google-login').click(function(){
-				location.href = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=Tf_XaxBirROlA8S513Ix&redirect_uri=http://localhost:9999/korea/ncode';
+				location.href = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=455689616363-l4geciacek63nj3u1rqa3v58l2qjgg7s.apps.googleusercontent.com&redirect_uri=http://localhost:9999/korea/gcode&response_type=code&scope=email%20profile%20openid&access_type=offline';
 			});
 		});
 	

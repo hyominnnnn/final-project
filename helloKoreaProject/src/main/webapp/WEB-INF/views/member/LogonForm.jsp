@@ -84,12 +84,14 @@
 	<form id="logonForm" action="Logon">
 	    <label for="email">이메일  :</label>
 	    <input type="email" id="email" name="email" placeholder="Please Enter E-mail" required>
-	    <button type="button" onclick="idCheck();">중복확인</button>
+	    <button type="button" id="emailBtn" disabled onclick="idCheck();">중복확인</button> 
+	    <button type="button" id="certRequest" disabled onclick="certRequestBtn();">인증번호요청</button>
+	    <input type="text" name="cert" id="cert"/> <button type="button" id="certBtn" disabled onclick="certCheck();">인증하기</button>
 	    <br>
 	
 	    <label for="nickname">닉네임  :</label>
 	    <input type="text" id="nickname" name="memberNickname" maxlength="20" disabled required>
-        <button type="button" onclick="nickCheck();">중복확인</button>
+        <button type="button" id="nickBtn" disabled onclick="nickCheck();">중복확인</button>
 	    <br>
 	
 	    <label for="password">패스워드 :</label>
@@ -137,6 +139,50 @@
 	</form>
 </div>
 <script>
+	function certRequestBtn(){
+		const $email = $('#logonForm #email');
+		
+		$.ajax({
+			url : 'cert',
+			data : {email : $email.val()},
+			success : function(ok){
+				console.log(ok);
+				alert('이메일로 인증번호를 전송했습니다. 3분안에 인증번호를 입력해주세요.');
+			},
+			error : function(){
+				alert('이메일 인증 요청에 실패했습니다. 회원가입을 다시 진행해주세요.');
+			}
+				
+		});
+	}
+	
+	function certCheck(){
+		const $certNo = $('#cert');
+		const $email = $('#logonForm #email');
+		$.ajax({
+			url : 'certCheck',
+			data : {certNo : $certNo.val(),
+					email : $email.val()	
+			},
+			success : function(ok){
+				console.log(ok);
+				if(ok == true){
+					alert('인증이 완료되었습니다. 다음단계를 진행해주세요.');
+					$('#logonForm #nickname').removeAttr('disabled');
+				}
+				else{
+					alert('인증이 실패되었습니다. 다시 시도해주세요.');
+					$('#logonForm #nickname').attr('disabled', true);
+				}
+				
+				
+			},
+			error : function(){
+				
+			}
+		})
+	}
+	
     function idCheck(){
         //먼저 사용자가 입력한 memberId 확인
         const $userEmail = $('#logonForm #email');
@@ -149,11 +195,12 @@
         		if(ok == 'NNN'){
         			alert('이미 존재하는 이메일입니다. 다른 이메일을 입력해주세요.');
         			$userEmail.val('').focus();
-                    $('#logonForm #nickname').attr('disabled', true);
+                    
+                    $('#logonForm #certRequest').attr('disabled', true);
         		}
         		else{
         			alert('사용가능한 이메일입니다. 회원가입을 계속 진행해주세요.');
-                    $('#logonForm #nickname').removeAttr('disabled');
+                    $('#logonForm #certRequest').removeAttr('disabled');
         		}
         	},
         	error : function(){
@@ -185,6 +232,42 @@
         })
     }
 
+    $(function(){
+    	$('#logonForm #email').keyup(function(){
+    		var $email = $('#logonForm #email');
+    		if($email.val().length == 0){
+	    		$('#emailBtn').attr('disabled', true);
+    		}
+    		else{
+    			$('#emailBtn').removeAttr('disabled');
+    		}
+    	})
+    })
+    
+    $(function(){
+    	$('#logonForm #cert').keyup(function(){
+    		var $cert = $('#logonForm #cert');
+    		if($cert.val().length == 0){
+    			$('#certBtn').attr('disabled', true);
+    		}
+    		else{
+    			$('#certBtn').removeAttr('disabled');
+    		}
+    	})
+    })
+    
+    $(function(){
+    	$('#logonForm #nickname').keyup(function(){
+    		var $nickname = $('#logonForm #nickname');
+    		if($nickname.val().length == 0){
+	    		$('#nickBtn').attr('disabled', true);
+    		}
+    		else{
+    			$('#nickBtn').removeAttr('disabled');
+    		}
+    	})
+    })
+    
     $(function(){
     	$('#logonForm #password').keyup(function(){
     		var $pwd = $('#logonForm #password');

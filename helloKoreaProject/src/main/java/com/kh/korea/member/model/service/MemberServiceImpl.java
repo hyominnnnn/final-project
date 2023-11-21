@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.korea.member.model.dao.MemberDao;
+import com.kh.korea.member.model.vo.Cert;
 import com.kh.korea.member.model.vo.Member;
 
 @Service
@@ -20,19 +21,21 @@ public class MemberServiceImpl implements MemberService {
 		//System.out.println("서비스 m " + m);
 		return memberDao.insertMember(sqlSession, m);
 	}
-/*
+
 	@Override
-	public void sendMail(CertVo certVo) {
-		// TODO Auto-generated method stub
-		
+	public int sendMail(Cert cert) {
+		return memberDao.sendMail(sqlSession, cert);
 	}
 
 	@Override
-	public boolean validate(CertVO certVo) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean validate(Cert cert) {
+		boolean result = memberDao.validate(sqlSession, cert);
+		if(result != false) {
+			memberDao.deleteCert(sqlSession,cert);
+		}
+		return result;
 	}
-*/
+
 	@Override
 	public int idCheck(String checkId) {
 		return memberDao.idCheck(sqlSession, checkId);

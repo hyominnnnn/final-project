@@ -1,5 +1,6 @@
 package com.kh.korea.member.model.service;
 
+import com.kh.korea.member.model.vo.Cert;
 import com.kh.korea.member.model.vo.Member;
 
 public interface MemberService {
@@ -18,4 +19,8 @@ public interface MemberService {
 	//소셜 서비스
 	int socialCheck(String id);
 	Member socialLogin(String id);
+	//인증메일 발송
+	int sendMail(Cert cert);
+	//인증메일 확인
+	boolean validate(Cert cert);
 }
