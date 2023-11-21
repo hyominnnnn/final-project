@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,23 +49,23 @@
 		    <table id="contentArea" align="center" class="table">
 				<tr>
 					<th width="100">제목</th>
-		            <td colspan="3">제목이당</td>
+		            <td colspan="3">${ free.boardTitle }</td>
 		        </tr>
 		        <tr>
 		            <th>작성자</th>
-		            <td>작성자당</td>
+		            <td>${ free.boardWriter }</td>
 		            <th>작성일</th>
-		            <td>작성일이당</td>
+		            <td>${ free.modifyDate }</td>
 		        </tr>
 		        <tr>
 		            <th>첨부파일</th>
 		            <c:choose>
-                    <c:when test="${empty b.originalName }">
-                    	<td colspan="3">첨부파일이 존재하지 않습니다 </td>
+                    <c:when test="${not empty free.originalName }">
+                    	<td colspan="3">${ free.originalName }</td>
                     </c:when>
                     <c:otherwise>
                     <td colspan="3">
-                        <a href="${b.changeName}" download="${b.originalName}">${b.originalName}</a>
+                        <a href="${free.uploadName}" download="${free.originalName}">${free.originalName}</a>
                     </td>
                     </c:otherwise>
                     </c:choose>
@@ -74,12 +75,12 @@
 		            <td colspan="3"></td>
 		        </tr>
 		        <tr>
-		            <td colspan="4"><p style="height:150px;">${ b.boardContent }</p></td>
+		            <td colspan="4"><p style="height:150px;">${ free.boardContent }</p></td>
 		        </tr>
 		    </table>
 		    <br>
 		    
-		    <c:if test="${loginUser.memberNickname eq b.boardWriter }">
+		    <c:if test="${loginUser.memberNickname eq free.boardWriter }">
             <div align="center">
                 <!-- 수정하기, 삭제하기 버튼은 이 글이 본인이 작성한 글일 경우에만 보여져야 함 -->
                 <a class="btn btn-primary" onclick="postFormSubmit(0);" >수정하기</a>
@@ -91,16 +92,16 @@
 			<br><br>
 			
 		    <form action="" method="post" id="postForm">
-				<input type="hidden" name="bno" value="${ b.boardNo }">
-			    <input type="hidden" name="filePath" value="${ b.changeName }"/>
+				<input type="hidden" name="fno" value="${ free.boardNo }">
+			    <input type="hidden" name="filePath" value="${ free.uploadName }"/>
 		    </form>
 		    
 		     <script>
             	function postFormSubmit(num){
             		if( num == 0){
             			$('#postForm').attr('action','updateForm.bo').submit();//수정하기 클릭시
-            		}else{
-            			$('#postForm').attr('action','delete.bo').submit();
+            		} else {
+            			$('#postForm').attr('action','delete.fbo').submit();
             		}
             		
             	}
