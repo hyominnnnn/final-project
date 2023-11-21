@@ -89,21 +89,25 @@
 		</div>		
 	</div>
 	
-	<c:if test="${ empty loginUser }">		
-		<script>
+	<script>
+		// a태그 클릭 막고 alert 띄우기
+		function noClick(str) {
 			document.querySelector('.low').removeAttribute('href');
 			document.querySelector('.middle').removeAttribute('href');
 			document.querySelector('.upper').removeAttribute('href');
-			alert('로그인 후 이용해주세요!');
+			alert(str);
+		}
+	</script>
+	
+	<c:if test="${ empty loginUser }">
+		<script>
+			noClick('로그인 후 이용해주세요.');
 		</script>
 	</c:if>
 	
 	<c:if test="${ loginUser.nationNo == 410 }">
 		<script>
-			document.querySelector('.low').removeAttribute('href');
-			document.querySelector('.middle').removeAttribute('href');
-			document.querySelector('.upper').removeAttribute('href');
-			alert('외국인만 이용 가능한 서비스입니다.');
+			noClick('외국인만 이용 가능한 서비스입니다.');
 		</script>
 	</c:if>
 	

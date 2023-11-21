@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gameMapper">
+	
+	<resultMap id="gameResultSet" type="lowerGame">
+		<result column="QUIZ_NO" property="quizNo" />
+		<result column="QUIZ_CONTENT" property="quizContent" />
+		<result column="FIRST_CHOICE" property="firstChoice" />
+		<result column="SECOND_CHOICE" property="secondChoice" />
+		<result column="CORRECT" property="correct" />
+	</resultMap>
+	
+	<select id="firstQuiz" resultMap="gameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_LOWER_GAME
+		 WHERE 
+		 	   QUIZ_NO = 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+	<select id="nextQuiz" parameterType="_int" resultMap="gameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_LOWER_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } + 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+	<select id="prevQuiz" parameterType="_int" resultMap="gameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_LOWER_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } - 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+</mapper>

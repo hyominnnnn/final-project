@@ -13,6 +13,7 @@
 			<typeAlias type="com.kh.korea.board.model.vo.File" alias="file" />
 			<typeAlias type="com.kh.korea.board.model.vo.Reply" alias="reply" />
 			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
+			<typeAlias type="com.kh.korea.game.model.vo.LowerGame" alias="lowerGame" />
 			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>
 		</typeAliases>
 	
@@ -21,6 +22,7 @@
 			<mapper resource="/mapper/member-mapper.xml" />
 			<mapper resource="/mapper/board-mapper.xml" />
 			<mapper resource="/mapper/admin-mapper.xml" />
+			<mapper resource="/mapper/game-mapper.xml" />
 		</mappers>
 		
 		
