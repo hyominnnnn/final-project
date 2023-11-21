@@ -113,7 +113,10 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional("transactionManager")
 	public int insertFree(Board board, File file) {
 		int result1 = boardDao.insertFree(sqlSession, board);
-		int result2 = boardDao.insertFile(sqlSession, file);
+		int result2 = 1;
+		if(file.getFileNo() != 0) {
+		result2 = boardDao.insertFile(sqlSession, file);
+		}
 		return (result1 * result2);
 	}
 

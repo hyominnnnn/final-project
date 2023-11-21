@@ -116,14 +116,13 @@ public class BoardController {
 			
 		File file = new File();
 			
-		System.out.println(board);
-		System.out.println(upfile);
+		//System.out.println(board);
+		//System.out.println(upfile);
 			
-		if(!upfile.getOriginalFilename().equals("")) {
+		if(!upfile.getOriginalFilename().equals("")) { // 첨부파일 있을때
 			 file.setOriginalName(upfile.getOriginalFilename());
 			 file.setUploadName(SaveFile.saveFile(upfile, session));
-		}
-		
+		} 
 		if(boardService.insertFree(board, file) > 0) { // 성공 => 게시글 목록을 보여주기
 			session.setAttribute("alertMsg", "게시글 작성 성공~");
 			return "redirect:list.fbo";
