@@ -66,7 +66,7 @@
         .navi{
        		width: 1850px;
             height: 100px;
-            background-color: #bbe9d7;
+            background-color: rgba(255, 255, 255, 0.258);
             margin: 0 auto;
         }
         #navi_1{
@@ -208,34 +208,11 @@
         <div class="navi">
 
             <ul id="navi_1">
-                <li><a href="#">체험</a>
-                    <ul class="navi_2">
-                        <li><a href="list.kf">한식체험</a></li>
-                        <li><a href="#">전통혼례</a></li>
-                        <li><a href="#">전통예술공연</a></li>
-                        <li><a href="#">전통문화체험</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">채팅학습</a>
-                    <ul class="navi_2">
-                        <li><a href="#">1:1채팅방</a></li>
-                        <li><a href="#">단체채팅방</a></li>
-                     
-                    </ul>
-                </li>
-                <li>
-                    <a href="main.ga">게임학습</a>
-                </li>
-                <li>
-                    <a href="#">커뮤니티</a>
-                    <ul class="navi_2">
-                        <li><a href="list.fbo">자유게시판</a></li>
-                        <li><a href="list.ibo">정보게시판</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="">여행지도</a>
-                </li>
+                <li><a href="memberInfo">회원관리</a></li>
+                <li><a href="memberPosting">게시판관리</a></li>
+                <li><a href="main.ga">퀴즈관리</a></li>
+                <li><a href="#">채팅관리</a></li>
+                <li><a href="">예약관리</a></li>
             </ul>
         </div>
 
