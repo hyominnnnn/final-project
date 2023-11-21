@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 import org.json.simple.parser.ParseException;
 
-import com.kh.korea.member.model.vo.Member;
+public interface NaverService {
 
-public interface KakaoService {
 	String getToken(String code) throws IOException, ParseException;
-	HashMap<String, String>  getUserInfo(String accessToken) throws IOException, ParseException;
 
+	HashMap<String, String> getUserInfo(String accessToken) throws IOException, ParseException;
+	
 }

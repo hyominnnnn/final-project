@@ -11,14 +11,14 @@ import com.kh.korea.member.model.vo.Member;
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
-	private MemberDao md;
+	private MemberDao memberDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public int insertMember(Member m) {
 		//System.out.println("서비스 m " + m);
-		return md.insertMember(sqlSession, m);
+		return memberDao.insertMember(sqlSession, m);
 	}
 /*
 	@Override
@@ -35,23 +35,34 @@ public class MemberServiceImpl implements MemberService {
 */
 	@Override
 	public int idCheck(String checkId) {
-		return md.idCheck(sqlSession, checkId);
+		return memberDao.idCheck(sqlSession, checkId);
 	}
 	
 	@Override
 	public int nickCheck(String checkNick) {
-		return md.nickCheck(sqlSession, checkNick);
+		return memberDao.nickCheck(sqlSession, checkNick);
 	}
 
 	@Override
 	public Member loginMember(Member m) {
-		return md.loginMember(sqlSession, m);
+		return memberDao.loginMember(sqlSession, m);
 	}
 
 	@Override
 	public int updateMember(Member m) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	@Override
+	public int socialCheck(String id) {
+		
+		return memberDao.socialCheck(sqlSession, id);
+	}
+
+	@Override
+	public Member socialLogin(String id) {
+		return memberDao.socialLogin(sqlSession, id);
 	}
 
 }

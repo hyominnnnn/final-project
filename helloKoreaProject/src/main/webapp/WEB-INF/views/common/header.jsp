@@ -120,6 +120,48 @@
         
         #navi_1 > li > ul a{font-size: 17px;}
         #navi_1 > li > ul a:hover{font-size: 20px;}
+
+        #header1_3{
+            border : 1px solid red;
+        }
+        #header1_3 div{
+            border : 1px solid red;
+            
+        }
+        /*로그인시 프로필 이미지*/
+        #profile{
+            width : 100%;
+            height: 80%;
+            
+        }
+        #inform{
+            width : 100%;
+            height: 20%;
+        }
+        #profile_img{
+            width : 85px;
+            height: 85px;
+            border-radius: 50%;
+        }  
+      
+        #profile div{
+            float: left;
+            height: 100%;
+        }
+        #pro1{
+            width: 30%;
+            text-align: center;
+        }
+        #pro2{
+            width: 70%;
+            text-align: center;
+            line-height: 500%;
+        }
+        #nick{
+            color: darkviolet;
+            font-weight: bold;
+        }
+
 </style>
 </head>
 <body>
@@ -139,10 +181,23 @@
 	                </c:when>
 	                <c:otherwise>
 	                <!-- 로그인 후 -->
-	                <label>${sessionScope.loginUser.memberNickname }님 환영합니다</label>
-	                <br>
-	                <a href="#" id="a1">마이페이지</a>
-	                <a href="logout" id="a2">로그아웃</a>
+                    <div id="profile">
+                    	<c:choose>
+	                        <c:when test="${empty loginUser.socialProfile}">
+	                        	<div id="pro1"><img src="resources/images/nonImage.png" id="profile_img"></div>
+	                        </c:when>
+	                        <c:otherwise>
+	                       	 <div id="pro1"><img src="${sessionScope.loginUser.socialProfile}" id="profile_img"></div>
+	                       	 
+							</c:otherwise>
+						</c:choose>
+                        <div id="pro2"><label id="nick">${sessionScope.loginUser.memberNickname }</label>님 환영합니다</div>
+                        
+                    </div>
+                    <div id="inform">
+                        <a href="#" id="a1">마이페이지</a>
+                        <a href="logout" id="a2">로그아웃</a>
+                    </div>
 	                </c:otherwise>
                 </c:choose>
             </div>

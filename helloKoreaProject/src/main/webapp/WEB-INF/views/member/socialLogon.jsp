@@ -81,7 +81,7 @@
  -->
 
 <div id="signupForm">
-	<form id="logonForm" action="KakaoLogon">
+	<form id="logonForm" action="socialLogon">
 
 		<label for="email">이메일  :</label>
 	    <input type="email" id="email" name="email" placeholder="Please Enter E-mail" required>

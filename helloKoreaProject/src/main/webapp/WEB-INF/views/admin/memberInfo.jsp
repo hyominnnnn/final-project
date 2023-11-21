@@ -222,6 +222,9 @@
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
+        	text-decoration: none;
+        	color: black;
+        	padding-top: 5px;
         }
         
         .modal-content{
@@ -298,6 +301,7 @@
                       </c:forEach>
                     </tbody>
                   </table>
+
                      <button type="submit" id="member-info-btn">리스트조회</button>
                      <a href="posting.me" class="member-info-btn">게시물조회</a>
                      <a href="reply.me" class="member-info-btn">댓글조회</a>
@@ -369,35 +373,16 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-<<<<<<< Updated upstream
-                        <button id="posting-btn" class="model-footer-btn" onclick="posting(0);">게시물조회</button>
-                        <button id="reply-btn" class="model-footer-btn" onclick="reply(1);">댓글조회</button>
-                        <button id="delete-btn" class="model-footer-btn" onclick="delete(2);">회원삭제</button>
-=======
-                    	<a href="#" class="model-footer-btn">게시물조회</a>
-                    	<a href="#" class="model-footer-btn">댓글조회</a>
                     	<a href="#" class="model-footer-btn">회원삭제</a>
->>>>>>> Stashed changes
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
+    
     <script>
-    /*
-	    function posting(num){
-	    	if(num == 0){ // 게시물 조회
-	    		$('#posting-btn').attr('action', 'detail.me').submit();
-	    	}
-	    	else if{ // 댓글 조회
-	    		$('#reply-btn').attr('action', 'reply.me').submit();
-	    	}
-	    	else{ // 회원 삭제
-	    		$('#delete-btn').attr('action', 'delete.me').submit();
-	    	}
-	    }
-    */
+
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
 	             				//console.log($(this).children().eq(1).text());
@@ -407,9 +392,15 @@
 							    	url : 'memberDetail.me',
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
+
 							    		
 							    	
+
+							    	   console.log(data);
+
 							    	   //console.log(data.email);
+
+
 							    		
 							    	   const inputName = data.memberName;
 							    	   const inputemail= data.email;
