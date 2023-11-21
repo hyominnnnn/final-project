@@ -186,6 +186,26 @@ public class BoardController {
 			return "common/errorPage";
 		}
 	}
+	// 자유게시글 수정하기(UPDATE)
+	@PostMapping("update.fbo")
+	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
+
+		if(!reUpfile.getOriginalFileName().equals("")) { // 새로운 파일 없을때
+				
+			if(b.getOriginalName() != null) {
+				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete();
+			}
+			b.setOriginalName(reUpfile.getOriginalFileName());
+			b.setUploadName(saveFile(reUpfile,session));
+		}
+		if(boardService.updateBoardFree(b) > 0) {
+			session.setAttribute("alertMsg", "바꾸기성공");
+			return "redirect:detail.fbo?bno="+ b.getBoardNo();
+		}else {
+			session.setAttribute("errorMsg", "망마ㅣㅇ미라ㅓㅣㅁㄴ");
+			return "common/errorPage";
+		}
+	}
 	
 		
 	// (공통)게시글 조회수 증가(UPDATE)
@@ -201,26 +221,7 @@ public class BoardController {
 	
 
 	
-	// (공통)게시글 수정하기(UPDATE)
-	@PostMapping("update.bo")
-	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
-
-		if(!reUpfile.getOriginalName().equals("")) { // 새로운 파일 없을때
-			
-			if(b.getOriginalName() != null) {
-				new File(session.getServletContext().getRealPath(b.getUploadName())).delete();
-			}
-			b.setOriginalName(reUpfile.getOriginalName());
-			b.setgetUploadName(saveFile(reUpfile,session));
-		}
-		if(boardService.updateBoard(b)>0) {
-			session.setAttribute("alertMsg", "바꾸기성공");
-			return "redirect:detail.bo?bno="+ b.getBoardNo();
-		}else {
-			session.setAttribute("errorMsg", "망마ㅣㅇ미라ㅓㅣㅁㄴ");
-			return "common/errorPage";
-		}
-	}
+	
 	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
