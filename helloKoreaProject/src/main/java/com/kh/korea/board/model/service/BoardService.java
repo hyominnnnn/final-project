@@ -32,13 +32,13 @@ public interface BoardService {
 	ArrayList<Board> selectSearchFree(HashMap<String, String> map, PageInfo infoPi);
 	// 자유 게시글 삭제하기(UPDATE)
 	int deleteBoardFree(int boardNo);
+	// 자유게시글 수정하기(UPDATE)
+	int updateBoardFree(Board b);
 	
 	// (공통)게시글 조회수 증가(UPDATE)
 	int increaseCount(int boardNo);
 	// (공통)게시글 상세조회(SELECT)
 	Board selectBoard(int boardNo);
-	// (공통)게시글 수정하기(UPDATE)
-	int updateBoard(Board b);
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
 	

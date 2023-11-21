@@ -25,8 +25,8 @@
             background-color:white;
         }
 
-        #enrollForm>table {width:100%;}
-        #enrollForm>table * {margin:5px;}
+        #updateForm>table {width:100%;}
+        #updateForm>table * {margin:5px;}
     </style>
 </head>
 <body>
@@ -39,8 +39,7 @@
 		    <h2>게시글 수정하기</h2>
 		    <br>
 		    
-		    <form id="enrollForm" method="post" action="insert.fbo" enctype="multipart/form-data">
-		    	<!-- <input type="hidden" name="categoryNo" value="2"> <!-- 카테고리 구분(자유 : 1 / 정보 : 2) --> -->
+		    <form id="updateForm" method="post" action="update.fbo" enctype="multipart/form-data">
 		    	
 		        <table align="center">
 		        	<tr>
@@ -63,7 +62,7 @@
 		        <br>
 		        
 		        <div align="center">
-		        	<button type="submit" class="btn btn-primary">등록하기</button>
+		        	<button type="submit" class="btn btn-primary">수정하기</button>
 		            <button type="reset" class="btn btn-danger">취소하기</button>
 		        </div>
 		    </form>
