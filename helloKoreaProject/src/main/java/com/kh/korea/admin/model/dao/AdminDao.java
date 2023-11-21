@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.member.model.vo.Member;
 
 @Repository
@@ -40,6 +41,14 @@ public class AdminDao {
 
 	public Board boardPosting(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.selectOne("adminMapper.boardPosting", b);
+	}
+
+	public int selectReplyCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectReplyCount");
+	}
+
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReplyList");
 	}
 
 

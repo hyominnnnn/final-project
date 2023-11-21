@@ -3,6 +3,7 @@ package com.kh.korea.admin.model.service;
 import java.util.ArrayList;
 
 import com.kh.korea.board.model.vo.Board;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.member.model.vo.Member;
 
@@ -17,16 +18,22 @@ public interface AdminService {
 	Member memberDetail(Member m);
 	
 	// 회원 탈퇴시키기
-	int memberDelete();
+	//int memberDelete();
 	
 	//------------------------------------------
+	// 게시글-------------------------------------
 	
 	int selectBoardListCount();
 	
 	ArrayList<Board> selectBoardList(PageInfo pi);
 	
-	// 게시글
 	Board boardPosting (Board b);
+	
+	// 댓글----------------------------------------
+	int selectReplyCount();
+	
+	ArrayList<Reply> selectReplyList(PageInfo pi);
+	
 
 
 }
