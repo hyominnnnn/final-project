@@ -40,7 +40,7 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		System.out.println(model.getAttribute("list"));
+		//System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
@@ -108,13 +108,13 @@ public class AdminController {
 		return "admin/memberPosting";
 	}
 	
-	
+	// 게시물 조회 버튼
 	@RequestMapping("posting.me")
 	public String memberPostingDatail() {
 		return "admin/memberPosting";
 	}
 	
-	
+	// 댓글 버튼
 	@GetMapping("reply.me")
 	public String memberReplyDetail() {
 		return "admin/memberReply";
@@ -124,5 +124,28 @@ public class AdminController {
 	public String memberReply() {
 		return "admin/memberReply";
 	}
+	
+	/*
+	@GetMapping("memberreply.me")
+	public String MemberReply(@RequestParam(value="cPage", defaultValue="1") int currentPage,
+			Model model) {
+		
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectBoardListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectReplyList(pi));
+		model.addAttribute("pi", pi);
+		
+		return "admin/memberPosting";
+	}
+	*/
+	
+	@GetMapping("memberReply2")
+	public String memberReply2() {
+		return "admin/memberReply2";
+	}
+	
 	
 }

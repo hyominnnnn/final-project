@@ -238,7 +238,46 @@
 	       margin-top: 160px;
        }
        
-   
+       #list-select-btn{
+       		margin-top: 50px;
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       }
+       
+       .member-detail-btn{
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       		
+       		
+       }
+       
+       .memberDetailBtn{
+       		color: black;
+       		text-decoration: none;
+       		
+       }
+       
+       .memberDetailBtn:hover{
+       	text-decoration: none;
+       }
+       
+       #model-footer-btn{
+       		color: white;
+       }
+       
+       a:hover{
+       	text-decoration: none;
+       	color: black;
+       }
+       
+       #deleteBtn{
+       	background-color: red;
+       }
+       
     </style>
 </head>
 <body>
@@ -301,9 +340,9 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                     <button type="submit" id="selectBtn">리스트조회</button>
-                     <a href="posting.me" class="model-footer-btn">게시글조회</a>
-                     <a href="reply.me" class="model-footer-btn">댓글조회</a>
+                     <button type="submit" id="list-select-btn">리스트조회</button>
+                     <button class="member-detail-btn"><a href="posting.me" class="memberDetailBtn">게시글조회</a></button>
+                     <button class="member-detail-btn"><a href="reply.me" class="memberDetailBtn">댓글조회</a></button>
                    </form>
                 </div>
         </div>
@@ -371,7 +410,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<a href="#" class="model-footer-btn">회원삭제</a>
+                    	<button class="member-detail-btn" id="deleteBtn"><a href="delete.me" id="model-footer-btn">회원삭제</a></button>
                     </div>
                 </form>
             </div>
