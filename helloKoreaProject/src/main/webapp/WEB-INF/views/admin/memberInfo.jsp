@@ -301,12 +301,10 @@
                       </c:forEach>
                     </tbody>
                   </table>
-
-                     <button type="submit" id="member-info-btn">리스트조회</button>
-                     <a href="posting.me" class="member-info-btn">게시물조회</a>
-                     <a href="reply.me" class="member-info-btn">댓글조회</a>
+                     <button type="submit" id="selectBtn">리스트조회</button>
+                     <a href="posting.me" class="model-footer-btn">게시글조회</a>
+                     <a href="reply.me" class="model-footer-btn">댓글조회</a>
                    </form>
-                  
                 </div>
         </div>
         
