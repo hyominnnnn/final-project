@@ -274,6 +274,18 @@
        	color: black;
        }
        
+       .memberModelBtn{
+       	width: 110px;
+       	height: 35px;
+       	border: none;
+       	border-radius: 3px;
+       	color: black;
+       }
+       
+       #memberPostingBtn, #memberReplyBtn{
+       color: black;
+       }
+       
        
     </style>
 </head>
@@ -407,13 +419,45 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button id="deleteBtn" class="btn btn-danger"><a href="delete.me" id="model-footer-btn">회원삭제</a></button>
+                    	<button class="memberModelBtn"><a href="#" id="memberPostingBtn">게시글조회</a></button>
+                    	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
+                    	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
+     <div class="modal fade" id="deleteForm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+​
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">관리자 비밀번호 확인!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+​
+                <form action="delete.me" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div align="center">
+			                            회원삭제 후 복구가 불가능합니다. <br>
+			                            정말로 회원을 삭제 하시겠습니까? <br>
+                        </div>
+                        <br>
+                        	<input type="hidden" name="email" value="">
+                            <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer" align="center">
+                        <button type="submit" class="btn btn-danger">확인</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     
     <script>
 

@@ -40,12 +40,12 @@ public class AdminServiceImpl implements  AdminService{
 		return adminDao.memberDetail(sqlSession, m);
 	}
 	
-	/*
+	
 	@Override
-	public int memberDelete() {
-		return adminDao.memberDelete(sqlSession);
+	public int memberDelete(String email) {
+		return adminDao.memberDelete(sqlSession, email);
 	}
-	*/
+	
 	//----------------------------------------------
 	// 게시글-------------------------------------
 	

@@ -1,7 +1,10 @@
 package com.kh.korea.admin.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	@GetMapping("memberInfo")
 	public String memberInfo() {
@@ -95,22 +101,28 @@ public class AdminController {
 	
 	
 	// 회원 삭제
-	/*
 	@RequestMapping("delete.me")
 	public String memberDelete(String memberPwd, HttpSession session) {
 		
 		Member loginUser = ((Member)session.getAttribute("loginUser"));
-		String adminPwd = loginUser.getMemberPwd();
+		String encPwd = loginUser.getMemberPwd();
 		
-		if(adminService.memberDelete(email) > 0) {
-			session.removeAttribute("loginUser");
-			return "redirect:/";
-		} else {
-			return "common/errorPage";
+		if(bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
+			
+			String email = loginUser.getEmail();
+			
+			if(adminService.memberDelete(email) > 0) {
+				session.removeAttribute("loginUser");
+				return "redirect:/";
+			} else {
+				return "common/errorPage";
+			}
+				
+			} else {
+				return "admin/memberInfo";
 		}
-		
 	}
-	*/
+	
 	
 	// 회원 게시물 리스트 화면
 	@GetMapping("memberPosting")
