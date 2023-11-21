@@ -162,13 +162,29 @@ public class BoardController {
 	public ModelAndView freeDetailView(int fno, ModelAndView mv) {
 					
 		if(boardService.increaseCount(fno) > 0) {
-			mv.addObject("info", boardService.selectBoard(fno))
+			mv.addObject("free", boardService.selectBoard(fno))
 			.setViewName("board/freeBoardDetailView");
 		}  else {
 			mv.addObject("errorMsg", "상세정보 조회 실패").setViewName("common/errorPage");
 		}
 		return mv;
 
+	}
+	
+	// 자유 게시글 삭제하기
+	@PostMapping("delete.fbo")
+	public String deleteBoardFree(int fno, HttpSession session, String filePath) {
+		
+		if(boardService.deleteBoardFree(fno) > 0) {
+			if(!filePath.equals("")) {
+				new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
+			}
+			session.setAttribute("alertMsg","삭제성공");
+			return "redirect:list.fbo";
+		} else {
+			session.setAttribute("errorMsg","지우기실패" );
+			return "common/errorPage";
+		}
 	}
 	
 		
@@ -182,36 +198,20 @@ public class BoardController {
 		return mv;
 		
 	}
-	// (공통)게시글 삭제하기(UPDATE)
-	@PostMapping("delete.bo")
-		public String deleteBoard(int bno, HttpSession session, String filePath) {
-			
-			
-		if(boardService.deleteBoard(bno) > 0) {
-				
-			if(!filePath.equals("")) {
-					
-				new File(session.getServletContext().getRealPath(filePath)).delete();
-			}
-			session.setAttribute("alertMsg","삭제성공");
-			return "redirect:list.bo";
-		}else {
-			session.setAttribute("errorMsg","지우기실패" );
-			return "common/errorPage";
-		}
-	}
+	
+
+	
 	// (공통)게시글 수정하기(UPDATE)
 	@PostMapping("update.bo")
 	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
 
-		if(!reUpfile.getOriginalFilename().equals("")) { // 새로운 파일 없을때
-			// 기존파일 있으면 삭체
+		if(!reUpfile.getOriginalName().equals("")) { // 새로운 파일 없을때
+			
 			if(b.getOriginalName() != null) {
-				new File(session.getServletContext().getRealPath(b.getChangeName())).delete();
+				new File(session.getServletContext().getRealPath(b.getUploadName())).delete();
 			}
-			b.setOriginalName(reUpfile.getOriginalFilename());
-			b.setChangeName(saveFile(reUpfile,session));
-			// b라는 Board 타입 객체에 새로운 정보(원본파일명, 저장경로+바뀐이름) 담기
+			b.setOriginalName(reUpfile.getOriginalName());
+			b.setgetUploadName(saveFile(reUpfile,session));
 		}
 		if(boardService.updateBoard(b)>0) {
 			session.setAttribute("alertMsg", "바꾸기성공");

@@ -22,5 +22,6 @@ public class Board {
 	private String status;
 	private String boardWriter; // 작성자 닉네임 보여줄 컬럼
 	private String originalName; // 파일 원본명 보여줄 컬럼
+	private String uploadName; // 수정된 파일명
 	
 }

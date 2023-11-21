@@ -120,19 +120,20 @@ public class BoardServiceImpl implements BoardService {
 		return (result1 * result2);
 	}
 	
+	// 자유게시글 삭제하기(UPDATE)
+	@Override
+	public int deleteBoardFree(int boardNo) {
+			
+		return boardDao.deleteFree(sqlSession, boardNo);
+	}
 	
-	// (공통)게시글 수정하기(UPDATE)
+	// 자유게시글 수정하기(UPDATE)
 	@Override
 	public int updateBoard(Board b) {
 		
 		return boardDao.updateBoard(sqlSession, b);
 	}
-	// (공통)게시글 삭제하기(UPDATE)
-	@Override
-	public int deleteBoard(int boardNo) {
-		
-		return boardDao.deleteBoard(sqlSession, boardNo);
-	}
+	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
 

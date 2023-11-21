@@ -82,8 +82,8 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertFile", file);
 	}
 	// (공통)게시글 삭제하기(UPDATE)
-	public int deleteBoard(SqlSessionTemplate sqlSession, int boardNo) {
-		return sqlSession.update("boardMapper.deleteBoard", boardNo);
+	public int deleteFree(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("boardMapper.deleteBoardFree", boardNo);
 	}
 	// (공통)게시글 수정하기(UPDATE)
 	public int updateBoard(SqlSessionTemplate sqlSession, Board b) {
