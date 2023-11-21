@@ -170,6 +170,10 @@
             <div id="header1_1">
             	<img src="https://t1.daumcdn.net/cfile/blog/2254404256D3ED562F">
                 <a id="logo" href="main">어서와 한국은<br>처음이지?</a>
+                <!-- 이부분은 최종적으론 지우기 -->
+                <a href="logonForm" id="a1">회원가입</a>
+                <a href="loginForm" id="a2">로그인</a>
+                <a href="myPageForm" id="a1">마이페이지</a>
             </div>
             <div id="header1_2"></div>
             <div id="header1_3">
@@ -195,7 +199,7 @@
                         
                     </div>
                     <div id="inform">
-                        <a href="#" id="a1">마이페이지</a>
+                        <a href="myPageForm" id="a1">마이페이지</a>
                         <a href="logout" id="a2">로그아웃</a>
                     </div>
 	                </c:otherwise>

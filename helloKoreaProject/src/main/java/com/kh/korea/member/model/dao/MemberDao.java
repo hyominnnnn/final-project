@@ -5,6 +5,7 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.korea.member.model.vo.Cert;
 import com.kh.korea.member.model.vo.Member;
 
 @Repository
@@ -33,6 +34,18 @@ public class MemberDao {
 
 	public Member socialLogin(SqlSessionTemplate sqlSession, String id) {
 		return sqlSession.selectOne("memberMapper.socialLogin", id);
+	}
+
+	public int sendMail(SqlSessionTemplate sqlSession, Cert cert) {
+		return sqlSession.insert("memberMapper.sendMail", cert);
+	}
+	
+	public boolean validate(SqlSessionTemplate sqlSession, Cert cert) {
+		Cert result = sqlSession.selectOne("memberMapper.validate", cert);
+		return result != null;
+	}
+	public void deleteCert(SqlSessionTemplate sqlSession, Cert cert) {
+		sqlSession.delete("memberMapper.deleteCert", cert);
 	}
 
 }
