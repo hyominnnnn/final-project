@@ -28,6 +28,15 @@ public class AdminController {
 		return "admin/memberInfo";
 	}
 
+	// 관리자 페이지 시작
+	@RequestMapping("admin")
+	public String admin() {
+		return "admin/memberInfo";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping("list.me")
 	public String selectMemberList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
