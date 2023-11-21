@@ -79,7 +79,7 @@
 				
 	</select>
 	
-	<!--
+	
 	<update id="memberDelete" parameterType="String">
 	
 		UPDATE
@@ -87,12 +87,10 @@
 		   SET
 		  		STATUS = 'N'
 		 WHERE
-		  		STATUS IN ('K','F')
+		  		EMAIL = #{email}
+		  		
 	
 	</update>
-	-->
-	
-	
 	
 	
 	<!-- Board 쿼리문 -->
@@ -128,6 +126,19 @@
 				BOARD_NO = #{boardNo}
 				
 	</select>
-
+	
+	<!-- 댓글 관련 쿼리문 -->
+	<!-- 
+	<select id="selectReplyCount" parameterType="reply" resultMap="">
+		SELECT
+				REPLY_NO,
+				REPLY_CONTENT,
+				CREATE_DATE
+		 FROM
+		  		TB_REPLY
+		  
+	
+	</select>
+	-->
 
 </mapper> 

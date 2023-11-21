@@ -18,7 +18,7 @@ public interface AdminService {
 	Member memberDetail(Member m);
 	
 	// 회원 탈퇴시키기
-	//int memberDelete();
+	int memberDelete(String email);
 	
 	//------------------------------------------
 	// 게시글-------------------------------------

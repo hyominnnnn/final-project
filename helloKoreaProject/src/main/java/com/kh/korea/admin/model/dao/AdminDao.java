@@ -26,8 +26,8 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.memberDetail", m);
 	}
 	
-	public int memberDelete(SqlSessionTemplate sqlSession) {
-		return sqlSession.update("adminMapper.memberDelete");
+	public int memberDelete(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.update("adminMapper.memberDelete", email);
 	}
 	// --------------------------------------------------------------------
 
