@@ -26,9 +26,11 @@
 		<result column="BOARD_TITLE"      property="boardTitle" />
 		<result column="MEMBER_NICKNAME"  property="boardWriter" />
 		<result column="MODIFY_DATE"      property="modifyDate" />
+		<result column="CREATE_DATE"	  property="createDate" />
 		<result column="COUNT"            property="count" />
 		<result column="ORIGINAL_NAME"    property="originalName" />
 		<result column="BOARD_CONTENT"    property="boardContent" />
+		<result column="CATEGORY_NO" 	  property="categoryNo" />
 	</resultMap>
 
 
@@ -80,21 +82,18 @@
 	</select>
 	
 	
-	<update id="memberDelete" parameterType="String">
+	<delete id="memberDelete" parameterType="String">
 	
-		UPDATE
+		DELETE
+		  FROM
 				TB_MEMBER
-		   SET
-		  		STATUS = 'N'
 		 WHERE
 		  		EMAIL = #{email}
 		  		
-		  		
-	
-	</update>
+	</delete>
 	
 	
-	<!-- Board 쿼리문 -->
+	<!-- 정보Board 쿼리문 -->
 
 	<select id="selectBoardListCount" resultType="_int">
 		SELECT
@@ -103,17 +102,27 @@
 		  		TB_BOARD
 		  WHERE
 		  		STATUS='Y'
+		   AND
+		    	CATEGORY_NO = '2'
+		  	
 	</select>
 	
 	<select id="selectBoardList" resultMap="boardResultSet">
 		SELECT
 				BOARD_NO,
+				MEMBER_NICKNAME,
 				BOARD_TITLE,
 				CREATE_DATE
 		 FROM
 				TB_BOARD
+		 JOIN 
+		 	    TB_MEMBER USING (MEMBER_NO)
 		WHERE
-				STATUS = 'Y'
+		    	CATEGORY_NO = '2'
+		ORDER
+		   BY
+		   		CREATE_DATE DESC
+	
 
 	</select>
 	
@@ -125,8 +134,60 @@
 				TB_BOARD
 		 WHERE
 				BOARD_NO = #{boardNo}
+		   AND
+				CATEGORY_NO = '2'
 				
 	</select>
+	
+	<!-- 자유Board 쿼리문 -->
+	
+	<select id="selectFreeBoardListCount" resultType="_int">
+		SELECT
+				COUNT(*)
+		  FROM	
+		  		TB_BOARD
+		  WHERE
+		  		STATUS='Y'
+		    AND
+		    	CATEGORY_NO = '1'
+	</select>
+	
+	<select id="selectFreeBoardList" resultMap="boardResultSet">
+	  SELECT
+				BOARD_NO,
+				MEMBER_NICKNAME,
+				BOARD_TITLE,
+				CREATE_DATE
+		 FROM
+				TB_BOARD
+		 JOIN 
+		 	    TB_MEMBER USING (MEMBER_NO)
+		WHERE
+		    	CATEGORY_NO = '1'
+		ORDER
+		   BY
+		   		CREATE_DATE DESC
+	
+
+	</select>
+	
+	<select id="freeBoardPosting" parameterType="board" resultMap="boardResultSet">
+		SELECT
+				BOARD_TITLE,
+				BOARD_CONTENT
+		 FROM
+				TB_BOARD
+		 WHERE
+				BOARD_NO = #{boardNo}
+		   AND
+		    	CATEGORY_NO = '1'
+				
+	</select>
+	
+	
+	
+	
+	
 	
 	<!-- 댓글 관련 쿼리문 -->
 	<!-- 

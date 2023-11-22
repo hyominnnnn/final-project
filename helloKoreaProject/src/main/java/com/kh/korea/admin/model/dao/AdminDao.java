@@ -29,7 +29,7 @@ public class AdminDao {
 	public int memberDelete(SqlSessionTemplate sqlSession, String email) {
 		return sqlSession.update("adminMapper.memberDelete", email);
 	}
-	// --------------------------------------------------------------------
+	// 정보게시판--------------------------------------------------------------------
 
 	public int selectBoardListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectBoardListCount");
@@ -42,7 +42,20 @@ public class AdminDao {
 	public Board boardPosting(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.selectOne("adminMapper.boardPosting", b);
 	}
-
+	
+	// 자유게시판-----------
+	public int selectFreeBoardListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectFreeBoardListCount");
+	}
+	
+	public ArrayList<Board> selectFreeBoardList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectFreeBoardList", null, rowBounds);
+	}
+	
+	public Board freeBoardPosting(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.selectOne("adminMapper.freeBoardPosting", b);
+	}
+	// 댓글----------
 	public int selectReplyCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectReplyCount");
 	}

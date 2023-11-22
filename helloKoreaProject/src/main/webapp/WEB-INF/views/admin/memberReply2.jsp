@@ -286,16 +286,16 @@
                       <c:forEach items="${ list }" var="b">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${b.boardNo}
+	                          	${r.replyNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${b.boardTitle}
+	                            ${r.replytTitle}
 	                        </td>
 	                        <td data-th="Invoice Number">
 	                          	
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${b.createDate}
+	                        	${r.createDate}
 	                        </td>
 	                        <td data-th="Due Date">
 	                          	

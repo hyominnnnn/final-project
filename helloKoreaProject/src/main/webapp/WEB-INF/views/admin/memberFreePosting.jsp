@@ -311,9 +311,9 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>정보게시판 관리</h1>
+                <h1>자유게시판 관리</h1>
                 <br>
-                <form action="detail.me" method="get">
+                <form action="freeList.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
@@ -327,20 +327,21 @@
                       <c:forEach items="${ list }" var="b">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                        	${b.boardNo }
-	                        </td>
-	                        <td data-th="Invoice Number">
-	                          	${b.boardTitle }
+	                        	${b.boardNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                        	${b.boardWriter }
+	                            ${b.boardTitle }
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	${b.boardWriter }
 	                        </td>
 	                        <td data-th="Invoice Date">
+	                        	
 	                        </td>
 	                        <td data-th="Due Date">
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          	${b.createDate}
+	                          ${b.createDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -359,12 +360,12 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="detail.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    		<li class="page-item"><a class="page-link" href="freeList.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="detail.me?cPage=${p}">${p}</a></li>
+                    	<li class="page-item"><a class="page-link" href="freeList.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
@@ -379,7 +380,7 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">정보게시글 상세 조회</h4>
+                    <h4 class="modal-title">자유게시글 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
@@ -404,9 +405,6 @@
         </div>
     </div>
     
-    
-  
-    
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
@@ -414,10 +412,10 @@
     			
     			
     			$.ajax({
-    				url: 'memberPosting.me',
+    				url: 'memberFreePosting.me',
     				data : {boardNo : $(this).children().eq(0).text().trim()},
     				success : data => {
-    					//console.log(data);
+    					console.log(data);
     					
     					const inputboardtitle = data.boardTitle;
     					const inputboardconent = data.boardContent;
@@ -433,6 +431,10 @@
     		})
     	})
     </script>
+    
+  
+    
+    
     
     
 </body>
