@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자회원관리페이지</title>
+    <title>관리자회원게시물페이지</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -216,15 +216,12 @@
         }
         
         /*-------모달창-------*/
-        .member-info-btn{
-        	height: 50px;
-        	width: 150px;
+        .model-footer-btn{
+        	height: 35px;
+        	width: 120px;
         	background-color: lightgray;
         	border: none;
         	border-radius: 3px;
-        	text-decoration: none;
-        	color: black;
-        	padding-top: 5px;
         }
         
         .modal-content{
@@ -234,11 +231,22 @@
        
        #pagingArea {
 	       width:fit-content; 
-	       margin-left:810px;
-	       margin-top: 160px;
+	       margin-left:780px;
+	       margin-top: 200px;
+	       
        }
        
-       #list-select-btn{
+       #boardTitle, #boardWriter{
+       	width: 200px;
+       	height: 30px;
+       }
+       
+       #boardContent{
+       width: 600px;
+       height: 300px;
+       }
+       
+        #list-select-btn{
        		margin-top: 50px;
        		width: 110px;
        		height: 35px;
@@ -246,27 +254,22 @@
        		border-radius: 3px;
        }
        
-       .member-detail-btn{
+       .board-detail-btn{
        		width: 110px;
        		height: 35px;
        		border: none;
        		border-radius: 3px;
        		
-       		
        }
        
-       .memberDetailBtn{
+       .BoardDetailBtn{
        		color: black;
        		text-decoration: none;
        		
        }
        
-       .memberDetailBtn:hover{
+       .BoardDetailBtn:hover{
        	text-decoration: none;
-       }
-       
-       #model-footer-btn{
-       		color: white;
        }
        
        a:hover{
@@ -274,19 +277,17 @@
        	color: black;
        }
        
-       .memberModelBtn{
+       #deleteBtn{
        	width: 110px;
        	height: 35px;
        	border: none;
        	border-radius: 3px;
-       	color: black;
        }
        
-       #memberPostingBtn, #memberReplyBtn{
-       color: black;
+       #modal-footer-btn{
+       	color: white;
        }
-       
-       
+      
     </style>
 </head>
 <body>
@@ -310,54 +311,48 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>회원 정보 관리</h1>
+                <h1>자유게시판 관리</h1>
                 <br>
-				<form action="list.me" method="get">
-					<input type="hidden" name="cpage" value="1" />
-                  <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
+                <form action="freeList.me" method="get">
+                  <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
-                        <th>이름</th>
-                        <th>이메일</th>
-                        <th>닉네임</th>
-                        <th>생년월일</th>
-                        <th>국가</th>
-                        <th>가입일자</th>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th></th>
+                        <th></th>
+                        <th>작성일</th>
                       </tr>
-
-                      <c:forEach items="${ list }" var="m">
+                      <c:forEach items="${ list }" var="b">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${m.memberName}
+	                        	${b.boardNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${m.email}
+	                            ${b.boardTitle }
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	${m.memberNickname}
+	                          	${b.boardWriter }
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                          ${m.birthday}
+	                        	
 	                        </td>
 	                        <td data-th="Due Date">
-	                          	${m.nationNo}
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${m.memberEnrollDate}
+	                          ${b.createDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
                     </tbody>
                   </table>
-                     <button type="submit" id="list-select-btn">리스트조회</button>
-                     <button class="member-detail-btn"><a href="posting.me" class="memberDetailBtn">게시글조회</a></button>
-                     <button class="member-detail-btn"><a href="reply.me" class="memberDetailBtn">댓글조회</a></button>
-                   </form>
+                  <button type="submit" id="list-select-btn">리스트조회</button>
+                  <button class="board-detail-btn"><a href="reply.me" class="BoardDetailBtn">댓글조회</a></button>
+                  </form>
                 </div>
         </div>
-        
-        
-        
+        	
     		<div id="pagingArea">
                 <ul class="pagination">
                 	<c:choose>
@@ -365,12 +360,12 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    		<li class="page-item"><a class="page-link" href="freeList.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
+                    	<li class="page-item"><a class="page-link" href="freeList.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
@@ -379,129 +374,78 @@
     </div>
     
     <!-- 회원정보 상세 모달 -->
-     <div class="modal fade" id="memberDetailForm">
+     <div class="modal fade" id="memberPostingForm">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">자유게시글 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberDetailModel">
+                <form action="#" method="post" id="memberPostingDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
-                    		
-                            <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="" readonly> 
+                            <label for="boardTitle" class="boardTitleBtn">제목</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
                             <br>
                             
-                            <label for="email" class="memberbtn">이메일</label>
-                            <input type="text" class="form-control memberbtn" id="email" name="email" value="" readonly> 
+                            <label for="boardWriter" class="boardWriterBtn">작성자</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardWriter" name="boardWriter" readonly> 
                             <br>
                             
-                            <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="" readonly> 
+                            <label for="boardContent" class="boardContentBtn">내용</label>
+                            <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
                             
-                            <label for="birthday" class="memberbtn">생년월일</label>
-                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" value=""readonly> 
-                            <br>
-                            
-                            <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationNo" name="nationNo" value=""readonly> 
-                            <br>
-                            
-                            <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value=""readonly> 
-                            <br>
+                            <label for="upfile">첨부파일</label></th>
+                            <input type="file" id="upfile" class="form-control-file border" name="upfile">
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn"><a href="#" id="memberPostingBtn">게시글조회</a></button>
-                    	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
-                    	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
+						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
-     <div class="modal fade" id="deleteForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">관리자 비밀번호 확인!</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="delete.me" method="post">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div align="center">
-			                            회원삭제 후 복구가 불가능합니다. <br>
-			                            정말로 회원을 삭제 하시겠습니까? <br>
-                        </div>
-                        <br>
-                        	<input type="hidden" name="email" value="">
-                            <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                        <button type="submit" class="btn btn-danger">확인</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-
-	    $(function(){
-	             		$('.rwd-table > tbody > tr').click(function(){
-	             				console.log($(this).children().eq(1).text());
-	             				
-	             				
-	             				$.ajax({
-							    	url : 'memberDetail.me',
-							    	data : {email : $(this).children().eq(1).text().trim()},
-							    	success : data => {
-
-							    	   console.log(data);
-
-							    	   //console.log(data.email);
-							    		
-							    	   const inputName = data.memberName;
-							    	   const inputemail= data.email;
-							    	   const inputnickname = data.memberNickname;
-							    	   const inputbirthday = data.birthday;
-							    	   const inputnationNo = data.nationNo;
-							    	   const inputenrolldate = data.memberEnrollDate;
-							    	   
-							    	   
-							    	   $('#memberName').val(inputName);
-							    	   $('#email').val(inputemail);
-							    	   $('#memberNickname').val(inputnickname);
-							    	   $('#nationNo').val(inputnationNo);
-							    	   $('#birthday').val(inputbirthday);
-							    	   $('#memberEnrollDate').val(inputenrolldate);
-							    	   
-							    	
-							    	    
-							    	},
-							    	error : () => {
-							    		console.log('실패!');
-							    	}
-						     })
-	             		})	
-	             	})
-	       	
-	     
+     <script>
+    	$(function(){
+    		$('.rwd-table > tbody > tr').click(function(){
+    			//console.log($(this).children().eq(0).text());
+    			
+    			
+    			$.ajax({
+    				url: 'memberFreePosting.me',
+    				data : {boardNo : $(this).children().eq(0).text().trim()},
+    				success : data => {
+    					console.log(data);
+    					
+    					//console.log(data.memberNo);
+    					
+    					const inputboardtitle = data.boardTitle;
+    					const inputboardwriter = data.boardWriter;
+    					const inputboardconent = data.boardContent;
+    					
+    					$('#boardTitle').val(inputboardtitle);
+    					$('#boardWriter').val(inputboardwriter);
+    					$('#boardContent').val(inputboardconent);
+    				},
+    				error : () => {
+    					console.log('실패!');
+    				}
+    				
+    			})
+    		})
+    	})
     </script>
+    
+  
+    
+    
+    
     
 </body>
 </html>
