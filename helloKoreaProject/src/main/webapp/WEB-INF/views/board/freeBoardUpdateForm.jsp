@@ -54,7 +54,16 @@
 		            </tr>
 		            <tr>
 		                <th><label for="upfile">첨부파일</label></th>
-		                <td><input type="file" id="upfile" class="form-control-file border" name="upfile" value=""></td>
+		                <c:choose>
+                    <c:when test="${not empty free.originalName }">
+                    	<td colspan="3">${ free.originalName }</td>
+                    </c:when>
+                    <c:otherwise>
+                    <td colspan="3">
+                        <a href="${free.uploadName}" download="${free.originalName}">${free.originalName}</a>
+                    </td>
+                    </c:otherwise>
+                    </c:choose>
 		            </tr>
 		            <tr>
 		                <th><label for="content">내용</label></th>
