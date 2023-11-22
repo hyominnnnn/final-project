@@ -7,14 +7,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.oauth.OAuth20Service;
 
 @Service
 public class GoogelServiceImpl implements GoogleService {
@@ -69,8 +68,9 @@ public class GoogelServiceImpl implements GoogleService {
 	}
 	
 	@Override
-	public void getUserInfo(String accessToken) throws IOException {
+	public HashMap<String, String> getUserInfo(String accessToken) throws IOException, ParseException {
 		//System.out.println(accessToken);
+		/*
 		String googleUrl = "https://www.googleapis.com/drive/v2/files?access_token=" + accessToken;
 		
 		URL url = new URL(googleUrl);
@@ -78,11 +78,44 @@ public class GoogelServiceImpl implements GoogleService {
 		HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
 		urlConnection.setRequestProperty("Authorization", "Bearer " + accessToken);
 		urlConnection.setRequestMethod("GET");
-		/* 책 사서 다시 도전!
-		OAuth20Service oauthService = new ServiceBuilder().
 		
 		System.out.println(urlConnection.getResponseCode());
+		105383866806611956619
+		105383866806611956619
 		*/
+		
+		
+		String googleUrl = "https://openidconnect.googleapis.com/v1/userinfo?access_token=" + accessToken; 
+				
+		URL url = new URL(googleUrl);
+		HttpURLConnection urlConnection = (HttpURLConnection)url.openConnection();
+		urlConnection.setRequestMethod("GET");
+		
+		
+		System.out.println(urlConnection.getResponseCode());
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+		
+		String line = "";
+		String responseDate = "";
+        while ((line = br.readLine()) != null) {
+            responseDate += line;
+        }
+        
+        System.out.println(responseDate);
+        
+        JSONObject responseObj = (JSONObject)new JSONParser().parse(responseDate);
+		//JSONObject id = (JSONObject)responseObj.get("sub");
+        String id = responseObj.get("sub").toString();
+        String email = responseObj.get("email").toString();
+        
+        HashMap<String, String> map = new HashMap();
+		
+		map.put("id", id);
+		map.put("email", email);
+		
+		return map;
+		
 	}
 	
 

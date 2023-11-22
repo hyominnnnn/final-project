@@ -48,4 +48,8 @@ public class MemberDao {
 		sqlSession.delete("memberMapper.deleteCert", cert);
 	}
 
+	public int deleteMember(SqlSessionTemplate sqlSession, String email) {
+		return sqlSession.update("memberMapper.deleteMember", email);
+	}
+
 }

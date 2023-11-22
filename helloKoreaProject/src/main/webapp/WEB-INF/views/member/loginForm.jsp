@@ -17,7 +17,7 @@
         
         <label for="memberPwd">Password:</label>
         <input type="password" id="memberPwd" name="memberPwd" required><br>
-
+		<div id="checkResult">${errorMsg }</div>
         <input type="submit" value="L O G I N">
     </form>
 	

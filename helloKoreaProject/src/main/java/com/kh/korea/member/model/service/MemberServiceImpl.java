@@ -68,4 +68,9 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.socialLogin(sqlSession, id);
 	}
 
+	@Override
+	public int deleteMember(String email) {
+		return memberDao.deleteMember(sqlSession, email);
+	}
+
 }
