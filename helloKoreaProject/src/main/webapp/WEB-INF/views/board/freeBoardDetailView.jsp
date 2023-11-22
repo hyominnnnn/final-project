@@ -99,7 +99,7 @@
 		     <script>
             	function postFormSubmit(num){
             		if( num == 0){
-            			$('#postForm').attr('action','updateForm.bo').submit();//수정하기 클릭시
+            			$('#postForm').attr('action','updateForm.fbo').submit();//수정하기 클릭시
             		} else {
             			$('#postForm').attr('action','delete.fbo').submit();
             		}
