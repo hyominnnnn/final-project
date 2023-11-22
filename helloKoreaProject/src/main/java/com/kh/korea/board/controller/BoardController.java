@@ -189,20 +189,24 @@ public class BoardController {
 	// 자유게시글 글 수정 폼 
 	@PostMapping("updateForm.fbo")
 	public ModelAndView updateForm(int fno, ModelAndView mv) {
-
+		// 현재 작성된 게시글 정보 띄워줘야 함
 		mv.addObject("free", boardService.selectBoard(fno)).setViewName("board/freeBoardUpdateForm");
 		return mv;
 				
 	}
 		
 	// 자유게시글 수정하기(UPDATE)
-	@PostMapping("update.fbo")
+	@PostMapping("update.fbo") 
+	// 보드테이블에 가서 기존 내용 갱신-> 보드에 담음 => 컴앤드객체방식(@ModelAttribute 생략되어있는 방식)
+	// MultipartFile 파일업로드를 위해서 (까보면 기존 첨부파일 있는지 없는지 알 수 있음)
+	// DB가서 업데이트 -> boardNo로 식별 필요함 => 화면단 폼태그 안에서 히든으로 넘겨주기
 	public String updateBoard(@ModelAttribute Board b, File f, MultipartFile reUpfile, HttpSession session) {
 
 		
 		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일이 널이 아니고 새로 올리는 파일이 없을 때 
 				
 			if(b.getOriginalName() != null) { //기존 파일이 있을 때 
+				System.out.println(b.getUploadName());
 				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제
 			}
 			b.setOriginalName(reUpfile.getOriginalFilename()); // 새로운 첨부파일 업로드
