@@ -75,11 +75,11 @@
 					${ firstQuiz.quizContent }
 				</div>
 				<br><br>
-				<form action="post" method="" id="user-answer">
-					<input type="radio" class="btn-check" name="answer" id="option5" autocomplete="off">
+				<form action="userAnswer" method="post" id="user-answer">
+					<input type="radio" class="btn-check" name="answer" value=1 id="option5" autocomplete="off" checked>
 					<label class="btn" for="option5" id="choice1">${ firstQuiz.firstChoice }</label>
 					<br><br>
-					<input type="radio" class="btn-check" name="answer" id="option6" autocomplete="off">
+					<input type="radio" class="btn-check" name="answer" value=2 id="option6" autocomplete="off">
 					<label class="btn" for="option6" id="choice2">${ firstQuiz.secondChoice }</label>
 				</form>
 				<br><br>
@@ -93,8 +93,16 @@
 			// 퀴즈 번호를 계속 1 증가시키기 위한 전역 변수
 			let no = ${ firstQuiz.quizNo };
 			
+			// 사용자가 선택한 답을 저장하기 위한 배열
+			let answer = [];
+			
 			// 다음 문제 클릭
 			function nextQuiz(){
+				
+				// 현재 체크한 라디오 버튼의 value 배열에 담기
+				let a = $('input:radio[name="answer"]:checked').val();
+				answer.push(a);
+				console.log(answer);
 				
 				$.ajax({
 					url : 'nextQuiz.ga',
@@ -118,6 +126,10 @@
 			// 이전 문제 클릭
 			function prevQuiz(){
 				
+				for(let i = 0; i < answer.length; i++) {
+				$('input:radio[name="answer"]').val(answer[i].val()).attr('checked', true);
+				}
+				
 				$.ajax({
 					url : 'prevQuiz.ga',
 					data : {
@@ -135,8 +147,8 @@
 						console.log('이전 문제로 넘기기 실패');
 					}
 				});
-				
 			}
+			
 		</script>
 		
 	<jsp:include page="../common/footer.jsp" />
