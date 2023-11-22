@@ -47,7 +47,7 @@ public class AdminServiceImpl implements  AdminService{
 	}
 	
 	//----------------------------------------------
-	// 게시글-------------------------------------
+	// 정보게시글-------------------------------------
 	
 	@Override
 	public int selectBoardListCount() {
@@ -67,6 +67,23 @@ public class AdminServiceImpl implements  AdminService{
 	}
 
 	
+	// 자유게시글
+	@Override
+	public int selectFreeBoardListCount() {
+		return adminDao.selectFreeBoardListCount(sqlSession);
+	}
+	
+	@Override
+	public ArrayList<Board> selectFreeBoardList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return adminDao.selectFreeBoardList(sqlSession, rowBounds);
+	}
+	
+	@Override
+	public Board freeBoardPosting(Board b) {
+		return adminDao.freeBoardPosting(sqlSession, b);
+	}
 	// 댓글----------------------------------------
 	
 	@Override
@@ -80,6 +97,7 @@ public class AdminServiceImpl implements  AdminService{
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return adminDao.selectReplyList(sqlSession, rowBounds);
 	}
+
 
 
 

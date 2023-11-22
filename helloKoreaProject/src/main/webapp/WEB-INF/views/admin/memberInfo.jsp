@@ -419,7 +419,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn"><a href="#" id="memberPostingBtn">게시글조회</a></button>
+                    	<button class="memberModelBtn"><a href="personalPosting" id="memberPostingBtn">게시글조회</a></button>
                     	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
                     	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
@@ -446,9 +446,9 @@
 			                            정말로 회원을 삭제 하시겠습니까? <br>
                         </div>
                         <br>
-                        	<input type="hidden" name="email" value="">
                             <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
                             <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
+                        	<input type="hidden" name="email" value="email">
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">

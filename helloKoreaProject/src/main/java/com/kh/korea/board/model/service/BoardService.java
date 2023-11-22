@@ -33,7 +33,7 @@ public interface BoardService {
 	// 자유 게시글 삭제하기(UPDATE)
 	int deleteBoardFree(int boardNo);
 	// 자유게시글 수정하기(UPDATE)
-	int updateBoardFree(Board b);
+	int updateBoardFree(Board board, File file);
 	
 	// (공통)게시글 조회수 증가(UPDATE)
 	int increaseCount(int boardNo);
@@ -41,6 +41,10 @@ public interface BoardService {
 	Board selectBoard(int boardNo);
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
+	
+	
+	
+	
 	
 	
 	

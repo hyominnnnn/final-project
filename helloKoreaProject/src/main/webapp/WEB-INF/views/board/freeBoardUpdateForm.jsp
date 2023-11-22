@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>자유게시글 수정</title>
+    <title>게시글 수정</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -25,8 +25,8 @@
             background-color:white;
         }
 
-        #enrollForm>table {width:100%;}
-        #enrollForm>table * {margin:5px;}
+        #updateForm>table {width:100%;}
+        #updateForm>table * {margin:5px;}
     </style>
 </head>
 <body>
@@ -39,24 +39,26 @@
 		    <h2>게시글 수정하기</h2>
 		    <br>
 		    
-		    <form id="enrollForm" method="post" action="insert.ibo" enctype="multipart/form-data">
-		    	<input type="hidden" name="categoryNo" value="2"> <!-- 카테고리 구분(자유 : 1 / 정보 : 2) -->
+		    <form id="updateFreeForm" method="post" action="update.fbo" enctype="multipart/form-data">
+		    	<input type="hidden" name="boardNo"value="${ free.boardNo }">
+		    	<input type="hidden" name="fno" value="${ free.boardNo }">
+			    <input type="hidden" name="filePath" value="${ free.uploadName }">
 		        <table align="center">
 		        	<tr>
 		            	<th><label for="title">제목</label></th>
-		                <td><input type="text" id="title" class="form-control" name="boardTitle" required></td>
+		                <td><input type="text" id="title" class="form-control" name="boardTitle" value="${ free.boardTitle }" required></td>
 		            </tr>
 		            <tr>
 		                <th><label for="writer">작성자</label></th>
-		                <td><input type="text" id="writer" class="form-control" value="${ sessionScope.loginUser.userId }" name="boardWriter" readonly></td>
+		                <td><input type="text" id="writer" class="form-control" value="${ sessionScope.loginUser.memberNickname }" name="memberNickname" readonly></td>
 		            </tr>
 		            <tr>
 		                <th><label for="upfile">첨부파일</label></th>
-		                <td><input type="file" id="upfile" class="form-control-file border" name="upfile"></td>
+		                <td><input type="file" id="upfile" class="form-control-file border" name="upfile" value=""></td>
 		            </tr>
 		            <tr>
 		                <th><label for="content">내용</label></th>
-		                <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required></textarea></td>
+		                <td><textarea id="content" class="form-control" rows="10" style="resize:none;" name="boardContent" required>${ free.boardContent }</textarea></td>
 		            </tr>
 		        </table>
 		        <br>

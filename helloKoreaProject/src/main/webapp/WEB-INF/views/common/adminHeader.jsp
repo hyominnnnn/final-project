@@ -217,7 +217,12 @@
 
             <ul id="navi_1">
                 <li><a href="memberInfo">회원관리</a></li>
-                <li><a href="memberPosting">게시판관리</a></li>
+                <li><a href="#">게시판관리</a>
+                	<ul class="navi_2">
+                        <li><a href="memberFreePosting">자유게시판</a></li>
+                        <li><a href="memberPosting">정보게시판</a></li>
+                    </ul>
+                </li>
                 <li><a href="memberQuiz">퀴즈관리</a></li>
                 <li><a href="#">채팅관리</a></li>
                 <li><a href="#">예약관리</a></li>

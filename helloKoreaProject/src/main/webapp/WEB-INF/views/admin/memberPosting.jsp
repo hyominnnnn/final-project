@@ -311,38 +311,36 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>회원 게시물 관리</h1>
+                <h1>정보게시판 관리</h1>
                 <br>
                 <form action="detail.me" method="get">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
                         <th>글번호</th>
-                        <th>글제목</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th></th>
                         <th></th>
                         <th>작성일</th>
-                        <th></th>
-                        <th></th>
                       </tr>
                       <c:forEach items="${ list }" var="b">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${b.boardNo}
-	                        </td>
-	                        <td data-th="Supplier Name">
-	                            ${b.boardTitle}
+	                        	${b.boardNo }
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	
+	                          	${b.boardTitle }
+	                        </td>
+	                        <td data-th="Supplier Name">
+	                        	${b.boardWriter }
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${b.createDate}
 	                        </td>
 	                        <td data-th="Due Date">
-	                          	
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          2023/11/14
+	                          	${b.createDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -381,7 +379,7 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 게시글 상세 조회</h4>
+                    <h4 class="modal-title">정보게시글 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​

@@ -187,30 +187,30 @@ public class BoardController {
 		}
 	}
 	// 자유게시글 글 수정 폼 
-	@PostMapping("updateForm.bo")
+	@PostMapping("updateForm.fbo")
 	public ModelAndView updateForm(int fno, ModelAndView mv) {
 
-		mv.addObject("b", boardService.selectBoard(fno)).setViewName("board/boardUpdateForm");
+		mv.addObject("free", boardService.selectBoard(fno)).setViewName("board/freeBoardUpdateForm");
 		return mv;
 				
 	}
 		
 	// 자유게시글 수정하기(UPDATE)
 	@PostMapping("update.fbo")
-	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
+	public String updateBoard(@ModelAttribute Board b, File f, MultipartFile reUpfile, HttpSession session) {
 
 		
-		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일 없을때
+		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일이 널이 아니고 새로 올리는 파일이 없을 때 
 				
-			if(b.getOriginalName() != null) {
-				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete();
+			if(b.getOriginalName() != null) { //기존 파일이 있을 때 
+				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제
 			}
-			b.setOriginalName(reUpfile.getOriginalFilename());
-			b.setUploadName(saveFile(reUpfile,session));
+			b.setOriginalName(reUpfile.getOriginalFilename()); // 새로운 첨부파일 업로드
+			b.setUploadName(saveFile(reUpfile,session)); // 새로운 정보 b(Board타입객체)에 담기
 		}
-		if(boardService.updateBoardFree(b) > 0) {
+		if(boardService.updateBoardFree(b, f) > 0) {
 			session.setAttribute("alertMsg", "게시물 수정 성공");
-			return "redirect:detail.fbo?bno="+ b.getBoardNo();
+			return "redirect:detail.fbo?fno="+ b.getBoardNo();
 		}else {
 			session.setAttribute("errorMsg", "게시물 수정 실패");
 			return "common/errorPage";

@@ -114,7 +114,7 @@ public class BoardServiceImpl implements BoardService {
 		int result1 = boardDao.insertFree(sqlSession, board);
 		int result2 = 1;
 		if(file.getOriginalName() != null) {
-		result2 = boardDao.insertFile(sqlSession, file);
+			result2 = boardDao.insertFile(sqlSession, file);
 		}
 		return (result1 * result2);
 	}
@@ -126,10 +126,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 	// 자유게시글 수정하기(UPDATE)
 	@Override
-	public int updateBoardFree(Board b) {
-		
-		return boardDao.updateFree(sqlSession, b);
+	public int updateBoardFree(Board board, File file) {
+		int result1 = boardDao.updateFree(sqlSession, board);
+		int result2 = 1;
+		if(file.getOriginalName() != null) { // 첨부파일이 있을때
+			result2 = boardDao.updateFileFree(sqlSession, file); 
+		}
+		System.out.println(result1);
+		System.out.println(result2);
+		return (result1 * result2);
 	}
+
 	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)

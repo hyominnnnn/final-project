@@ -66,10 +66,13 @@ public class BoardDao {
 	}
 	// 자유게시글 수정하기(UPDATE)
 	public int updateFree(SqlSessionTemplate sqlSession, Board b) {
+		System.out.println(b);
 		return sqlSession.update("boardMapper.updateBoardFree", b);
 	}
 	
-	
+	public int updateFileFree(SqlSessionTemplate sqlSession, File file) {
+		return sqlSession.update("boardMapper.updateFileFree" , file);
+	}
 	
 	
 	
@@ -88,6 +91,7 @@ public class BoardDao {
 	public int insertFile(SqlSessionTemplate sqlSession, File file) {
 		return sqlSession.insert("boardMapper.insertFile", file);
 	}
+	
 	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)

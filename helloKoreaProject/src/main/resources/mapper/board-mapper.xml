@@ -264,14 +264,22 @@
 	<!-- 자유게시글 수정 -->
 	<update id="updateBoardFree" parameterType="board"> 
 		UPDATE 
-		       TB_BOARD 
+		       TB_BOARD
 		   SET 
 		       BOARD_TITLE = #{boardTitle}, 
-		       BOARD_CONTENT = #{boardContent}, 
+		       BOARD_CONTENT = #{boardContent}
+		 WHERE 
+		       BOARD_NO = #{boardNo} 
+	</update>
+	
+	<update id="updateFileFree" parameterType="file"> 
+		UPDATE 
+		       TB_FILE
+		   SET 
 		       ORIGINAL_NAME = #{originalName}, 
 		       UPLOAD_NAME = #{uploadName} 
 		 WHERE 
-		       BOARD_NO = #{boardNo} 
+		       REF_BNO = #{boardNo}
 	</update>
 	
 	
