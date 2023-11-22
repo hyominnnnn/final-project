@@ -30,6 +30,7 @@ public class GameController {
 	}
 	
 	// 다음 문제
+	// 현재 번호를 가져와서 거기에 + 1 한 값으로 출력
 	@ResponseBody
 	@GetMapping(value="nextQuiz.ga", produces="application/json; charset=UTF-8")
 	public String nextQuiz(int quizNo) {
@@ -38,11 +39,12 @@ public class GameController {
 	}
 	
 	// 이전 문제
+	// 현재 번호를 가져와서 거기에 - 1 한 값으로 출력
 	@ResponseBody
 	@GetMapping(value="prevQuiz.ga", produces="application/json; charset=UTF-8")
 	public String prevQuiz(int quizNo) {
 		System.out.println(quizNo);
-		return new Gson().toJson(gameService.nextQuiz(quizNo));
+		return new Gson().toJson(gameService.prevQuiz(quizNo));
 	}
 	
 	
