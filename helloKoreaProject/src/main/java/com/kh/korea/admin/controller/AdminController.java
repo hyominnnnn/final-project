@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -103,29 +102,25 @@ public class AdminController {
 	
 	// 회원 삭제
 	@RequestMapping("delete.me")
-	public String memberDelete(String memberPwd, String email, HttpSession session) {
-		
-		//Member m = new Member();
-		Member loginUser = ((Member)session.getAttribute("loginUser"));
-		//String memberEmail = m.getEmail();
-		String encPwd = loginUser.getMemberPwd();
-		
-		if(bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
-			
-			//String email = loginUser.getEmail();
-			
-			if(adminService.memberDelete(email) > 0) {
-				session.removeAttribute("loginUser");
-				return "redirect:/";
-			} else {
-				return "common/errorPage";
-			}
-				
-			} else {
-				return "admin/memberInfo";
-		}
+	public String memberDelete(@RequestParam("targetEmail") String targetEmail, String memberPwd, HttpSession session) {
+
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+
+	    String encPwd = loginUser.getMemberPwd();
+
+	    if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
+
+	        if (adminService.memberDelete(targetEmail) > 0) {
+	            session.removeAttribute("loginUser");
+	            return "admin/memberInfo";
+	        } else {
+	            return "common/errorPage";
+	        }
+
+	    } else {
+	        return "redirect:/";
+	    }
 	}
-	
 	
 	// 회원 게시물 리스트 화면
 	@GetMapping("memberPosting")
@@ -217,7 +212,7 @@ public class AdminController {
 	
 	
 	@RequestMapping("deleteBoard")
-	public String deleteBoardFree(int fno, HttpSession session, String filePath) {
+	public String deleteBoardFree(@RequestParam("fno") int fno, HttpSession session, String filePath) {
 		if(adminService.deleteBoardFree(fno) > 0) {
 			if(!filePath.equals("")) {
 				new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
