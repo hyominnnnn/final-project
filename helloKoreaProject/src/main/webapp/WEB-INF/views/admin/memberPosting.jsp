@@ -314,6 +314,7 @@
                 <h1>정보게시판 관리</h1>
                 <br>
                 <form action="detail.me" method="get">
+                  <input type="hidden" name="fno" value="${ free.boardNo }">
                   <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
                       <tr>
@@ -397,7 +398,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
+						<button id="deleteBtn" class="btn btn-danger"><a href="deleteBoard" id="modal-footer-btn">삭제하기</a></button>
                     </div>
                 </form>
             </div>
@@ -417,7 +418,7 @@
     				url: 'memberPosting.me',
     				data : {boardNo : $(this).children().eq(0).text().trim()},
     				success : data => {
-    					//console.log(data);
+    					console.log(data);
     					
     					const inputboardtitle = data.boardTitle;
     					const inputboardconent = data.boardContent;

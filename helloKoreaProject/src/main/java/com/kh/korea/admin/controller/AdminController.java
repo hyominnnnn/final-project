@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -214,4 +215,16 @@ public class AdminController {
 		
 	}
 	
+	
+	@RequestMapping("deleteBoard")
+	public String deleteBoardFree(int fno, HttpSession session, String filePath) {
+		if(adminService.deleteBoardFree(fno) > 0) {
+			if(!filePath.equals("")) {
+				new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
+			}
+			return "redirect:memberPosting";
+		} else {
+			return "common/errorPage";
+		}
+	}
 }

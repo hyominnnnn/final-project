@@ -288,6 +288,7 @@
        #modal-footer-btn{
        	color: white;
        }
+       
       
     </style>
 </head>
@@ -425,19 +426,14 @@
     				success : data => {
     					console.log(data);
     					
-    					//console.log(data.memberNo);
-    					
     					const inputboardtitle = data.boardTitle;
     					const inputboardwriter = data.boardWriter;
     					const inputboardconent = data.boardContent;
     					
     					$('#boardTitle').val(inputboardtitle);
     					$('#boardWriter').val(inputboardwriter);
-    					const inputboardtitle = data.boardTitle;
-    					const inputboardconent = data.boardContent;
-    					
-    					$('#boardTitle').val(inputboardtitle);
     					$('#boardContent').val(inputboardconent);
+    					
     				},
     				error : () => {
     					console.log('실패!');

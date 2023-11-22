@@ -184,7 +184,14 @@
 				
 	</select>
 	
-	
+	<update id="deleteBoardFree" parameterType="_int"> 
+		UPDATE 
+			   TB_BOARD 
+		   SET 
+		       STATUS='N' 
+		 WHERE 
+		       BOARD_NO = #{boardNo} 
+	</update>
 	
 	
 	

@@ -42,7 +42,10 @@ public class AdminDao {
 	public Board boardPosting(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.selectOne("adminMapper.boardPosting", b);
 	}
-	
+	//삭제
+	public int deleteBoardFree(SqlSessionTemplate sqlSession, int boardNo) {
+		return sqlSession.update("adminMapper.deleteBoardFree", boardNo);
+	}
 	// 자유게시판-----------
 	public int selectFreeBoardListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.selectFreeBoardListCount");
@@ -63,6 +66,8 @@ public class AdminDao {
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectReplyList");
 	}
+
+	
 
 
 
