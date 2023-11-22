@@ -25,7 +25,7 @@ import com.kh.korea.member.model.vo.Member;
 
 @Controller
 public class MemberController {
-
+	
 	@Autowired
 	private MemberService memberService;
 	
@@ -115,10 +115,11 @@ public class MemberController {
 			  session.setAttribute("loginUser",loginUser);
 		      mv.setViewName("redirect:/");
 		}else {
-	         mv.addObject("errorMsg", "로그인실패").setViewName("common/errorPage");
+	         //mv.addObject("errorMsg", "로그인실패").setViewName("common/errorPage");
+			mv.addObject("errorMsg", "아이디 및 패스워드가 틀렸습니다.").setViewName("member/loginForm");
 		}
 		
-		System.out.println(loginUser);
+		//System.out.println(loginUser);
 		return mv;
 		//시간나면 아이디저장 만들기
 	}
@@ -128,16 +129,38 @@ public class MemberController {
 	      return "redirect:/";
 	   }
 	 
-
-		@RequestMapping("socialLogon")
-		public String kakaoLogon(Member m, Model model) {
-			System.out.println(m);
-			int result = memberService.insertMember(m); 
+	
+	@RequestMapping("socialLogon")
+	public String kakaoLogon(Member m, Model model) {
+		System.out.println(m);
+		int result = memberService.insertMember(m); 
+		if(result > 0) {
+			return "redirect:/";
+		}else {
+			model.addAttribute("errorMsg","회원가입 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("delete")
+	public String deleteMember(String email, String emailCheck, Model model, HttpSession session) {
+		System.out.println(email);
+		System.out.println(emailCheck);
+		if(email.equals(emailCheck)) {
+			int result = memberService.deleteMember(email);
 			if(result > 0) {
-				return "redirect:/";
+				session.removeAttribute("loginUser");
+				return "common/goodbyePage";
 			}else {
-				model.addAttribute("errorMsg","회원가입 실패");
+				model.addAttribute("errorMsg","회원 탈퇴에 실패했습니다.");
 				return "common/errorPage";
 			}
+			
+			
+		}else {
+			model.addAttribute("errorMsg","이메일을 잘못 입력했습니다.");
+			return "common/errorPage";
 		}
+	}
+		
 }

@@ -24,6 +24,11 @@
 			<id>Datanucleus</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</repository>
+		<repository>
+		    <id>spring-snapshot</id>
+		    <name>Spring Snapshot Repository</name>
+		    <url>http://repo.spring.io/snapshot</url>
+		  </repository>
 	</repositories>
 	
 	<dependencies>
@@ -247,16 +252,21 @@
 			<version>1.6.2</version>
 		</dependency>
 		
-		<dependency>
-		    <groupId>com.github.scribejava</groupId>
-		    <artifactId>scribejava-apis</artifactId>
-		    <version>8.3.1</version>
-		</dependency>
-		<dependency>
-		    <groupId>com.github.scribejava</groupId>
-		    <artifactId>scribejava-core</artifactId>
-		    <version>8.3.1</version>
-		</dependency>
+		 <!-- ... oauth2 ... -->
+	  <dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-security</artifactId>
+	    <version>3.1.5</version>
+	</dependency>
+
+	  <dependency>
+	    <groupId>org.springframework.security.oauth.boot</groupId>
+	    <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+	    <version>2.6.8</version>
+	</dependency>
+	
+
+
 		
 		
 		

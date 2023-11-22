@@ -208,9 +208,6 @@
                         <a href="myPageForm" id="a1">마이페이지</a>
                         <a href="logout" id="a2">로그아웃</a>
 
-                        <a href="#" id="a1" class="headerlogon">마이페이지</a>
-                        <a href="logout" id="a2" class="headerlogon">로그아웃</a>
-
 						<!-- 관리자 로그인 상태일 경우(status='A')에만 보여짐 -->
                      	<c:if test="${ sessionScope.loginUser.status eq 'A'}">
                         <a href="admin" id="a3" class="headerlogon">관리자페이지</a>

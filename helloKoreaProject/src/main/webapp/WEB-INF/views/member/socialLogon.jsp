@@ -84,7 +84,14 @@
 	<form id="logonForm" action="socialLogon">
 
 		<label for="email">이메일  :</label>
-	    <input type="email" id="email" name="email" placeholder="Please Enter E-mail" required>
+		<c:choose>
+			<c:when test="${social eq 'google' }">
+				<input type="email" id="email" name="email" value="${email }" required>
+			</c:when>
+		    <c:otherwise>
+		    	<input type="email" id="email" name="email" placeholder="Please Enter E-mail" required>
+		    </c:otherwise>
+	    </c:choose>
 	    <button type="button" onclick="idCheck();">중복확인</button>
 	    <br>
 	    
