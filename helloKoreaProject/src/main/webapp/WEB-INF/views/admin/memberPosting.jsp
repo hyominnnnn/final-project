@@ -410,7 +410,7 @@
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			console.log($(this).children().eq(0).text());
+    			//console.log($(this).children().eq(0).text());
     			
     			
     			$.ajax({

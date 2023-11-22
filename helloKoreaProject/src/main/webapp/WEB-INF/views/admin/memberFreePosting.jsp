@@ -236,6 +236,7 @@
 	       
        }
        
+       #boardTitle, #boardWriter{
        #boardTitle{
        	width: 200px;
        	height: 30px;
@@ -391,10 +392,16 @@
                             <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
                             <br>
                             
+                            <label for="boardWriter" class="boardWriterBtn">작성자</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardWriter" name="boardWriter" readonly> 
+                            <br>
+                            
                             <label for="boardContent" class="boardContentBtn">내용</label>
                             <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
                             
+                            <label for="upfile">첨부파일</label></th>
+                            <input type="file" id="upfile" class="form-control-file border" name="upfile">
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
@@ -408,6 +415,7 @@
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
+    			//console.log($(this).children().eq(0).text());
     			console.log($(this).children().eq(0).text());
     			
     			
@@ -417,6 +425,14 @@
     				success : data => {
     					console.log(data);
     					
+    					//console.log(data.memberNo);
+    					
+    					const inputboardtitle = data.boardTitle;
+    					const inputboardwriter = data.boardWriter;
+    					const inputboardconent = data.boardContent;
+    					
+    					$('#boardTitle').val(inputboardtitle);
+    					$('#boardWriter').val(inputboardwriter);
     					const inputboardtitle = data.boardTitle;
     					const inputboardconent = data.boardContent;
     					
