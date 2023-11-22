@@ -40,7 +40,7 @@
 		    <br>
 		    
 		    <form id="updateFreeForm" method="post" action="update.fbo" enctype="multipart/form-data">
-		    	<input type="hidden" name="boardNo"value="${ free.boardNo }">
+		    	<input type="hidden" name="boardNo"value="${ free.boardNo }" />
 		    	<input type="hidden" name="fno" value="${ free.boardNo }">
 			    <input type="hidden" name="filePath" value="${ free.uploadName }">
 		        <table align="center">
@@ -50,20 +50,21 @@
 		            </tr>
 		            <tr>
 		                <th><label for="writer">작성자</label></th>
-		                <td><input type="text" id="writer" class="form-control" value="${ sessionScope.loginUser.memberNickname }" name="memberNickname" readonly></td>
+		                <td><input type="text" id="writer" class="form-control" value="${ free.boardWriter }" name="memberNickname" readonly></td>
 		            </tr>
 		            <tr>
 		                <th><label for="upfile">첨부파일</label></th>
-		                <c:choose>
-                    <c:when test="${not empty free.originalName }">
-                    	<td colspan="3">${ free.originalName }</td>
-                    </c:when>
-                    <c:otherwise>
-                    <td colspan="3">
-                        <a href="${free.uploadName}" download="${free.originalName}">${free.originalName}</a>
-                    </td>
-                    </c:otherwise>
-                    </c:choose>
+		                <td>
+                            <input type="file" id="upfile" class="form-control-file border" name="reUpfile">
+                            
+                            <c:if test="${not empty free.originalName }"> <!-- 현재 업로드된 파일이 있었을 때 -->
+                           		 현재 업로드된 파일 : 
+                           	<!-- 업로드네임 경로, 다운로드 받았을 때는 파일의 원본명으로 -->
+                            <a href="${free.uploadName }" download="${free.originalName }">${free.originalName}</a>
+                            <!-- 기존에 첨부파일 있었을 경우에만 보내주기-->
+                            <input type="hidden" value="${free.originalName}" name="${free.originalName}"/>
+                            </c:if>
+                        </td>
 		            </tr>
 		            <tr>
 		                <th><label for="content">내용</label></th>
