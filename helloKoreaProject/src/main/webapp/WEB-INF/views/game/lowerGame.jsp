@@ -76,10 +76,10 @@
 				</div>
 				<br><br>
 				<form action="userAnswer" method="post" id="user-answer">
-					<input type="radio" class="btn-check" name="answer" value=1 id="option5" autocomplete="off" checked>
+					<input type="radio" class="btn-check" name="answer" value="1" id="option5" autocomplete="off" checked>
 					<label class="btn" for="option5" id="choice1">${ firstQuiz.firstChoice }</label>
 					<br><br>
-					<input type="radio" class="btn-check" name="answer" value=2 id="option6" autocomplete="off">
+					<input type="radio" class="btn-check" name="answer" value="2" id="option6" autocomplete="off">
 					<label class="btn" for="option6" id="choice2">${ firstQuiz.secondChoice }</label>
 				</form>
 				<br><br>
@@ -93,16 +93,23 @@
 			// 퀴즈 번호를 계속 1 증가시키기 위한 전역 변수
 			let no = ${ firstQuiz.quizNo };
 			
-			// 사용자가 선택한 답을 저장하기 위한 배열
-			let answer = [];
+			// 문제 번호와 사용자가 선택한 답을 저장하기 위한 배열
+			let answers = [];
+			
+			// 현재 문제 번호와 사용자가 입력한 값을 담을 객체
+			let userAnswer = {};
 			
 			// 다음 문제 클릭
 			function nextQuiz(){
 				
-				// 현재 체크한 라디오 버튼의 value 배열에 담기
-				let a = $('input:radio[name="answer"]:checked').val();
-				answer.push(a);
-				console.log(answer);
+				// 현재 체크한 라디오 버튼의 value값 추출
+				let answer = $('input:radio[name="answer"]:checked').val();
+				// 객체의 no에 현재 문제 번호를 담고, answer에 사용자가 클릭한 답 담음
+				userAnswer = {no : no, answer : answer};
+				// 배열에 객체 넣기
+				answers.push(userAnswer);
+				
+				// console.log(answers);
 				
 				$.ajax({
 					url : 'nextQuiz.ga',
@@ -125,10 +132,12 @@
 			
 			// 이전 문제 클릭
 			function prevQuiz(){
-				
-				for(let i = 0; i < answer.length; i++) {
-				$('input:radio[name="answer"]').val(answer[i].val()).attr('checked', true);
-				}
+				// 4번에 갔을 때 3번 문제까지 저장(인덱스 0, 1, 2로 -> 3번 문제는 2번 인덱스로 가야 되니까 현재 번호 - 2)
+				// console.log(answers[no - 2]);
+				// 해당 문제에 사용자가 클릭한 답
+				// console.log(answers[no - 2].answer);
+				// name이 answer인 라디오버튼 중 value값이 해당 번호의 답인 버튼 checked된 상태로 보이게
+				$('input:radio[name="answer"]:input[value=' + answers[no - 2].answer + ']').prop('checked', true);
 				
 				$.ajax({
 					url : 'prevQuiz.ga',
