@@ -102,14 +102,16 @@ public class AdminController {
 	
 	// 회원 삭제
 	@RequestMapping("delete.me")
-	public String memberDelete(String memberPwd, HttpSession session) {
+	public String memberDelete(String memberPwd, String email, HttpSession session) {
 		
+		//Member m = new Member();
 		Member loginUser = ((Member)session.getAttribute("loginUser"));
+		//String memberEmail = m.getEmail();
 		String encPwd = loginUser.getMemberPwd();
 		
 		if(bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
 			
-			String email = loginUser.getEmail();
+			//String email = loginUser.getEmail();
 			
 			if(adminService.memberDelete(email) > 0) {
 				session.removeAttribute("loginUser");
@@ -175,6 +177,41 @@ public class AdminController {
 	public String memberQuiz(){
 		return "admin/memberQuiz";
 	}
+	//자유 게시판 화면
+	@GetMapping ("memberFreePosting")
+	public String freePosting() {
+		return "admin/memberFreePosting";
+	}
 	
+	@RequestMapping("freeList.me")
+	public String selecFreeBoardList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
+			Model model) {
+		
+		
+		PageInfo pi = Pagination.getPageInfo(adminService.selectFreeBoardListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectFreeBoardList(pi));
+		model.addAttribute("pi", pi);
+		//System.out.println(model.getAttribute("list"));
+		
+
+		return "admin/memberFreePosting";
+	}
+	
+	// 회원 개인 게시글 화면
+	@GetMapping("personalPosting")
+	public String personalPosting() {
+		return "admin/personalPosting";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="memberFreePosting.me", produces="application/json; charset=UTF-8")
+	public String memberFreePostingDetail(Board b) {
+		
+		return new Gson().toJson(adminService.freeBoardPosting(b));
+		
+	}
 	
 }

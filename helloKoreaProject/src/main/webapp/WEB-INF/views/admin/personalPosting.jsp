@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자회원게시물페이지</title>
+    <title>(관리자)회원개인게시글페이지</title>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -236,57 +236,6 @@
 	       
        }
        
-       #boardTitle{
-       	width: 200px;
-       	height: 30px;
-       }
-       
-       #boardContent{
-       width: 600px;
-       height: 300px;
-       }
-       
-        #list-select-btn{
-       		margin-top: 50px;
-       		width: 110px;
-       		height: 35px;
-       		border: none;
-       		border-radius: 3px;
-       }
-       
-       .board-detail-btn{
-       		width: 110px;
-       		height: 35px;
-       		border: none;
-       		border-radius: 3px;
-       		
-       }
-       
-       .BoardDetailBtn{
-       		color: black;
-       		text-decoration: none;
-       		
-       }
-       
-       .BoardDetailBtn:hover{
-       	text-decoration: none;
-       }
-       
-       a:hover{
-       	text-decoration: none;
-       	color: black;
-       }
-       
-       #deleteBtn{
-       	width: 110px;
-       	height: 35px;
-       	border: none;
-       	border-radius: 3px;
-       }
-       
-       #modal-footer-btn{
-       	color: white;
-       }
       
     </style>
 </head>
@@ -311,43 +260,42 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>정보게시판 관리</h1>
+                <h1>000님의 게시글</h1>
                 <br>
-                <form action="detail.me" method="get">
-                  <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
-                    <tbody>
-                      <tr>
-                        <th>글번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th></th>
-                        <th></th>
-                        <th>작성일</th>
-                      </tr>
-                      <c:forEach items="${ list }" var="b">
+                  <form method="#" action="memberReply">
+	                  <table class="rwd-table">
+	                    <tbody>
+	                      <tr>
+	                        <th>글번호</th>
+	                        <th>글제목</th>
+	                        <th></th>
+	                        <th></th>
+	                        <th></th>
+	                        <th>작성일</th>
+	                      </tr>
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                        	${b.boardNo }
-	                        </td>
-	                        <td data-th="Invoice Number">
-	                          	${b.boardTitle }
+	                          	1
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                        	${b.boardWriter }
+	                        	ㅋㅋㅋ웃기다
+	                        </td>
+	                        <td data-th="Invoice Number">
+	                          	
 	                        </td>
 	                        <td data-th="Invoice Date">
 	                        </td>
 	                        <td data-th="Due Date">
+	                          	
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          	${b.createDate}
+	                          2023/11/14
 	                        </td>
 	                      </tr>
-                      </c:forEach>
-                    </tbody>
-                  </table>
-                  <button type="submit" id="list-select-btn">리스트조회</button>
-                  <button class="board-detail-btn"><a href="reply.me" class="BoardDetailBtn">댓글조회</a></button>
+	                     
+	                      
+	                    </tbody>
+	                  </table>
                   </form>
                 </div>
         </div>
@@ -359,12 +307,12 @@
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
                     	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="detail.me?cPage=${pi.currentPage-1}">Previous</a></li>
+                    		<li class="page-item"><a class="page-link" href="personalPosting.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="detail.me?cPage=${p}">${p}</a></li>
+                    	<li class="page-item"><a class="page-link" href="personalPosting.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
                 </ul>
@@ -372,67 +320,7 @@
         
     </div>
     
-    <!-- 회원정보 상세 모달 -->
-     <div class="modal fade" id="memberPostingForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">정보게시글 상세 조회</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="#" method="post" id="memberPostingDetailModel">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                            <label for="boardTitle" class="boardTitleBtn">제목</label>
-                            <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
-                            <br>
-                            
-                            <label for="boardContent" class="boardContentBtn">내용</label>
-                            <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
-                            <br>
-                            
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     
-    
-  
-    
-     <script>
-    	$(function(){
-    		$('.rwd-table > tbody > tr').click(function(){
-    			console.log($(this).children().eq(0).text());
-    			
-    			
-    			$.ajax({
-    				url: 'memberPosting.me',
-    				data : {boardNo : $(this).children().eq(0).text().trim()},
-    				success : data => {
-    					//console.log(data);
-    					
-    					const inputboardtitle = data.boardTitle;
-    					const inputboardconent = data.boardContent;
-    					
-    					$('#boardTitle').val(inputboardtitle);
-    					$('#boardContent').val(inputboardconent);
-    				},
-    				error : () => {
-    					console.log('실패!');
-    				}
-    				
-    			})
-    		})
-    	})
-    </script>
     
     
 </body>

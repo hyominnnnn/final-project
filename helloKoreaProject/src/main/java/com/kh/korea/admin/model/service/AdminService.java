@@ -21,7 +21,7 @@ public interface AdminService {
 	int memberDelete(String email);
 	
 	//------------------------------------------
-	// 게시글-------------------------------------
+	// 정보게시글-------------------------------------
 	
 	int selectBoardListCount();
 	
@@ -29,6 +29,12 @@ public interface AdminService {
 	
 	Board boardPosting (Board b);
 	
+	// 자유게시글--------------------------------------------
+	int selectFreeBoardListCount();
+	
+	ArrayList<Board> selectFreeBoardList(PageInfo pi);
+	
+	Board freeBoardPosting (Board b);
 	// 댓글----------------------------------------
 	int selectReplyCount();
 	
