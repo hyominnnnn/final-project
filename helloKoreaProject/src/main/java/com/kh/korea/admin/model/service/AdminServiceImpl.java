@@ -65,7 +65,11 @@ public class AdminServiceImpl implements  AdminService{
 	public Board boardPosting(Board b) {
 		return adminDao.boardPosting(sqlSession, b);
 	}
-
+	//삭제
+	@Override
+	public int deleteBoardFree(int boardNo) {
+		return adminDao.deleteBoardFree(sqlSession, boardNo);
+	}
 	
 	// 자유게시글
 	@Override
@@ -97,6 +101,8 @@ public class AdminServiceImpl implements  AdminService{
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return adminDao.selectReplyList(sqlSession, rowBounds);
 	}
+
+	
 
 
 

@@ -29,12 +29,16 @@ public interface AdminService {
 	
 	Board boardPosting (Board b);
 	
+	// 정보게시글 삭제
+	int deleteBoardFree (int boardNo);
 	// 자유게시글--------------------------------------------
 	int selectFreeBoardListCount();
 	
 	ArrayList<Board> selectFreeBoardList(PageInfo pi);
 	
 	Board freeBoardPosting (Board b);
+	
+	
 	// 댓글----------------------------------------
 	int selectReplyCount();
 	
