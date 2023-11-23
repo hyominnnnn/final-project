@@ -43,7 +43,7 @@
         	border-radius : 20px;
         	background-color: #bbe9d7;
         }
-        #user-answer {
+        #choices {
         	text-align: center;
         }
         #prev {
@@ -75,13 +75,13 @@
 					${ firstQuiz.quizContent }
 				</div>
 				<br><br>
-				<form action="userAnswer" method="post" id="user-answer">
+				<div id="choices">
 					<input type="radio" class="btn-check" name="answer" value="1" id="option5" autocomplete="off" checked>
 					<label class="btn" for="option5" id="choice1">${ firstQuiz.firstChoice }</label>
 					<br><br>
 					<input type="radio" class="btn-check" name="answer" value="2" id="option6" autocomplete="off">
 					<label class="btn" for="option6" id="choice2">${ firstQuiz.secondChoice }</label>
-				</form>
+				</div>
 				<br><br>
 				<div id="prev"><button class="btn btn-secondary" id="prev-btn" onclick="prevQuiz();">이전 문제</button></div>
 				<div id="next"><button class="btn btn-secondary" id="next-btn" onclick="nextQuiz();">다음 문제</button></div>
@@ -89,6 +89,9 @@
 		</div>
 		
 		<script>
+			
+			// 마지막 문제 번호 담기 위한 변수
+			let lastNo;
 			
 			// 퀴즈 번호를 계속 1 증가시키기 위한 전역 변수
 			let no = ${ firstQuiz.quizNo };
@@ -99,6 +102,19 @@
 			// 현재 문제 번호와 사용자가 입력한 값을 담을 객체
 			let userAnswer = {};
 			
+			$(function(){
+				// 현재 DB에 저장된 게임 문제 중 가장 큰 문제 번호 가져옴
+				$.ajax({
+					url : 'lastNo.ga',
+					success : function(num){
+						lastNo = num;
+					},
+					error : function(){
+						console.log('마지막 문제 번호 가져오기 실패');
+					}
+				});
+			});
+			
 			// 다음 문제 클릭
 			function nextQuiz(){
 				
@@ -106,28 +122,68 @@
 				let answer = $('input:radio[name="answer"]:checked').val();
 				// 객체의 no에 현재 문제 번호를 담고, answer에 사용자가 클릭한 답 담음
 				userAnswer = {no : no, answer : answer};
-				// 배열에 객체 넣기
-				answers.push(userAnswer);
 				
+				// 지금 보이는 문제의 다음 문제에 대한 데이터가 이미 있는 상태라면(이미 풀었던 문제라면)
+				if(answers[no] != null) {
+					// 다음 문제 클릭했을 때 예전에 선택했던 다음 문제에 대한 답이 클릭되어져 있는 상태로 나옴
+					$('input:radio[name="answer"]:input[value=' + answers[no].answer + ']').prop('checked', true);
+				}
+				
+				// 1번 문제의 정보는 answers[0]에 담겨있음 (그래서 현재 번호(no) - 1)
+				// 현재 문제 번호에 대한 데이터가 이미 있다면
+				if(answers[no - 1] != null) {
+					// 배열에 새로 추가 X, 그 답을 변경
+					answers[no - 1].answer = answer;
+					// console.log(answer);
+				} else { // 아니라면 (지금 문제가 처음 푸는 문제라면)
+					// 배열에 객체 넣기
+					answers.push(userAnswer);
+				}
 				// console.log(answers);
 				
-				$.ajax({
-					url : 'nextQuiz.ga',
-					data : {
-						quizNo : no
-					},
-					success : function(quiz){
-						$('#no').html(quiz.quizNo);
-						$('#quiz').html(quiz.quizContent);
-						$('#choice1').html(quiz.firstChoice);
-						$('#choice2').html(quiz.secondChoice);
-						
-						no = quiz.quizNo;
-					},
-					error : function(){
-						console.log('다음 문제로 넘기기 실패');
-					}
-				});
+				// no는 현재 화면에 있는 번호이기 때문에 + 1 해서 현재 번호의 다음 번호가 30과 같을 때로 해야
+				// 29 -> 30으로 넘어갈 때 버튼을 변경할 수 있음
+				if(lastNo == (no + 1)){
+					$('#next-btn').text('제출하기');
+				}
+				
+				// 현재 화면에 있는 번호가 문제의 마지막 번호일 때 클릭했던 답 배열 넘김
+				// data : 키 없이 value만 넘김 (Json 타입으로)
+				if(lastNo == no) {
+					console.log(answers);
+					$.ajax({
+						url : 'checkAnswer.ga',
+			            dataType: 'json',
+			            contentType: 'application/json; charset=UTF-8',
+						data : JSON.stringify(answers),
+						type : 'post',
+						success : function(result){
+							console.log(result);
+						},
+						error : function() {
+							console.log('실패');
+						}
+					});
+				}
+				else { // 다음 문제 하나씩 가져옴
+					$.ajax({
+						url : 'nextQuiz.ga',
+						data : {
+							quizNo : no
+						},
+						success : function(quiz){
+							$('#no').html(quiz.quizNo);
+							$('#quiz').html(quiz.quizContent);
+							$('#choice1').html(quiz.firstChoice);
+							$('#choice2').html(quiz.secondChoice);
+							
+							no = quiz.quizNo;
+						},
+						error : function(){
+							console.log('다음 문제로 넘기기 실패');
+						}
+					});
+				}
 			}
 			
 			// 이전 문제 클릭
@@ -138,6 +194,8 @@
 				// console.log(answers[no - 2].answer);
 				// name이 answer인 라디오버튼 중 value값이 해당 번호의 답인 버튼 checked된 상태로 보이게
 				$('input:radio[name="answer"]:input[value=' + answers[no - 2].answer + ']').prop('checked', true);
+				
+				// console.log(answers);
 				
 				$.ajax({
 					url : 'prevQuiz.ga',

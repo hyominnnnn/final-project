@@ -20,6 +20,11 @@ public class GameServiceImpl implements GameService {
 	public LowerGame firstQuiz() {
 		return gameDao.firstQuiz(sqlSession);
 	}
+	
+	@Override
+	public int lastNo() {
+		return gameDao.lastNo(sqlSession);
+	}
 
 	@Override
 	public LowerGame nextQuiz(int quizNo) {
@@ -30,6 +35,8 @@ public class GameServiceImpl implements GameService {
 	public LowerGame prevQuiz(int quizNo) {
 		return gameDao.prevQuiz(sqlSession, quizNo);
 	}
+
+	
 	
 	
 
