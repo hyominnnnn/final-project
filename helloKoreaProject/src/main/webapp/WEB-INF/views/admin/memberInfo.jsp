@@ -446,9 +446,10 @@
 			                            정말로 회원을 삭제 하시겠습니까? <br>
                         </div>
                         <br>
+                        	<input type="hidden" id="targetEmail" name="targetEmail" value="${requestScope.email}">
                             <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
                             <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
-                        	<input type="hidden" name="email" value="email">
+                        	
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
@@ -458,6 +459,13 @@
             </div>
         </div>
     </div>
+    
+    <script>
+    	//const memberDelete = 'z@z.z';
+  		//document.getElementById('targetEmail').value = memberDelete;
+    </script>
+    
+    
     
     <script>
 

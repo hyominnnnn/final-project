@@ -84,11 +84,12 @@
 	
 	<delete id="memberDelete" parameterType="String">
 	
-		DELETE
-		  FROM
-				TB_MEMBER
-		 WHERE
-		  		EMAIL = #{email}
+		UPDATE 
+			   TB_MEMBER
+		   SET 
+		       STATUS='S' 
+		 WHERE 
+		       EMAIL = #{email} 
 		  		
 	</delete>
 	

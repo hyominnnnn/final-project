@@ -385,6 +385,7 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberPostingDetailModel">
+                 <input type="hidden" id="fno" name="fno" value="">
                     <!-- Modal body -->
                     <div class="modal-body">
                             <label for="boardTitle" class="boardTitleBtn">제목</label>
