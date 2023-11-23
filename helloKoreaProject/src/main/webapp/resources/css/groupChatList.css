@@ -1,0 +1,72 @@
+@charset "UTF-8";
+div{
+    border: solid 1px blue;
+    box-sizing: border-box;
+}
+
+#chatting {
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+}
+
+#chat-header {
+    width: 100%;
+    height: 20%;
+    position : relative;
+
+}
+#chat-header > div {
+    height: 100%;
+    float: left;
+    position : relative;
+    margin: auto;
+}
+#search-condition-area{
+    width: 30%;
+    
+}
+#serch-value-area{
+    width: 40%;
+}
+#room-create-btn-area{
+    width: 30%;
+}
+#search-condition-area > span {
+    position:absolute;
+    top:50px;
+    left : 50px;
+}
+#search-condition-area > select {
+    position:absolute;
+    top:50px;
+    left: 150px;
+}
+#search-value{
+    position:absolute;
+    top:50px;
+    left : 30px;
+    width: 300px;
+}
+#room-create-btn{
+    position: absolute;
+    top:100px;
+    left : 200px;
+}
+
+table{
+    border: 1px black solid;
+    margin: auto;
+}
+table *{
+    border: 1px black solid;
+}
+#th2{
+    width: 400;
+}
+#th3{
+    width: 200;
+}
+#th4{
+    width: 100;
+}
