@@ -106,10 +106,19 @@
 				let answer = $('input:radio[name="answer"]:checked').val();
 				// 객체의 no에 현재 문제 번호를 담고, answer에 사용자가 클릭한 답 담음
 				userAnswer = {no : no, answer : answer};
-				// 배열에 객체 넣기
-				answers.push(userAnswer);
 				
-				// console.log(answers);
+				// 1번 문제의 정보는 answers[0]에 담겨있음 (그래서 현재 번호(no) - 1)
+				// 현재 문제 번호에 대한 데이터가 이미 있다면
+				if(answers[no - 1] != null) {
+					// 배열에 새로 추가 X, 그 답을 변경
+					answers[no - 1].answer = answer;
+					// console.log(answer);
+				} else { // 아니라면 (지금 문제가 처음 푸는 문제라면)
+					// 배열에 객체 넣기
+					answers.push(userAnswer);
+				}
+				
+				console.log(answers);
 				
 				$.ajax({
 					url : 'nextQuiz.ga',
@@ -138,6 +147,8 @@
 				// console.log(answers[no - 2].answer);
 				// name이 answer인 라디오버튼 중 value값이 해당 번호의 답인 버튼 checked된 상태로 보이게
 				$('input:radio[name="answer"]:input[value=' + answers[no - 2].answer + ']').prop('checked', true);
+				
+				console.log(answers);
 				
 				$.ajax({
 					url : 'prevQuiz.ga',
