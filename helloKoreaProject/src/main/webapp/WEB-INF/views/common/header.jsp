@@ -234,7 +234,7 @@
                 <li><a href="#">채팅학습</a>
                     <ul class="navi_2">
                         <li><a href="#">1:1채팅방</a></li>
-                        <li><a href="#">단체채팅방</a></li>
+                        <li><a href="groupChatList">단체채팅방</a></li>
                      
                     </ul>
                 </li>
