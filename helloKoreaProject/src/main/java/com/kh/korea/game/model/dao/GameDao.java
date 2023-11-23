@@ -11,6 +11,10 @@ public class GameDao {
 	public LowerGame firstQuiz(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("gameMapper.firstQuiz");
 	}
+	
+	public int lastNo(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("gameMapper.lastNo");
+	}
 
 	public LowerGame nextQuiz(SqlSessionTemplate sqlSession, int quizNo) {
 		return sqlSession.selectOne("gameMapper.nextQuiz", quizNo);
@@ -19,6 +23,9 @@ public class GameDao {
 	public LowerGame prevQuiz(SqlSessionTemplate sqlSession, int quizNo) {
 		return sqlSession.selectOne("gameMapper.prevQuiz", quizNo);
 	}
+
+	
+	
 	
 	
 

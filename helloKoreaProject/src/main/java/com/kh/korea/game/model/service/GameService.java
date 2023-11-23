@@ -6,8 +6,12 @@ public interface GameService {
 	
 	LowerGame firstQuiz();
 	
+	int lastNo();
+	
 	LowerGame nextQuiz(int quizNo);
 	
 	LowerGame prevQuiz(int quizNo);
+	
+	
 
 }
