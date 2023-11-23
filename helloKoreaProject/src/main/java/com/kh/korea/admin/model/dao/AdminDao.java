@@ -67,6 +67,10 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectReplyList");
 	}
 
+	public int memberTargetEmail(SqlSessionTemplate sqlSession, String targetEmail) {
+		return sqlSession.selectOne("adminMapper.memberTargetEmail", targetEmail);
+	}
+
 	
 
 

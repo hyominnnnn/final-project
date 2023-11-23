@@ -101,16 +101,27 @@ public class AdminController {
 	
 	
 	// 회원 삭제
+	@ResponseBody
+	@GetMapping(value="targetEmail", produces="application/json; charset=UTF-8")
+	public String memberTargetEmail(String targetEmail) {
+		System.out.println(targetEmail);
+		
+		return new Gson().toJson(adminService.memberTargetEmail(targetEmail));
+		
+	}
+	
 	@RequestMapping("delete.me")
-	public String memberDelete(@RequestParam("targetEmail") String targetEmail, String memberPwd, HttpSession session) {
+	public String memberDelete(String memberPwd, HttpSession session) {
 
 	    Member loginUser = (Member) session.getAttribute("loginUser");
 
 	    String encPwd = loginUser.getMemberPwd();
 
 	    if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
-
-	        if (adminService.memberDelete(targetEmail) > 0) {
+	    	
+	    	String email = loginUser.getEmail();
+	    	
+	        if (adminService.memberDelete(email) > 0) {
 	            session.removeAttribute("loginUser");
 	            return "admin/memberInfo";
 	        } else {

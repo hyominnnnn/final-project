@@ -40,6 +40,12 @@ public class AdminServiceImpl implements  AdminService{
 		return adminDao.memberDetail(sqlSession, m);
 	}
 	
+
+	@Override
+	public int memberTargetEmail(String targetEmail) {
+		return adminDao.memberTargetEmail(sqlSession, targetEmail);
+	}
+
 	
 	@Override
 	public int memberDelete(String email) {
@@ -102,7 +108,7 @@ public class AdminServiceImpl implements  AdminService{
 		return adminDao.selectReplyList(sqlSession, rowBounds);
 	}
 
-	
+
 
 
 

@@ -390,6 +390,7 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberDetailModel">
+                <input type="hidden" id="targetEmail" name="targetEmail" value="">
                     <!-- Modal body -->
                     <div class="modal-body">
                     		
@@ -428,6 +429,11 @@
         </div>
     </div>
     
+    <script>
+    	const memberDelete = 'z@z.z';
+  		document.getElementById('targetEmail').value = memberDelete;
+    </script>
+    
      <div class="modal fade" id="deleteForm">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
@@ -446,10 +452,11 @@
 			                            정말로 회원을 삭제 하시겠습니까? <br>
                         </div>
                         <br>
-                        	<input type="hidden" id="targetEmail" name="targetEmail" value="${requestScope.email}">
+                        	삭제할 회원의 이메일 :
+                        	<input type="text" class="form-control memberbtn" id="email" name="email" value="" readonly> 
+                            <br/>
                             <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
                             <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
-                        	
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
@@ -460,18 +467,38 @@
         </div>
     </div>
     
-    <script>
-    	//const memberDelete = 'z@z.z';
-  		//document.getElementById('targetEmail').value = memberDelete;
-    </script>
-    
     
     
     <script>
-
+    
+	    // 비밀번호 확인 모달
+	    
+	    $(function(){
+	    	$('#deleteBtn').click(function(){
+	    		
+	    		$.ajax({
+	    			url: 'targetEmail',
+	    			data: {targetEmail :''},
+	    			success: data => {
+	    				//console.log(data);
+	    				
+	    			},
+	    			error () => {
+	    				console.log('실패');
+	    			}
+	    		})
+	    		
+	    	})
+	    	
+	    })
+	    
+	    
+	    </script>
+	    <script>
+		// 회원 상세 모달
 	    $(function(){
 	             		$('.rwd-table > tbody > tr').click(function(){
-	             				console.log($(this).children().eq(1).text());
+	             				//console.log($(this).children().eq(1).text());
 	             				
 	             				
 	             				$.ajax({
@@ -479,7 +506,7 @@
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
 
-							    	   console.log(data);
+							    	   //console.log(data);
 
 							    	   //console.log(data.email);
 							    		

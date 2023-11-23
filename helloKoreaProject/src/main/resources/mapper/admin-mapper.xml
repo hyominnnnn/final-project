@@ -81,6 +81,15 @@
 				
 	</select>
 	
+	<select id="memberTargetEmail" parameterType="member" resultMap="memberList">
+		SELECT
+				EMAIL
+		  FROM
+		  		TB_MEMBER
+		  WHERE
+		  		EMAIL = #{email}
+	</select>
+	
 	
 	<delete id="memberDelete" parameterType="String">
 	
@@ -92,6 +101,8 @@
 		       EMAIL = #{email} 
 		  		
 	</delete>
+	
+	
 	
 	
 	<!-- 정보Board 쿼리문 -->
