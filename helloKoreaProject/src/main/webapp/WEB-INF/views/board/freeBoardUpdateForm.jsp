@@ -62,7 +62,8 @@
                            	<!-- 업로드네임 경로, 다운로드 받았을 때는 파일의 원본명으로 -->
                             <a href="${free.uploadName }" download="${free.originalName }">${free.originalName}</a>
                             <!-- 기존에 첨부파일 있었을 경우에만 보내주기-->
-                            <input type="hidden" value="${free.originalName}" name="${free.originalName}"/>
+                            <input type="hidden" value="${free.originalName}" name="originalName"/>
+                            <input type="hidden" value="${free.uploadName}" name="uploadName"/>
                             </c:if>
                         </td>
 		            </tr>

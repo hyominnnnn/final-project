@@ -44,8 +44,8 @@ public class BoardController {
 			
 		File file = new File();
 			
-		System.out.println(board);
-		System.out.println(upfile);
+		//System.out.println(board);
+		//System.out.println(upfile);
 			
 		if(!upfile.getOriginalFilename().equals("")) {
 			 file.setOriginalName(upfile.getOriginalFilename());
@@ -202,15 +202,28 @@ public class BoardController {
 	// DB가서 업데이트 -> boardNo로 식별 필요함 => 화면단 폼태그 안에서 히든으로 넘겨주기
 	public String updateBoard(@ModelAttribute Board b, File f, MultipartFile reUpfile, HttpSession session) {
 
+		/*
+		 * Board b 에 boardTitle, boardContent, boardWriter + boardNo
+		 * 이 4개는 무조건있음!!
+		 * 1. 새로운 파일x 기존파일 x => original컬럼에 : null => DB건들일 필요 없음
+		 * 2. 새로운 파일x 기존파일 o => original : DB 기존 첨부파일이름 유지, upload : 기존 첨부파일경로
+		 * 3. 새로운 파일o 기존파일 x => original : DB컬럼에 새로운 첨부파일 이름, upload : 새로운 첨부파일 경로
+		 * 4. 새로운 파일o 기존파일 o => original : DB컬럼에 새로운 첨부파일 이름, upload : 새로운 첨부파일 경로
+		 * 
+		 * 새로운 첨부파일이 있을 때만 보드에 새로 담으면 됨
+		 */
 		
-		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일이 널이 아니고 새로 올리는 파일이 없을 때 
-				
+		// 새로운 첨부파일이 있는지 없는지 부터 체크-> 새로 올라온 MultipartFile에 getOriginalFileName가지고 할 수 있음
+		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일이 널이 아니고 새로 올리는 파일이 있을 때 => OriginalFilename이 빈문자열과 일치하지 않는다면 
+			// 기존 첨부파일이 존재했는지 체크 => 기존의 첨부파일 삭제 
+			// view에서 히든으로 오리지널 네임을 보드에 넘겼기 때문에 기존파일이 있으면 보드에 들어왔을 것  
 			if(b.getOriginalName() != null) { //기존 파일이 있을 때 
 				System.out.println(b.getUploadName());
-				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제
+				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제 uploadName히든으로 받아와야함
 			}
 			b.setOriginalName(reUpfile.getOriginalFilename()); // 새로운 첨부파일 업로드
-			b.setUploadName(saveFile(reUpfile,session)); // 새로운 정보 b(Board타입객체)에 담기
+			// SaveFile클래스에 가서 saveFile메소드에 접근
+			b.setUploadName((SaveFile.saveFile(reUpfile,session))); // 새로운 정보 b(Board타입객체)에 담기
 		}
 		if(boardService.updateBoardFree(b, f) > 0) {
 			session.setAttribute("alertMsg", "게시물 수정 성공");
@@ -226,7 +239,7 @@ public class BoardController {
 	
 	// 
 	private String saveFile(MultipartFile reUpfile, HttpSession session) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 	

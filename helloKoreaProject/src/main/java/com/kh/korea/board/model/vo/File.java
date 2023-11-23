@@ -12,5 +12,5 @@ public class File {
 	private String originalName;
 	private String uploadName;
 	private String filePath;
-
+	private int boardNo;
 }
