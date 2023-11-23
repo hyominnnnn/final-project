@@ -66,7 +66,7 @@ public class BoardDao {
 	}
 	// 자유게시글 수정하기(UPDATE)
 	public int updateFree(SqlSessionTemplate sqlSession, Board b) {
-		System.out.println(b);
+		//System.out.println(b);
 		return sqlSession.update("boardMapper.updateBoardFree", b);
 	}
 	
