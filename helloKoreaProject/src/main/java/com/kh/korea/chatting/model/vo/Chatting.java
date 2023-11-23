@@ -18,7 +18,7 @@ import lombok.ToString;
 public class Chatting {
 	private int chatNo;
 	private String chatTitle;
-	private int memberNo;
+	private String memberNo;
 	private Date chatEnrollDate;
 	private String status;
 	

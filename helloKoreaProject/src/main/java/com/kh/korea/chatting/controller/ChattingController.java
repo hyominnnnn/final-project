@@ -1,13 +1,18 @@
 package com.kh.korea.chatting.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.korea.chatting.model.service.ChattingService;
+import com.kh.korea.chatting.model.vo.Chatting;
+import com.kh.korea.common.model.vo.PageInfo;
+import com.kh.korea.common.template.Pagination;
 
 @Controller
 public class ChattingController {
@@ -15,8 +20,14 @@ public class ChattingController {
 	@Autowired
 	private ChattingService chattingService;
 	
-	@GetMapping("groupChatList")
-	public String groupChatList() {
+	@RequestMapping("groupChatList")
+	public String groupChatList(@RequestParam(value="cPage", defaultValue="1") int currentPage, Model model) {
+		PageInfo pi = Pagination.getPageInfo(chattingService.selectListCount(), currentPage, 10,5);
+		ArrayList<Chatting> list =chattingService.selectList(pi);
+		model.addAttribute("list", list);
+		model.addAttribute("pi",pi);
+		System.out.println(list);
+		
 		return "chatting/groupChatListPage";
 	}
 	

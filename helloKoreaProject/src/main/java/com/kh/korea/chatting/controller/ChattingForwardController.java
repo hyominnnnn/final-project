@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ChattingForwardController {
-	@GetMapping("groupChatList")
-	public String groupChatList() {
-		return "chatting/groupChatListPage";
-	}
+	
+	
 	
 	
 }

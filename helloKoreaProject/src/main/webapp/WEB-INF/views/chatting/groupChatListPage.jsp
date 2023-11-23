@@ -37,21 +37,28 @@
                         <th id="th2">방이름</th>
                         <th id="th3">방장(닉네임)</th>
                         <th id="th4">참여인원</th>
+                        <th id="th5">생성날짜</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>한국에서 살아남기</td>
-                        <td>김병만</td>
-                        <td>21</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>한국에서 살아남기</td>
-                        <td>김병만</td>
-                        <td>21</td>
-                    </tr>
+                    <c:choose>
+					<c:when test="${empty list}">
+						<tr>
+							<td colspan="5">채팅방이 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+               			<c:forEach var="c" items="${list }">
+							<tr class="list">
+								<td>${c.chatNo }</td>
+								<td>${c.chatTitle }</td>
+								<td>${c.memberNo }</td>
+								<td><c:out value="참여인원"/></td>
+								<td>${c.chatEnrollDate }/></td>
+							</tr>
+						</c:forEach>
+                 	</c:otherwise>
+                 </c:choose>
                 </tbody>
             </table>
         </div>
