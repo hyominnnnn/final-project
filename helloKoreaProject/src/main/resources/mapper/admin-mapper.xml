@@ -76,6 +76,7 @@
 				MEMBER_ENROLL_DATE
 		 FROM
 				TB_MEMBER
+
 		 WHERE
 				EMAIL = #{email}
 				
