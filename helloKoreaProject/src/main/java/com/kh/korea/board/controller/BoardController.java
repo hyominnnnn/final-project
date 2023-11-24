@@ -124,6 +124,7 @@ public class BoardController {
 			 file.setOriginalName(upfile.getOriginalFilename());
 			 file.setUploadName(SaveFile.saveFile(upfile, session));
 		} 
+		System.out.println(file);
 		if(boardService.insertFree(board, file) > 0) { // 성공 => 게시글 목록을 보여주기
 			session.setAttribute("alertMsg", "게시글 작성 성공~");
 			return "redirect:list.fbo";
@@ -234,34 +235,28 @@ public class BoardController {
 		}
 		*/
 		//기존 파일 있을 경우
-		if(!b.getOriginalName().equals("")) { // 기존 파일 있을 경우
+		if(b.getOriginalName()!= null &&!b.getOriginalName().equals("")) { // 기존 파일 있을 경우
 			if(reUpfile != null) { // 기존파일 있고 새로운 파일 있을 떄
 				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제 
 				b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
 				b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
 			}
 			else { // 기존파일 있고 새로운 파일 없을때
-				
 				// 내용만 수정
+				b.setOriginalName(reUpfile.getOriginalFilename());
 			}
 
 		}
 		//기존 파일 없을 경우
-		if(reUpfile != null) { // 기존 파일 없고 새 파일 있을때
+		if(reUpfile != null) { // 기존 파일 없고 새 파일 있을때 => 인서트 
 			b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
 			b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
 		}
 		else { // 기존 파일 없고 새로운 파일 없을때
 			// 내용만 수정
+			b.setOriginalName(reUpfile.getOriginalFilename());
 
 		}
-
-		
-		
-		
-		
-		
-		
 		
 		
 		if(boardService.updateBoardFree(b) > 0) { // 보드에 담았으니까 보드 들고감

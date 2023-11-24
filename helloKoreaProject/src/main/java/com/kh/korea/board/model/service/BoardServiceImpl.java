@@ -129,9 +129,15 @@ public class BoardServiceImpl implements BoardService {
 	public int updateBoardFree(Board board) {
 		int result1 = boardDao.updateFree(sqlSession, board);
 		int result2 = 1;
+		//int result3 = 1;
 		if(board.getOriginalName() != null) { // 첨부파일이 있을때
 			result2 = boardDao.updateFileFree(sqlSession, board); 
 		}
+		/*
+		else {
+			result3 = boardDao.insertFile(sqlSession, file);
+		}
+		*/
 		//System.out.println(result1);
 		//System.out.println(result2);
 		return (result1 * result2);
