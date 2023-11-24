@@ -1,5 +1,8 @@
 package com.kh.korea.game.model.service;
 
+import java.util.ArrayList;
+
+import com.kh.korea.game.model.vo.Answer;
 import com.kh.korea.game.model.vo.LowerGame;
 
 public interface GameService {
@@ -12,6 +15,6 @@ public interface GameService {
 	
 	LowerGame prevQuiz(int quizNo);
 	
-	
+	int checkAnswer(ArrayList<Answer> list);
 
 }

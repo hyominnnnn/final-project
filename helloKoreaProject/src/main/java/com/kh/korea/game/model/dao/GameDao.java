@@ -1,8 +1,11 @@
 package com.kh.korea.game.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.korea.game.model.vo.Answer;
 import com.kh.korea.game.model.vo.LowerGame;
 
 @Repository
@@ -24,9 +27,10 @@ public class GameDao {
 		return sqlSession.selectOne("gameMapper.prevQuiz", quizNo);
 	}
 
-	
-	
-	
+	public int checkAnswer(SqlSessionTemplate sqlSession, ArrayList<Answer> list) {
+		return sqlSession.selectOne("gameMapper.checkAnswer", list);
+	}
+
 	
 
 }

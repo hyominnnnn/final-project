@@ -66,22 +66,31 @@ public class GameController {
 	// 사용자가 체크한 정답과 진짜 정답 비교
 	@ResponseBody
 	@PostMapping("checkAnswer.ga")
-	public void correctAnswer(@RequestBody String answers) throws ParseException {
+	public void checkAnswer(@RequestBody String answers) throws ParseException {
+		// answers(객체배열)을 파싱해서 JSONArray에 넣는다.
+		// answers의 키값에 해당하는 값들을 가져오기 위해서
 		JSONArray arr = (JSONArray)new JSONParser().parse(answers);
-		List<Answer> userAnswer = new ArrayList<Answer>();
+		// 문제번호와 정답을 저장하는 VO 배열
+		ArrayList<Answer> list = new ArrayList();
 		
 		for(Object obj : arr) {
+			// JsonArray 데이터를 순차적으로 JsonObject에 담는다.
 			JSONObject jsonObj = (JSONObject)obj;
 			
 			Answer answer = new Answer();
-			System.out.println(jsonObj.get("no").getClass().getSimpleName());
-			System.out.println(jsonObj.get("answer").getClass().getSimpleName());
-			//answer.setNo((Integer)jsonObj.get("no"));
-			//answer.setAnswer((Integer)jsonObj.get("answer"));
-			userAnswer.add(answer);
+			
+			// jsonObject의 키값(no, answer)에 해당하는 값을 뽑아서 answer VO의 no와 answer에 담는다.
+			// 기본 int형 값이 필요하기에 value를 string으로 바꾼 후에 parseInt메소드를 통해서 int형으로 바꾼다.
+			// jsonObject로 받아온 값의 value가 object타입이기 때문에 string으로 바꾼 후에 int형으로 바꾼다.
+			answer.setNo(Integer.parseInt(jsonObj.get("no").toString()));
+			answer.setAnswer(Integer.parseInt(jsonObj.get("answer").toString()));
+			list.add(answer);
 		}
 		
-		System.out.println(userAnswer);
+		// System.out.println(list);
+		
+		gameService.checkAnswer(list);
+		
 	}
 	
 	

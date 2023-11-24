@@ -65,7 +65,14 @@
 		 	   STATUS = 'Y'
 	</select>
 	
-	
+	<select id="checkAnswer", parameterType="answer" resultType="_int">
+		SELECT
+			   COUNT(QUIZ_NO)
+		  FROM 
+		  	   TB_LOWER_GAME
+		 WHERE 
+		 	   QUIZ_NO = 1
+	</select>
 	
 	
 </mapper>
