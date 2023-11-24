@@ -54,7 +54,7 @@
 								<td>${c.chatTitle }</td>
 								<td>${c.memberNo }</td>
 								<td><c:out value="참여인원"/></td>
-								<td>${c.chatEnrollDate }/></td>
+								<td>${c.chatEnrollDate }</td>
 							</tr>
 						</c:forEach>
                  	</c:otherwise>
@@ -90,11 +90,51 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                        <button type="submit" class="btn btn-danger">만들기</button>
+                        <button type="submit" class="btn btn-danger" onclick="connect();">만들기</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    
+    <!-- 채팅방 -->
+    <script>
+    	var nickname = "<c:out value='${sessionScope.loginUser.memberNickname}' />";
+    	console.log(nickname);
+    	
+    	function connect(){
+    		const uri = 'ws://localhost:9999/korea/chat';
+    		
+    		socket = new WebSocket(uri);
+    		socket.onopen = () => {
+    			console.log('서버와 연결!!');
+    		}
+    	}
+    </script>
+    
+    <!--페이징바-->
+		<div class="paging-area" align="center">
+			<c:if test="${pi.currentPage ne 1 }">
+			<button onclick="location.href='groupChatList?cPage=${pi.currentPage -1 }'" class="btn btn-outline-secondary">&lt;</button>
+			</c:if>
+			
+			
+			<c:forEach var="i" begin="${pi.startPage }" end="${pi.endPage}">
+				<c:choose>
+					<c:when test="${pi.currentPage ne i }">
+						<button onclick="location.href='groupChatList?cPage=${i}'" class="btn btn-outline-secondary">${i }</button>
+					</c:when>
+					<c:otherwise>
+						<button disabled class="btn btn-outline-secondary">${i }</button>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:if test="${pi.currentPage ne pi.maxPage }">
+				<button onclick="location.href='groupChatList?cPage=${pi.currentPage + 1 }'" class="btn btn-outline-secondary">&gt;</button>
+			</c:if>
+			
+		</div>
+    
 </body>
 </html>

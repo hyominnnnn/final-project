@@ -1,7 +1,11 @@
 package com.kh.korea.member.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 import javax.mail.MessagingException;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.korea.member.model.service.MemberService;
@@ -161,6 +166,45 @@ public class MemberController {
 			model.addAttribute("errorMsg","이메일을 잘못 입력했습니다.");
 			return "common/errorPage";
 		}
+	}
+	
+	@RequestMapping("updateProfile")
+	public String updateProfile(Member m, int memberNo, MultipartFile upfile, //여러개의 첨부파일을 전달받을 시 MultipartFile[]로 받을 수 있음
+			HttpSession session, Model model ) {
+		  	m.setSocialProfile(saveFile(upfile, session));
+		  	int result = memberService.updateProfile(m);
+		  	if(result > 0) {
+		  		return "";
+		  	}else {
+		  		model.addAttribute("errorMsg","게시글 작성 실패");
+				return "common/errorPage";
+		  	}
+	}
+	
+	public String saveFile(MultipartFile upfile, HttpSession session) {
+		//파일 수정 작후 서버에 업로드
+		String originName = upfile.getOriginalFilename();
+		// "20231103102244"(년월일시분초)
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		// 5자리 랜덤값
+		int ranNum = (int)(Math.random() * 90000) + 10000;
+		
+		// 확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		String changeName = currentTime + ranNum + ext;
+		
+		String savePath = session.getServletContext().getRealPath("/resources/member_image/");
+		
+		try {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "resources/member_image/" + changeName;
 	}
 		
 }

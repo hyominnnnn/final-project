@@ -26,7 +26,7 @@ public class ChattingController {
 		ArrayList<Chatting> list =chattingService.selectList(pi);
 		model.addAttribute("list", list);
 		model.addAttribute("pi",pi);
-		System.out.println(list);
+		//System.out.println(list);
 		
 		return "chatting/groupChatListPage";
 	}

@@ -175,6 +175,16 @@
 			EMAIL = #{email}
 	</update>
 	
+	<!-- 회원사진 업데이트 -->
+	<update id="updateProfile" parameterType="member">
+		UPDATE
+			TB_MEMBER
+		SET
+			SOCIAL_PROFILE = #{socialProfile}
+		WHERE
+			MEMBER_NO = #{memberNo}
+	</update>
+	
 	
 	
 	

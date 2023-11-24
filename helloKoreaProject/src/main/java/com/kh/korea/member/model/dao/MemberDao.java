@@ -52,4 +52,8 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", email);
 	}
 
+	public int updateProfile(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updateProfile", m);
+	}
+
 }

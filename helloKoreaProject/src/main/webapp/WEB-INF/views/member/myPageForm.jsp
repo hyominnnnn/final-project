@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="resources/css/myPage.css">
     
 
@@ -26,9 +26,18 @@
                     <div id="img"><img src="${sessionScope.loginUser.socialProfile}" id="profile_img"></div>
                 </c:otherwise>
             </c:choose>
+            
+            
+            
             <div id="img-btn">
-                <button id="img-change">사진 바꾸기</button>
+            	<form action="updateProfile" method="post" enctype="multipart/form-data">
+            		<input type="file" name="upfile">
+            		<input type="hidden" name="memberNo" id="memberNo" value="${sessionScope.loginUser.memberNo }">
+                	<button type="submit" id="img-change">사진 바꾸기</button>
+                </form>
             </div>
+            
+            
             <div id="level">
                 최고 등급
             </div>
@@ -73,7 +82,7 @@
                             탈퇴를 원하신다면 회원가입시 입력한 이메일을 입력해주세요.<br>
                         </div>
                         <br>
-                            <label for="userPwd" class="mr-sm-2">Email : </label>
+                            <label for="email" class="mr-sm-2">Email : </label>
                             <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Email" id="email" name="email"> <br>
                             <input type="hidden" name="emailCheck" value="${sessionScope.loginUser.email}"/>
                     </div>
