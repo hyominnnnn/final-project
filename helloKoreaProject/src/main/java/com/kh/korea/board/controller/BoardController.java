@@ -213,6 +213,7 @@ public class BoardController {
 		 * 새로운 첨부파일이 있을 때만 보드에 새로 담으면 됨
 		 */
 		
+		/*
 		// 새로운 첨부파일이 있는지 없는지 부터 체크-> 새로 올라온 MultipartFile에 getOriginalFileName가지고 할 수 있음
 		if(reUpfile!= null && !reUpfile.getOriginalFilename().equals("")) { // 새로운 파일이 널이 아니고 새로 올리는 파일이 있을 때 => OriginalFilename이 빈문자열과 일치하지 않는다면 
 			// 기존 첨부파일이 존재했는지 체크 => 기존의 첨부파일 삭제 
@@ -221,6 +222,7 @@ public class BoardController {
 				
 				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제 uploadName히든으로 받아와야함
 			}
+			
 			// 새로운 첨부파일 업로드
 			b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
 			System.out.println(b.getOriginalName());
@@ -230,6 +232,38 @@ public class BoardController {
 			//System.out.println(f);
 			System.out.println(b);
 		}
+		*/
+		//기존 파일 있을 경우
+		if(!b.getOriginalName().equals("")) { // 기존 파일 있을 경우
+			if(reUpfile != null) { // 기존파일 있고 새로운 파일 있을 떄
+				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제 
+				b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
+				b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
+			}
+			else { // 기존파일 있고 새로운 파일 없을때
+				
+				// 내용만 수정
+			}
+
+		}
+		//기존 파일 없을 경우
+		if(reUpfile != null) { // 기존 파일 없고 새 파일 있을때
+			b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
+			b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
+		}
+		else { // 기존 파일 없고 새로운 파일 없을때
+			// 내용만 수정
+
+		}
+
+		
+		
+		
+		
+		
+		
+		
+		
 		if(boardService.updateBoardFree(b) > 0) { // 보드에 담았으니까 보드 들고감
 			session.setAttribute("alertMsg", "게시물 수정 성공");
 			return "redirect:detail.fbo?fno="+ b.getBoardNo();
