@@ -140,7 +140,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// (공통)댓글 목록 조회
 	// (공통)댓글 작성(INSERT)
-
+	
 	
 	
 	
