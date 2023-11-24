@@ -3,6 +3,8 @@ package com.kh.korea.board.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
 import com.kh.korea.common.model.vo.PageInfo;
@@ -33,7 +35,7 @@ public interface BoardService {
 	// 자유 게시글 삭제하기(UPDATE)
 	int deleteBoardFree(int boardNo);
 	// 자유게시글 수정하기(UPDATE)
-	int updateBoardFree(Board board);
+	int updateBoardFree(Board board, MultipartFile reUpfile);
 	
 	// (공통)게시글 조회수 증가(UPDATE)
 	int increaseCount(int boardNo);

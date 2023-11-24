@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.korea.board.model.dao.BoardDao;
 import com.kh.korea.board.model.vo.Board;
@@ -126,18 +127,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	// 자유게시글 수정하기(UPDATE)
 	@Override
-	public int updateBoardFree(Board board) {
+	public int updateBoardFree(Board board, MultipartFile reUpfile) {
 		int result1 = boardDao.updateFree(sqlSession, board);
 		int result2 = 1;
-		//int result3 = 1;
-		if(board.getOriginalName() != null) { // 첨부파일이 있을때
-			result2 = boardDao.updateFileFree(sqlSession, board); 
+		
+		if(!reUpfile.getOriginalFilename().equals("")) { // 첨부파일이 있을때
+			result2 = boardDao.updateFileFree(sqlSession, reUpfile); 
 		}
-		/*
-		else {
-			result3 = boardDao.insertFile(sqlSession, file);
-		}
-		*/
 		//System.out.println(result1);
 		//System.out.println(result2);
 		return (result1 * result2);
