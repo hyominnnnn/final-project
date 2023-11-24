@@ -1,10 +1,13 @@
 package com.kh.korea.game.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.korea.game.model.dao.GameDao;
+import com.kh.korea.game.model.vo.Answer;
 import com.kh.korea.game.model.vo.LowerGame;
 
 @Service
@@ -34,6 +37,11 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public LowerGame prevQuiz(int quizNo) {
 		return gameDao.prevQuiz(sqlSession, quizNo);
+	}
+
+	@Override
+	public int checkAnswer(ArrayList<Answer> list) {
+		return gameDao.checkAnswer(sqlSession, list);
 	}
 
 	
