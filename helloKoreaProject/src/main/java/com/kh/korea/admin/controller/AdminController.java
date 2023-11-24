@@ -19,6 +19,7 @@ import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
 import com.kh.korea.member.model.vo.Member;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 
 @Controller
@@ -102,6 +103,7 @@ public class AdminController {
 	
 	
 	// 회원 삭제
+	/*
 	@ResponseBody
 	@GetMapping(value="targetEmail", produces="application/json; charset=UTF-8")
 	public String memberTargetEmail(String targetEmail) {
@@ -111,27 +113,27 @@ public class AdminController {
 		return new Gson().toJson(adminService.memberTargetEmail(targetEmail));
 		
 	}
-	
+	*/
 	@RequestMapping("delete.me")
-	public String memberDelete(String memberPwd, HttpSession session) {
+	public String memberDelete(String memberPwd, String email, HttpSession session) {
 
 	    Member loginUser = (Member) session.getAttribute("loginUser");
 
-	    String encPwd = loginUser.getMemberPwd();
-
+	   String encPwd = loginUser.getMemberPwd();
+	    //System.out.println(email);
+	    //System.out.println(memberPwd);
+	    
 	    if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
-	    	
-	    	String email = loginUser.getEmail();
+	    	//String email = loginUser.getEmail();
 	    	
 	        if (adminService.memberDelete(email) > 0) {
-	            session.removeAttribute("loginUser");
 	            return "admin/memberInfo";
 	        } else {
 	            return "common/errorPage";
 	        }
 
 	    } else {
-	        return "redirect:/";
+	       return "redirect:/";
 	    }
 	}
 	
