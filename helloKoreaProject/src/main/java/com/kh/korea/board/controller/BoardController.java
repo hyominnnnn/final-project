@@ -218,14 +218,19 @@ public class BoardController {
 			// 기존 첨부파일이 존재했는지 체크 => 기존의 첨부파일 삭제 
 			// view에서 히든으로 오리지널 네임을 보드에 넘겼기 때문에 기존파일이 있으면 보드에 들어왔을 것  
 			if(b.getOriginalName() != null) { //기존 파일이 있을 때 
-				System.out.println(b.getUploadName());
+				
 				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존 첨부파일 삭제 uploadName히든으로 받아와야함
 			}
-			b.setOriginalName(reUpfile.getOriginalFilename()); // 새로운 첨부파일 업로드
+			// 새로운 첨부파일 업로드
+			b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
+			System.out.println(b.getOriginalName());
 			// SaveFile클래스에 가서 saveFile메소드에 접근
-			b.setUploadName((SaveFile.saveFile(reUpfile,session))); // 새로운 정보 b(Board타입객체)에 담기
+			b.setUploadName((SaveFile.saveFile(reUpfile,session))); // 새로운 정보 b(Board타입객체)에 담기. 업로드 파일에도 
+			// -> b라는 보드 타입 객체에 새로운 정보(원본파일명, 저장경로+바뀐이름) 담아짐
+			//System.out.println(f);
+			System.out.println(b);
 		}
-		if(boardService.updateBoardFree(b, f) > 0) {
+		if(boardService.updateBoardFree(b) > 0) { // 보드에 담았으니까 보드 들고감
 			session.setAttribute("alertMsg", "게시물 수정 성공");
 			return "redirect:detail.fbo?fno="+ b.getBoardNo();
 		}else {
@@ -237,11 +242,7 @@ public class BoardController {
 		
 	// (공통)게시글 조회수 증가(UPDATE)
 	
-	// 
-	private String saveFile(MultipartFile reUpfile, HttpSession session) {
 	
-		return null;
-	}
 	
 	
 

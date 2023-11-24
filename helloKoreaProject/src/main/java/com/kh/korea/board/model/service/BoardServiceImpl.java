@@ -126,14 +126,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 	// 자유게시글 수정하기(UPDATE)
 	@Override
-	public int updateBoardFree(Board board, File file) {
+	public int updateBoardFree(Board board) {
 		int result1 = boardDao.updateFree(sqlSession, board);
 		int result2 = 1;
-		if(file.getOriginalName() != null) { // 첨부파일이 있을때
-			result2 = boardDao.updateFileFree(sqlSession, file); 
+		if(board.getOriginalName() != null) { // 첨부파일이 있을때
+			result2 = boardDao.updateFileFree(sqlSession, board); 
 		}
-		System.out.println(result1);
-		System.out.println(result2);
+		//System.out.println(result1);
+		//System.out.println(result2);
 		return (result1 * result2);
 	}
 

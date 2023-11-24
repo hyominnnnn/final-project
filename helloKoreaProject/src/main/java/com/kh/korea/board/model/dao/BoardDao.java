@@ -70,8 +70,8 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.updateBoardFree", b);
 	}
 	
-	public int updateFileFree(SqlSessionTemplate sqlSession, File file) {
-		return sqlSession.update("boardMapper.updateFileFree" , file);
+	public int updateFileFree(SqlSessionTemplate sqlSession, Board board) {
+		return sqlSession.update("boardMapper.updateFileFree" , board);
 	}
 	
 	

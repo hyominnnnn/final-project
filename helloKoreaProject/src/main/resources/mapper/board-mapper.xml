@@ -272,7 +272,7 @@
 		       BOARD_NO = #{boardNo} 
 	</update>
 	
-	<update id="updateFileFree" parameterType="file"> 
+	<update id="updateFileFree" parameterType="board"> 
 		UPDATE 
 		       TB_FILE
 		   SET 
