@@ -24,4 +24,6 @@ public interface MemberService {
 
 	//회원정보 삭제
 	int deleteMember(String email);
+	//회원사진 업데이트
+	int updateProfile(Member m);
 }
