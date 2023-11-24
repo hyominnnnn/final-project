@@ -130,15 +130,10 @@ public class BoardServiceImpl implements BoardService {
 	public int updateBoardFree(Board board, MultipartFile reUpfile) {
 		int result1 = boardDao.updateFree(sqlSession, board);
 		int result2 = 1;
-		//int result3 = 1;
-		if(reUpfile.getOriginalFilename() != null) { // 첨부파일이 있을때
+		
+		if(!reUpfile.getOriginalFilename().equals("")) { // 첨부파일이 있을때
 			result2 = boardDao.updateFileFree(sqlSession, reUpfile); 
 		}
-		/*
-		else {
-			result3 = boardDao.insertFile(sqlSession, file);
-		}
-		*/
 		//System.out.println(result1);
 		//System.out.println(result2);
 		return (result1 * result2);
