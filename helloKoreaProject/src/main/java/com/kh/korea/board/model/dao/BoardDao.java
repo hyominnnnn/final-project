@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
@@ -90,6 +91,9 @@ public class BoardDao {
 	// (공통)파일 업로드
 	public int insertFile(SqlSessionTemplate sqlSession, File file) {
 		return sqlSession.insert("boardMapper.insertFile", file);
+	}
+	public int updateFileFree(SqlSessionTemplate sqlSession, MultipartFile reUpfile) {
+		return sqlSession.insert("boardMapper.insertFile", reUpfile);
 	}
 	
 	

@@ -12,6 +12,7 @@
 		<result column="MODIFY_DATE"      property="modifyDate" />
 		<result column="COUNT"            property="count" />
 		<result column="ORIGINAL_NAME"    property="originalName" />
+		<result column="UPLOAD_NAME"	  property="uploadName" />
 		<result column="BOARD_CONTENT"    property="boardContent" />
 	</resultMap>
 	
@@ -309,6 +310,7 @@
 			  ,MEMBER_NICKNAME
 			  ,MODIFY_DATE
 			  ,ORIGINAL_NAME
+			  ,UPLOAD_NAME
 		 FROM 
 		 	  TB_BOARD
 		 JOIN 

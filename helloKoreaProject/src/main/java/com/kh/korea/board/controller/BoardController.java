@@ -201,7 +201,7 @@ public class BoardController {
 	// 보드테이블에 가서 기존 내용 갱신-> 보드에 담음 => 컴앤드객체방식(@ModelAttribute 생략되어있는 방식)
 	// MultipartFile 파일업로드를 위해서 (까보면 기존 첨부파일 있는지 없는지 알 수 있음)
 	// DB가서 업데이트 -> boardNo로 식별 필요함 => 화면단 폼태그 안에서 히든으로 넘겨주기
-	public String updateBoard(@ModelAttribute Board b, File f, MultipartFile reUpfile, HttpSession session) {
+	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
 
 		/*
 		 * Board b 에 boardTitle, boardContent, boardWriter + boardNo
@@ -234,32 +234,25 @@ public class BoardController {
 			System.out.println(b);
 		}
 		*/
-		//기존 파일 있을 경우
-		if(b.getOriginalName()!= null &&!b.getOriginalName().equals("")) { // 기존 파일 있을 경우
-			if(reUpfile != null) { // 기존파일 있고 새로운 파일 있을 떄
-				new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제 
-				b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
-				b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
-			}
-			else { // 기존파일 있고 새로운 파일 없을때
-				// 내용만 수정
-				b.setOriginalName(reUpfile.getOriginalFilename());
-			}
-
+	
+		
+		if(b.getOriginalName() != null &&!b.getOriginalName().equals("") && !reUpfile.getOriginalFilename().equals("")) { // 기존 파일 있을 경우
+			new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제
+			b.setUploadName((SaveFile.saveFile(reUpfile,session)));
+			b.setOriginalName(reUpfile.getOriginalFilename());
 		}
-		//기존 파일 없을 경우
-		if(reUpfile != null) { // 기존 파일 없고 새 파일 있을때 => 인서트 
+		
+		if(!reUpfile.getOriginalFilename().equals("")) { 
 			b.setOriginalName(reUpfile.getOriginalFilename()); // 보드에 새로 올라온 파일의 원본파일명을 넣어줌
 			b.setUploadName((SaveFile.saveFile(reUpfile,session))); 
 		}
-		else { // 기존 파일 없고 새로운 파일 없을때
-			// 내용만 수정
-			b.setOriginalName(reUpfile.getOriginalFilename());
-
-		}
+		
+		System.out.println(b.getUploadName()); // 있는거 일때 잘나옴
+		
+		// 파일만 인서트
 		
 		
-		if(boardService.updateBoardFree(b) > 0) { // 보드에 담았으니까 보드 들고감
+		if(boardService.updateBoardFree(b, reUpfile) > 0) { // 보드에 담았으니까 보드 들고감
 			session.setAttribute("alertMsg", "게시물 수정 성공");
 			return "redirect:detail.fbo?fno="+ b.getBoardNo();
 		}else {
