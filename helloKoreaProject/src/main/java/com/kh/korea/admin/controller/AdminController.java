@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -104,6 +105,7 @@ public class AdminController {
 	@ResponseBody
 	@GetMapping(value="targetEmail", produces="application/json; charset=UTF-8")
 	public String memberTargetEmail(String targetEmail) {
+		
 		System.out.println(targetEmail);
 		
 		return new Gson().toJson(adminService.memberTargetEmail(targetEmail));
