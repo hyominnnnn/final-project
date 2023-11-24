@@ -221,6 +221,7 @@
                 	<ul class="navi_2">
                         <li><a href="memberFreePosting">자유게시판</a></li>
                         <li><a href="memberPosting">정보게시판</a></li>
+                         <li><a href="reply.me">댓글 조회</a></li>
                     </ul>
                 </li>
                 <li><a href="memberQuiz">퀴즈관리</a></li>

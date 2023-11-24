@@ -350,8 +350,6 @@
                     </tbody>
                   </table>
                      <button type="submit" id="list-select-btn">리스트조회</button>
-                     <button class="member-detail-btn"><a href="posting.me" class="memberDetailBtn">게시글조회</a></button>
-                     <button class="member-detail-btn"><a href="reply.me" class="memberDetailBtn">댓글조회</a></button>
                    </form>
                 </div>
         </div>
@@ -385,7 +383,7 @@
 ​
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 정보 상세 조회</h4>
+                    <h4 class="modal-title">정보 상세 조회</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
@@ -444,7 +442,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post">
+                <form action="delete.me" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div align="center">
@@ -452,15 +450,16 @@
 			                            정말로 회원을 삭제 하시겠습니까? <br>
                         </div>
                         <br>
-                        	삭제할 회원의 이메일 :
+                        	삭제할 회원의 이메일
                         	<input type="text" class="form-control memberbtn" id="targetEmail" name="email" value="" readonly> 
                             <br/>
-                            <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
-                            <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
+                                                         관리자 비밀번호 확인
+                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd" value=""> 
+                            <br/>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                        <button class="btn btn-danger"><a href="delete.me">확인</a></button>
+                        <button type="submit" class="btn btn-danger">확인</button>
                     </div>
                 </form>
             </div>
@@ -474,13 +473,19 @@
 	    // 비밀번호 확인 모달
 	    $(function(){
 	    	$('#deleteBtn').click(function(){
-	    		$('#targetEmail').val($('#email').val());
+	    		var otherEmail = $('#targetEmail').val($('#email').val());
+	    		console.log(otherEmail);
+	    		
+	    		var adminPwd = $('#adminPwd').val();
+	    		console.log(adminPwd);
+	    		
+	    		//console.log($('#memberPwd').val());
 	    		//console.log(targetEmail);
 	    		
 	    		/*
 	    		$.ajax({
-	    			url: 'targetEmail',
-	    			data: {targetEmail : $('#email').val()},
+	    			url: 'delete.me',
+	    			data: {targetEmail : otherEmail},
 	    			success: data => {
 	    				console.log(data);
 	    				
