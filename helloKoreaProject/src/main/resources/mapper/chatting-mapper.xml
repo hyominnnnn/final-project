@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="chattingMapper">
+	<!-- 리스트 용 -->
+	<resultMap type="chatting" id="chattingListNickName">
+		<result column="CHAT_NO" property="chatNo" />
+		<result column="CHAT_TITLE" property="chatTitle" />
+		<result column="MEMBER_NICKNAME" property="memberNo" />
+		<result column="CHAT_ENROLL_DATE" property="chatEnrollDate" />
+		<result column="STATUS" property="status" />
+	</resultMap>
+	
+	<resultMap type="chatting" id="chattingList">
+		<result column="CHAT_NO" property="chatNo" />
+		<result column="CHAT_TITLE" property="chatTitle" />
+		<result column="MEMBER_NO" property="memberNo" />
+		<result column="CHAT_ENROLL_DATE" property="chatEnrollDate" />
+		<result column="STATUS" property="status" />
+	</resultMap>
+	
+	<!-- 채팅방 리스트 불러오기 -->
+	<select id="selectListCount" resultType="_int">
+		SELECT
+			COUNT(CHAT_NO)
+		FROM
+			TB_CHAT_GROUP
+		WHERE
+			STATUS = 'Y'
+	</select>
+	
+	<select id="selectList" resultMap="chattingListNickName">
+		SELECT 
+			A.CHAT_NO,
+			A.CHAT_TITLE,
+			B.MEMBER_NICKNAME,
+			A.CHAT_ENROLL_DATE,
+			A.STATUS
+		FROM
+			TB_CHAT_GROUP A,
+			TB_MEMBER B
+		WHERE
+			A.MEMBER_NO = B.MEMBER_NO
+		AND
+			A.STATUS = 'Y'
+	</select>
+	
+	<!-- 채팅방 생성 -->
+	<insert id="createChat" parameterType="hashmap">
+		INSERT 
+			INTO
+		TB_CHAT_GROUP
+			VALUES(
+				SEQ_CHAT_GROUP_NO.NEXTVAL,
+				#{chatTitle},
+				#{memberNo},
+				SYSDATE,
+				'Y'
+			)
+			
+	</insert>
+	
+	
+</mapper> 

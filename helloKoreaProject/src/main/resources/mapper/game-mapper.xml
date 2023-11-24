@@ -28,6 +28,13 @@
 		 	   STATUS = 'Y'
 	</select>
 	
+	<select id="lastNo" resultType="_int">
+		SELECT
+			   MAX(QUIZ_NO)
+  		  FROM 
+  		  	   TB_LOWER_GAME
+	</select>
+	
 	<select id="nextQuiz" parameterType="_int" resultMap="gameResultSet">
 		SELECT
 			   QUIZ_NO,
@@ -57,5 +64,15 @@
 		   AND 
 		 	   STATUS = 'Y'
 	</select>
+	
+	<select id="checkAnswer", parameterType="answer" resultType="_int">
+		SELECT
+			   COUNT(QUIZ_NO)
+		  FROM 
+		  	   TB_LOWER_GAME
+		 WHERE 
+		 	   QUIZ_NO = 1
+	</select>
+	
 	
 </mapper>
