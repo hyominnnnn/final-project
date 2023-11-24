@@ -390,7 +390,7 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberDetailModel">
-                <input type="hidden" id="targetEmail" name="targetEmail" value="">
+                
                     <!-- Modal body -->
                     <div class="modal-body">
                     		
@@ -430,8 +430,8 @@
     </div>
     
     <script>
-    	const memberDelete = 'z@z.z';
-  		document.getElementById('targetEmail').value = memberDelete;
+    	//const memberDelete = 'z@z.z';
+  		//document.getElementById('targetEmail').value = memberDelete;
     </script>
     
      <div class="modal fade" id="deleteForm">
@@ -444,7 +444,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="delete.me" method="post">
+                <form action="#" method="post">
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div align="center">
@@ -453,14 +453,14 @@
                         </div>
                         <br>
                         	삭제할 회원의 이메일 :
-                        	<input type="text" class="form-control memberbtn" id="email" name="email" value="" readonly> 
+                        	<input type="text" class="form-control memberbtn" id="targetEmail" name="email" value="" readonly> 
                             <br/>
                             <label for="memberPwd" class="mr-sm-2">비밀번호 : </label>
                             <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="memberPwd" name="memberPwd"> <br>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                        <button type="submit" class="btn btn-danger">확인</button>
+                        <button class="btn btn-danger"><a href="delete.me">확인</a></button>
                     </div>
                 </form>
             </div>
@@ -472,22 +472,24 @@
     <script>
     
 	    // 비밀번호 확인 모달
-	    
 	    $(function(){
 	    	$('#deleteBtn').click(function(){
+	    		$('#targetEmail').val($('#email').val());
+	    		//console.log(targetEmail);
 	    		
+	    		/*
 	    		$.ajax({
 	    			url: 'targetEmail',
-	    			data: {targetEmail :''},
+	    			data: {targetEmail : $('#email').val()},
 	    			success: data => {
-	    				//console.log(data);
+	    				console.log(data);
 	    				
 	    			},
-	    			error () => {
+	    			error : () => {
 	    				console.log('실패');
 	    			}
 	    		})
-	    		
+	    		*/
 	    	})
 	    	
 	    })
@@ -514,14 +516,14 @@
 							    	   const inputemail= data.email;
 							    	   const inputnickname = data.memberNickname;
 							    	   const inputbirthday = data.birthday;
-							    	   const inputnationNo = data.nationNo;
+							    	   const inputnationName = data.nationName;
 							    	   const inputenrolldate = data.memberEnrollDate;
 							    	   
 							    	   
 							    	   $('#memberName').val(inputName);
 							    	   $('#email').val(inputemail);
 							    	   $('#memberNickname').val(inputnickname);
-							    	   $('#nationNo').val(inputnationNo);
+							    	   $('#nationName').val(inputnationName);
 							    	   $('#birthday').val(inputbirthday);
 							    	   $('#memberEnrollDate').val(inputenrolldate);
 							    	   
