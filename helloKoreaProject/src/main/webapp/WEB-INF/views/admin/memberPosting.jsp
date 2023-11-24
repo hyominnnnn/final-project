@@ -348,7 +348,6 @@
                     </tbody>
                   </table>
                   <button type="submit" id="list-select-btn">리스트조회</button>
-                  <button class="board-detail-btn"><a href="reply.me" class="BoardDetailBtn">댓글조회</a></button>
                   </form>
                 </div>
         </div>
@@ -399,7 +398,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-						<button id="deleteBtn" class="btn btn-danger"><a href="deleteBoard" id="modal-footer-btn">삭제하기</a></button>
+						<button id="deleteBtn" class="btn btn-danger"><a href="deleteBoard" id="modal-footer-btn" >삭제하기</a></button>
                     </div>
                 </form>
             </div>

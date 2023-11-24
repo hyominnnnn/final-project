@@ -323,34 +323,36 @@
                         <th>제목</th>
                         <th>작성자</th>
                         <th></th>
-                        <th></th>
+                        <th>첨부파일</th>
                         <th>작성일</th>
                       </tr>
-                      <c:forEach items="${ list }" var="b">
+                      <c:forEach items="${ list }" var="f">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                        	${b.boardNo}
+	                        	${f.boardNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${b.boardTitle }
+	                            ${f.boardTitle }
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	${b.boardWriter }
+	                          	${f.boardWriter }
 	                        </td>
 	                        <td data-th="Invoice Date">
 	                        	
 	                        </td>
 	                        <td data-th="Due Date">
+	                        	<c:if test="${ not empty f.originalName }">
+	                        		${f.originalName }
+	                        	</c:if>
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${b.createDate}
+	                          ${f.createDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
                     </tbody>
                   </table>
                   <button type="submit" id="list-select-btn">리스트조회</button>
-                  <button class="board-detail-btn"><a href="reply.me" class="BoardDetailBtn">댓글조회</a></button>
                   </form>
                 </div>
         </div>
@@ -389,6 +391,10 @@
                 <form action="#" method="post" id="memberPostingDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
+                    		<label for="boardNo" class="boardTitleBtn">게시물 번호</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardNo" name="boardNo" readonly> 
+                            <br>
+                            
                             <label for="boardTitle" class="boardTitleBtn">제목</label>
                             <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
                             <br>
@@ -406,30 +412,79 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn">삭제하기</a></button>
+						<button id="deleteBtn" class="btn btn-danger"><a href="delete.bo" id="modal-footer-btn" data-toggle="modal" data-target="#deleteForm">삭제하기</a></button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
     
+    <div class="modal fade" id="deleteForm">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+​
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">관리자 비밀번호 확인!</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+​
+                <form action="deleteBoard" method="post">
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div align="center">
+			                            게시글 삭제 후 복구가 불가능합니다. <br>
+			                            정말로 삭제 하시겠습니까? <br>
+                        </div>
+                        <br>
+                        	삭제할 게시물의 번호
+                        	<input type="text" class="form-control memberbtn" id="targetBoardNo" name="boardNo" value="" readonly> 
+                            <br/>
+                                                         관리자 비밀번호 확인
+                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd" value=""> 
+                            <br/>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer" align="center">
+                        <button type="submit" class="btn btn-danger">확인</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    $(function(){
+    	$('#deleteBtn').click(function(){
+    		var otherBoardNo = $('#targetBoardNo').val($('#boardNo').val());
+    		console.log(otherBoardNo);
+    		var adminPwd = $('#adminPwd').val();
+    		
+    	})
+    	
+    })
+    
+    
+    </script>
+    
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			//console.log($(this).children().eq(0).text());
     			console.log($(this).children().eq(0).text());
-    			
+    			const num = $(this).children().eq(0).text().trim();
     			
     			$.ajax({
     				url: 'memberFreePosting.me',
     				data : {boardNo : $(this).children().eq(0).text().trim()},
     				success : data => {
-    					console.log(data);
+    					console.log($(this).children().eq(0).text());
     					
+    					const inputboardNo = data.boardNo;
     					const inputboardtitle = data.boardTitle;
     					const inputboardwriter = data.boardWriter;
     					const inputboardconent = data.boardContent;
     					
+    					$('#boardNo').val(num);
     					$('#boardTitle').val(inputboardtitle);
     					$('#boardWriter').val(inputboardwriter);
     					$('#boardContent').val(inputboardconent);

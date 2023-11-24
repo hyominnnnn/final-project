@@ -118,8 +118,7 @@ public class AdminController {
 	public String memberDelete(String memberPwd, String email, HttpSession session) {
 
 	    Member loginUser = (Member) session.getAttribute("loginUser");
-
-	   String encPwd = loginUser.getMemberPwd();
+	    String encPwd = loginUser.getMemberPwd();
 	    //System.out.println(email);
 	    //System.out.println(memberPwd);
 	    
@@ -227,14 +226,24 @@ public class AdminController {
 	
 	
 	@RequestMapping("deleteBoard")
-	public String deleteBoardFree(@RequestParam("fno") int fno, HttpSession session, String filePath) {
-		if(adminService.deleteBoardFree(fno) > 0) {
-			if(!filePath.equals("")) {
-				new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
+	public String deleteBoardFree(String memberPwd, int boardNo, HttpSession session, String filePath) {
+		
+		 Member loginUser = (Member) session.getAttribute("loginUser");
+		 String encPwd = loginUser.getMemberPwd();
+		
+		 System.out.println(boardNo);
+		 System.out.println(memberPwd);
+		if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
+			if(adminService.deleteBoardFree(boardNo) > 0) {
+				if(!filePath.equals("")) {
+					new java.io.File(session.getServletContext().getRealPath(filePath)).delete();
+				}
+				return "redirect:memberPosting";
+			} else {
+				return "common/errorPage";
 			}
-			return "redirect:memberPosting";
 		} else {
-			return "common/errorPage";
+			return "redirect:/";
 		}
 	}
 }
