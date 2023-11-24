@@ -65,7 +65,7 @@
 		 	   STATUS = 'Y'
 	</select>
 	
-	<select id="checkAnswer", parameterType="answer" resultType="_int">
+	<select id="checkAnswer" parameterType="answer" resultType="_int">
 		SELECT
 			   COUNT(QUIZ_NO)
 		  FROM 
