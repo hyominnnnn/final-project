@@ -339,7 +339,6 @@
 	                        <td data-th="Invoice Date">
 	                        </td>
 	                        <td data-th="Due Date">
-	                          
 	                        </td>
 	                        <td data-th="Net Amount">
 	                          ${m.memberEnrollDate}
@@ -369,7 +368,7 @@
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
                     	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage+1}">Next</a></li>
                 </ul>
             </div>
         
@@ -390,7 +389,6 @@
                 <input type="hidden" name="cpage" value="1" />
                     <!-- Modal body -->
                     <div class="modal-body">
-                    		
                             <label for="memberName" class="memberbtn">이름</label>
                             <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="" readonly> 
                             <br>
@@ -417,7 +415,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn"><a href="personalPosting?cPage=${p}" id="memberPostingBtn">게시글조회</a></button>
+                    	<button class="memberModelBtn" id="personalPostingBtn"><a href="personalPosting.me?bPage=${m.memberNickname}">게시글조회</a></button>
                     	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
                     	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
@@ -426,10 +424,7 @@
         </div>
     </div>
     
-    <script>
-    	//const memberDelete = 'z@z.z';
-  		//document.getElementById('targetEmail').value = memberDelete;
-    </script>
+   
     
      <div class="modal fade" id="deleteForm">
         <div class="modal-dialog modal-sm">

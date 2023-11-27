@@ -111,7 +111,7 @@
 	
 	<!-- 정보Board 쿼리문 -->
 
-	<select id="selectBoardListCount" resultType="_int">
+	<select id="selectBoardListCount" resultType="_int" parameterType="board">
 		SELECT
 				COUNT(*)
 		  FROM	
@@ -123,21 +123,29 @@
 		  	
 	</select>
 	
-	<select id="selectBoardList" resultMap="boardResultSet">
-		SELECT
-				BOARD_NO,
-				BOARD_WRITER,
-				BOARD_TITLE,
-				CREATE_DATE
-		 FROM
-				TB_BOARD
+	<select id="selectBoardList" resultMap="boardResultSet" parameterType="board">
+	   SELECT
+			   BOARD_NO
+			  ,BOARD_TITLE
+			  ,MEMBER_NICKNAME
+			  ,MODIFY_DATE
+			  ,ORIGINAL_NAME
+			  
+		 FROM 
+		 	  TB_BOARD
 		 JOIN 
-		 	    TB_MEMBER USING (MEMBER_NO)
-		WHERE
-		    	CATEGORY_NO = '2'
-		ORDER
+		 	  TB_MEMBER USING (MEMBER_NO)
+		 	  
+	LEFT JOIN
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
+
+		WHERE 
+			  TB_BOARD.CATEGORY_NO = 2
+		  AND
+			  TB_BOARD.STATUS = 'Y'
+		ORDER 
 		   BY
-		   		CREATE_DATE DESC
+		      MODIFY_DATE DESC
 	
 
 	</select>
@@ -157,7 +165,7 @@
 	
 	<!-- 자유Board 쿼리문 -->
 	  
-	<select id="selectFreeBoardListCount" resultType="_int">
+	<select id="selectFreeBoardListCount" resultType="_int" parameterType="board">
 		SELECT
 				COUNT(*)
 		  FROM	
@@ -168,7 +176,7 @@
 		    	CATEGORY_NO = '1'
 	</select>
 	
-	<select id="selectFreeBoardList" resultMap="boardResultSet">
+	<select id="selectFreeBoardList" resultMap="boardResultSet" parameterType="board">
 		SELECT
 			   BOARD_NO
 			  ,BOARD_TITLE
@@ -217,7 +225,43 @@
 		       BOARD_NO = #{boardNo} 
 	</update>
 	
+	<!-- 개인게시물 -->
+	<select id="selectPerPostingListCount" resultType="_int" parameterType="board">
+		SELECT
+			   COUNT(*)
+		 FROM 
+		 	   TB_BOARD
+		 JOIN 
+		 	   TB_MEMBER USING (MEMBER_NO)
+		WHERE 
+			   TB_MEMBER.MEMBER_NICKNAME = #{memberNickname}
+		  AND
+			   TB_BOARD.STATUS = 'Y'
+		ORDER 
+		   BY
+		       MODIFY_DATE DESC
+		  	
+	</select>
 	
+	<select id="selectPerPostingList" resultMap="boardResultSet" parameterType="board">
+	   SELECT
+			   BOARD_NO
+			  ,BOARD_TITLE
+			  ,MODIFY_DATE
+		 FROM 
+		 	  TB_BOARD
+		 JOIN 
+		 	  TB_MEMBER USING (MEMBER_NO)
+		WHERE 
+			  TB_MEMBER.MEMBER_NICKNAME = #{memberNickname}
+		  AND
+			  TB_BOARD.STATUS = 'Y'
+		ORDER 
+		   BY
+		      MODIFY_DATE DESC
+	
+
+	</select>
 	
 	
 	<!-- 댓글 관련 쿼리문 -->

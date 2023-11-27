@@ -409,7 +409,7 @@
                             <br>
                             
                             <label for="upfile">첨부파일</label>
-                            <input type="file" id="upfile" class="form-control-file border" name="upfile" readonly>
+                            <input type="file" id="upfile" class="form-control-file border" name="upfile">
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">

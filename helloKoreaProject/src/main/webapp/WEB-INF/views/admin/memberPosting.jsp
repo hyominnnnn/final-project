@@ -325,23 +325,23 @@
                         <th></th>
                         <th>작성일</th>
                       </tr>
-                      <c:forEach items="${ list }" var="b">
+                      <c:forEach items="${ list }" var="i">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                        	${b.boardNo }
+	                        	${i.boardNo }
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	${b.boardTitle }
+	                          	${i.boardTitle }
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                        	${b.boardWriter }
+	                        	${i.boardWriter }
 	                        </td>
 	                        <td data-th="Invoice Date">
 	                        </td>
 	                        <td data-th="Due Date">
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          	${b.createDate}
+	                          	${i.modifyDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -387,13 +387,24 @@
                  <input type="hidden" id="fno" name="fno" value="">
                     <!-- Modal body -->
                     <div class="modal-body">
+                           <label for="boardNo" class="boardTitleBtn">게시물 번호</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardNo" name="boardNo" readonly> 
+                            <br>
+                            
                             <label for="boardTitle" class="boardTitleBtn">제목</label>
                             <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
+                            <br>
+                            
+                            <label for="boardWriter" class="boardWriterBtn">작성자</label>
+                            <input type="text" class="form-control boardTitleBtn" id="boardWriter" name="boardWriter" readonly> 
                             <br>
                             
                             <label for="boardContent" class="boardContentBtn">내용</label>
                             <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
+                            
+                            <label for="upfile">첨부파일</label>
+                            <input type="file" id="upfile" class="form-control-file border" name="upfile" readonly>
                             
                     </div>
                     <!-- Modal footer -->
@@ -411,7 +422,8 @@
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			//console.log($(this).children().eq(0).text());
+    			const num = ($(this).children().eq(0).text()).trim();
+    			const memWriter = ($(this).children().eq(2).text()).trim();
     			
     			
     			$.ajax({
@@ -420,11 +432,15 @@
     				success : data => {
     					console.log(data);
     					
+    					const inputboardNo = data.boardNo;
     					const inputboardtitle = data.boardTitle;
+    					const inputboardwriter = data.boardWriter;
     					const inputboardconent = data.boardContent;
     					
     					$('#boardTitle').val(inputboardtitle);
     					$('#boardContent').val(inputboardconent);
+    					$('#boardNo').val(num);
+    					$('#boardwriter').val(memWriter);
     				},
     				error : () => {
     					console.log('실패!');

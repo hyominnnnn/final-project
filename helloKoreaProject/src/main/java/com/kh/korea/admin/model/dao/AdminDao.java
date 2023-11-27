@@ -64,11 +64,19 @@ public class AdminDao {
 	}
 
 	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
-		return (ArrayList)sqlSession.selectList("adminMapper.selectReplyList");
+		return (ArrayList)sqlSession.selectList("adminMapper.selectReplyList", null, rowBounds);
 	}
 
 	public int memberTargetEmail(SqlSessionTemplate sqlSession, String targetEmail) {
 		return sqlSession.selectOne("adminMapper.memberTargetEmail", targetEmail);
+	}
+	// 개인-----------------
+	public int selectPerPostingListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.selectPerPostingListCount");
+	}
+
+	public ArrayList<Board> selectPerPostingList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectPerPostingList", null, rowBounds);
 	}
 
 	

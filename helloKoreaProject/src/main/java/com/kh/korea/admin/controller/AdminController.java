@@ -211,8 +211,20 @@ public class AdminController {
 	}
 	
 	// 회원 개인 게시글 화면
-	@GetMapping("personalPosting")
-	public String personalPosting() {
+	@GetMapping("personalPosting.me")
+	public String selectPerPostingListCount(@RequestParam(value="cPage", defaultValue="1") int currentPage, 
+											String memberNickname, Model model) {
+		
+		System.out.println(memberNickname);
+		PageInfo pi = Pagination.getPageInfo(adminService.selectPerPostingListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectPerPostingList(pi));
+		model.addAttribute("pi", pi);
+		System.out.println(model.getAttribute("list"));
+		
+
 		return "admin/personalPosting";
 	}
 	

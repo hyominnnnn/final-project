@@ -94,6 +94,21 @@ public class AdminServiceImpl implements  AdminService{
 	public Board freeBoardPosting(Board b) {
 		return adminDao.freeBoardPosting(sqlSession, b);
 	}
+	
+	// 개인게시글------------------------------------
+	@Override
+	public int selectPerPostingListCount() {
+		return adminDao.selectPerPostingListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Board> selectPerPostingList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return adminDao.selectPerPostingList(sqlSession, rowBounds);
+	}
+	
+	
 	// 댓글----------------------------------------
 	
 	@Override
