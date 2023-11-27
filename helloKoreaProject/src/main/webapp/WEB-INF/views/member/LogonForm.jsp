@@ -234,7 +234,7 @@
 
     $(function(){
     	$('#logonForm #email').keyup(function(){
-    		var $email = $('#logonForm #email');
+    		const $email = $('#logonForm #email');
     		if($email.val().length == 0){
 	    		$('#emailBtn').attr('disabled', true);
     		}
@@ -246,7 +246,7 @@
     
     $(function(){
     	$('#logonForm #cert').keyup(function(){
-    		var $cert = $('#logonForm #cert');
+    		const $cert = $('#logonForm #cert');
     		if($cert.val().length == 0){
     			$('#certBtn').attr('disabled', true);
     		}
@@ -258,7 +258,7 @@
     
     $(function(){
     	$('#logonForm #nickname').keyup(function(){
-    		var $nickname = $('#logonForm #nickname');
+    		const $nickname = $('#logonForm #nickname');
     		if($nickname.val().length == 0){
 	    		$('#nickBtn').attr('disabled', true);
     		}
@@ -270,8 +270,8 @@
     
     $(function(){
     	$('#logonForm #password').keyup(function(){
-    		var $pwd = $('#logonForm #password');
-        	var $regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+    		const $pwd = $('#logonForm #password');
+    		const $regExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
         	
         	if($pwd.val().length >= 8){
 	        	if(!$regExp.test($pwd.val())){
@@ -306,8 +306,8 @@
     $(function(){
     	$('#dob').keyup(function(){
     		//숫자만 여섯자리
-    		var $regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-    		var $checkDob = $('#dob');
+    		const $regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    		const $checkDob = $('#dob');
     			
     		if($checkDob.val().length === 6){
     			if($regExp.test($checkDob.val()) ){
@@ -324,8 +324,8 @@
     	
     	$('#ssn').keyup(function(){
     		//숫자만 7자리
-    		var $regExp = /^[1-4]\d{6}$/;
-    		var $checkSsn = $('#ssn');
+    		const $regExp = /^[1-4]\d{6}$/;
+    		const $checkSsn = $('#ssn');
     		
     		if($checkSsn.val().length === 7){
     			if($regExp.test($checkSsn.val())){
