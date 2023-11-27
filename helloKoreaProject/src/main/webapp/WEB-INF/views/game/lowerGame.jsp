@@ -117,7 +117,6 @@
 			
 			// 다음 문제 클릭
 			function nextQuiz(){
-				
 				// 현재 체크한 라디오 버튼의 value값 추출
 				let answer = $('input:radio[name="answer"]:checked').val();
 				// 객체의 no에 현재 문제 번호를 담고, answer에 사용자가 클릭한 답 담음
@@ -157,8 +156,9 @@
 			            contentType: 'application/json; charset=UTF-8',
 						data : JSON.stringify(answers),
 						type : 'post',
-						success : function(result){
-							console.log(result);
+						success : function(score){ // 점수 가져옴
+							// console.log(score);
+							insertScore(score);
 						},
 						error : function() {
 							console.log('실패');
@@ -184,6 +184,33 @@
 						}
 					});
 				}
+			}
+			
+			// 점수 insert
+			function insertScore(score) {
+				// console.log(score);
+				// console.log(${ sessionScope.loginUser.memberNo });
+				$.ajax({
+					url : 'insertScore.ga',
+					data : {
+							memberNo : ${ sessionScope.loginUser.memberNo },
+							score : score,
+							levelNo : ${ firstQuiz.levelNo }
+							},
+					success : function(result){
+						// console.log(result);
+						if(result > 0) {
+							location.href = "main.ga";
+						}
+						else {
+							console.log('점수 insert 실패');
+						}
+					},
+					error : function(){
+						console.log('점수 입력 실패');
+					}
+				});
+				
 			}
 			
 			// 이전 문제 클릭

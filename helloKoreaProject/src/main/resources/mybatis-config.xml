@@ -15,6 +15,7 @@
 			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
 			<typeAlias type="com.kh.korea.game.model.vo.LowerGame" alias="lowerGame" />
 			<typeAlias type="com.kh.korea.game.model.vo.Answer" alias="answer" />
+			<typeAlias type="com.kh.korea.game.model.vo.Score" alias="score" />
 			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>
 			<typeAlias type="com.kh.korea.chatting.model.vo.Chatting" alias="Chatting"/>
 		</typeAliases>

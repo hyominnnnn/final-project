@@ -1,6 +1,7 @@
 package com.kh.korea.game.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.kh.korea.game.model.dao.GameDao;
 import com.kh.korea.game.model.vo.Answer;
 import com.kh.korea.game.model.vo.LowerGame;
+import com.kh.korea.game.model.vo.Score;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -42,6 +44,16 @@ public class GameServiceImpl implements GameService {
 	@Override
 	public int checkAnswer(ArrayList<Answer> list) {
 		return gameDao.checkAnswer(sqlSession, list);
+	}
+
+	@Override
+	public int insertScore(HashMap<String, Integer> map) {
+		return gameDao.insertScore(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Score> selectScore(int memberNo) {
+		return gameDao.selectScore(sqlSession, memberNo);
 	}
 
 	
