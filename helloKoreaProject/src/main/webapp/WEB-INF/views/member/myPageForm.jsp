@@ -31,9 +31,9 @@
             
             <div id="img-btn">
             	<form action="updateProfile" method="post" enctype="multipart/form-data">
-            		<input type="file" name="upfile">
-            		<input type="hidden" name="memberNo" id="memberNo" value="${sessionScope.loginUser.memberNo }">
-                	<button type="submit" id="img-change">사진 바꾸기</button>
+            		<input type="file" name="upfile" id="upfile">
+            		<!-- <input type="hidden" name="memberNo" id="memberNo" value="${sessionScope.loginUser.memberNo }">  -->
+                	<button type="submit" id="img-change" disabled>사진 바꾸기</button>
                 </form>
             </div>
             
@@ -94,7 +94,23 @@
             </div>
         </div>
     </div>
-
+	
+	<script>
+		$(function(){
+			$('#upfile').change(function(){
+				const $upfile = $('#upfile')
+				if($upfile.val()){
+					console.log($upfile)
+					$('#img-change').removeAttr('disabled');
+				}
+				else{
+					$('#img-change').attr('disabled', true);
+				}
+				
+			})
+			
+		})
+	</script>
 
 
 </body>

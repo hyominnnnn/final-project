@@ -169,12 +169,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping("updateProfile")
-	public String updateProfile(Member m, int memberNo, MultipartFile upfile, //여러개의 첨부파일을 전달받을 시 MultipartFile[]로 받을 수 있음
+	public String updateProfile( MultipartFile upfile, //여러개의 첨부파일을 전달받을 시 MultipartFile[]로 받을 수 있음
 			HttpSession session, Model model ) {
-		  	m.setSocialProfile(saveFile(upfile, session));
-		  	int result = memberService.updateProfile(m);
+			Member loginUser = (Member) session.getAttribute("loginUser");
+			loginUser.setSocialProfile(saveFile(upfile, session));
+		  	int result = memberService.updateProfile(loginUser);
+		  	System.out.println(loginUser);
 		  	if(result > 0) {
-		  		return "";
+		  		session.setAttribute("loginUser",loginUser);
+		  		return "member/myPageForm";
 		  	}else {
 		  		model.addAttribute("errorMsg","게시글 작성 실패");
 				return "common/errorPage";
