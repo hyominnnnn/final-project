@@ -211,8 +211,20 @@ public class AdminController {
 	}
 	
 	// 회원 개인 게시글 화면
-	@GetMapping("personalPosting")
-	public String personalPosting() {
+	@GetMapping("personalPosting.me")
+	public String selectPerPostingListCount(@RequestParam(value="cPage", defaultValue="1") int currentPage, 
+											String memberNickname, Model model) {
+		
+		System.out.println(memberNickname);
+		PageInfo pi = Pagination.getPageInfo(adminService.selectPerPostingListCount(),
+											 currentPage,
+											 5,
+											 5);
+		model.addAttribute("list", adminService.selectPerPostingList(pi));
+		model.addAttribute("pi", pi);
+		System.out.println(model.getAttribute("list"));
+		
+
 		return "admin/personalPosting";
 	}
 	
@@ -226,13 +238,15 @@ public class AdminController {
 	
 	
 	@RequestMapping("deleteBoard")
-	public String deleteBoardFree(String memberPwd, int boardNo, HttpSession session, String filePath) {
+	public String deleteBoardFree(String memberPwd, int boardNo, String boardWriter, HttpSession session, String filePath) {
 		
 		 Member loginUser = (Member) session.getAttribute("loginUser");
 		 String encPwd = loginUser.getMemberPwd();
 		
 		 System.out.println(boardNo);
 		 System.out.println(memberPwd);
+		 System.out.println(boardWriter);
+		 
 		if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
 			if(adminService.deleteBoardFree(boardNo) > 0) {
 				if(!filePath.equals("")) {

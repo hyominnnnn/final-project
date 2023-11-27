@@ -260,9 +260,11 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>000님의 게시글</h1>
+                <h1>${m.memberNickname}님의 게시글</h1>
                 <br>
-                  <form method="#" action="memberReply">
+                  <form action="personalPosting.me" method="get">
+                  <input type="hidden" name="cPage" value="1" />
+                   <input type="hidden" name="memberNickname" value="${m.memberNickname}" />
 	                  <table class="rwd-table">
 	                    <tbody>
 	                      <tr>
@@ -273,15 +275,15 @@
 	                        <th></th>
 	                        <th>작성일</th>
 	                      </tr>
+	                       <c:forEach items="${ list }" var="b">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	1
+	                          	${b.boardNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                        	ㅋㅋㅋ웃기다
+	                        	${b.boardTitle}
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	
 	                        </td>
 	                        <td data-th="Invoice Date">
 	                        </td>
@@ -289,16 +291,17 @@
 	                          	
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          2023/11/14
+	                          ${b.modifyDate}
 	                        </td>
 	                      </tr>
-	                     
+	                     </c:forEach>
 	                      
 	                    </tbody>
 	                  </table>
                   </form>
                 </div>
         </div>
+        
         	
     		<div id="pagingArea">
                 <ul class="pagination">

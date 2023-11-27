@@ -21,6 +21,6 @@ public class Member {
 	private String nationNo;
 	private String socialId;
 	private String socialProfile;
-	
+	private String nationName; //국가이름
 
 }

@@ -38,7 +38,10 @@ public interface AdminService {
 	ArrayList<Board> selectFreeBoardList(PageInfo pi);
 	
 	Board freeBoardPosting (Board b);
+	// 개인 게시글-------------------------------
+	int selectPerPostingListCount();
 	
+	ArrayList<Board> selectPerPostingList(PageInfo pi);
 	
 	// 댓글----------------------------------------
 	int selectReplyCount();

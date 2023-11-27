@@ -346,7 +346,7 @@
 	                        	</c:if>
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${f.createDate}
+	                          ${f.modifyDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -391,6 +391,7 @@
                 <form action="#" method="post" id="memberPostingDetailModel">
                     <!-- Modal body -->
                     <div class="modal-body">
+                    		
                     		<label for="boardNo" class="boardTitleBtn">게시물 번호</label>
                             <input type="text" class="form-control boardTitleBtn" id="boardNo" name="boardNo" readonly> 
                             <br>
@@ -407,7 +408,7 @@
                             <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
                             
-                            <label for="upfile">첨부파일</label></th>
+                            <label for="upfile">첨부파일</label>
                             <input type="file" id="upfile" class="form-control-file border" name="upfile">
                     </div>
                     <!-- Modal footer -->
@@ -470,14 +471,17 @@
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			console.log($(this).children().eq(0).text());
+    			//console.log($(this).children().eq(0).text());
     			const num = $(this).children().eq(0).text().trim();
+    			const memWriter = $(this).children().eq(2).text().trim();
+    			const file = $(this).children().eq(3).text().trim();
     			
     			$.ajax({
     				url: 'memberFreePosting.me',
     				data : {boardNo : $(this).children().eq(0).text().trim()},
     				success : data => {
-    					console.log($(this).children().eq(0).text());
+    					//console.log($(this).children().eq(0).text());
+    					console.log(data);
     					
     					const inputboardNo = data.boardNo;
     					const inputboardtitle = data.boardTitle;
@@ -486,8 +490,9 @@
     					
     					$('#boardNo').val(num);
     					$('#boardTitle').val(inputboardtitle);
-    					$('#boardWriter').val(inputboardwriter);
+    					$('#boardWriter').val(memWriter);
     					$('#boardContent').val(inputboardconent);
+    					$('#upfile').val(file);
     					
     				},
     				error : () => {
