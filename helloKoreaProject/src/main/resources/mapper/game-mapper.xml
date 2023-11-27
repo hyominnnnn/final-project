@@ -11,6 +11,13 @@
 		<result column="FIRST_CHOICE" property="firstChoice" />
 		<result column="SECOND_CHOICE" property="secondChoice" />
 		<result column="CORRECT" property="correct" />
+		<result column="LEVEL_NO" property="levelNo" />
+	</resultMap>
+
+	<resultMap id="scoreResultSet" type="score">
+		<result column="LEVEL_NO" property="levelNo" />
+		<result column="TEST_DATE" property="testDate" />
+		<result column="SCORE" property="score" />
 	</resultMap>
 	
 	<select id="firstQuiz" resultMap="gameResultSet">
@@ -19,7 +26,8 @@
 			   QUIZ_CONTENT,
 			   FIRST_CHOICE,
 			   SECOND_CHOICE,
-			   CORRECT
+			   CORRECT,
+			   LEVEL_NO
 		  FROM 
 			   TB_LOWER_GAME
 		 WHERE 
@@ -65,14 +73,51 @@
 		 	   STATUS = 'Y'
 	</select>
 	
-	<select id="checkAnswer" parameterType="answer" resultType="_int">
+	<!-- 정답 개수 -->
+	<select id="checkAnswer" parameterType="list" resultType="_int">
 		SELECT
 			   COUNT(QUIZ_NO)
 		  FROM 
 		  	   TB_LOWER_GAME
 		 WHERE 
-		 	   QUIZ_NO = 1
+		 <foreach item="answer" collection="list" open="(" close=")" separator="OR">
+		 	   QUIZ_NO = #{answer.no}
+		   AND
+		 	   CORRECT = #{answer.answer}
+		 </foreach>
 	</select>
 	
+	<!-- 점수 insert -->
+	<insert id="insertScore" parameterType="hashmap">
+		INSERT
+		  INTO
+		  	   TB_SCORE
+		  	   (
+		  	   MEMBER_NO,
+		  	   LEVEL_NO,
+		  	   SCORE
+		  	   )
+		VALUES 
+			   (
+			   #{ memberNo },
+			   #{ levelNo },
+			   #{ score }
+			   )
+	</insert>
+	
+	<!-- 사용자의 난이도별 점수 가져오기 -->
+	<select id="selectScore" parameterType="_int" resultMap="scoreResultSet">
+		SELECT
+			   LEVEL_NO,
+			   TEST_DATE,
+			   SCORE
+		  FROM 
+		  	   TB_SCORE
+		 WHERE 
+		 	    MEMBER_NO = #{ memberNo }
+		 ORDER
+		    BY
+		        LEVEL_NO DESC
+	</select>
 	
 </mapper>

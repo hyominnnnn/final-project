@@ -1,7 +1,7 @@
 package com.kh.korea.game.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -66,12 +66,14 @@ public class GameController {
 	// 사용자가 체크한 정답과 진짜 정답 비교
 	@ResponseBody
 	@PostMapping("checkAnswer.ga")
-	public void checkAnswer(@RequestBody String answers) throws ParseException {
+	public int checkAnswer(@RequestBody String answers) throws ParseException {
 		// answers(객체배열)을 파싱해서 JSONArray에 넣는다.
 		// answers의 키값에 해당하는 값들을 가져오기 위해서
 		JSONArray arr = (JSONArray)new JSONParser().parse(answers);
 		// 문제번호와 정답을 저장하는 VO 배열
 		ArrayList<Answer> list = new ArrayList();
+		// 점수
+		int score;
 		
 		for(Object obj : arr) {
 			// JsonArray 데이터를 순차적으로 JsonObject에 담는다.
@@ -87,12 +89,32 @@ public class GameController {
 			list.add(answer);
 		}
 		
-		// System.out.println(list);
+		// 사용자가 작성한 답 리스트
+		System.out.println(list);
 		
-		gameService.checkAnswer(list);
-		
+		// 정답 개수
+		return gameService.checkAnswer(list);
 	}
 	
+	@ResponseBody
+	@GetMapping("insertScore.ga")
+	public int insertScore(int memberNo, int score, int levelNo) {
+		
+		HashMap<String, Integer> map = new HashMap();
+		map.put("memberNo", memberNo);
+		map.put("score", score);
+		map.put("levelNo", levelNo);
+		
+		return gameService.insertScore(map);
+	}
+	
+	// 사용자의 난이도별 점수 가져오기
+	@ResponseBody
+	@PostMapping(value="selectScore.ga", produces="application/json; charset=UTF-8")
+	public String selectScore(int memberNo) {
+		return new Gson().toJson(gameService.selectScore(memberNo));
+		
+	}
 	
 	
 }

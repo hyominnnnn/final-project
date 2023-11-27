@@ -44,13 +44,14 @@
         }
         .score, .img {
         	float : left;
-        	width : 5%;
+        	width : 10%;
         	height : 80%;
         	border-radius : 50%;
         	line-height: 40px;
         	text-align: center;
+        	font-size : 25px;
+        	color : crimson;
         }
-        
 	</style>
 </head>
 <body>
@@ -69,20 +70,20 @@
 			</p>
 			
 			<div class="game-lower">
-				<h3><a href="lower.ga" class="low">초급 ⭐</a></h3>
-				<div class="score">20</div>
+				<h3><a href="lower.ga" class="low game">초급 ⭐</a></h3>
+				<div class="score" id="lowerScore"></div>
 				<div class="img">사진</div>
 			</div>
 			<br><hr><br>
 			<div class="game-middle">
-				<h3><a href="#" class="middle">중급 ⭐⭐⭐</a></h3>
-				<div class="score">20</div>
+				<h3><a href="#" class="middle game">중급 ⭐⭐⭐</a></h3>
+				<div class="score" id="middleScore"></div>
 				<div class="img">사진</div>
 			</div>
 			<br><hr><br>
 			<div class="game-upper">
-				<h3><a href="#" class="upper">고급 ⭐⭐⭐⭐⭐</a></h3>
-				<div class="score">20</div>
+				<h3><a href="#" class="upper game">고급 ⭐⭐⭐⭐⭐</a></h3>
+				<div class="score" id="upperScore"></div>
 				<div class="img">사진</div>
 			</div>
 			
@@ -110,6 +111,58 @@
 			noClick('외국인만 이용 가능한 서비스입니다.');
 		</script>
 	</c:if>
+	
+	<script>
+		$(function(){
+			userScore();
+		});
+
+		// 클래스가 score인 요소 배열
+		const scores = $('.score');
+		
+		// 사용자의 난이도별 점수
+		function userScore(){
+			
+			$.ajax({
+				url : 'selectScore.ga',
+				type : 'post',
+				data : {
+					memberNo : ${ sessionScope.loginUser.memberNo }
+				},
+				success : function(result){
+					//console.log(result);
+					// mapper에서 레벨넘버로 내림차순해서 인덱스 초급(0)-중급(1)-고급(2)순
+					for(let i = 0; i < result.length; i++) {
+						// 배열의 i번째 인덱스에 result의 i번째 점수 추가
+						scores[i].append(result[i].score);
+					}
+				},
+				error : function(){
+					console.log('유저 점수 가져오기 실패');
+				}
+			});
+		}
+		
+		const lower = $('#lowerScore')[0];
+		const middle = document.getElementById('middleScore').innerHTML;
+		const upper = document.getElementById('upperScore').innerHTML;
+		
+		console.log(lower);
+		
+		$('.low').click(function(){
+			console.log(lower);
+			if(lower != '') {
+				$('.low').removeAttr('href');
+				alert('다음 단계에 도전하세요!');
+			}
+		});
+		
+	
+	// 이전 게 없으면 -> 초급 풀고 오세요
+	// else if -> 지금 게 있으면 -> 다음 단계 어쩌고
+	// else -> 풀기
+	
+	</script>
 	
 	<jsp:include page="../common/footer.jsp" />
 	
