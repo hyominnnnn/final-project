@@ -19,6 +19,7 @@
 		<result column="NATION_NO" property="nationNo" />
 		<result column="SOCIAL_ID" property="socialId" />
 		<result column="SOCIAL_PROFILE" property="socialProfile" />
+		<result column="NATION_NAME" property="nationName" />
 </resultMap>
 
 <resultMap id="boardResultSet" type="board">
@@ -72,10 +73,12 @@
 				EMAIL,
 				MEMBER_NICKNAME,
 				BIRTHDAY,
-				NATION_NO,
+				NATION_NAME,
 				MEMBER_ENROLL_DATE
 		 FROM
 				TB_MEMBER
+		 JOIN
+		 		TB_NATION USING (NATION_NO)
 
 		 WHERE
 				EMAIL = #{email}
@@ -153,7 +156,7 @@
 	</select>
 	
 	<!-- 자유Board 쿼리문 -->
-	
+	  
 	<select id="selectFreeBoardListCount" resultType="_int">
 		SELECT
 				COUNT(*)
@@ -166,20 +169,28 @@
 	</select>
 	
 	<select id="selectFreeBoardList" resultMap="boardResultSet">
-	  SELECT
-				BOARD_NO,
-				BOARD_WRITER,
-				BOARD_TITLE,
-				CREATE_DATE
-		 FROM
-				TB_BOARD
+		SELECT
+			   BOARD_NO
+			  ,BOARD_TITLE
+			  ,MEMBER_NICKNAME
+			  ,MODIFY_DATE
+			  ,ORIGINAL_NAME
+			  
+		 FROM 
+		 	  TB_BOARD
 		 JOIN 
-		 	    TB_MEMBER USING (MEMBER_NO)
-		WHERE
-		    	CATEGORY_NO = '1'
-		ORDER
+		 	  TB_MEMBER USING (MEMBER_NO)
+		 	  
+	LEFT JOIN
+		 	  TB_FILE ON (BOARD_NO = REF_BNO)
+
+		WHERE 
+			  TB_BOARD.CATEGORY_NO = 1
+		  AND
+			  TB_BOARD.STATUS = 'Y'
+		ORDER 
 		   BY
-		   		CREATE_DATE DESC
+		      MODIFY_DATE DESC
 	
 
 	</select>

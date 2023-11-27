@@ -226,13 +226,15 @@ public class AdminController {
 	
 	
 	@RequestMapping("deleteBoard")
-	public String deleteBoardFree(String memberPwd, int boardNo, HttpSession session, String filePath) {
+	public String deleteBoardFree(String memberPwd, int boardNo, String boardWriter, HttpSession session, String filePath) {
 		
 		 Member loginUser = (Member) session.getAttribute("loginUser");
 		 String encPwd = loginUser.getMemberPwd();
 		
 		 System.out.println(boardNo);
 		 System.out.println(memberPwd);
+		 System.out.println(boardWriter);
+		 
 		if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
 			if(adminService.deleteBoardFree(boardNo) > 0) {
 				if(!filePath.equals("")) {

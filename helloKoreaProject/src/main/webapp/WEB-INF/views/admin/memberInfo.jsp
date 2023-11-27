@@ -320,8 +320,8 @@
                         <th>이름</th>
                         <th>이메일</th>
                         <th>닉네임</th>
-                        <th>생년월일</th>
-                        <th>국가</th>
+                        <th></th>
+                        <th></th>
                         <th>가입일자</th>
                       </tr>
 
@@ -337,10 +337,9 @@
 	                          	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                          ${m.birthday}
 	                        </td>
 	                        <td data-th="Due Date">
-	                          	${m.nationNo}
+	                          
 	                        </td>
 	                        <td data-th="Net Amount">
 	                          ${m.memberEnrollDate}
@@ -388,7 +387,7 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberDetailModel">
-                
+                <input type="hidden" name="cpage" value="1" />
                     <!-- Modal body -->
                     <div class="modal-body">
                     		
@@ -409,7 +408,7 @@
                             <br>
                             
                             <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationNo" name="nationNo" value=""readonly> 
+                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" value=""readonly> 
                             <br>
                             
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
@@ -418,7 +417,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn"><a href="personalPosting" id="memberPostingBtn">게시글조회</a></button>
+                    	<button class="memberModelBtn"><a href="personalPosting?cPage=${p}" id="memberPostingBtn">게시글조회</a></button>
                     	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
                     	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
@@ -474,10 +473,10 @@
 	    $(function(){
 	    	$('#deleteBtn').click(function(){
 	    		var otherEmail = $('#targetEmail').val($('#email').val());
-	    		console.log(otherEmail);
+	    		//console.log(otherEmail);
 	    		
 	    		var adminPwd = $('#adminPwd').val();
-	    		console.log(adminPwd);
+	    		//console.log(adminPwd);
 	    		
 	    		//console.log($('#memberPwd').val());
 	    		//console.log(targetEmail);
@@ -515,7 +514,7 @@
 
 							    	   //console.log(data);
 
-							    	   //console.log(data.email);
+							    	   //console.log(data.nationName);
 							    		
 							    	   const inputName = data.memberName;
 							    	   const inputemail= data.email;
