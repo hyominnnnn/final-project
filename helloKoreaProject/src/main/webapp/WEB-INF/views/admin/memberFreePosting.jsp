@@ -388,7 +388,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberPostingDetailModel">
+				<form action="uploadFile" method="post" enctype="multipart/form-data" id="memberPostingDetailModel">
+                <!--<form action="#" method="post" id="memberPostingDetailModel">-->
                     <!-- Modal body -->
                     <div class="modal-body">
                     		
@@ -408,8 +409,8 @@
                             <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
                             <br>
                             
-                            <label for="upfile">첨부파일</label>
-                            <input type="file" id="upfile" class="form-control-file border" name="upfile">
+                            <label for="originalName">첨부파일</label>
+                            <input type="text" class="form-control boardContentBtn" id="originalName" name="originalName" readonly> 
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
@@ -471,10 +472,10 @@
      <script>
     	$(function(){
     		$('.rwd-table > tbody > tr').click(function(){
-    			//console.log($(this).children().eq(0).text());
+    			
     			const num = $(this).children().eq(0).text().trim();
     			const memWriter = $(this).children().eq(2).text().trim();
-    			const file = $(this).children().eq(3).text().trim();
+    			const file = $(this).children().eq(4).text().trim();
     			
     			$.ajax({
     				url: 'memberFreePosting.me',
@@ -483,16 +484,16 @@
     					//console.log($(this).children().eq(0).text());
     					console.log(data);
     					
-    					const inputboardNo = data.boardNo;
     					const inputboardtitle = data.boardTitle;
     					const inputboardwriter = data.boardWriter;
     					const inputboardconent = data.boardContent;
+    					
     					
     					$('#boardNo').val(num);
     					$('#boardTitle').val(inputboardtitle);
     					$('#boardWriter').val(memWriter);
     					$('#boardContent').val(inputboardconent);
-    					$('#upfile').val(file);
+    					$('#originalName').val(file);
     					
     				},
     				error : () => {

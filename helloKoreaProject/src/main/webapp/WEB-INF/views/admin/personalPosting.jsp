@@ -262,9 +262,8 @@
             	<br>
                 <h1>${m.memberNickname}님의 게시글</h1>
                 <br>
-                  <form action="personalPosting.me" method="get">
-                  <input type="hidden" name="cPage" value="1" />
-                   <input type="hidden" name="memberNickname" value="${m.memberNickname}" />
+                  <form action="personalPosting" method="get">
+                  <input type="hidden" name="bPage" value="1" />
 	                  <table class="rwd-table">
 	                    <tbody>
 	                      <tr>
@@ -272,30 +271,29 @@
 	                        <th>글제목</th>
 	                        <th></th>
 	                        <th></th>
-	                        <th></th>
+	                        <th>첨부파일</th>
 	                        <th>작성일</th>
 	                      </tr>
-	                       <c:forEach items="${ list }" var="b">
-	                      <tr>
-	                        <td data-th="Supplier Code">
-	                          	${b.boardNo}
-	                        </td>
-	                        <td data-th="Supplier Name">
-	                        	${b.boardTitle}
-	                        </td>
-	                        <td data-th="Invoice Number">
-	                        </td>
-	                        <td data-th="Invoice Date">
-	                        </td>
-	                        <td data-th="Due Date">
-	                          	
-	                        </td>
-	                        <td data-th="Net Amount">
-	                          ${b.modifyDate}
-	                        </td>
-	                      </tr>
+	                       	<c:forEach items="${ list }" var="b">
+		                      <tr>
+		                        <td data-th="Supplier Code">
+		                          	${b.boardNo}
+		                        </td>
+		                        <td data-th="Supplier Name">
+		                        	${b.boardTitle}
+		                        </td>
+		                        <td data-th="Invoice Number">
+		                        </td>
+		                        <td data-th="Invoice Date">
+		                        </td>
+		                        <td data-th="Due Date">
+		                        	${b.uploadName}
+		                        </td>
+		                        <td data-th="Net Amount">
+		                          ${b.modifyDate}
+		                        </td>
+		                      </tr>
 	                     </c:forEach>
-	                      
 	                    </tbody>
 	                  </table>
                   </form>
@@ -303,27 +301,6 @@
         </div>
         
         	
-    		<div id="pagingArea">
-                <ul class="pagination">
-                	<c:choose>
-                		<c:when test="${ pi.currentPage eq 1}">
-                    		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    	</c:when>
-                    	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="personalPosting.me?cPage=${pi.currentPage-1}">Previous</a></li>
-                    	</c:otherwise>
-                    </c:choose>
-                    
-                    <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="personalPosting.me?cPage=${p}">${p}</a></li>
-                    </c:forEach>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </div>
-        
-    </div>
-    
-    
     
     
 </body>

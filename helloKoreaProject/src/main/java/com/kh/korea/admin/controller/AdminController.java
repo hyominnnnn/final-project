@@ -47,7 +47,6 @@ public class AdminController {
 	public String selectMemberList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
 		
-		
 		PageInfo pi = Pagination.getPageInfo(adminService.selectListCount(),
 											 currentPage,
 											 5,
@@ -211,20 +210,15 @@ public class AdminController {
 	}
 	
 	// 회원 개인 게시글 화면
-	@GetMapping("personalPosting.me")
-	public String selectPerPostingListCount(@RequestParam(value="cPage", defaultValue="1") int currentPage, 
-											String memberNickname, Model model) {
+	@GetMapping("personalPosting")
+	public String selectPerPostingList(int bPage, Model model) {
 		
-		System.out.println(memberNickname);
-		PageInfo pi = Pagination.getPageInfo(adminService.selectPerPostingListCount(),
-											 currentPage,
-											 5,
-											 5);
-		model.addAttribute("list", adminService.selectPerPostingList(pi));
-		model.addAttribute("pi", pi);
+		System.out.println("맴버 넘버 : " + bPage);
+		
+		model.addAttribute("list", adminService.selectPerPostingList(bPage));
+		model.addAttribute("bPage", bPage);
 		System.out.println(model.getAttribute("list"));
 		
-
 		return "admin/personalPosting";
 	}
 	

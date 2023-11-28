@@ -102,10 +102,9 @@ public class AdminServiceImpl implements  AdminService{
 	}
 
 	@Override
-	public ArrayList<Board> selectPerPostingList(PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return adminDao.selectPerPostingList(sqlSession, rowBounds);
+	public ArrayList<Board> selectPerPostingList(int bPage) {
+		
+		return adminDao.selectPerPostingList(sqlSession, bPage);
 	}
 	
 	
