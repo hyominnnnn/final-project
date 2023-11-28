@@ -14,6 +14,8 @@
 			<typeAlias type="com.kh.korea.board.model.vo.Reply" alias="reply" />
 			<typeAlias type="com.kh.korea.member.model.vo.Member" alias="member"/>
 			<typeAlias type="com.kh.korea.game.model.vo.LowerGame" alias="lowerGame" />
+			<typeAlias type="com.kh.korea.game.model.vo.MiddleGame" alias="middleGame" />
+			<typeAlias type="com.kh.korea.game.model.vo.UpperGame" alias="upperGame" />
 			<typeAlias type="com.kh.korea.game.model.vo.Answer" alias="answer" />
 			<typeAlias type="com.kh.korea.game.model.vo.Score" alias="score" />
 			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>

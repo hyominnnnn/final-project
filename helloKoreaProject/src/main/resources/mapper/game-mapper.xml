@@ -5,7 +5,25 @@
 
 <mapper namespace="gameMapper">
 	
-	<resultMap id="gameResultSet" type="lowerGame">
+	<resultMap id="lowerGameResultSet" type="lowerGame">
+		<result column="QUIZ_NO" property="quizNo" />
+		<result column="QUIZ_CONTENT" property="quizContent" />
+		<result column="FIRST_CHOICE" property="firstChoice" />
+		<result column="SECOND_CHOICE" property="secondChoice" />
+		<result column="CORRECT" property="correct" />
+		<result column="LEVEL_NO" property="levelNo" />
+	</resultMap>
+	
+	<resultMap id="middleGameResultSet" type="middleGame">
+		<result column="QUIZ_NO" property="quizNo" />
+		<result column="QUIZ_CONTENT" property="quizContent" />
+		<result column="FIRST_CHOICE" property="firstChoice" />
+		<result column="SECOND_CHOICE" property="secondChoice" />
+		<result column="CORRECT" property="correct" />
+		<result column="LEVEL_NO" property="levelNo" />
+	</resultMap>
+	
+	<resultMap id="upperGameResultSet" type="upperGame">
 		<result column="QUIZ_NO" property="quizNo" />
 		<result column="QUIZ_CONTENT" property="quizContent" />
 		<result column="FIRST_CHOICE" property="firstChoice" />
@@ -20,7 +38,9 @@
 		<result column="SCORE" property="score" />
 	</resultMap>
 	
-	<select id="firstQuiz" resultMap="gameResultSet">
+	<!-- 초급 -->
+	
+	<select id="lowQuiz" resultMap="lowerGameResultSet">
 		SELECT
 			   QUIZ_NO,
 			   QUIZ_CONTENT,
@@ -43,7 +63,7 @@
   		  	   TB_LOWER_GAME
 	</select>
 	
-	<select id="nextQuiz" parameterType="_int" resultMap="gameResultSet">
+	<select id="nextQuiz" parameterType="_int" resultMap="lowerGameResultSet">
 		SELECT
 			   QUIZ_NO,
 			   QUIZ_CONTENT,
@@ -58,7 +78,7 @@
 		 	   STATUS = 'Y'
 	</select>
 	
-	<select id="prevQuiz" parameterType="_int" resultMap="gameResultSet">
+	<select id="prevQuiz" parameterType="_int" resultMap="lowerGameResultSet">
 		SELECT
 			   QUIZ_NO,
 			   QUIZ_CONTENT,
@@ -87,7 +107,143 @@
 		 </foreach>
 	</select>
 	
-	<!-- 점수 insert -->
+	<!-- 중급 -->
+	
+	<select id="middleQuiz" resultMap="middleGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT,
+			   LEVEL_NO
+		  FROM 
+			   TB_MIDDLE_GAME
+		 WHERE 
+		 	   QUIZ_NO = 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+	<select id="lastMiddleNo" resultType="_int">
+		SELECT
+			   MAX(QUIZ_NO)
+  		  FROM 
+  		  	   TB_MIDDLE_GAME
+	</select>
+	
+	<select id="nextMiddleQuiz" parameterType="_int" resultMap="middleGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_MIDDLE_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } + 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+	<select id="prevMiddleQuiz" parameterType="_int" resultMap="middleGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_MIDDLE_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } - 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+	
+	<select id="checkMiddleAnswer" parameterType="list" resultType="_int">
+		SELECT
+			   COUNT(QUIZ_NO)
+		  FROM 
+		  	   TB_MIDDLE_GAME
+		 WHERE 
+		 <foreach item="answer" collection="list" open="(" close=")" separator="OR">
+		 	   QUIZ_NO = #{answer.no}
+		   AND
+		 	   CORRECT = #{answer.answer}
+		 </foreach>
+	</select>
+	
+	<!-- 고급 -->
+	
+	<select id="upperQuiz" resultMap="upperGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT,
+			   LEVEL_NO
+		  FROM 
+			   TB_UPPER_GAME
+		 WHERE 
+		 	   QUIZ_NO = 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+
+	<select id="lastUpperNo" resultType="_int">
+		SELECT
+			   MAX(QUIZ_NO)
+  		  FROM 
+  		  	   TB_UPPER_GAME
+	</select>
+
+	<select id="nextUpperQuiz" parameterType="_int" resultMap="upperGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_UPPER_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } + 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+
+	<select id="prevUpperQuiz" parameterType="_int" resultMap="upperGameResultSet">
+		SELECT
+			   QUIZ_NO,
+			   QUIZ_CONTENT,
+			   FIRST_CHOICE,
+			   SECOND_CHOICE,
+			   CORRECT
+		  FROM 
+			   TB_UPPER_GAME
+		 WHERE 
+		 	   QUIZ_NO = #{ quizNo } - 1
+		   AND 
+		 	   STATUS = 'Y'
+	</select>
+
+	<select id="checkUpperAnswer" parameterType="list" resultType="_int">
+		SELECT
+			   COUNT(QUIZ_NO)
+		  FROM 
+		  	   TB_UPPER_GAME
+		 WHERE 
+		 <foreach item="answer" collection="list" open="(" close=")" separator="OR">
+		 	   QUIZ_NO = #{answer.no}
+		   AND
+		 	   CORRECT = #{answer.answer}
+		 </foreach>
+	</select>
+	
+	<!-- 난이도별 점수 insert -->
 	<insert id="insertScore" parameterType="hashmap">
 		INSERT
 		  INTO
