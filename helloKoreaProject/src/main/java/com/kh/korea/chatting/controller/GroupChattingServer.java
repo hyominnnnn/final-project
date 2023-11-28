@@ -13,7 +13,8 @@ public class GroupChattingServer extends TextWebSocketHandler {
 	private Set<WebSocketSession> users = new CopyOnWriteArraySet();
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("접속");
+		//System.out.println("접속");
+		users.add(session);
 	}
 
 	@Override
