@@ -91,12 +91,9 @@
 	</div>
 	
 	<script>
-		// a태그 클릭 막고 alert 띄우기
 		function noClick(str) {
-			document.querySelector('.low').removeAttribute('href');
-			document.querySelector('.middle').removeAttribute('href');
-			document.querySelector('.upper').removeAttribute('href');
 			alert(str);
+			location.href = "main"; // 메인페이지로 이동
 		}
 	</script>
 	
@@ -136,7 +133,6 @@
 						// 배열의 i번째 인덱스에 result의 i번째 점수 추가
 						scores[i].append(result[i].score);
 					}
-						// console.log(scores[0].innerHTML);
 				},
 				error : function(){
 					console.log('유저 점수 가져오기 실패');
@@ -144,40 +140,34 @@
 			});
 		}
 		
-		$('.low').click(function(){
-			// 초급 점수 div가 비어있는지
-			// console.log(scores[0].innerHTML);
-			if(scores[0].innerHTML != '') {
-				$('.low').removeAttr('href');
-				alert('다음 단계에 도전하세요!');
+		// 현재 클릭한 요소의 href 비활성화 함수
+		function removeLink(index, level) {
+			// 초급이 아니고 이전 단계의 점수가 없다면
+			if(index > 0 && scores[index - 1].innerHTML == '') {
+				// 지금 클릭한 요소($(this))의 href 비활성화
+				$(level).removeAttr('href');
+				alert('이전 단계부터 도전하세요!');
 			}
+			
+			// 현재 단계의 점수가 비어있지 않다면
+			if(scores[index].innerHTML != '') {
+				$(level).removeAttr('href');
+				alert('이미 학습한 단계입니다.');
+			}
+		}
+		
+		$('.low').click(function(){
+			// 초급의 점수가 scores[0]에 들어가니까 0과 지금 클릭한 자기자신(초급의 a태그) 넘김
+			removeLink(0, this);
 		});
 		
 		$('.middle').click(function(){
-			if(scores[0].innerHTML == ''){
-				$('.middle').removeAttr('href');
-				alert('이전 단계부터 도전하세요!');
-			}
-			else if(scores[1].innerHTML != ''){
-				$('.middle').removeAttr('href');
-				alert('다음 단계에 도전하세요!');
-			}
+			removeLink(1, this);
 		});
 		
 		$('.upper').click(function(){
-			if(scores[1].innerHTML == ''){
-				$('.upper').removeAttr('href');
-				alert('이전 단계부터 도전하세요!');
-			}
-			else if(scores[2].innerHTML != ''){
-				$('.upper').removeAttr('href');
-				alert('마지막 단계입니다!');
-			}
+			removeLink(2, this);
 		});
-		
-		// 이전 게 없으면 -> 초급 풀고 오세요
-		// else if -> 지금 게 있으면 -> 다음 단계 도전
-		// else -> 풀기
 	
 	</script>
 	
