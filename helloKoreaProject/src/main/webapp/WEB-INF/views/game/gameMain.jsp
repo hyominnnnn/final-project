@@ -76,13 +76,13 @@
 			</div>
 			<br><hr><br>
 			<div class="game-middle">
-				<h3><a href="#" class="middle game">중급 ⭐⭐⭐</a></h3>
+				<h3><a href="middle.ga" class="middle game">중급 ⭐⭐⭐</a></h3>
 				<div class="score" id="middleScore"></div>
 				<div class="img">사진</div>
 			</div>
 			<br><hr><br>
 			<div class="game-upper">
-				<h3><a href="#" class="upper game">고급 ⭐⭐⭐⭐⭐</a></h3>
+				<h3><a href="upper.ga" class="upper game">고급 ⭐⭐⭐⭐⭐</a></h3>
 				<div class="score" id="upperScore"></div>
 				<div class="img">사진</div>
 			</div>
@@ -91,12 +91,9 @@
 	</div>
 	
 	<script>
-		// a태그 클릭 막고 alert 띄우기
 		function noClick(str) {
-			document.querySelector('.low').removeAttribute('href');
-			document.querySelector('.middle').removeAttribute('href');
-			document.querySelector('.upper').removeAttribute('href');
 			alert(str);
+			location.href = "main"; // 메인페이지로 이동
 		}
 	</script>
 	
@@ -143,24 +140,35 @@
 			});
 		}
 		
-		const lower = $('#lowerScore')[0];
-		const middle = document.getElementById('middleScore').innerHTML;
-		const upper = document.getElementById('upperScore').innerHTML;
-		
-		console.log(lower);
+		// 현재 클릭한 요소의 href 비활성화 함수
+		function removeLink(index, level) {
+			
+			// 초급이 아니고 이전 단계의 점수가 없다면
+			if(index > 0 && scores[index - 1].innerHTML == '') {
+				// 지금 클릭한 요소($(this))의 href 비활성화
+				$(level).removeAttr('href');
+				alert('이전 단계부터 도전하세요!');
+			}
+			
+			// 현재 단계의 점수가 비어있지 않다면
+			if(scores[index].innerHTML != '') {
+				$(level).removeAttr('href');
+				alert('이미 학습한 단계입니다.');
+			}
+		}
 		
 		$('.low').click(function(){
-			console.log(lower);
-			if(lower != '') {
-				$('.low').removeAttr('href');
-				alert('다음 단계에 도전하세요!');
-			}
+			// 초급의 점수가 scores[0]에 들어가니까 0과 지금 클릭한 자기자신(초급의 a태그) 넘김
+			removeLink(0, this);
 		});
 		
-	
-	// 이전 게 없으면 -> 초급 풀고 오세요
-	// else if -> 지금 게 있으면 -> 다음 단계 어쩌고
-	// else -> 풀기
+		$('.middle').click(function(){
+			removeLink(1, this);
+		});
+		
+		$('.upper').click(function(){
+			removeLink(2, this);
+		});
 	
 	</script>
 	

@@ -31,14 +31,16 @@ public class GameController {
 		return "game/gameMain";
 	}
 	
+	// ----- 초급 -----
+	
 	// 초급 게임페이지
 	@GetMapping("lower.ga")
 	public ModelAndView lowerGame(ModelAndView mv) {
-		mv.addObject("firstQuiz", gameService.firstQuiz()).setViewName("game/lowerGame");
+		mv.addObject("firstQuiz", gameService.lowQuiz()).setViewName("game/lowerGame");
 		return mv;
 	}
 	
-	// DB에 저장된 문제 번호 중 가장 큰 번호
+	// DB에 저장된 초급 문제 번호 중 가장 큰 번호
 	@ResponseBody
 	@GetMapping("lastNo.ga")
 	public int lastNo() {
@@ -90,12 +92,135 @@ public class GameController {
 		}
 		
 		// 사용자가 작성한 답 리스트
-		System.out.println(list);
+		// System.out.println(list);
 		
 		// 정답 개수
 		return gameService.checkAnswer(list);
 	}
 	
+	// ----- 중급 -----
+	
+	// 중급 게임페이지
+	@GetMapping("middle.ga")
+	public ModelAndView middleGame(ModelAndView mv) {
+		mv.addObject("firstQuiz", gameService.middleQuiz()).setViewName("game/middleGame");
+		return mv;
+	}
+	
+	@ResponseBody
+	@GetMapping("lastMiddleNo.ga")
+	public int lastMiddleNo() {
+		return gameService.lastMiddleNo();
+	}
+	
+	@ResponseBody
+	@GetMapping(value="nextMiddleQuiz.ga", produces="application/json; charset=UTF-8")
+	public String nextMiddleQuiz(int quizNo) {
+		// System.out.println(quizNo);
+		return new Gson().toJson(gameService.nextMiddleQuiz(quizNo));
+	}
+	
+	@ResponseBody
+	@GetMapping(value="prevMiddleQuiz.ga", produces="application/json; charset=UTF-8")
+	public String prevMiddleQuiz(int quizNo) {
+		// System.out.println(quizNo);
+		return new Gson().toJson(gameService.prevMiddleQuiz(quizNo));
+	}
+	
+	@ResponseBody
+	@PostMapping("checkMiddleAnswer.ga")
+	public int checkMiddleAnswer(@RequestBody String answers) throws ParseException {
+		// answers(객체배열)을 파싱해서 JSONArray에 넣는다.
+		// answers의 키값에 해당하는 값들을 가져오기 위해서
+		JSONArray arr = (JSONArray)new JSONParser().parse(answers);
+		// 문제번호와 정답을 저장하는 VO 배열
+		ArrayList<Answer> list = new ArrayList();
+		// 점수
+		int score;
+		
+		for(Object obj : arr) {
+			// JsonArray 데이터를 순차적으로 JsonObject에 담는다.
+			JSONObject jsonObj = (JSONObject)obj;
+			
+			Answer answer = new Answer();
+			
+			// jsonObject의 키값(no, answer)에 해당하는 값을 뽑아서 answer VO의 no와 answer에 담는다.
+			// 기본 int형 값이 필요하기에 value를 string으로 바꾼 후에 parseInt메소드를 통해서 int형으로 바꾼다.
+			// jsonObject로 받아온 값의 value가 object타입이기 때문에 string으로 바꾼 후에 int형으로 바꾼다.
+			answer.setNo(Integer.parseInt(jsonObj.get("no").toString()));
+			answer.setAnswer(Integer.parseInt(jsonObj.get("answer").toString()));
+			list.add(answer);
+		}
+		
+		// 사용자가 작성한 답 리스트
+		// System.out.println(list);
+		
+		// 정답 개수
+		return gameService.checkMiddleAnswer(list);
+	}
+	
+	// ----- 고급 -----
+	
+	// 고급 게임페이지
+	@GetMapping("upper.ga")
+	public ModelAndView upperGame(ModelAndView mv) {
+		mv.addObject("firstQuiz", gameService.upperQuiz()).setViewName("game/upperGame");
+		return mv;
+	}
+	
+	@ResponseBody
+	@GetMapping("lastUpperNo.ga")
+	public int lastUpperNo() {
+		return gameService.lastUpperNo();
+	}
+	
+	@ResponseBody
+	@GetMapping(value="nextUpperQuiz.ga", produces="application/json; charset=UTF-8")
+	public String nextUpperQuiz(int quizNo) {
+		// System.out.println(quizNo);
+		return new Gson().toJson(gameService.nextUpperQuiz(quizNo));
+	}
+	
+	@ResponseBody
+	@GetMapping(value="prevUpperQuiz.ga", produces="application/json; charset=UTF-8")
+	public String prevUpperQuiz(int quizNo) {
+		// System.out.println(quizNo);
+		return new Gson().toJson(gameService.prevUpperQuiz(quizNo));
+	}
+	
+	@ResponseBody
+	@PostMapping("checkUpperAnswer.ga")
+	public int checkUpperAnswer(@RequestBody String answers) throws ParseException {
+		// answers(객체배열)을 파싱해서 JSONArray에 넣는다.
+		// answers의 키값에 해당하는 값들을 가져오기 위해서
+		JSONArray arr = (JSONArray)new JSONParser().parse(answers);
+		// 문제번호와 정답을 저장하는 VO 배열
+		ArrayList<Answer> list = new ArrayList();
+		// 점수
+		int score;
+		
+		for(Object obj : arr) {
+			// JsonArray 데이터를 순차적으로 JsonObject에 담는다.
+			JSONObject jsonObj = (JSONObject)obj;
+			
+			Answer answer = new Answer();
+			
+			// jsonObject의 키값(no, answer)에 해당하는 값을 뽑아서 answer VO의 no와 answer에 담는다.
+			// 기본 int형 값이 필요하기에 value를 string으로 바꾼 후에 parseInt메소드를 통해서 int형으로 바꾼다.
+			// jsonObject로 받아온 값의 value가 object타입이기 때문에 string으로 바꾼 후에 int형으로 바꾼다.
+			answer.setNo(Integer.parseInt(jsonObj.get("no").toString()));
+			answer.setAnswer(Integer.parseInt(jsonObj.get("answer").toString()));
+			list.add(answer);
+		}
+		
+		// 사용자가 작성한 답 리스트
+		// System.out.println(list);
+		
+		// 정답 개수
+		return gameService.checkUpperAnswer(list);
+	}
+	
+	// 난이도별 점수 insert
 	@ResponseBody
 	@GetMapping("insertScore.ga")
 	public int insertScore(int memberNo, int score, int levelNo) {
@@ -115,6 +240,7 @@ public class GameController {
 		return new Gson().toJson(gameService.selectScore(memberNo));
 		
 	}
+	
 	
 	
 }
