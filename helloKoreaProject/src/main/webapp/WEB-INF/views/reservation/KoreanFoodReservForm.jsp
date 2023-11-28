@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>한식 예약</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 <style>
 
 </style>
@@ -43,20 +42,22 @@
 						</td>
 						
 						<td>
-						<input type="date" name="reservDate" id="reservDate" required>
-						<input type="submit" value="예약 가능 확인"></input>
+						<input type="date" value="reDate" name="reDate" id="today" required>
+						<button type="submit" id="reserv_check">예약 가능 시간 확인</button>
 						</td>
 						
 						<td>
-						<select name="hkTime" id="hkTime">
+						<select name="kfTime" id="kfTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
-								<input type="hidden">
-								<!-- <button type = "button" id="date-check">예약 가능 확인</button> -->
+								<option value="1">12:00</option>
+								<option value="2">13:00</option>
+								<option value="3">18:00</option>
+								<option value="4">19:00</option>
 						</select>
 						</td>
 						
 						<td>
-						<input type="hidden" name="table_price" value="70000">
+						<!-- <input type="hidden" name="table_price" value="70000"> -->
 						<input type="text" name="personnel_count" value="1" size="1" max="6" id="personnel_count">
 						
 						<input type="button" value=" + " id="plus" >
@@ -71,7 +72,7 @@
 						<td></td>
 						<td></td>
 						<td><h6>※예약 가능시간 : </h6></td>
-						<td><h6>6명 이상 단체는 문의주세요</h6></td>
+						<td><h6>4명 이상 단체는 문의주세요</h6></td>
 						<tr>
 						
 					</tr>
@@ -79,7 +80,46 @@
 				</table>
 				
 				<script>
+					var today = new Date();   
+					var year = today.getFullYear(); // 년도
+					var month = today.getMonth() + 1;  // 월
+					var date = today.getDate();  // 날짜
+					var day = today.getDay();  // 요일
+
+					var getDate = (year + '-' + month + '-' + date);
+					console.log(getDate);
+					
+					$('#today').attr("value", getDate);
+					
+				/*
+				 function rsvcheck() {
+					 location.href = "rsvcheck.kf";
+				 }
+				*/
 				
+						// 예약 가능 확인
+						
+						$(function(){
+							$('#reserv_check').click(function(){
+								console.log('ㅇㅇ');
+								
+								$.ajax({
+									
+									url : 'rsvcheck.kf',
+									data:{reDate : $('#today')},
+									success : data => {
+										//console.log(data);
+									},
+									error : () => {
+			                        	//console.log('실패!');
+		                            }
+								})
+							})
+						})
+						
+						
+						
+						// 인원수
 						var personnel_count = 1;
 						
 						document.getElementById('plus').onclick = () => {
@@ -113,6 +153,8 @@
 							
 							
 						}
+						
+						
 						
 						
 				
