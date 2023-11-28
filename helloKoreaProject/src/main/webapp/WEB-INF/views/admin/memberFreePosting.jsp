@@ -388,7 +388,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberPostingDetailModel">
+				<form action="uploadFile" method="post" enctype="multipart/form-data" id="memberPostingDetailModel">
+                <!--<form action="#" method="post" id="memberPostingDetailModel">-->
                     <!-- Modal body -->
                     <div class="modal-body">
                     		
@@ -409,7 +410,11 @@
                             <br>
                             
                             <label for="upfile">첨부파일</label>
+                            <c:choose>
+                            <c:when test="${not empty free.originalName}">
                             <input type="file" id="upfile" class="form-control-file border" name="upfile">
+                            </c:when>
+                            </c:choose>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">

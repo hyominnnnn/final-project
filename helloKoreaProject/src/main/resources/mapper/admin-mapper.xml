@@ -69,6 +69,7 @@
 	
 	<select id="memberDetail" parameterType="member" resultMap="memberList">
 		SELECT
+				MEMBER_NO,
 				MEMBER_NAME,
 				EMAIL,
 				MEMBER_NICKNAME,
@@ -243,19 +244,17 @@
 		  	
 	</select>
 	
-	<select id="selectPerPostingList" resultMap="boardResultSet" parameterType="board">
-	   SELECT
+	<select id="selectPerPostingList" resultMap="boardResultSet" parameterType="_int">
+SELECT
 			   BOARD_NO
 			  ,BOARD_TITLE
 			  ,MODIFY_DATE
 		 FROM 
 		 	  TB_BOARD
-		 JOIN 
-		 	  TB_MEMBER USING (MEMBER_NO)
 		WHERE 
-			  TB_MEMBER.MEMBER_NICKNAME = #{memberNickname}
+			  MEMBER_NO = #{memberNo}
 		  AND
-			  TB_BOARD.STATUS = 'Y'
+			  STATUS = 'Y'
 		ORDER 
 		   BY
 		      MODIFY_DATE DESC

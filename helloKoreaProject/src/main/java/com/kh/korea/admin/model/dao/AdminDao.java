@@ -75,8 +75,8 @@ public class AdminDao {
 		return sqlSession.selectOne("adminMapper.selectPerPostingListCount");
 	}
 
-	public ArrayList<Board> selectPerPostingList(SqlSessionTemplate sqlSession, RowBounds rowBounds) {
-		return (ArrayList)sqlSession.selectList("adminMapper.selectPerPostingList", null, rowBounds);
+	public ArrayList<Board> selectPerPostingList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectPerPostingList", memberNo);
 	}
 
 	

@@ -313,14 +313,14 @@
                 <h1>회원 정보 관리</h1>
                 <br>
 				<form action="list.me" method="get">
-					<input type="hidden" name="cpage" value="1" />
+				  <input type="hidden" name="cpage" value="1" />
                   <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
                     <tbody>
                       <tr>
                         <th>이름</th>
                         <th>이메일</th>
                         <th>닉네임</th>
-                        <th></th>
+                        <th>번호</th>
                         <th></th>
                         <th>가입일자</th>
                       </tr>
@@ -337,6 +337,7 @@
 	                          	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Invoice Date">
+	                        	${m.memberNo}
 	                        </td>
 	                        <td data-th="Due Date">
 	                        </td>
@@ -386,9 +387,15 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberDetailModel">
-                <input type="hidden" name="cpage" value="1" />
+                <input type="hidden" name="bPage" value="${m.memberNo}" />
+                
                     <!-- Modal body -->
                     <div class="modal-body">
+                    		
+                    		<label for="memberNo" class="memberNo">회원번호</label>
+                            <input type="text" class="form-control memberbtn" id="memberNo" name="memberNo" value="" readonly> 
+                            <br>
+                            
                             <label for="memberName" class="memberbtn">이름</label>
                             <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="" readonly> 
                             <br>
@@ -415,7 +422,7 @@
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn" id="personalPostingBtn"><a href="personalPosting.me?bPage=${m.memberNickname}">게시글조회</a></button>
+                    	<button class="memberModelBtn" id="personalPostingBtn" type="button">게시글조회</button>
                     	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
                     	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
@@ -424,7 +431,15 @@
         </div>
     </div>
     
-   
+   <script>
+   		$(function(){
+   			
+   			$('#personalPostingBtn').click(function(){
+   				const $memberNo = $('#memberNo');
+   				location.href='personalPosting?bPage=' + $memberNo.val(); 
+   			})
+   		})
+   </script>
     
      <div class="modal fade" id="deleteForm">
         <div class="modal-dialog modal-sm">
@@ -507,7 +522,7 @@
 							    	data : {email : $(this).children().eq(1).text().trim()},
 							    	success : data => {
 
-							    	   //console.log(data);
+							    	   console.log(data);
 
 							    	   //console.log(data.nationName);
 							    		
@@ -517,6 +532,7 @@
 							    	   const inputbirthday = data.birthday;
 							    	   const inputnationName = data.nationName;
 							    	   const inputenrolldate = data.memberEnrollDate;
+							    	   const inputNo = data.memberNo;
 							    	   
 							    	   
 							    	   $('#memberName').val(inputName);
@@ -525,6 +541,7 @@
 							    	   $('#nationName').val(inputnationName);
 							    	   $('#birthday').val(inputbirthday);
 							    	   $('#memberEnrollDate').val(inputenrolldate);
+							    	   $('#memberNo').val(inputNo);
 							    	   
 							    	
 							    	    

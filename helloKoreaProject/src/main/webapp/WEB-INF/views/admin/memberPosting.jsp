@@ -383,7 +383,8 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 ​
-                <form action="#" method="post" id="memberPostingDetailModel">
+				<form action="uploadFile" method="post" enctype="multipart/form-data" id="memberPostingDetailModel">
+                <!--<form action="#" method="post" id="memberPostingDetailModel"> -->
                  <input type="hidden" id="fno" name="fno" value="">
                     <!-- Modal body -->
                     <div class="modal-body">

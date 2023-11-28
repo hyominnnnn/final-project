@@ -41,7 +41,7 @@ public interface AdminService {
 	// 개인 게시글-------------------------------
 	int selectPerPostingListCount();
 	
-	ArrayList<Board> selectPerPostingList(PageInfo pi);
+	ArrayList<Board> selectPerPostingList(int bPage);
 	
 	// 댓글----------------------------------------
 	int selectReplyCount();
