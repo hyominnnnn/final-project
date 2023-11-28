@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>한식 예약</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
-<script type="text/javascript" src="resources/scripts/reservation/hanokScript.js"></script>
 <style>
 
 </style>
@@ -43,20 +42,21 @@
 						</td>
 						
 						<td>
-						<input type="date" name="reservDate" id="reservDate" required>
-						<input type="submit" value="예약 가능 확인"></input>
+						<input type="date" value="2023-12-01" min="2023-12-01" max="2023-12-31" required>
+						<input type="submit" value="예약 가능 확인" name="reserv_check"  id="reserv_check">
 						</td>
 						
 						<td>
-						<select name="hkTime" id="hkTime">
+						<select name="kfTime" id="kfTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
+								<option value="1"></option>
 								<input type="hidden">
 								<!-- <button type = "button" id="date-check">예약 가능 확인</button> -->
 						</select>
 						</td>
 						
 						<td>
-						<input type="hidden" name="table_price" value="70000">
+						<!-- <input type="hidden" name="table_price" value="70000"> -->
 						<input type="text" name="personnel_count" value="1" size="1" max="6" id="personnel_count">
 						
 						<input type="button" value=" + " id="plus" >
@@ -71,7 +71,7 @@
 						<td></td>
 						<td></td>
 						<td><h6>※예약 가능시간 : </h6></td>
-						<td><h6>6명 이상 단체는 문의주세요</h6></td>
+						<td><h6>4명 이상 단체는 문의주세요</h6></td>
 						<tr>
 						
 					</tr>
@@ -79,6 +79,28 @@
 				</table>
 				
 				<script>
+						// 예약 가능 확인
+						$(function(){
+							$('#reserv_check').click(function(){
+								//console.log('ㅇㅇ');
+								
+								ajax({
+									
+									url : 'rsvcheck.kf',
+									type : 'GET',
+									data : {re_date : $(this).children().eq(1).text().trim()},
+									success : data => {
+										console.log(data');
+									}
+									error : () => {
+			                        	console.log('실패!');
+		                            }
+								})
+							})
+						})
+						
+						
+						
 				
 						var personnel_count = 1;
 						
