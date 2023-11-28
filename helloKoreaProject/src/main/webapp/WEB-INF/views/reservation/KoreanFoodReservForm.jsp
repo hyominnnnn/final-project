@@ -42,16 +42,17 @@
 						</td>
 						
 						<td>
-						<input type="date" value="2023-12-01" min="2023-12-01" max="2023-12-31" required>
-						<input type="submit" value="예약 가능 확인" name="reserv_check"  id="reserv_check">
+						<input type="date" value="reDate" name="reDate" id="today" required>
+						<button type="submit" id="reserv_check">예약 가능 시간 확인</button>
 						</td>
 						
 						<td>
 						<select name="kfTime" id="kfTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
-								<option value="1"></option>
-								<input type="hidden">
-								<!-- <button type = "button" id="date-check">예약 가능 확인</button> -->
+								<option value="1">12:00</option>
+								<option value="2">13:00</option>
+								<option value="3">18:00</option>
+								<option value="4">19:00</option>
 						</select>
 						</td>
 						
@@ -79,21 +80,38 @@
 				</table>
 				
 				<script>
+					var today = new Date();   
+					var year = today.getFullYear(); // 년도
+					var month = today.getMonth() + 1;  // 월
+					var date = today.getDate();  // 날짜
+					var day = today.getDay();  // 요일
+
+					var getDate = (year + '-' + month + '-' + date);
+					console.log(getDate);
+					
+					$('#today').attr("value", getDate);
+					
+				/*
+				 function rsvcheck() {
+					 location.href = "rsvcheck.kf";
+				 }
+				*/
+				
 						// 예약 가능 확인
+						
 						$(function(){
 							$('#reserv_check').click(function(){
-								//console.log('ㅇㅇ');
+								console.log('ㅇㅇ');
 								
-								ajax({
+								$.ajax({
 									
 									url : 'rsvcheck.kf',
-									type : 'GET',
-									data : {re_date : $(this).children().eq(1).text().trim()},
+									data:{reDate : $('#today')},
 									success : data => {
-										console.log(data');
-									}
+										//console.log(data);
+									},
 									error : () => {
-			                        	console.log('실패!');
+			                        	//console.log('실패!');
 		                            }
 								})
 							})
@@ -101,7 +119,7 @@
 						
 						
 						
-				
+						// 인원수
 						var personnel_count = 1;
 						
 						document.getElementById('plus').onclick = () => {
@@ -135,6 +153,8 @@
 							
 							
 						}
+						
+						
 						
 						
 				

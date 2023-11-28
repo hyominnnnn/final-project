@@ -21,6 +21,12 @@ public class ReservController {
 		return "reservation/ReservationListView";
 	}
 	
+	@GetMapping("rsvcheck.kf")
+	public String kfreservcheck() {
+		
+		return "reservation/ReservationListView";
+	}
+	
 	
 
 }
