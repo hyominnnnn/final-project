@@ -245,7 +245,7 @@
 	</select>
 	
 	<select id="selectPerPostingList" resultMap="boardResultSet" parameterType="_int">
-SELECT
+	  SELECT
 			   BOARD_NO
 			  ,BOARD_TITLE
 			  ,MODIFY_DATE

@@ -432,6 +432,8 @@
     </div>
     
    <script>
+   		
+   
    		$(function(){
    			
    			$('#personalPostingBtn').click(function(){

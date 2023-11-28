@@ -271,7 +271,7 @@
 	                        <th>글제목</th>
 	                        <th></th>
 	                        <th></th>
-	                        <th></th>
+	                        <th>첨부파일</th>
 	                        <th>작성일</th>
 	                      </tr>
 	                       	<c:forEach items="${ list }" var="b">
@@ -287,6 +287,7 @@
 		                        <td data-th="Invoice Date">
 		                        </td>
 		                        <td data-th="Due Date">
+		                        	${b.uploadName}
 		                        </td>
 		                        <td data-th="Net Amount">
 		                          ${b.modifyDate}
