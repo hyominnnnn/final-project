@@ -44,13 +44,14 @@
 						
 						<td>
 						<input type="date" name="reservDate" id="reservDate" required>
+						<input type="submit" value="예약 가능 확인"></input>
 						</td>
 						
 						<td>
 						<select name="hkTime" id="hkTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
 								<input type="hidden">
-								<button type = "button" id="date-check">예약 가능 확인</button>
+								<!-- <button type = "button" id="date-check">예약 가능 확인</button> -->
 						</select>
 						</td>
 						
