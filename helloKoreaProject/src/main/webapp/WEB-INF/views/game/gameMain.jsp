@@ -142,6 +142,7 @@
 		
 		// 현재 클릭한 요소의 href 비활성화 함수
 		function removeLink(index, level) {
+			
 			// 초급이 아니고 이전 단계의 점수가 없다면
 			if(index > 0 && scores[index - 1].innerHTML == '') {
 				// 지금 클릭한 요소($(this))의 href 비활성화
