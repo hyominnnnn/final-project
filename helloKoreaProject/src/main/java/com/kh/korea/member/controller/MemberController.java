@@ -174,7 +174,6 @@ public class MemberController {
 			Member loginUser = (Member) session.getAttribute("loginUser");
 			loginUser.setSocialProfile(saveFile(upfile, session));
 		  	int result = memberService.updateProfile(loginUser);
-		  	System.out.println(loginUser);
 		  	if(result > 0) {
 		  		session.setAttribute("loginUser",loginUser);
 		  		return "member/myPageForm";

@@ -99,10 +99,15 @@
     
     <!-- 채팅방 -->
     <script>
+    <!-- 헨드쉐이크 인터셉터 사용해서 들고오기 -->
     	var nickname = "<c:out value='${sessionScope.loginUser.memberNickname}' />";
     	console.log(nickname);
     	
+    	
     	function connect(){
+    		
+        	location.href = 'getMemberInfo';
+        	
     		const uri = 'ws://localhost:9999/korea/chat';
     		
     		socket = new WebSocket(uri);

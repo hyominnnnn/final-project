@@ -34,8 +34,6 @@ public class ChattingController {
 	
 	@RequestMapping("createChat")
 	public void createChat(String chatTitle, int memberNo) {
-		System.out.println(chatTitle);
-		System.out.println(memberNo);
 		
 		HashMap<String, Object> map =new HashMap();
 		map.put("chatTitle", chatTitle);
@@ -49,6 +47,11 @@ public class ChattingController {
 			System.out.println("안됨");
 			
 		}
+	}
+	
+	@RequestMapping("getMemberInfo")
+	public void getMemberInfo() {
+		System.out.println("왔니?");
 	}
 	
 }
