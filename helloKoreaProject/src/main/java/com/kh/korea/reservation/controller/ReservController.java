@@ -1,7 +1,10 @@
 package com.kh.korea.reservation.controller;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ReservController {
@@ -21,9 +24,11 @@ public class ReservController {
 		return "reservation/ReservationListView";
 	}
 	
-	@GetMapping("rsvcheck.kf")
-	public String kfreservcheck() {
+	@ResponseBody
+	@GetMapping(value="rsvcheck.kf", produces="applicatrion/json; charset=UTF-8")
+	public String kfreservcheck(Date reDate) {
 		
+		System.out.print(reDate);
 		return "reservation/ReservationListView";
 	}
 	
