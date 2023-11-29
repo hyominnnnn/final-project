@@ -9,7 +9,8 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 @Configuration
 @EnableWebSocket
-public class WebSocketConfiguration implements WebSocketConfigurer{
+public class WebSocketConfiguration /*implements WebSocketConfigurer*/{
+	/*
 	@Autowired
 	SocketInterceptor socketInterceptor;
 	@Override
@@ -22,9 +23,10 @@ public class WebSocketConfiguration implements WebSocketConfigurer{
 		.setAllowedOriginPatterns("*")
 		.withSockJS().setInterceptors(socketInterceptor);
 	}
+	
 	@Bean
 	public WebSocketHandler webSocketHandler() {
 		return new GroupChattingServer();
 	}
-
+	*/
 }

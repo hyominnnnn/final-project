@@ -17,11 +17,11 @@ import org.springframework.web.socket.server.HandshakeInterceptor;
 import com.kh.korea.member.model.vo.Member;
 
 @Component
-public class SocketInterceptor implements HandshakeInterceptor {
-
+public class SocketInterceptor /*implements HandshakeInterceptor*/ {
+	/*	
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-			Map<String, Object> attributes) throws Exception {
+		Map<String, Object> attributes) throws Exception {
 		HttpServletRequest req = ((ServletServerHttpRequest)request).getServletRequest();
 		HttpSession session  =  req.getSession(false);
 		System.out.println("session : "  + session);
@@ -32,6 +32,7 @@ public class SocketInterceptor implements HandshakeInterceptor {
 			return true;
 		}
 		throw new AuthException("로그인 해주세요");
+			return true;
 	}
 
 	@Override
@@ -39,5 +40,5 @@ public class SocketInterceptor implements HandshakeInterceptor {
 			@Nullable Exception exception) {
 		
 	}
-
+	*/
 }
