@@ -49,10 +49,10 @@
 						<td>
 						<select name="kfTime" id="kfTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
-								<option value="12:00">12:00</option>
-								<option value="13:00">13:00</option>
-								<option value="18:00">18:00</option>
-								<option value="19:00">19:00</option>
+								<option value="12:00" id="times1">12:00</option>
+								<option value="13:00" id="times2">13:00</option>
+								<option value="18:00" id="times3">18:00</option>
+								<option value="19:00" id="times4">19:00</option>
 						</select>
 						</td>
 						
@@ -101,14 +101,43 @@
 						
 						$(function(){
 							$('#reserv_check').click(function(){
-								console.log('ㅇㅇ');
+								//console.log('ㅇㅇ');
 								
 								$.ajax({
 									
 									url : 'rsvcheck.kf',
 									data:{reDate : $('#today').val()},
 									success : data => {
-										//console.log(data);
+										//console.log(data[0].reTime);
+										//console.log($('#times1').val());
+										
+										var times1 = $('#times1').val();
+										var getTimes0 = data[0].reTime;
+										var times2 = $('#times2').val();
+										var getTimes1 = data[1].reTime;
+										var times3 = $('#times3').val();
+										var getTimes2 = data[2].reTime;
+										var times4 = $('#times4').val();
+										var getTimes3 = data[3].reTime;
+										
+										
+										//console.log(getTimes);
+										if(getTimes0){
+											//console.log(getTimes);
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if($('#times2').val() == data[0].reTimes){
+												$('#times2').attr("hidden", hidden);
+											}
+											if($('#times3').val() == data[0].reTimes){
+												$('#times3').attr("hidden", hidden);
+											}
+											if($('#times4').val() == data[0].reTimes){
+												$('#times4').attr("hidden", hidden);
+											}
+										}
+										
 									},
 									error : () => {
 			                        	//console.log('실패!');

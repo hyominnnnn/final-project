@@ -20,6 +20,7 @@
 			<typeAlias type="com.kh.korea.game.model.vo.Score" alias="score" />
 			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>
 			<typeAlias type="com.kh.korea.chatting.model.vo.Chatting" alias="Chatting"/>
+			<typeAlias type="com.kh.korea.reservation.model.vo.Reservation" alias="reservaion"/>
 		</typeAliases>
 	
 		<!-- sql mapper를 새로 만들때마다 등록해야함. -->
@@ -29,6 +30,7 @@
 			<mapper resource="/mapper/admin-mapper.xml" />
 			<mapper resource="/mapper/game-mapper.xml" />
 			<mapper resource="/mapper/chatting-mapper.xml" />
+			<mapper resource="/mapper/reserv-mapper.xml" />
 		</mappers>
 		
 		

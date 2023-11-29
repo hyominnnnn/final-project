@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reservMapper">
+
+	<resultMap id="reservResultSet" type="reservaion">
+		<result column="RE_NO"         property="reNo" />
+		<result column="PRO_NO"      property="proNo" />
+		<result column="RE_DATE"  property="reDate" />
+		<result column="PERSONNEL"      property="perssonnel" />
+		<result column="STATUS"            property="status" />
+		<result column="MEMBER_NO"    property="memberNo" />
+		<result column="PAYMENT"	  property="payment" />
+		<result column="RE_TIME"    property="reTime" />
+	</resultMap>
+	
+	<select id="selectTime" parameterType="date" resultMap="reservResultSet"> <!-- id=인터페이스에서 지은 이름 -->
+	SELECT
+		   RE_TIME
+      FROM
+           TB_RESERVATION
+     WHERE
+           RE_DATE = #{reDate}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper> 
