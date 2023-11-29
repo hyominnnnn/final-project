@@ -113,30 +113,75 @@
 										
 										var times1 = $('#times1').val();
 										var getTimes0 = data[0].reTime;
+										/*
 										var times2 = $('#times2').val();
 										var getTimes1 = data[1].reTime;
 										var times3 = $('#times3').val();
 										var getTimes2 = data[2].reTime;
 										var times4 = $('#times4').val();
 										var getTimes3 = data[3].reTime;
-										
+										*/
 										
 										//console.log(getTimes);
-										if(getTimes0){
-											//console.log(getTimes);
+										if(getTimes0){ 
+											//console.log(getTimes2);
 											if(times1 == getTimes0){
 												$('#times1').attr("hidden", true);
 											}
-											if($('#times2').val() == data[0].reTimes){
-												$('#times2').attr("hidden", hidden);
+											/*
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
 											}
-											if($('#times3').val() == data[0].reTimes){
-												$('#times3').attr("hidden", hidden);
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
 											}
-											if($('#times4').val() == data[0].reTimes){
-												$('#times4').attr("hidden", hidden);
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
 											}
-										}
+										/*	
+										} else if(getTimes1){
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
+											}
+											
+										} else if(getTimes2) {
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
+											}
+										} else {
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
+											}
+											*/
+										} 
+										
 										
 									},
 									error : () => {
