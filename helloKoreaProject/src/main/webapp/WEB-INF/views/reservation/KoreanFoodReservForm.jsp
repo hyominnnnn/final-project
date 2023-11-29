@@ -37,7 +37,7 @@
 						<td>
 						<select name="programNo" value="1">
 								<option value="1">한정식</option>
-								<option value="2">고호정</option>
+								<option value="2">고호재</option>
 						</select>
 						</td>
 						
@@ -49,16 +49,16 @@
 						<td>
 						<select name="kfTime" id="kfTime">
 								<option value="0">예약 날짜를 선택해주세요.</option>
-								<option value="1">12:00</option>
-								<option value="2">13:00</option>
-								<option value="3">18:00</option>
-								<option value="4">19:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="18:00">18:00</option>
+								<option value="19:00">19:00</option>
 						</select>
 						</td>
 						
 						<td>
 						<!-- <input type="hidden" name="table_price" value="70000"> -->
-						<input type="text" name="personnel_count" value="1" size="1" max="6" id="personnel_count">
+						<input type="text" name="personnel_count" value="1" size="1" max="4" id="personnel_count">
 						
 						<input type="button" value=" + " id="plus" >
 						<input type="button" value=" - " id="minus">
@@ -87,7 +87,7 @@
 					var day = today.getDay();  // 요일
 
 					var getDate = (year + '-' + month + '-' + date);
-					console.log(getDate);
+					//console.log(getDate);
 					
 					$('#today').attr("value", getDate);
 					
@@ -106,7 +106,7 @@
 								$.ajax({
 									
 									url : 'rsvcheck.kf',
-									data:{reDate : $('#today')},
+									data:{reDate : $('#today').val()},
 									success : data => {
 										//console.log(data);
 									},
