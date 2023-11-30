@@ -71,7 +71,7 @@
 						<tr>
 						<td></td>
 						<td></td>
-						<td><h6>※예약 가능시간 : </h6></td>
+						<td><h6> </h6></td>
 						<td><h6>4명 이상 단체는 문의주세요</h6></td>
 						<tr>
 						
@@ -259,17 +259,18 @@
 				
 				<div id="clientInfo">
 					<h2>예약자 정보 입력</h2>
-					<table>
-					
+					<table class="table">
+					<c:if>
+					</c:if>
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" placeholder="" readonly></td>
+						<td><input type="text" name="userName" value="${sessionScope.loginUser.getMemberName}" readonly></td>
 						<input type="hidden" name="userNo" value="">
 					</tr>
 					
 					<tr>
-						<th>연락처</th>
-						<td><input type="text" name="phone" placeholder="" readonly></td>
+						<th>이메일</th>
+						<td><input type="text" name="email" value="${sessionScope.loginUser.getEmail }"  readonly></td>
 					</tr>
 					<tr>
 						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
