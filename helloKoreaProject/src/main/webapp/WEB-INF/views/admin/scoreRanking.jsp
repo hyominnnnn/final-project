@@ -268,7 +268,7 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>퀴즈 랭킹 TOP 5</h1>
+                <h1>한글퀴즈 랭킹 TOP 5</h1>
                 <br>
                 <form action="scoreRankingList" method="get">
                   <table class="rwd-table">
