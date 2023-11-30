@@ -11,6 +11,7 @@ import com.kh.korea.game.model.vo.LowerGame;
 import com.kh.korea.game.model.vo.MiddleGame;
 import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.game.model.vo.UpperGame;
+import com.kh.korea.game.model.vo.UserBadge;
 
 @Repository
 public class GameDao {
@@ -89,6 +90,16 @@ public class GameDao {
 	// 난이도별 점수 select
 	public ArrayList<Score> selectScore(SqlSessionTemplate sqlSession, int memberNo) {
 		return (ArrayList)sqlSession.selectList("gameMapper.selectScore", memberNo);
+	}
+
+	// 난이도별 뱃지 insert
+	public int insertBadge(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.insert("gameMapper.insertBadge", map);
+	}
+
+	// 뱃지 select
+	public ArrayList<UserBadge> selectBadge(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("gameMapper.selectBadge", memberNo);
 	}
 
 	

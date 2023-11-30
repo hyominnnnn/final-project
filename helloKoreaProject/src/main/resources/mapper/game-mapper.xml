@@ -37,6 +37,13 @@
 		<result column="TEST_DATE" property="testDate" />
 		<result column="SCORE" property="score" />
 	</resultMap>
+
+	<resultMap id="userBadgeResultSet" type="userBadge">
+		<result column="BADGE_NO" property="badgeNo" />
+		<result column="BADGE_DATE" property="badgeDate" />
+		<result column="BADGE_NAME" property="badgeName" />
+		<result column="IMG_PATH" property="imgPath" />
+	</resultMap>
 	
 	<!-- 초급 -->
 	
@@ -274,6 +281,37 @@
 		 ORDER
 		    BY
 		        LEVEL_NO DESC
+	</select>
+	
+	<!-- 난이도별 뱃지 insert -->
+	<insert id="insertBadge" parameterType="hashmap">
+		INSERT
+		  INTO
+		  	   TB_USER_BADGE
+		  	   (
+		  	   MEMBER_NO,
+		  	   BADGE_NO
+		  	   )
+		VALUES 
+			   (
+			   #{ memberNo },
+			   #{ badgeNo }
+			   )
+	</insert>
+	
+	<!-- 뱃지 select -->
+	<select id="selectBadge" parameterType="_int" resultMap="userBadgeResultSet">
+		SELECT
+			   BADGE_NO,
+			   BADGE_DATE,
+			   BADGE_NAME,
+			   IMG_PATH
+		  FROM 
+		  	   TB_USER_BADGE
+		  JOIN
+		  	   TB_BADGE USING (BADGE_NO)
+		 WHERE 
+		 	   MEMBER_NO = #{ memberNo }
 	</select>
 	
 </mapper>

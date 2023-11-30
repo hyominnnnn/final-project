@@ -13,6 +13,7 @@ import com.kh.korea.game.model.vo.LowerGame;
 import com.kh.korea.game.model.vo.MiddleGame;
 import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.game.model.vo.UpperGame;
+import com.kh.korea.game.model.vo.UserBadge;
 
 @Service
 public class GameServiceImpl implements GameService {
@@ -115,7 +116,18 @@ public class GameServiceImpl implements GameService {
 	public ArrayList<Score> selectScore(int memberNo) {
 		return gameDao.selectScore(sqlSession, memberNo);
 	}
+	
+	// 난이도별 뱃지 insert
+	@Override
+	public int insertBadge(HashMap<String, Integer> map) {
+		return gameDao.insertBadge(sqlSession, map);
+	}
 
+	// 뱃지 select
+	@Override
+	public ArrayList<UserBadge> selectBadge(int memberNo) {
+		return gameDao.selectBadge(sqlSession, memberNo);
+	}	
 	
 	
 }
