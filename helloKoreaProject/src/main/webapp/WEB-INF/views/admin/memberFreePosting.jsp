@@ -247,13 +247,6 @@
        height: 300px;
        }
        
-        #list-select-btn{
-       		margin-top: 50px;
-       		width: 110px;
-       		height: 35px;
-       		border: none;
-       		border-radius: 3px;
-       }
        
        .board-detail-btn{
        		width: 110px;
@@ -289,6 +282,13 @@
        	color: white;
        }
        
+        #listBtn{
+       		margin-top: 50px;
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       }
       
     </style>
 </head>
@@ -352,7 +352,7 @@
                       </c:forEach>
                     </tbody>
                   </table>
-                  <button type="submit" id="list-select-btn">리스트조회</button>
+                  <button type="submit" id="listBtn">리스트조회</button>
                   </form>
                 </div>
         </div>

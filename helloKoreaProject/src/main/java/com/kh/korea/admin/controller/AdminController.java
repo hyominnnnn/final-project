@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,8 +17,8 @@ import com.kh.korea.admin.model.service.AdminService;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
+import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.member.model.vo.Member;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 
 @Controller
@@ -254,4 +253,24 @@ public class AdminController {
 			return "redirect:/";
 		}
 	}
+	
+	
+	@RequestMapping("scoreRanking")
+	public String selectTopScore() {
+		return "admin/scoreRanking";
+	}
+	
+	
+	@GetMapping("scoreRankingList")
+	public String selectTopScoreList(Model model) {
+		
+		
+		model.addAttribute("list", adminService.selectTopScoreList());
+		
+		System.out.println(model.getAttribute("list"));
+		
+		return "admin/scoreRanking";
+	}
+	
+	
 }
