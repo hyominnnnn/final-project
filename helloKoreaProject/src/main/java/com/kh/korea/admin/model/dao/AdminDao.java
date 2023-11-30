@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.Reply;
+import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.member.model.vo.Member;
 
 @Repository
@@ -77,6 +78,10 @@ public class AdminDao {
 
 	public ArrayList<Board> selectPerPostingList(SqlSessionTemplate sqlSession, int memberNo) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectPerPostingList", memberNo);
+	}
+
+	public ArrayList<Score> selectTopScoreList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectTopScoreList");
 	}
 
 	

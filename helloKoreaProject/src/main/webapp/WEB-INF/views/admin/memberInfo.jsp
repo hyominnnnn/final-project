@@ -317,10 +317,10 @@
                   <table class="rwd-table" data-toggle="modal" data-target="#memberDetailForm">
                     <tbody>
                       <tr>
+                        <th>번호</th>
                         <th>이름</th>
                         <th>이메일</th>
                         <th>닉네임</th>
-                        <th>번호</th>
                         <th></th>
                         <th>가입일자</th>
                       </tr>
@@ -328,16 +328,17 @@
                       <c:forEach items="${ list }" var="m">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${m.memberName}
+	                          	${m.memberNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${m.email}
+	                        	${m.memberName}
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	${m.memberNickname}
+	                        	${m.email}
+	                          	
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${m.memberNo}
+	                        	${m.memberNickname}
 	                        </td>
 	                        <td data-th="Due Date">
 	                        </td>
@@ -521,7 +522,7 @@
 	             				
 	             				$.ajax({
 							    	url : 'memberDetail.me',
-							    	data : {email : $(this).children().eq(1).text().trim()},
+							    	data : {email : $(this).children().eq(2).text().trim()},
 							    	success : data => {
 
 							    	   console.log(data);

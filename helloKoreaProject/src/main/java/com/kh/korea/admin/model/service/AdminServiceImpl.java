@@ -11,6 +11,7 @@ import com.kh.korea.admin.model.dao.AdminDao;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
+import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.member.model.vo.Member;
 
 @Service
@@ -120,6 +121,11 @@ public class AdminServiceImpl implements  AdminService{
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return adminDao.selectReplyList(sqlSession, rowBounds);
+	}
+
+	@Override
+	public ArrayList<Score> selectTopScoreList() {
+		return adminDao.selectTopScoreList(sqlSession);
 	}
 
 

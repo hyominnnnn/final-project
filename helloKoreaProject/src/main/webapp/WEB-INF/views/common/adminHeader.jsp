@@ -224,7 +224,7 @@
                          <li><a href="reply.me">댓글 조회</a></li>
                     </ul>
                 </li>
-                <li><a href="memberQuiz">퀴즈관리</a></li>
+                <li><a href="scoreRanking">퀴즈관리</a></li>
                 <li><a href="#">채팅관리</a></li>
                 <li><a href="#">예약관리</a></li>
             </ul>

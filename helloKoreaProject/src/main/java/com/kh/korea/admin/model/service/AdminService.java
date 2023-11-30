@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
+import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.member.model.vo.Member;
 
 public interface AdminService {
@@ -47,6 +48,10 @@ public interface AdminService {
 	int selectReplyCount();
 	
 	ArrayList<Reply> selectReplyList(PageInfo pi);
+	
+	// 랭킹--------------------------------------
+	ArrayList<Score> selectTopScoreList();
+	
 	
 
 
