@@ -254,4 +254,26 @@ public class AdminController {
 			return "redirect:/";
 		}
 	}
+
+	
+	
+	@RequestMapping("scoreRanking")
+	public String selectTopScore() {
+		return "admin/scoreRanking";
+	}
+	
+	
+	@GetMapping("scoreRankingList")
+	public String selectTopScoreList(Model model) {
+		
+		
+		model.addAttribute("list", adminService.selectTopScoreList());
+		
+		//System.out.println(model.getAttribute("list"));
+		
+		return "admin/scoreRanking";
+	}
+	
+	
+
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,6 +236,14 @@
 	       
        }
        
+       #list-select-btn{
+       		margin-top: 50px;
+       		width: 110px;
+       		height: 35px;
+       		border: none;
+       		border-radius: 3px;
+       }
+       
       
     </style>
 </head>
@@ -261,6 +270,7 @@
             	<br>
                 <h1>회원 퀴즈 랭킹</h1>
                 <br>
+                <form action="scoreRankingList" method="get">
                   <table class="rwd-table">
                     <tbody>
                       <tr>
@@ -271,29 +281,32 @@
                         <th>국가</th>
                         <th>점수</th>
                       </tr>
+                      <c:forEach items="${ list }" var="s">
                       <tr>
                         <td data-th="Supplier Code">
-                          	1
+                          	${s.levelNo}
                         </td>
                         <td data-th="Invoice Number">
-                          	12
+                          	${s.email}
                         </td>
                         <td data-th="Supplier Name">
-                            zzangu01
+                            ${s.memberNickname}
                         </td>
                         <td data-th="Invoice Date">
-                                                       짱구
+                                                       
                         </td>
                         <td data-th="Due Date">
-                          	한국
+                          	${s.nationName}
                         </td>
                         <td data-th="Net Amount">
-                          850
+                          ${s.score}
                         </td>
                       </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
-                  
+                  <button type="submit" id="list-select-btn">리스트조회</button>
+                </form>
                 </div>
 	        </div>
     	</div>

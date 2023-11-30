@@ -14,5 +14,9 @@ public class Score {
 	private int levelNo;
 	private Date testDate;
 	private int score;
+	private String memberNickname;
+	private String email;
+	private int nationNo;
+	private String nationName;
 
 }

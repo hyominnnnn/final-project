@@ -32,8 +32,17 @@
 		<result column="ORIGINAL_NAME"    property="originalName" />
 		<result column="BOARD_CONTENT"    property="boardContent" />
 		<result column="CATEGORY_NO" 	  property="categoryNo" />
-	</resultMap>
+</resultMap>
 
+<resultMap id="scoreResultSet" type="score">
+		<result column="LEVEL_NO" property="levelNo" />
+		<result column="TEST_DATE" property="testDate" />
+		<result column="SCORE" property="score" />
+	    <result column="MEMBER_NICKNAME" property="memberNickname" />
+	    <result column="EMAIL" property="email" />
+	    <result column="NATION_NO" property="nationNo" />
+	    <result column="NATION_NAME" property="nationName" />
+</resultMap>
 
 	<!-- Member 쿼리문 -->
 
@@ -262,19 +271,34 @@
 
 	</select>
 	
-	
-	<!-- 댓글 관련 쿼리문 -->
-	<!-- 
-	<select id="selectReplyCount" parameterType="reply" resultMap="">
+	<select id="selectTopScoreList" resultMap="scoreResultSet">
 		SELECT
-				REPLY_NO,
-				REPLY_CONTENT,
-				CREATE_DATE
-		 FROM
-		  		TB_REPLY
-		  
-	
+				A.*
+		FROM
+				(
+				SELECT
+				
+						MEMBER_NO,
+                        MEMBER_NICKNAME,
+                        EMAIL,
+						LEVEL_NO,
+						NATION_NAME,
+						TEST_DATE,
+						SCORE
+				FROM
+						TB_SCORE
+                JOIN
+                        TB_MEMBER USING (MEMBER_NO)
+                JOIN
+                        TB_NATION USING (NATION_NO)
+				ORDER
+				   BY
+				   		SCORE DESC
+				   		) A
+				 WHERE 
+				 		ROWNUM BETWEEN 1 AND 5
 	</select>
-	-->
+	
+	
 
 </mapper> 
