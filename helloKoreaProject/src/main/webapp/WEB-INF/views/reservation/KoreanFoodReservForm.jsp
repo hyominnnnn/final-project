@@ -48,11 +48,11 @@
 						
 						<td>
 						<select name="kfTime" id="kfTime">
-								<option value="0">예약 날짜를 선택해주세요.</option>
-								<option value="12:00" id="times1">12:00</option>
-								<option value="13:00" id="times2">13:00</option>
-								<option value="18:00" id="times3">18:00</option>
-								<option value="19:00" id="times4">19:00</option>
+								<option value="0" id="select_date">예약 날짜를 선택해주세요.</option>
+								<option value="12:00" id="times1" class="times">12:00</option>
+								<option value="13:00" id="times2" class="times">13:00</option>
+								<option value="18:00" id="times3" class="times">18:00</option>
+								<option value="19:00" id="times4" class="times">19:00</option>
 						</select>
 						</td>
 						
@@ -71,7 +71,7 @@
 						<tr>
 						<td></td>
 						<td></td>
-						<td><h6>※예약 가능시간 : </h6></td>
+						<td><h6> </h6></td>
 						<td><h6>4명 이상 단체는 문의주세요</h6></td>
 						<tr>
 						
@@ -108,35 +108,103 @@
 									url : 'rsvcheck.kf',
 									data:{reDate : $('#today').val()},
 									success : data => {
+										
+										const abc = $('#select_date');
+										
+										if(data.length != 0){
+											
+											let times = $('.times');
+											let arr = [];
+											
+											data.map((a, b) => {
+												times.map((c, d) => {
+													if(a.reTime == d.innerHTML){
+														arr.push(d);
+													}
+												})
+											})
+											
+											$('#kfTime').html('').append(abc, arr);
+											
+										}
 										//console.log(data[0].reTime);
 										//console.log($('#times1').val());
-										
+										/*
 										var times1 = $('#times1').val();
-										var getTimes0 = data[0].reTime;
 										var times2 = $('#times2').val();
-										var getTimes1 = data[1].reTime;
 										var times3 = $('#times3').val();
-										var getTimes2 = data[2].reTime;
 										var times4 = $('#times4').val();
-										var getTimes3 = data[3].reTime;
 										
+										
+										
+										if(data !=null){
+											var setTimes=[];
+											for(i=0; i<data.length; i++){
+												setTimes[i]=data[i].reTime;
+											}
+												//console.log(test1);
+										}
 										
 										//console.log(getTimes);
-										if(getTimes0){
-											//console.log(getTimes);
+										
+										if(setTimes0 != null){ 
+											console.log(setTimes2);
+											if(times1 == setTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == setTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == setTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == setTimes3){
+												$('#times4').attr("hidden", true);
+											}
+											
+										} else if(getTimes1){
 											if(times1 == getTimes0){
 												$('#times1').attr("hidden", true);
 											}
-											if($('#times2').val() == data[0].reTimes){
-												$('#times2').attr("hidden", hidden);
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
 											}
-											if($('#times3').val() == data[0].reTimes){
-												$('#times3').attr("hidden", hidden);
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
 											}
-											if($('#times4').val() == data[0].reTimes){
-												$('#times4').attr("hidden", hidden);
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
 											}
-										}
+											
+										} else if(getTimes2) {
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
+											}
+										} else {
+											if(times1 == getTimes0){
+												$('#times1').attr("hidden", true);
+											}
+											if(times2 == getTimes1){
+												$('#times2').attr("hidden", true);
+											}
+											if(times3 == getTimes2){
+												$('#times3').attr("hidden", true);
+											}
+											if(times4 == getTimes3){
+												$('#times4').attr("hidden", true);
+											}
+										} 
+											*/
+										
 										
 									},
 									error : () => {
@@ -191,17 +259,18 @@
 				
 				<div id="clientInfo">
 					<h2>예약자 정보 입력</h2>
-					<table>
-					
+					<table class="table">
+					<c:if>
+					</c:if>
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" placeholder="" readonly></td>
+						<td><input type="text" name="userName" value="${sessionScope.loginUser.getMemberName}" readonly></td>
 						<input type="hidden" name="userNo" value="">
 					</tr>
 					
 					<tr>
-						<th>연락처</th>
-						<td><input type="text" name="phone" placeholder="" readonly></td>
+						<th>이메일</th>
+						<td><input type="text" name="email" value="${sessionScope.loginUser.getEmail }"  readonly></td>
 					</tr>
 					<tr>
 						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
