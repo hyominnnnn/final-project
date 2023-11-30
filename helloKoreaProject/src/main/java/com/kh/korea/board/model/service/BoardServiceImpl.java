@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.kh.korea.board.model.dao.BoardDao;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
 
 @Service
@@ -140,13 +141,17 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	
+	
 	// (공통)댓글 목록 조회
+	@Override
+	public ArrayList<Reply> selectReply(int boardNo) {
+		return boardDao.selectReply(sqlSession, boardNo);
+	}
 	// (공통)댓글 작성(INSERT)
-	
-	
-	
-	
-	
+	@Override
+	public int insertReply(Reply r) {
+		return boardDao.insertReply(sqlSession, r);
+	}
 	
 	
 

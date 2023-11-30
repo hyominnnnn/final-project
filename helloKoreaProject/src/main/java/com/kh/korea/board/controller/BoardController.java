@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.korea.board.model.service.BoardService;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
 import com.kh.korea.common.template.SaveFile;
@@ -236,20 +239,33 @@ public class BoardController {
 		}
 	}
 	
-		
-	// (공통)게시글 조회수 증가(UPDATE)
 	
 	
+	// (공통)댓글 목록 조회 - 정보
+	@ResponseBody
+	@GetMapping(value="selectReply.ibo", produces="application/json; charset=UTF-8")
+	public String selectInfoReply(int boardNo) {
+		return new Gson().toJson(boardService.selectReply(boardNo));
+	}
+	// (공통)댓글 목록 조회 - 자유
+	@ResponseBody
+	@GetMapping(value="selectReply.fbo", produces="application/json; charset=UTF-8")
+	public String selectFreeReply(int boardNo) {
+		return new Gson().toJson(boardService.selectReply(boardNo));
+	}
 	
-	
-
-	
-	
-	
-	// (공통)댓글 목록 조회
-	// (공통)댓글 작성(INSERT)
-	
-	
+	// (공통)댓글 작성(INSERT) - 정보
+	@ResponseBody
+	@GetMapping("insertReply.ibo")
+	public String insertInfoReply(Reply r) {
+		return boardService.insertReply(r) > 0 ? "success" : "fail";
+	}
+	// (공통)댓글 작성(INSERT) - 자유
+	@ResponseBody
+	@GetMapping("insertReply.fbo")
+	public String insertFreeReply(Reply r) {
+		return boardService.insertReply(r) > 0 ? "success" : "fail";
+	}
 	
 	
 }
