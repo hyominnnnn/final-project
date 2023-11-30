@@ -290,9 +290,6 @@
                         EMAIL,
 						LEVEL_NO,
 						NATION_NAME,
-						MEMBER_NICKNAME,
-						LEVEL_NO,
-						TEST_DATE,
 						SCORE
 				FROM
 						TB_SCORE
@@ -300,8 +297,6 @@
                         TB_MEMBER USING (MEMBER_NO)
                 JOIN
                         TB_NATION USING (NATION_NO)
-				JOIN
-                        TB_MEMBER USING (MEMBER_NO)
 				ORDER
 				   BY
 				   		SCORE DESC
