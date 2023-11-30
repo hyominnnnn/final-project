@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 <style>
 
+	h2, h4, pre{
+		margin-left: 500px;
+	}
+	.table{
+		margin-left: 500px;
+	}
+	
 </style>
 </head>
 <body>
@@ -16,13 +24,15 @@
 	
 	<div id="content" class="page">
 		<div class="page">
-			<form action="rsvEnrollForm.kf" name="kfEnrollForm" id="kfEnrollForm">
-				<input type="hidden" name="userNo">
+			<form action="price" name="kfEnrollForm" id="kfEnrollForm">
+				<input type="hidden" name="userNo"/>
+				<input type="hidden" name="proNo"/>
 				<!-- 
 				<c:if test="${ empty sessionScope.loginUser}">
 				</c:if>
 				 -->
 				<h2>한식 선택</h2> 
+				
 				<table class="table">
 					<tr>
 						<th>코스 종류</th>
@@ -35,7 +45,7 @@
 					<tr id="reserv-info">
 						
 						<td>
-						<select name="programNo" value="1">
+						<select name="programNo" id="programNo">
 								<option value="1">한정식</option>
 								<option value="2">고호재</option>
 						</select>
@@ -60,12 +70,12 @@
 						<!-- <input type="hidden" name="table_price" value="70000"> -->
 						<input type="text" name="personnel_count" value="1" size="1" max="4" id="personnel_count">
 						
-						<input type="button" value=" + " id="plus" >
+						<input type="button" value=" + " id="plus" onclick="">
 						<input type="button" value=" - " id="minus">
 						</td>
 						
 						<td>
-						<input type="text" name="sum" id="sum" size="11" onclick=cal() readonly>원
+						<input type="text" name="sum" id="sum" size="11" value="" onclick=cal() readonly>원
 						</td>
 						
 						<tr>
@@ -78,7 +88,7 @@
 					</tr>
 					
 				</table>
-				
+				</form>
 				<script>
 					var today = new Date();   
 					var year = today.getFullYear(); // 년도
@@ -102,7 +112,6 @@
 						$(function(){
 							$('#reserv_check').click(function(){
 								//console.log('ㅇㅇ');
-								
 								$.ajax({
 									
 									url : 'rsvcheck.kf',
@@ -251,31 +260,48 @@
 							
 						}
 						
-						
-						
-						
+						// 가격 가져오기
+						$(()=>{
+							$('#reserv_check').click(function(){
+								//console.log('ㅇㅇ');
+								console.log($("#programNo").val());
+								
+								$.ajax({
+									
+									url : 'price',
+									data:{programNo: $("#programNo").val()},
+									success : data => {
+										console.log(data);
+										$('#sum').attr("value", data);
+									},
+									error: () => {
+										console.log('안댐');
+									}
+								})
+							});
+						});
 				
 				</script>
 				
 				<div id="clientInfo">
 					<h2>예약자 정보 입력</h2>
 					<table class="table">
-					<c:if>
-					</c:if>
+					
 					<tr>
 						<th>예약자 성함</th>
-						<td><input type="text" name="userName" value="${sessionScope.loginUser.getMemberName}" readonly></td>
+						<td><input type="text" name="userName" value="${sessionScope.loginUser.memberNickname}" readonly></td>
 						<input type="hidden" name="userNo" value="">
 					</tr>
 					
 					<tr>
 						<th>이메일</th>
-						<td><input type="text" name="email" value="${sessionScope.loginUser.getEmail }"  readonly></td>
+						<td><input type="text" name="email" value="${sessionScope.loginUser.email }"  readonly></td>
 					</tr>
 					<tr>
+					<c:if test="${ sessionScope.loginUser.status ne 'F'}">
 						<td colspan = "2">로그인 후 이용가능한 서비스입니다.</td>
+					</c:if>
 					</tr>
-				
 					
 				</table>
 					
@@ -283,14 +309,16 @@
 				</div>
 				
 				<div>
+				<br>
 				<h4>체험 안내 및 주의사항</h4>
 				<pre>
-	어쩌구저쩌구 어쩌구저쩌구 아아아아 금요일인데 집가고싶다 두시간남았네
-	퓨ㅜ핳
-	푸핳
-	푸핳
-	여기는 c강의장 푸키
+					어쩌구저쩌구 어쩌구저쩌구 아아아아 금요일인데 집가고싶다 두시간남았네
+					퓨ㅜ핳
+					푸핳
+					푸핳
+					여기는 c강의장 푸키
 				</pre>
+				<br><br>
 				</div>
 				<div align="center">
 				<input type="checkbox" required>주의사항을 읽었고 확인하였습니다. <br><br>

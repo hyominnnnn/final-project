@@ -33,14 +33,7 @@
 		<result column="BOARD_CONTENT"    property="boardContent" />
 		<result column="CATEGORY_NO" 	  property="categoryNo" />
 	</resultMap>
-<!--	
-<resultMap id="scoreResultSet" type="score">
-		<result column="LEVEL_NO" property="levelNo" />
-		<result column="TEST_DATE" property="testDate" />
-		<result column="SCORE" property="score" />
-		<result column="MEMBER_NICKNAME" property="memberNickname"/>
-</resultMap>
--->
+  
 <resultMap id="scoreResultSet" type="score">
 		<result column="LEVEL_NO" property="levelNo" />
 		<result column="TEST_DATE" property="testDate" />

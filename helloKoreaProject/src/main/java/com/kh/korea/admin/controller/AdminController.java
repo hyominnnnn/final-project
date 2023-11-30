@@ -264,14 +264,10 @@ public class AdminController {
 	@GetMapping("scoreRankingList")
 	public String selectTopScoreList(Model model) {
 		
-		
 		model.addAttribute("list", adminService.selectTopScoreList());
 		
-
-		//System.out.println(model.getAttribute("list"));
-
-		
 		return "admin/scoreRanking";
+		
 	}
 	
 }

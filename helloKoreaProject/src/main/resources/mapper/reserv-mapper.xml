@@ -6,14 +6,23 @@
 <mapper namespace="reservMapper">
 
 	<resultMap id="reservResultSet" type="reservaion">
-		<result column="RE_NO"         property="reNo" />
-		<result column="PRO_NO"      property="proNo" />
-		<result column="RE_DATE"  property="reDate" />
+		<result column="RE_NO"          property="reNo" />
+		<result column="PRO_NO"      	property="proNo" />
+		<result column="RE_DATE"  		property="reDate" />
 		<result column="PERSONNEL"      property="perssonnel" />
-		<result column="STATUS"            property="status" />
-		<result column="MEMBER_NO"    property="memberNo" />
-		<result column="PAYMENT"	  property="payment" />
-		<result column="RE_TIME"    property="reTime" />
+		<result column="STATUS"         property="status" />
+		<result column="MEMBER_NO"    	property="memberNo" />
+		<result column="PAYMENT"	  	property="payment" />
+		<result column="RE_TIME"    	property="reTime" />
+		<result column="PRICE"           property="price" />
+	</resultMap>
+	
+	<resultMap id="programResultSet" type="program">
+		<result column="PRO_NO"          property="proNo" />
+		<result column="PRO_NAME"        property="proName" />
+		<result column="PRO_DE"          property="proDe" />
+		<result column="PRICE"           property="price" />
+		<result column="CATEGORY"        property="category" />
 	</resultMap>
 	
 	<select id="selectTime" parameterType="date" resultMap="reservResultSet"> <!-- id=인터페이스에서 지은 이름 -->
@@ -25,6 +34,14 @@
            RE_DATE = #{reDate}
 	</select>
 	
+	<select id="selectPrice" parameterType="string" resultType="string">
+		SELECT
+				PRICE
+		FROM
+				TB_PROGRAM
+		WHERE
+                PRO_NO = #{programNo}
+	</select>
 	
 	
 	
