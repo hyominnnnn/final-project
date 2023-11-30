@@ -21,6 +21,7 @@
 			<typeAlias type="com.kh.korea.member.model.vo.Cert" alias="cert"/>
 			<typeAlias type="com.kh.korea.chatting.model.vo.Chatting" alias="Chatting"/>
 			<typeAlias type="com.kh.korea.reservation.model.vo.Reservation" alias="reservaion"/>
+			<typeAlias type="com.kh.korea.reservation.model.vo.Program" alias="program"/>
 		</typeAliases>
 	
 		<!-- sql mapper를 새로 만들때마다 등록해야함. -->

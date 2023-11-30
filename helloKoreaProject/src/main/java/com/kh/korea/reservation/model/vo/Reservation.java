@@ -18,5 +18,6 @@ public class Reservation {
 	private int memberNo; //MEMBER_NO
 	private String payment;
 	private String reTime;
+	private int price;
 
 }
