@@ -236,7 +236,7 @@
 	       
        }
        
-       #list-select-btn{
+        #list-select-btn{
        		margin-top: 50px;
        		width: 110px;
        		height: 35px;
@@ -310,6 +310,47 @@
                 </div>
 	        </div>
     	</div>
-    
+                <h1>점수 랭킹 TOP 5</h1>
+                <br>
+                  <form action="scoreRankingList" method="get">
+                  <input type="hidden" name="bPage" value="1" />
+	                  <table class="rwd-table">
+	                    <tbody>
+	                      <tr>
+	                        <th></th>
+	                        <th>레벨</th>
+	                        <th></th>
+	                        <th>닉네임</th>
+	                        <th>점수</th>
+	                        <th></th>
+	                      </tr>
+	                       	<c:forEach items="${ list }" var="s">
+		                      <tr>
+		                        <td data-th="Supplier Code">
+		                        </td>
+		                        <td data-th="Supplier Name">
+		                        	${s.levelNo}
+		                        </td>
+		                        <td data-th="Invoice Number">
+		                        </td>
+		                        <td data-th="Invoice Date">
+		                        	${s.memberNickname}
+		                        </td>
+		                        <td data-th="Due Date">
+		                        	${s.score}
+		                        </td>
+		                        <td data-th="Net Amount">
+		                          
+		                        </td>
+		                      </tr>
+	                     </c:forEach>
+	                    </tbody>
+	                  </table>
+	                  <button type="submit" id="list-select-btn">리스트조회</button>
+                  </form>
+                </div>
+        </div>
+        
+        	
 </body>
 </html>

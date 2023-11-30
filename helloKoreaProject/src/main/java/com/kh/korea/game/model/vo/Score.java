@@ -15,8 +15,10 @@ public class Score {
 	private Date testDate;
 	private int score;
 	private String memberNickname;
+
 	private String email;
 	private int nationNo;
 	private String nationName;
+
 
 }

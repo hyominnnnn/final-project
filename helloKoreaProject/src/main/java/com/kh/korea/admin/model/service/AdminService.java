@@ -49,7 +49,10 @@ public interface AdminService {
 	
 	ArrayList<Reply> selectReplyList(PageInfo pi);
 
+	
+	// 랭킹--------------------------------------
 	ArrayList<Score> selectTopScoreList();
+	
 	
 
 
