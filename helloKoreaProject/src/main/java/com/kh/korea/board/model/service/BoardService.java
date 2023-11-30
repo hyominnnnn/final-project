@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
+import com.kh.korea.board.model.vo.Reply;
 import com.kh.korea.common.model.vo.PageInfo;
 
 public interface BoardService {
@@ -42,8 +43,9 @@ public interface BoardService {
 	// (공통)게시글 상세조회(SELECT)
 	Board selectBoard(int boardNo);
 	// (공통)댓글 목록 조회
+	ArrayList<Reply> selectReply(int boardNo);
 	// (공통)댓글 작성(INSERT)
-	
+	int insertReply(Reply r);
 	
 	
 	

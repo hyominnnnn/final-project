@@ -8,6 +8,7 @@ import com.kh.korea.game.model.vo.LowerGame;
 import com.kh.korea.game.model.vo.MiddleGame;
 import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.game.model.vo.UpperGame;
+import com.kh.korea.game.model.vo.UserBadge;
 
 public interface GameService {
 	
@@ -37,5 +38,10 @@ public interface GameService {
 	
 	// 난이도별 점수 select
 	ArrayList<Score> selectScore(int memberNo);
+	
+	// 난이도별 뱃지 insert
+	int insertBadge(HashMap<String, Integer> map);
 
+	// 뱃지 select
+	ArrayList<UserBadge> selectBadge(int memberNo);
 }

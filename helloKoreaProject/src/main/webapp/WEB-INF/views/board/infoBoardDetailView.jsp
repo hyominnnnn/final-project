@@ -83,39 +83,97 @@
 		    
 		    <table id="replyArea" class="table" align="center">
 				<thead>
-					<tr>
-						<th colspan="2">
-							<textarea class="form-control" name="" id="content" cols="55" rows="2" style="resize:none; width:100%;"></textarea>
-		                </th>
-		                <th style="vertical-align:middle"><button class="btn btn-secondary">등록하기</button></th>
-		            </tr>
+					<c:choose>
+						<c:when test="${ not empty sessionScope.loginUser }">
+							<tr>
+								<th colspan="2">
+									<textarea class="form-control" id="content" cols="55" rows="2" style="resize:none; width:100%;"></textarea>
+				                </th>
+				                <th style="vertical-align:middle"><button class="btn btn-secondary" onclick="addReply();">등록하기</button></th>
+				            </tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<th colspan="2">
+									<textarea class="form-control" id="content" cols="55" rows="2" style="resize:none; width:100%;" disabled></textarea>
+			                	</th>
+			                	<th style="vertical-align:middle"><button class="btn btn-secondary" disabled>등록하기</button></th>
+			            	</tr>
+						</c:otherwise>
+					</c:choose>
 		            <tr>
-		                <td colspan="3">댓글(<span id="rcount">3</span>)</td>
+		                <td colspan="3">댓글(<span id="rcount">0</span>)</td>
 		            </tr>
 		        </thead>
 		        <tbody>
-		            <tr>
-		                <th>user02</th>
-		                <td>ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ꿀잼</td>
-		                <td>2023-03-12</td>
-		            </tr>
-		            <tr>
-		                <th>user01</th>
-		                <td>재밌어요</td>
-		                <td>2023-03-11</td>
-		            </tr>
-		            <tr>
-		                <th>admin</th>
-		                <td>댓글입니다!!</td>
-		                <td>2023-03-10</td>
-		            </tr>
+		        	
 		        </tbody>
 		    </table>
 		</div>
 		<br><br>
 	​
 	</div>
-
+	
+	<script>
+		$(function(){
+			selectReplyList();
+		});
+		
+		// 댓글 작성
+		function addReply(){
+    		
+    		if($('#content').val().trim() != ''){
+    			$.ajax({
+    				url : 'insertReply.ibo',
+    				data : {
+    					boardNo : ${ info.boardNo },
+    					replyContent : $('#content').val(),
+    					replyMember : '${ loginUser.memberNickname }'
+    				},
+    				success : function(result){
+    					if(result === 'success'){
+    						$('#content').val('');
+    						selectReplyList();
+    					}
+    				},
+    				error : function(){
+    					console.log('댓글 작성 실패');
+    				}
+    			});
+    		}
+    		else{
+    			alert('댓글을 작성해주세요!');
+    		}
+    		
+    	}
+		
+		// 댓글 조회
+		function selectReplyList(){
+    		$.ajax({
+    			url : 'selectReply.ibo',
+    			data : {boardNo : ${ info.boardNo }},
+    			success : function(list){
+    				console.log(list);
+    				
+    				let value = '';
+    				for(let i in list){
+    					value += '<tr>'
+    						   + '<td>' + list[i].replyMember + '</td>'
+    						   + '<td>' + list[i].replyContent + '</td>'
+    						   + '<td>' + list[i].createDate + '</td>'
+    					       + '</tr>';
+    				}
+    				$('#replyArea tbody').html(value);
+    				$('#rcount').text(list.length);
+    			},
+    			error : function(){
+    				console.log('댓글 목록 조회 실패');
+    			}
+    		});
+		}
+		
+	</script>
+	
 	<jsp:include page="../common/footer.jsp" />
 	
 </body>

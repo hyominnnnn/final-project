@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.board.model.vo.File;
+import com.kh.korea.board.model.vo.Reply;
 
 @Repository
 public class BoardDao {
@@ -97,12 +98,16 @@ public class BoardDao {
 	}
 	
 	
+	
 	// (공통)댓글 목록 조회
+	public ArrayList<Reply> selectReply(SqlSessionTemplate sqlSession, int boardNo) {
+		return (ArrayList)sqlSession.selectList("boardMapper.selectReply", boardNo);
+	}
 	// (공통)댓글 작성(INSERT)
+	public int insertReply(SqlSessionTemplate sqlSession, Reply r) {
+		return sqlSession.insert("boardMapper.insertReply", r);
+	}
 	
 	
-
-	
-
 	
 }

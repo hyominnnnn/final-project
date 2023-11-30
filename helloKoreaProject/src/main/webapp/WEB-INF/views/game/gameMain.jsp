@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<style>
-	div {border : 1px solid red;}
 		.content {
             background-color:rgb(247, 245, 245);
             width:80%;
@@ -44,13 +43,17 @@
         }
         .score, .img {
         	float : left;
-        	width : 10%;
+        	width : 5%;
         	height : 80%;
         	border-radius : 50%;
-        	line-height: 40px;
+        	line-height: 50px;
         	text-align: center;
         	font-size : 25px;
         	color : crimson;
+        }
+        img{
+        	with : 100%;
+        	height : 100%;
         }
 	</style>
 </head>
@@ -72,19 +75,19 @@
 			<div class="game-lower">
 				<h3><a href="lower.ga" class="low game">초급 ⭐</a></h3>
 				<div class="score" id="lowerScore"></div>
-				<div class="img">사진</div>
+				<div class="img"><img id="bronze" src=""></div>
 			</div>
 			<br><hr><br>
 			<div class="game-middle">
 				<h3><a href="middle.ga" class="middle game">중급 ⭐⭐⭐</a></h3>
 				<div class="score" id="middleScore"></div>
-				<div class="img">사진</div>
+				<div class="img"><img id="silver" src=""></div>
 			</div>
 			<br><hr><br>
 			<div class="game-upper">
 				<h3><a href="upper.ga" class="upper game">고급 ⭐⭐⭐⭐⭐</a></h3>
 				<div class="score" id="upperScore"></div>
-				<div class="img">사진</div>
+				<div class="img"><img id="gold" src=""></div>
 			</div>
 			
 		</div>		
@@ -112,6 +115,7 @@
 	<script>
 		$(function(){
 			userScore();
+			userBadge();
 		});
 
 		// 클래스가 score인 요소 배열
@@ -136,6 +140,38 @@
 				},
 				error : function(){
 					console.log('유저 점수 가져오기 실패');
+				}
+			});
+		}
+		
+		// 사용자가 획득한 뱃지
+		function userBadge(){
+			// 뱃지별 레벨번호 (어떤 레벨의 뱃지인지)
+			let levelNo;
+			$.ajax({
+				url : 'selectBadge.ga',
+				data : {
+					memberNo : ${ sessionScope.loginUser.memberNo }
+				},
+				success : function(result){
+					// console.log(result);
+					for(let i = 0; i < result.length; i++){
+						levelNo = result[i].badgeNo; // 뱃지번호 == 레벨번호
+						// console.log(levelNo);
+						if(levelNo == 3){
+							$('#bronze').attr('src', result[i].imgPath);
+						}
+						else if(levelNo == 2){
+							$('#silver').attr('src', result[i].imgPath);
+						}
+						else{
+							$('#gold').attr('src', result[i].imgPath);
+						}
+					}
+				
+				},
+				error : function(){
+					console.log('뱃지 가져오기 실패');
 				}
 			});
 		}

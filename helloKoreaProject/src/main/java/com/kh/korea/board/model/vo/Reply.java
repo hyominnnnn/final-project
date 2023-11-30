@@ -14,6 +14,6 @@ public class Reply {
 	private String replyContent;
 	private Date createDate;
 	private int boardNo;
-	private int memberNo;
-
+	private String replyMember;
+	
 }

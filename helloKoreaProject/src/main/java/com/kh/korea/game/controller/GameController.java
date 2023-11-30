@@ -241,6 +241,24 @@ public class GameController {
 		
 	}
 	
+	// 난이도별 뱃지 insert (정답이 20개 이상인 사람만)
+	@ResponseBody
+	@GetMapping("insertBadge.ga")
+	public int insertBadge(int memberNo, int badgeNo) {
+		
+		HashMap<String, Integer> map = new HashMap();
+		map.put("memberNo", memberNo);
+		map.put("badgeNo", badgeNo);
+		
+		return gameService.insertBadge(map);
+	}
+	
+	// 사용자가 획득한 뱃지 가져오기
+	@ResponseBody
+	@GetMapping(value="selectBadge.ga", produces="application/json; charset=UTF-8")
+	public String selectBadge(int memberNo) {
+		return new Gson().toJson(gameService.selectBadge(memberNo));
+	}
 	
 	
 }

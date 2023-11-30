@@ -341,11 +341,41 @@
 			   )
 	</insert>
 	
+	<!-- (공통)댓글 리스트 조회 -->
+	<select id="selectReply" parameterType="_int" resultType="reply">
+		SELECT
+		       REPLY_NO replyNo,
+		       REPLY_CONTENT replyContent,
+		       CREATE_DATE createDate,
+		       REPLY_MEMBER replyMember
+		  FROM 
+		  	   TB_REPLY
+		 WHERE 
+		   	   BOARD_NO = #{boardNo}
+		 ORDER 
+		 	BY
+		 	   REPLY_NO DESC
+	</select>
 	
-	
-	
-	
-	
+	<!-- (공통)댓글 작성 -->
+	<insert id="insertReply" parameterType="reply">
+		INSERT
+		  INTO
+		  	   TB_REPLY
+		  	   (
+		  	   REPLY_NO,
+		  	   REPLY_CONTENT,
+		  	   REPLY_MEMBER,
+		  	   BOARD_NO
+		  	   )
+		VALUES 
+			   (
+			   SEQ_REPLY.NEXTVAL,
+			   #{replyContent},
+			   #{replyMember},
+			   #{boardNo}
+			   )
+	</insert>
 	
 	
 </mapper> 

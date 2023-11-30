@@ -200,7 +200,7 @@
 					success : function(result){
 						// console.log(result);
 						if(result > 0) {
-							location.href = "main.ga";
+							insertBadge(score);
 						}
 						else {
 							console.log('점수 insert 실패');
@@ -211,6 +211,27 @@
 					}
 				});
 				
+			}
+			
+			// 뱃지 insert
+			function insertBadge(score){
+				// console.log(score);
+				if(score >= 20){
+					$.ajax({
+						url : 'insertBadge.ga',
+						data : {
+							memberNo : ${ sessionScope.loginUser.memberNo },
+							badgeNo : ${ firstQuiz.levelNo } <%-- 뱃지 번호와 레벨 번호가 동일 (초급 : 3, 중급 : 2, 고급 : 1) --%>
+						},
+						success : function(result){
+							// console.log(result);
+						},
+						error : function(){
+							console.log('뱃지 insert 실패');
+						}
+					});
+				}
+				location.href = "main.ga";
 			}
 			
 			// 이전 문제 클릭
