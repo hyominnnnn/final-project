@@ -52,7 +52,6 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		//System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
@@ -62,13 +61,6 @@ public class AdminController {
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
 	public String memberInfoDetail(Member m) {
-		
-		//System.out.println(m);
-		//Member memberDetail = adminService.memberDetail(m);
-		
-		//System.out.println(memberDetail);
-		//mv.addObject("memberDetail",adminService.memberDetail(m))
-		//  .setViewName("redirect:list.me");
 		
 		return new Gson().toJson(adminService.memberDetail(m));
 		

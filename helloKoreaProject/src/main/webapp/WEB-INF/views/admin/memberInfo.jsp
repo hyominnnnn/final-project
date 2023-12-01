@@ -321,29 +321,25 @@
                         <th>이름</th>
                         <th>이메일</th>
                         <th>닉네임</th>
-                        <th></th>
                         <th>가입일자</th>
                       </tr>
 
-                      <c:forEach items="${ list }" var="m">
+                      <c:forEach items="${ list }" var="member">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${m.memberNo}
+	                          	${member.memberNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                        	${m.memberName}
+	                        	${member.memberName}
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                        	${m.email}
-	                          	
+	                        	${member.email}
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${m.memberNickname}
-	                        </td>
-	                        <td data-th="Due Date">
+	                        	${member.memberNickname}
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${m.memberEnrollDate}
+	                          ${member.memberEnrollDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
@@ -355,26 +351,29 @@
         </div>
         
         
-        
+        <!-- 페이징 처리 -->
     		<div id="pagingArea">
                 <ul class="pagination">
+                
                 	<c:choose>
+                	
                 		<c:when test="${ pi.currentPage eq 1}">
                     		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                     	</c:when>
+                    	
                     	<c:otherwise>
                     		<li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage-1}">Previous</a></li>
                     	</c:otherwise>
+                    	
                     </c:choose>
                     
                     <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
                     	<li class="page-item"><a class="page-link" href="list.me?cPage=${p}">${p}</a></li>
                     </c:forEach>
+                    
                     <li class="page-item"><a class="page-link" href="list.me?cPage=${pi.currentPage+1}">Next</a></li>
                 </ul>
             </div>
-        
-    </div>
     
     <!-- 회원정보 상세 모달 -->
      <div class="modal fade" id="memberDetailForm">
@@ -388,7 +387,7 @@
                 </div>
 ​
                 <form action="#" method="post" id="memberDetailModel">
-                <input type="hidden" name="bPage" value="${m.memberNo}" />
+                <input type="hidden" name="bPage" value="${member.memberNo}" />
                 
                     <!-- Modal body -->
                     <div class="modal-body">
