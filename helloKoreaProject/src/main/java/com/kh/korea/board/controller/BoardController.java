@@ -41,29 +41,7 @@ public class BoardController {
 		
 		return "board/infoBoardListView";
 	}
-	// 정보게시글 작성하기(INSERT)
-	@PostMapping("insert.ibo")
-	public String insertInfo(Board board, MultipartFile upfile, HttpSession session, Model model) {
-			
-		File file = new File();
-			
-		//System.out.println(board);
-		//System.out.println(upfile);
-			
-		if(!upfile.getOriginalFilename().equals("")) {
-			 file.setOriginalName(upfile.getOriginalFilename());
-			 file.setUploadName(SaveFile.saveFile(upfile, session));
-		}
-		
-		if(boardService.insertInfo(board, file) > 0) { // 성공 => 게시글 목록을 보여주기!
-			session.setAttribute("alertMsg", "게시글 작성 성공~");
-			return "redirect:list.ibo";
-		} else {
-			model.addAttribute("errorMsg", "게시글 작성 실패");
-			return "common/errorPage";
-		}
-			
-	}
+	
 	// 정보게시판 글 작성 폼
 	@GetMapping("enrollForm.ibo")
 	public String infoEnrollForm() {
@@ -198,6 +176,30 @@ public class BoardController {
 		return mv;
 				
 	}
+	
+	// 정보게시글 작성하기(INSERT)
+		@PostMapping("insert.ibo")
+		public String insertInfo(Board board, MultipartFile upfile, HttpSession session, Model model) {
+				
+			File file = new File();
+				
+			//System.out.println(board);
+			//System.out.println(upfile);
+				
+			if(!upfile.getOriginalFilename().equals("")) {
+				 file.setOriginalName(upfile.getOriginalFilename());
+				 file.setUploadName(SaveFile.saveFile(upfile, session));
+			}
+			
+			if(boardService.insertInfo(board, file) > 0) { // 성공 => 게시글 목록을 보여주기!
+				session.setAttribute("alertMsg", "게시글 작성 성공~");
+				return "redirect:list.ibo";
+			} else {
+				model.addAttribute("errorMsg", "게시글 작성 실패");
+				return "common/errorPage";
+			}
+				
+		}
 		
 	// 자유게시글 수정하기(UPDATE)
 	@PostMapping("update.fbo") 
@@ -206,7 +208,7 @@ public class BoardController {
 	// DB가서 업데이트 -> boardNo로 식별 필요함 => 화면단 폼태그 안에서 히든으로 넘겨주기
 	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
 		
-		//File file = new File();
+		File refile = new File();
 		
 		if(b.getOriginalName() != null &&!b.getOriginalName().equals("") && !reUpfile.getOriginalFilename().equals("")) { // 기존 파일 있을 경우
 			new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제
