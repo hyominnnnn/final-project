@@ -282,7 +282,7 @@
        	color: white;
        }
        
-        #listBtn{
+       #list-select-btn{
        		margin-top: 50px;
        		width: 110px;
        		height: 35px;
@@ -305,9 +305,7 @@
         </div>
 
         <div id="navi">
-
             <ul id="navi_1"></ul>
-                
         </div>
         
         <div id="content">
@@ -322,39 +320,36 @@
                         <th>글번호</th>
                         <th>제목</th>
                         <th>작성자</th>
-                        <th></th>
                         <th>첨부파일</th>
                         <th>작성일</th>
                       </tr>
-                      <c:forEach items="${ list }" var="f">
+                      <c:forEach items="${ list }" var="freeBoard">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                        	${f.boardNo}
+	                        	${freeBoard.boardNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${f.boardTitle }
+	                            ${freeBoard.boardTitle }
 	                        </td>
 	                        <td data-th="Invoice Number">
-	                          	${f.boardWriter }
-	                        </td>
-	                        <td data-th="Invoice Date">
-	                        	
+	                          	${freeBoard.boardWriter }
 	                        </td>
 	                        <td data-th="Due Date">
-	                        	<c:if test="${ not empty f.originalName }">
-	                        		${f.originalName }
+	                        	<c:if test="${ not empty freeBoard.originalName }">
+	                        		${freeBoard.originalName }
 	                        	</c:if>
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${f.modifyDate}
+	                          ${freeBoard.modifyDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
                     </tbody>
                   </table>
-                  <button type="submit" id="listBtn">리스트조회</button>
+                  	<button type="submit" id="list-select-btn">리스트조회</button>
                   </form>
                 </div>
+        	</div>
         </div>
         	
     		<div id="pagingArea">
@@ -440,10 +435,10 @@
                         </div>
                         <br>
                         	삭제할 게시물의 번호
-                        	<input type="text" class="form-control memberbtn" id="targetBoardNo" name="boardNo" value="" readonly> 
+                        	<input type="text" class="form-control memberbtn" id="targetBoardNo" name="boardNo" readonly> 
                             <br/>
                                                          관리자 비밀번호 확인
-                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd" value=""> 
+                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd"> 
                             <br/>
                     </div>
                     <!-- Modal footer -->
@@ -465,7 +460,6 @@
     	})
     	
     })
-    
     
     </script>
     

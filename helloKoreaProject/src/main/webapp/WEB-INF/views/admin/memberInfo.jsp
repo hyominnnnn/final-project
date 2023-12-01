@@ -348,8 +348,8 @@
                      <button type="submit" id="list-select-btn">리스트조회</button>
                    </form>
                 </div>
-        </div>
-        
+        	</div>
+		</div>        
         
         <!-- 페이징 처리 -->
     		<div id="pagingArea">
@@ -393,38 +393,38 @@
                     <div class="modal-body">
                     		
                     		<label for="memberNo" class="memberNo">회원번호</label>
-                            <input type="text" class="form-control memberbtn" id="memberNo" name="memberNo" value="" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberNo" name="memberNo" readonly> 
                             <br>
                             
                             <label for="memberName" class="memberbtn">이름</label>
-                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" value="" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberName" name="memberName" readonly> 
                             <br>
                             
                             <label for="email" class="memberbtn">이메일</label>
-                            <input type="text" class="form-control memberbtn" id="email" name="email" value="" readonly> 
+                            <input type="text" class="form-control memberbtn" id="email" name="email" readonly> 
                             <br>
                             
                             <label for="memberNickname" class="memberbtn">닉네임</label>
-                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" value="" readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberNickname" name="memberNickname" readonly> 
                             <br>
                             
                             <label for="birthday" class="memberbtn">생년월일</label>
-                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" value=""readonly> 
+                            <input type="text" class="form-control memberbtn" id="birthday" name="birthday" readonly> 
                             <br>
                             
                             <label for="nationName" class="memberbtn">국가</label>
-                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" value=""readonly> 
+                            <input type="text" class="form-control memberbtn" id="nationName" name="nationName" readonly> 
                             <br>
                             
                             <label for="memberEnrollDate" class="memberbtn">가입일자</label>
-                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" value=""readonly> 
+                            <input type="text" class="form-control memberbtn" id="memberEnrollDate" name="memberEnrollDate" readonly> 
                             <br>
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
-                    	<button class="memberModelBtn" id="personalPostingBtn" type="button">게시글조회</button>
-                    	<button class="memberModelBtn"><a href="#" id="memberReplyBtn">댓글조회</a></button>
-                    	<button id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
+                    	<button type="button" id="personalPostingBtn" class="memberModelBtn">게시글조회</button>
+                    	<button type="button" id="personalReplyBtn" class="memberModelBtn">댓글조회</button>
+                    	<button type="button" id="deleteBtn" class="btn btn-danger"><a href="#" id="model-footer-btn" data-toggle="modal" data-target="#deleteForm">회원삭제</a></button>
                     </div>
                 </form>
             </div>
@@ -435,11 +435,20 @@
    		
    
    		$(function(){
-   			
+
    			$('#personalPostingBtn').click(function(){
    				const $memberNo = $('#memberNo');
-   				location.href='personalPosting?bPage=' + $memberNo.val(); 
+   				location.href= 'personalPosting?bPage=' + $memberNo.val(); 
    			})
+   		})
+   		
+   		$(function(){
+   			
+   			$('#personalReplyBtn').click(function(){
+   				const $memberNo =  $('#memberNo');
+   				location.href= 'personalReply?bPage=' + #memberNo.val();
+   			})
+   			
    		})
    </script>
     

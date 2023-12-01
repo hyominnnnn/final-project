@@ -283,7 +283,7 @@
                         <th></th>
                         <th></th>
                       </tr>
-                      <c:forEach items="${ list }" var="b">
+                      <c:forEach items="${ list }" var="reply">
 	                      <tr>
 	                        <td data-th="Supplier Code">
 	                          	${r.replyNo}

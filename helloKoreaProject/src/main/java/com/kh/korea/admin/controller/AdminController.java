@@ -207,7 +207,6 @@ public class AdminController {
 		System.out.println("맴버 넘버 : " + bPage);
 		
 		model.addAttribute("list", adminService.selectPerPostingList(bPage));
-		model.addAttribute("bPage", bPage);
 		System.out.println(model.getAttribute("list"));
 		
 		return "admin/personalPosting";
@@ -221,6 +220,20 @@ public class AdminController {
 		
 	}
 	
+	@GetMapping("personalReply")
+	public String personalReply(){
+		return "admin/personalReply";
+	}
+	
+	/*
+	@GetMapping("personalReply")
+	public String selectPerReplyList(int bPage, Model model) {
+		
+		model.addAttribute("list", adminService.selectPerReplyList(bPage));
+		
+		return "admin/personalReply";
+	}
+	*/
 	
 	@RequestMapping("deleteBoard")
 	public String deleteBoardFree(String memberPwd, int boardNo, String boardWriter, HttpSession session, String filePath) {
