@@ -52,7 +52,6 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		//System.out.println(model.getAttribute("list"));
 		
 
 		return "admin/memberInfo";
@@ -62,13 +61,6 @@ public class AdminController {
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
 	public String memberInfoDetail(Member m) {
-		
-		//System.out.println(m);
-		//Member memberDetail = adminService.memberDetail(m);
-		
-		//System.out.println(memberDetail);
-		//mv.addObject("memberDetail",adminService.memberDetail(m))
-		//  .setViewName("redirect:list.me");
 		
 		return new Gson().toJson(adminService.memberDetail(m));
 		
@@ -215,7 +207,6 @@ public class AdminController {
 		System.out.println("맴버 넘버 : " + bPage);
 		
 		model.addAttribute("list", adminService.selectPerPostingList(bPage));
-		model.addAttribute("bPage", bPage);
 		System.out.println(model.getAttribute("list"));
 		
 		return "admin/personalPosting";
@@ -229,6 +220,20 @@ public class AdminController {
 		
 	}
 	
+	@GetMapping("personalReply")
+	public String personalReply(){
+		return "admin/personalReply";
+	}
+	
+	/*
+	@GetMapping("personalReply")
+	public String selectPerReplyList(int bPage, Model model) {
+		
+		model.addAttribute("list", adminService.selectPerReplyList(bPage));
+		
+		return "admin/personalReply";
+	}
+	*/
 	
 	@RequestMapping("deleteBoard")
 	public String deleteBoardFree(String memberPwd, int boardNo, String boardWriter, HttpSession session, String filePath) {
