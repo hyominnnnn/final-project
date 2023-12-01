@@ -66,6 +66,7 @@ public class BoardDao {
 	public int deleteFree(SqlSessionTemplate sqlSession, int boardNo) {
 		return sqlSession.update("boardMapper.deleteBoardFree", boardNo);
 	}
+	
 	// 자유게시글 수정하기(UPDATE)
 	public int updateFree(SqlSessionTemplate sqlSession, Board b) {
 		//System.out.println(b);
