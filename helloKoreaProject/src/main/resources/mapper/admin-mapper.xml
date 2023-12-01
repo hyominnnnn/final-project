@@ -44,6 +44,7 @@
 	    <result column="NATION_NAME" property="nationName" />
 </resultMap>
 
+
 	<!-- Member 쿼리문 -->
 
 	<select id="selectListCount" resultType="_int">
@@ -299,6 +300,18 @@
 
 	</select>
 	
-
-
+	<!-- 댓글 -->
+	<select id="selectPerReplyList" parameterType="_int" resultType="reply">
+		SELECT
+		       REPLY_NO replyNo,
+		       REPLY_CONTENT replyContent,
+		       CREATE_DATE createDate
+		  FROM 
+		  	   TB_REPLY
+		 WHERE 
+		   	   BOARD_NO = #{boardNo}
+		 ORDER 
+		 	BY
+		 	   REPLY_NO DESC
+	</select>
 </mapper> 

@@ -48,6 +48,9 @@ public interface AdminService {
 	int selectReplyCount();
 	
 	ArrayList<Reply> selectReplyList(PageInfo pi);
+	
+	// 개인 댓글----------------------------------
+	ArrayList<Reply> selectPerReplyList(int bPage);
 
 	
 	// 랭킹--------------------------------------
