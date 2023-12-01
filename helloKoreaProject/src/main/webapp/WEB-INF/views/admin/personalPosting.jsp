@@ -260,12 +260,19 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>${m.memberNickname}님의 게시글</h1>
+                <h1>게시글 조회</h1>
                 <br>
                   <form action="personalPosting" method="get">
                   <input type="hidden" name="bPage" value="1" />
 	                  <table class="rwd-table">
 	                    <tbody>
+	                    	<c:choose>
+	                    	<c:when test="${empty list }">
+	                    <tr>
+	                    	<td>작성된 게시물이 없습니다.</td>
+	                    </tr>
+	                    	</c:when>
+	                    	<c:otherwise>
 	                      <tr>
 	                        <th>글번호</th>
 	                        <th>글제목</th>
@@ -294,12 +301,14 @@
 		                        </td>
 		                      </tr>
 	                     </c:forEach>
+	                     </c:otherwise>
+	                     </c:choose>
 	                    </tbody>
 	                  </table>
                   </form>
                 </div>
-        </div>
-        
+        	</div>
+      </div>  
         	
     
     

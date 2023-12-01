@@ -84,6 +84,10 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectTopScoreList");
 	}
 
+	public ArrayList<Reply> selectPerReplyList(SqlSessionTemplate sqlSession, int memberNo) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectPerReplyList", memberNo);
+	}
+
 	
 
 

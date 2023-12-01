@@ -446,7 +446,7 @@
    			
    			$('#personalReplyBtn').click(function(){
    				const $memberNo =  $('#memberNo');
-   				location.href= 'personalReply?bPage=' + #memberNo.val();
+   				location.href= 'personalReply?bPage=' + $memberNo.val();
    			})
    			
    		})

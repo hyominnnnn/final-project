@@ -128,6 +128,11 @@ public class AdminServiceImpl implements  AdminService{
 		return adminDao.selectTopScoreList(sqlSession);
 	}
 
+	@Override
+	public ArrayList<Reply> selectPerReplyList(int bPage) {
+		return adminDao.selectPerReplyList(sqlSession, bPage);
+	}
+
 
 
 

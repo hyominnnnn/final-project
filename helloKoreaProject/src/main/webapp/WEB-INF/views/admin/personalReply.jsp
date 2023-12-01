@@ -270,130 +270,44 @@
         <div id="content">
             <div class="container">
             	<br>
-                <h1>회원 게시물 관리</h1>
+                <h1>댓글 조회</h1>
                 <br>
-                <form action="memberreply.me" method="get">
+                <form action="personalReply" method="get">
+                <input type="hidden" name="bPage" value="1" />
                   <table class="rwd-table" data-toggle="modal" data-target="#memberPostingForm">
                     <tbody>
+                     <c:choose>
+                     <c:when test="${ empty list }">
+                     <tr>
+	                 	<td>작성된 댓글이 없습니다.</td>
+	                 </tr>
+	                 </c:when>
+	                 <c:otherwise>
                       <tr>
                         <th>글번호</th>
-                        <th>작성댓글</th>
-                        <th></th>
+                        <th>내용</th>
                         <th>작성일</th>
-                        <th></th>
-                        <th></th>
                       </tr>
                       <c:forEach items="${ list }" var="reply">
 	                      <tr>
 	                        <td data-th="Supplier Code">
-	                          	${r.replyNo}
+	                          	${reply.replyNo}
 	                        </td>
 	                        <td data-th="Supplier Name">
-	                            ${r.replytTitle}
-	                        </td>
-	                        <td data-th="Invoice Number">
-	                          	
+	                            ${reply.replyContent}
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${r.createDate}
-	                        </td>
-	                        <td data-th="Due Date">
-	                          	
-	                        </td>
-	                        <td data-th="Net Amount">
-	                          2023/11/14
+	                        	${reply.createDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
+                      </c:otherwise>
+                      </c:choose>
                     </tbody>
                   </table>
-                  <button type="submit">조회</button>
                   </form>
                 </div>
         </div>
         	
-    		<div id="pagingArea">
-                <ul class="pagination">
-                	<c:choose>
-                		<c:when test="${ pi.currentPage eq 1}">
-                    		<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                    	</c:when>
-                    	<c:otherwise>
-                    		<li class="page-item"><a class="page-link" href="memberreply.me?cPage=${pi.currentPage-1}">Previous</a></li>
-                    	</c:otherwise>
-                    </c:choose>
-                    
-                    <c:forEach begin="${ pi.startPage }" end="${ pi.endPage }" var="p">
-                    	<li class="page-item"><a class="page-link" href="memberreply.me?cPage=${p}">${p}</a></li>
-                    </c:forEach>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </div>
-        
-    </div>
-    
-    <!-- 회원정보 상세 모달 -->
-     <div class="modal fade" id="memberPostingForm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-​
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">${ memberName }님의 게시글 상세 조회</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-​
-                <form action="#" method="post" id="memberPostingDetailModel">
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                            <label for="boardTitle" class="boardTitleBtn">제목</label>
-                            <input type="text" class="form-control boardTitleBtn" id="boardTitle" name="boardTitle" readonly> 
-                            <br>
-                            
-                            <label for="boardContent" class="boardContentBtn">내용</label>
-                            <input type="text" class="form-control boardContentBtn" id="boardContent" name="boardContent" readonly> 
-                            <br>
-                            
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer" align="center">
-                        <button id="postng-delete-btn" class="model-footer-btn" onclick="deletePosting();">게시글삭제</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    
-  
-    
-     <script>
-    	$(function(){
-    		$('.rwd-table > tbody > tr').click(function(){
-    			console.log($(this).children().eq(0).text());
-    			
-    			
-    			$.ajax({
-    				url: 'memberPosting.me',
-    				data : {boardNo : $(this).children().eq(0).text().trim()},
-    				success : data => {
-    					//console.log(data);
-    					
-    					const inputboardtitle = data.boardTitle;
-    					const inputboardconent = data.boardContent;
-    					
-    					$('#boardTitle').val(inputboardtitle);
-    					$('#boardContent').val(inputboardconent);
-    				},
-    				error : () => {
-    					console.log('실패!');
-    				}
-    				
-    			})
-    		})
-    	})
-    </script>
-    
-    
 </body>
 </html>
