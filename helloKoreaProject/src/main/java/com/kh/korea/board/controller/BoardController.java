@@ -208,7 +208,7 @@ public class BoardController {
 	// DB가서 업데이트 -> boardNo로 식별 필요함 => 화면단 폼태그 안에서 히든으로 넘겨주기
 	public String updateBoard(@ModelAttribute Board b, MultipartFile reUpfile, HttpSession session) {
 		
-		File refile = new File();
+		//File refile = new File();
 		
 		if(b.getOriginalName() != null &&!b.getOriginalName().equals("") && !reUpfile.getOriginalFilename().equals("")) { // 기존 파일 있을 경우
 			new java.io.File(session.getServletContext().getRealPath(b.getUploadName())).delete(); //기존파일 삭제
