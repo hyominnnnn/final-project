@@ -336,17 +336,17 @@
 	                        	${member.email}
 	                        </td>
 	                        <td data-th="Invoice Date">
-	                        	${member.memberNickname}
+	                            ${member.memberNickname}
 	                        </td>
 	                        <td data-th="Net Amount">
-	                          ${member.memberEnrollDate}
+	                            ${member.memberEnrollDate}
 	                        </td>
 	                      </tr>
                       </c:forEach>
                     </tbody>
-                  </table>
-                     <button type="submit" id="list-select-btn">리스트조회</button>
-                   </form>
+                  	</table>
+                      <button type="submit" id="list-select-btn">리스트조회</button>
+                  </form>
                 </div>
         	</div>
 		</div>        
@@ -433,7 +433,7 @@
     
    <script>
    		
-   
+   		// 회원 개인 게시글
    		$(function(){
 
    			$('#personalPostingBtn').click(function(){
@@ -442,13 +442,13 @@
    			})
    		})
    		
+   		// 회원 개인 댓글
    		$(function(){
    			
    			$('#personalReplyBtn').click(function(){
    				const $memberNo =  $('#memberNo');
    				location.href= 'personalReply?bPage=' + $memberNo.val();
    			})
-   			
    		})
    </script>
     
@@ -471,12 +471,13 @@
                         </div>
                         <br>
                         	삭제할 회원의 이메일
-                        	<input type="text" class="form-control memberbtn" id="targetEmail" name="email" value="" readonly> 
+                        	<input type="text" class="form-control memberbtn" id="targetEmail" name="email" readonly/> 
                             <br/>
                                                          관리자 비밀번호 확인
-                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd" value=""> 
+                            <input type="text" class="form-control memberbtn" id="adminEmail" name="memberPwd"/> 
                             <br/>
                     </div>
+                    
                     <!-- Modal footer -->
                     <div class="modal-footer" align="center">
                         <button type="submit" class="btn btn-danger">확인</button>
@@ -490,33 +491,12 @@
     
     <script>
     
-	    // 비밀번호 확인 모달
+	    // 관리자 비밀번호 확인 모달
 	    $(function(){
 	    	$('#deleteBtn').click(function(){
 	    		var otherEmail = $('#targetEmail').val($('#email').val());
-	    		//console.log(otherEmail);
-	    		
 	    		var adminPwd = $('#adminPwd').val();
-	    		//console.log(adminPwd);
-	    		
-	    		//console.log($('#memberPwd').val());
-	    		//console.log(targetEmail);
-	    		
-	    		/*
-	    		$.ajax({
-	    			url: 'delete.me',
-	    			data: {targetEmail : otherEmail},
-	    			success: data => {
-	    				console.log(data);
-	    				
-	    			},
-	    			error : () => {
-	    				console.log('실패');
-	    			}
-	    		})
-	    		*/
 	    	})
-	    	
 	    })
 	    
 	    
@@ -524,45 +504,37 @@
 	    <script>
 		// 회원 상세 모달
 	    $(function(){
-	             		$('.rwd-table > tbody > tr').click(function(){
-	             				//console.log($(this).children().eq(1).text());
+	             		
+	    	$('.rwd-table > tbody > tr').click(function(){
 	             				
-	             				
-	             				$.ajax({
-							    	url : 'memberDetail.me',
-							    	data : {email : $(this).children().eq(2).text().trim()},
-							    	success : data => {
-
-							    	   console.log(data);
-
-							    	   //console.log(data.nationName);
-							    		
-							    	   const inputName = data.memberName;
-							    	   const inputemail= data.email;
-							    	   const inputnickname = data.memberNickname;
-							    	   const inputbirthday = data.birthday;
-							    	   const inputnationName = data.nationName;
-							    	   const inputenrolldate = data.memberEnrollDate;
-							    	   const inputNo = data.memberNo;
+	             $.ajax({
+						  url : 'memberDetail.me',
+						  data : {email : $(this).children().eq(2).text().trim()},
+						  success : data => {
+							    	   			const inputName = data.memberName;
+							    	  		    const inputEmail= data.email;
+							    	   			const inputnNickname = data.memberNickname;
+							    	   			const inputBirthday = data.birthday;
+							    	   			const inputNationName = data.nationName;
+							    	   			const inputEnrolldate = data.memberEnrollDate;
+							    	   			const inputNo = data.memberNo;
 							    	   
+									    	    $('#memberName').val(inputName);
+									    	    $('#email').val(inputEmail);
+									    	    $('#memberNickname').val(inputnNickname);
+									    	    $('#nationName').val(inputNationName);
+									    	    $('#birthday').val(inputBirthday);
+									    	    $('#memberEnrollDate').val(inputEnrolldate);
+									    	    $('#memberNo').val(inputNo);
 							    	   
-							    	   $('#memberName').val(inputName);
-							    	   $('#email').val(inputemail);
-							    	   $('#memberNickname').val(inputnickname);
-							    	   $('#nationName').val(inputnationName);
-							    	   $('#birthday').val(inputbirthday);
-							    	   $('#memberEnrollDate').val(inputenrolldate);
-							    	   $('#memberNo').val(inputNo);
-							    	   
-							    	
-							    	    
-							    	},
-							    	error : () => {
-							    		console.log('실패!');
-							    	}
-						     })
-	             		})	
-	             	})
+							    				},
+						  error : () => {
+									    	console.log('실패!');
+									    }
+						  
+						   })
+	             	   })	
+	               })
 	       	
 	     
     </script>

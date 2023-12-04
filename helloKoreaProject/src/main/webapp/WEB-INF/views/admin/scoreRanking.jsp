@@ -277,35 +277,30 @@
                         <th>레벨</th>
                         <th>이메일</th>
                         <th>닉네임</th>
-                        <th></th>
                         <th>국가</th>
                         <th>점수</th>
                       </tr>
-                      <c:forEach items="${ list }" var="s">
+                      <c:forEach items="${ list }" var="score">
                       <tr>
                         <td data-th="Supplier Code">
-                          	${s.levelNo}
+                          	${score.levelNo}
                         </td>
                         <td data-th="Invoice Number">
-                          	${s.email}
+                          	${score.email}
                         </td>
                         <td data-th="Supplier Name">
-                            ${s.memberNickname}
-                        </td>
-                        <td data-th="Invoice Date">
-                                                       
+                            ${score.memberNickname}
                         </td>
                         <td data-th="Due Date">
-                          	${s.nationName}
+                          	${score.nationName}
                         </td>
                         <td data-th="Net Amount">
-                          ${s.score}
+                          ${score.score}
                         </td>
                       </tr>
                       </c:forEach>
                     </tbody>
                   </table>
-                  <button type="submit" id="list-select-btn">리스트조회</button>
                 </form>
                 </div>
 	        </div>
