@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,6 @@ import com.kh.korea.admin.model.service.AdminService;
 import com.kh.korea.board.model.vo.Board;
 import com.kh.korea.common.model.vo.PageInfo;
 import com.kh.korea.common.template.Pagination;
-import com.kh.korea.game.model.vo.Score;
 import com.kh.korea.member.model.vo.Member;
 
 
@@ -42,7 +42,7 @@ public class AdminController {
 	}
 
 	// 회원 정보 리스트
-	@RequestMapping("list.me")
+	@GetMapping("list.me")
 	public String selectMemberList(@RequestParam(value="cPage", defaultValue="1") int currentPage,
 			Model model) {
 		
@@ -52,7 +52,6 @@ public class AdminController {
 											 5);
 		model.addAttribute("list", adminService.selectList(pi));
 		model.addAttribute("pi", pi);
-		
 
 		return "admin/memberInfo";
 	}
@@ -60,9 +59,9 @@ public class AdminController {
 	// 회원 상세 조회
 	@ResponseBody
 	@GetMapping(value="memberDetail.me", produces="application/json; charset=UTF-8")
-	public String memberInfoDetail(Member m) {
+	public String memberInfoDetail(Member member) {
 		
-		return new Gson().toJson(adminService.memberDetail(m));
+		return new Gson().toJson(adminService.memberDetail(member));
 		
 	}
 	
@@ -104,16 +103,14 @@ public class AdminController {
 		
 	}
 	*/
-	@RequestMapping("delete.me")
+	// 회원 삭제
+	@PostMapping("delete.me")
 	public String memberDelete(String memberPwd, String email, HttpSession session) {
 
 	    Member loginUser = (Member) session.getAttribute("loginUser");
 	    String encPwd = loginUser.getMemberPwd();
-	    //System.out.println(email);
-	    //System.out.println(memberPwd);
 	    
 	    if (bcryptPasswordEncoder.matches(memberPwd, encPwd)) {
-	    	//String email = loginUser.getEmail();
 	    	
 	        if (adminService.memberDelete(email) > 0) {
 	            return "admin/memberInfo";
@@ -200,15 +197,12 @@ public class AdminController {
 		return "admin/memberFreePosting";
 	}
 	
-	// 회원 개인 게시글 화면
+	// 회원 개인 게시글
 	@GetMapping("personalPosting")
 	public String selectPerPostingList(int bPage, Model model) {
 		
-		System.out.println("맴버 넘버 : " + bPage);
-		
 		model.addAttribute("list", adminService.selectPerPostingList(bPage));
 		model.addAttribute("bPage", bPage);
-		System.out.println(model.getAttribute("list"));
 		
 		return "admin/personalPosting";
 	}
